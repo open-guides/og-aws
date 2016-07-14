@@ -1,5 +1,32 @@
 # The Open Guide to Amazon Web Services
 
+* [Why an Open Guide?](#why-an-open-guide)
+* [Scope](#scope)
+* [General Information](#general-information)
+* [Managing AWS](#managing-aws)
+* [Managing Servers](#managing-servers)
+* [Billing and Cost Management](#billing-and-cost-management)
+* [AWS Security and IAM](#aws-security-and-iam)
+* [EC2](#ec2)
+* [AMIs](#amis)
+* [EBS](#ebs)
+* [ELBs](#elbs)
+* [Elastic IPs](#elastic-ips)
+* [S3](#s3)
+* [Glacier](#glacier)
+* [RDS](#rds)
+* [DynamoDB](#dynamodb)
+* [Route 53](#route-53)
+* [CloudFormation](#cloudformation)
+* [VPCs, Network Security, and Security Groups](#vpcs-network-security-and-security-groups)
+* [CloudFront](#cloudfront)
+* [DirectConnect](#directconnect)
+* [High Availability](#high-availability)
+* [Redshift](#redshift)
+* [EMR](#emr)
+* [Further Reading](#further-reading)
+* [Disclaimer](#disclaimer)
+* [License](#license)
 
 ## Why an Open Guide?
 
@@ -13,13 +40,13 @@ This guide *open to contributions*, so unlike a blog, it can keep improving. Bei
 ### Please help
 
 **This is an early in-progress draft!**
-It’s our first attempt at assembling this information, so is certain to have errors or shortcomings. It only covers some AWS services currently, but we expect it to expand.
+It’s our first attempt at assembling this information, so is certain to have errors or shortcomings.
 [**Please contribute**](CONTRIBUTING.md) by filing issues or PRs to expand, correct, or otherwise improve it.
 
 
 ## Scope
 
-* Currently, this guide covers selected “core” services, such as EC2, S3, ELBs, EBS, and IAM, and some details around other services.
+* Currently, this guide covers selected “core” services, such as EC2, S3, ELBs, EBS, and IAM, and some details around other services. We expect it to expand.
 * It is not a tutorial, but rather a collection of information you can read and return to. It is for both beginners and the experienced.
 * The goal of this guide is to be:
     * **Brief**: Keep it dense and use links
@@ -155,10 +182,10 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 
 | Service | AWS | Google Cloud | Google Internal | Microsoft | Other providers | Open source “build your own” |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Virtual Server | EC2 | Compute Engine (GCE) |  |  | DigitalOcean | OpenStack |
+| Virtual server | EC2 | Compute Engine (GCE) |  |  | DigitalOcean | OpenStack |
 | PaaS | Elastic Beanstalk | App Engine | App Engine |  | Heroku | Meteor, AppScale |
-| Serverless/Microservices | Lambda | Functions |  |  |  | |
-| Container/cluster manager | ECS | Container Engine/Kubernetes | Borg or Omega |  |  | Kubernetes, Mesos/Aurora |
+| Serverless, microservices | Lambda | Functions |  |  |  | |
+| Container, cluster manager | ECS | Container Engine/Kubernetes | Borg or Omega |  |  | Kubernetes, Mesos/Aurora |
 | File storage | S3 | Cloud Storage | GFS |  |  | Swift, HDFS |
 | Block storage | EBS | Persistent Disk |  |  |  | NFS |
 | SQL datastore | RDS | Cloud SQL |  |  |  | MySQL, PostgreSQL |
@@ -168,10 +195,10 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 | Memory cache | ElastiCache | App Engine Memcache |  |  |  | Memcached, Redis |
 | Search | CloudSearch |  |  |  | Algolia, QBox | Elasticsearch, Solr |
 | Data warehouse | Redshift | BigQuery |  |  | Oracle, IBM, SAP, HP, many others | Greenplum |
-| Business Intelligence | QuickSight |  |  |  | Tableau |
+| Business intelligence | QuickSight |  |  |  | Tableau |
 | Lock manager | [DynamoDB (weak)](https://gist.github.com/ryandotsmith/c95fd21fab91b0823328) |  | Chubby |  |  | ZooKeeper, Etcd, Consul |
 | Message broker | SQS | Pub/Sub | PubSub2 |  |  | RabbitMQ, Kafka, 0MQ |
-| Streaming/Distributed log | Kinesis | Dataflow | PubSub2 | Event Hubs |  | Kafka Streams, Apex, Flink, Spark Streaming, Storm |
+| Streaming, distributed log | Kinesis | Dataflow | PubSub2 | Event Hubs |  | Kafka Streams, Apex, Flink, Spark Streaming, Storm |
 | MapReduce | EMR | Dataproc | MapReduce |  | Qubole | Hadoop |
 | Monitoring | CloudWatch | Monitoring | Borgmon |  |  | Prometheus(?) |
 | Metric management |  |  | Borgmon, TSDB |  |  | Graphite, InfluxDB, OpenTSDB, Grafana, Riemann, Prometheus |
@@ -188,60 +215,60 @@ Selected resources with more detail on this chart:
 
 * Google internal: [MapReduce](http://research.google.com/archive/mapreduce.html), [Bigtable](http://research.google.com/archive/bigtable.html), [Spanner](http://research.google.com/archive/spanner.html), [F1 vs Spanner](http://highscalability.com/blog/2013/10/8/f1-and-spanner-holistically-compared.html), [Bigtable vs Megastore](http://perspectives.mvdirona.com/2008/07/google-megastore/)
 
-### Maturity
+### Maturity and Releases
 
-One way to assess maturity is to know how long each product has been released. Here is a mostly complete list, based on [release notes](https://aws.amazon.com/releasenotes/). Not all services are available in all regions; see [this table](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/).
+It’s important to know the maturity of each product. Here is a mostly complete list of first release date, with links to the [release notes](https://aws.amazon.com/releasenotes/). Most recently released services are first. Not all services are available in all regions; see [this table](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/).
 
-| Current status (preview/general) | Original release | Availability |
+| Service | Original release | Availability |
 | --- | --- | --- |
-| Database Migration Service | 2016-03 | General |
-| WAF | 2015-10 | General |
-| Data Pipeline | 2015-10 | General |
-| Elasticsearch | 2015-10 | General |
-| Service Catalog | 2015-07 | General |
-| CodePipeline | 2015-07 | General |
-| CodeCommit | 2015-07 | General |
-| API Gateway | 2015-07 | General |
-| Config | 2015-06 | General |
-| EFS | 2015-05 | Preview |
-| Machine Learning | 2015-04 | General |
-| Lambda | 2014-11 | General |
-| KMS | 2014-11 | General |
-| CodeDeploy | 2014-11 | General |
-| Kinesis | 2013-12 | General |
-| CloudTrail | 2013-11 | General |
-| AppStream | 2013-11 | Preview |
-| CloudHSM | 2013-03 | General |
-| Silk | 2013-03 | Obsolete? |
-| OpsWorks | 2013-02 | General |
-| Redshift | 2013-02 | General |
-| Elastic Transcoder | 2013-01 | General |
-| Glacier | 2012-08 | General |
-| CloudSearch | 2012-04 | General |
-| SWF | 2012-02 | General |
-| Storage Gateway | 2012-01 | General |
-| DynamoDB | 2012-01 | General |
-| DirectConnect | 2011-08 | General |
-| ElastiCache | 2011-08 | General |
-| CloudFormation | 2011-04 | General |
-| SES | 2011-01 | General |
-| Elastic Beanstalk | 2010-12 | General |
-| Route 53 | 2010-10 | General |
-| IAM | 2010-09 | General |
-| SNS | 2010-04 | General |
-| EMR | 2010-04 | General |
-| RDS | 2009-12 | General |
-| VPC | 2009-08 | General |
-| Snowball | 2009-05 | General |
-| CloudWatch | 2009-05 | General |
-| CloudFront | 2008-11 | General |
-| Fulfillment Web Service | 2008-03 | Obsolete? |
-| SimpleDB | 2007-12 | Obsolete |
-| DevPay | 2007-12 | General |
-| Flexible Payments Service | 2007-08 | Retired |
-| EC2 | 2006-08 | General |
-| SQS | 2006-07 | General |
-| S3 | 2006-03 | General |
+| [Database Migration Service](https://aws.amazon.com/releasenotes/AWS-Database-Migration-Service?browse=1) | 2016-03 | General |
+| [WAF](https://aws.amazon.com/releasenotes/AWS-WAF?browse=1) | 2015-10 | General |
+| [Data Pipeline](https://aws.amazon.com/releasenotes/AWS-Data-Pipeline?browse=1) | 2015-10 | General |
+| [Elasticsearch](https://aws.amazon.com/releasenotes/Amazon-Elasticsearch-Service?browse=1) | 2015-10 | General |
+| [Service Catalog](https://aws.amazon.com/releasenotes/AWS-Service-Catalog?browse=1) | 2015-07 | General |
+| [CodePipeline](https://aws.amazon.com/releasenotes/AWS-CodePipeline?browse=1) | 2015-07 | General |
+| [CodeCommit](https://aws.amazon.com/releasenotes/AWS-CodeCommit?browse=1) | 2015-07 | General |
+| [API Gateway](https://aws.amazon.com/releasenotes/Amazon-API-Gateway?browse=1) | 2015-07 | General |
+| [Config](https://aws.amazon.com/releasenotes/AWS-Config?browse=1) | 2015-06 | General |
+| [EFS](https://aws.amazon.com/releasenotes/Amazon-EFS?browse=1) | 2015-05 | Preview |
+| [Machine Learning](https://aws.amazon.com/releasenotes/AmazonML?browse=1) | 2015-04 | General |
+| [Lambda](https://aws.amazon.com/releasenotes/AWS-Lambda?browse=1) | 2014-11 | General |
+| [KMS](https://aws.amazon.com/releasenotes/AWS-KMS?browse=1) | 2014-11 | General |
+| [CodeDeploy](https://aws.amazon.com/releasenotes/AWS-CodeDeploy?browse=1) | 2014-11 | General |
+| [Kinesis](https://aws.amazon.com/releasenotes/Amazon-Kinesis?browse=1) | 2013-12 | General |
+| [CloudTrail](https://aws.amazon.com/releasenotes/AWS-CloudTrail?browse=1) | 2013-11 | General |
+| [AppStream](https://aws.amazon.com/releasenotes/Amazon-AppStream?browse=1) | 2013-11 | Preview |
+| [CloudHSM](https://aws.amazon.com/releasenotes/AWS-CloudHSM?browse=1) | 2013-03 | General |
+| [Silk](https://aws.amazon.com/releasenotes/Amazon-Silk?browse=1) | 2013-03 | Obsolete? |
+| [OpsWorks](https://aws.amazon.com/releasenotes/AWS-OpsWorks?browse=1) | 2013-02 | General |
+| [Redshift](https://aws.amazon.com/releasenotes/Amazon-Redshift?browse=1) | 2013-02 | General |
+| [Elastic Transcoder](https://aws.amazon.com/releasenotes/Amazon-Elastic-Transcoder?browse=1) | 2013-01 | General |
+| [Glacier](https://aws.amazon.com/releasenotes/Amazon-Glacier?browse=1) | 2012-08 | General |
+| [CloudSearch](https://aws.amazon.com/releasenotes/Amazon-CloudSearch?browse=1) | 2012-04 | General |
+| [SWF](https://aws.amazon.com/releasenotes/Amazon-SWF?browse=1) | 2012-02 | General |
+| [Storage Gateway](https://aws.amazon.com/releasenotes/AWS-Storage-Gateway?browse=1) | 2012-01 | General |
+| [DynamoDB](https://aws.amazon.com/releasenotes/Amazon-DynamoDB?browse=1) | 2012-01 | General |
+| [DirectConnect](https://aws.amazon.com/releasenotes/AWS-Direct-Connect?browse=1) | 2011-08 | General |
+| [ElastiCache](https://aws.amazon.com/releasenotes/Amazon-ElastiCache?browse=1) | 2011-08 | General |
+| [CloudFormation](https://aws.amazon.com/releasenotes/AWS-CloudFormation?browse=1) | 2011-04 | General |
+| [SES](https://aws.amazon.com/releasenotes/Amazon-SES?browse=1) | 2011-01 | General |
+| [Elastic Beanstalk](https://aws.amazon.com/releasenotes/AWS-Elastic-Beanstalk?browse=1) | 2010-12 | General |
+| [Route 53](https://aws.amazon.com/releasenotes/Amazon-Route-53?browse=1) | 2010-10 | General |
+| [IAM](https://aws.amazon.com/releasenotes/AWS-Identity-and-Access-Management?browse=1) | 2010-09 | General |
+| [SNS](https://aws.amazon.com/releasenotes/Amazon-SNS?browse=1) | 2010-04 | General |
+| [EMR](https://aws.amazon.com/releasenotes/Elastic-MapReduce?browse=1) | 2010-04 | General |
+| [RDS](https://aws.amazon.com/releasenotes/Amazon-RDS?browse=1) | 2009-12 | General |
+| [VPC](https://aws.amazon.com/releasenotes/Amazon-VPC?browse=1) | 2009-08 | General |
+| [Snowball](https://aws.amazon.com/releasenotes/AWS-ImportExport?browse=1) | 2009-05 | General |
+| [CloudWatch](https://aws.amazon.com/releasenotes/CloudWatch?browse=1) | 2009-05 | General |
+| [CloudFront](https://aws.amazon.com/releasenotes/CloudFront?browse=1) | 2008-11 | General |
+| [Fulfillment Web Service](https://aws.amazon.com/releasenotes/Amazon-FWS?browse=1) | 2008-03 | Obsolete? |
+| [SimpleDB](https://aws.amazon.com/releasenotes/Amazon-SimpleDB?browse=1) | 2007-12 | Obsolete |
+| [DevPay](https://aws.amazon.com/releasenotes/DevPay?browse=1) | 2007-12 | General |
+| [Flexible Payments Service](https://aws.amazon.com/releasenotes/Amazon-FPS?browse=1) | 2007-08 | Retired |
+| [EC2](https://aws.amazon.com/releasenotes/Amazon-EC2?browse=1) | 2006-08 | General |
+| [SQS](https://aws.amazon.com/releasenotes/Amazon-SQS?browse=1) | 2006-07 | General |
+| [S3](https://aws.amazon.com/releasenotes/Amazon-S3?browse=1) | 2006-03 | General |
 
 
 ### Compliance
@@ -374,7 +401,7 @@ This guide is about AWS, not DevOps or server configuration management in genera
     * Doesn’t support custom domains / certificates.
 
 
-## 💸 Billing and Cost Management
+## Billing and Cost Management
 
 * AWS offers a [**free tier**](https://aws.amazon.com/free/) of service, that allows very limited usage of resources at no cost. For example, a micro instance and small amount of storage is available for no charge. (If you have an old account but starting fresh, sign up for a new one to qualify for the free tier.) [AWS Activate](https://aws.amazon.com/activate/) extends this to tens of thousands of dollars of free credits to startups in [certain funds or accelerators](https://aws.amazon.com/activate/portfolio-detail/).
 * You can set [**billing alerts**](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier-alarms.html) to be notified of unexpected costs, such as costs exceeding the free tier.

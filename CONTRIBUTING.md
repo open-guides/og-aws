@@ -6,14 +6,12 @@ We gladly credit all contributors and authors.
 Here are few notes before you jump in.
 
 **Questions and discussion**:
-[File issues](https://github.com/open-guides/og-aws/issues) liberally! Don’t be shy about creating issues — they are the only way to discuss things here. Just tag it as a question or discussion. We or others can answer, and it may lead to improvements to the guide.
+[File issues](https://github.com/open-guides/og-aws/issues) liberally. Don’t be shy about creating issues — they are the only way to discuss things here. Just tag it as a question or discussion. We or others can answer, and it may lead to improvements to the guide.
 
 **Corrections and improvements**:
-[File issues](https://github.com/open-guides/og-aws/issues) describing the problem.  Use them to discuss topics, ask questions, identify issues, or suggest improvements. [Pull requests](https://github.com/open-guides/og-aws/pulls) with changes are even better. Please keep them small and focused, so we can add items individually.
+[File issues](https://github.com/open-guides/og-aws/issues) describing the problem.  Use them to discuss topics, ask questions, identify issues, or suggest improvements. [Pull requests](https://github.com/open-guides/og-aws/pulls) with changes are even better. Please keep them small and focused, so we can add items individually, and review the conventions below.
 
-Of course, please review current issues and pull requests to avoid duplication.
-
-Finally, if an issue isn't appropriate, please shoot an e-mail to [@jlevy](https://github.com/jlevy).
+Please review current issues and pull requests to avoid duplication. Finally, if an issue isn't appropriate, please shoot an e-mail to [@jlevy](https://github.com/jlevy).
 
 ### Conventions
 
@@ -25,7 +23,6 @@ When you contribute, keep in mind these conventions:
 * Key and important statistics are **boldfaced **(illustrative numbers should not be).
 * References, including all references to books, are linked in brackets at the end of the bulleted entry.
 * Typographical conventions:
-    * Prefer use of % for boldfaced statistics and ratios and prefer writing “percent” for interest rates.
     * Use Unicode open and close quotes “like this” and not "like this".
     * Use oriented apostrophes (Unicode’s, not ASCII's).
     * Use em dashes — like this (not two hyphens -- like this).
