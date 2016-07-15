@@ -7,15 +7,17 @@
 * [Managing Servers](#managing-servers)
 * [Billing and Cost Management](#billing-and-cost-management)
 * [AWS Security and IAM](#aws-security-and-iam)
+* [S3](#s3)
 * [EC2](#ec2)
 * [AMIs](#amis)
 * [EBS](#ebs)
 * [ELBs](#elbs)
 * [Elastic IPs](#elastic-ips)
-* [S3](#s3)
 * [Glacier](#glacier)
 * [RDS](#rds)
 * [DynamoDB](#dynamodb)
+* [ECS](#ecs)
+* [Lambda](#lambda)
 * [Route 53](#route-53)
 * [CloudFormation](#cloudformation)
 * [VPCs, Network Security, and Security Groups](#vpcs-network-security-and-security-groups)
@@ -39,9 +41,10 @@ Please read the [**license**](#license) and [**disclaimer**](#disclaimer).
 ### Please help
 
 **July 2016: This is an early in-progress draft!**
-It’s our first attempt at assembling this information, so is certain to have errors or shortcomings.
-[**Please contribute**](CONTRIBUTING.md) by filing issues or PRs to expand, correct, or otherwise improve it.
-This guide *open to contributions*, so unlike a blog, it can keep improving. Like any open source project, anyone can file issues and suggest changes or contributions. We combine efforts but also review ensure high quality.
+It’s our first attempt at assembling this information, so is certain to have omissions and errors.
+[**Please contribute**](CONTRIBUTING.md) by filing issues or PRs to comment, expand, correct, or otherwise improve it.
+This guide *open to contributions*, so unlike a blog, it can keep improving.
+Like any open source effort, we combine efforts but also review ensure high quality.
 
 
 ## Scope
@@ -52,7 +55,7 @@ This guide *open to contributions*, so unlike a blog, it can keep improving. Lik
     * **Brief**: Keep it dense and use links
     * **Practical**: Basic facts, concrete facts, details, advice, gotchas, and “folk knowledge”
     * **Current**: We can keep updating it, and anyone can contribute improvements
-    * **Thoughtfully opinionated**: Suggestions, notes, and opinions based on real experience can be extremely valuable. We strive to draw opinions from experts and give evidence and reasoning where possible. (We believe this is both productive and possible with a Guide of this format, unlike in some [other venues](http://meta.stackexchange.com/questions/201994/is-there-a-place-to-ask-opinion-based-questions).)
+    * **Thoughtful**: The goal is to be helpful rather than present dry facts. Thoughtful opinion with rationale is welcome. Suggestions, notes, and opinions based on real experience can be extremely valuable. (We believe this is both possible with a guide of this format, unlike in some [other venues](http://meta.stackexchange.com/questions/201994/is-there-a-place-to-ask-opinion-based-questions).)
 * This guide is not sponsored by AWS or AWS-affiliated vendors. It is written by and for engineers who use AWS.
 * Legend:
     * 🔹 Important or often overlooked tip
@@ -64,6 +67,7 @@ This guide *open to contributions*, so unlike a blog, it can keep improving. Lik
     * 🚪 Alternative non-AWS options
     * 💸 Cost issues and discussion
     * 🕍 A mild warning attached to “full solution” or opinionated frameworks that may take significant time to understand and/or might not fit your needs exactly; the opposite of a point solution (the cathedral is a nod to [Raymond’s metaphor](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar))
+    * 🚧 Areas where correction or improvement are needed (possibly with link to an issue — do help)
 
 
 ## General Information
@@ -208,7 +212,7 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 | Email | SES |  |  |  | Sendgrid, Mandrill, Postmark |
 | Git hosting | CodeCommit |  |  |  | GitHub, BitBucket | GitLab |
 | User authentication | Cognito |  |  |  |  | oauth.io |
-| Mobile app analytics | Mobile Analytics |  |  |  | Mixpanel |
+| Mobile app analytics | Mobile Analytics |  |  |  |  | Mixpanel |
 
 
 Selected resources with more detail on this chart:
@@ -233,6 +237,7 @@ It’s important to know the maturity of each product. Here is a mostly complete
 | [EFS](https://aws.amazon.com/releasenotes/Amazon-EFS?browse=1) | 2015-05 | Preview |
 | [Machine Learning](https://aws.amazon.com/releasenotes/AmazonML?browse=1) | 2015-04 | General |
 | [Lambda](https://aws.amazon.com/releasenotes/AWS-Lambda?browse=1) | 2014-11 | General |
+| [ECS](https://aws.amazon.com/ecs/release-notes/) | 2014-11 | General |
 | [KMS](https://aws.amazon.com/releasenotes/AWS-KMS?browse=1) | 2014-11 | General |
 | [CodeDeploy](https://aws.amazon.com/releasenotes/AWS-CodeDeploy?browse=1) | 2014-11 | General |
 | [Kinesis](https://aws.amazon.com/releasenotes/Amazon-Kinesis?browse=1) | 2013-12 | General |
@@ -392,13 +397,8 @@ This guide is about AWS, not DevOps or server configuration management in genera
 * [Docker](http://blog.scottlowe.org/2014/03/11/a-quick-introduction-to-docker/) and the containerization trend are changing the way many servers and services are deployed in general.
 * Containers are designed as a way to package up your application(s) and all of their dependencies in a known way.  When you build a container, you are including every library or binary your application needs, outside of the kernel. A big advantage of this approach is that it’s easy to test and validate a container locally without worrying about some difference between your computer and the servers you deploy on.
 * A consequence of this is that you need fewer AMIs and boot scripts; for most deployments, the only boot script you need is a template that fetches an exported docker image and runs it.
-* Deploying Docker directly in EC2 yourself is probably the most common approach to using Docker on AWS. AWS recently offered [ECS](https://aws.amazon.com/ecs/) as its own foray into more management of Docker, but using ECS is not required, and this service does not (yet) seem to be the predominant way people are using Docker on AWS.
-* It’s also possible to use [Elastic Beanstalk with Docker](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker.html), which is reasonable if you’re already using Elastic Beanstalk.
-* Using Docker may change the way your services are deployed within EC2 or Elastic Beanstalk, but it does not radically change how most other services are used.
-* [ECR](https://aws.amazon.com/ecr/) (EC2 Container Registry) is Amazon’s managed Docker registry service. While simpler than running your own registry, it is missing some features that might be desired by some users:
-    * Doesn’t support cross-region replication of images.
-        * If you want fast fleet-wide pulls of large images, you’ll need to push your image into a region-local registry.
-    * Doesn’t support custom domains / certificates.
+* Companies that are embracing [microservice architectures](http://martinfowler.com/articles/microservices.html) will often turn to container-based deployments.
+* AWS launched [ECS](https://aws.amazon.com/ecs/) as a service to manage clusters via Docker in late 2014, though many people still deploy Docker directly themselves. See the [ECS section](#ecs) for more details.
 
 
 ## Billing and Cost Management
@@ -442,6 +442,66 @@ We cover overall security first, since configuring user accounts is something yo
 * 🔹Consider creating separate AWS accounts for independent parts of your infrastructure if you expect a high rate of AWS API calls, since AWS [throttles calls](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-api-troubleshooting.html#api-request-rate) at the AWS account level.
 * [**Key Management Service (KMS)**](https://aws.amazon.com/kms/) is likely one of your best and most secure options for storing keys, such as for [EBS](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) and [S3 encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html). (⛓ At the cost of lock-in.)
 * [**AWS WAF**](https://aws.amazon.com/waf) is a web application firewall to help you protect your applications for common attack patterns.
+
+
+## S3
+
+### Tips
+
+* For most practical purposes, you can consider S3 capacity unlimited, both in total size of files and number of objects.
+* The buckets use a global naming scheme , so if another AWS has already created a bucket under a name that you want to use you will need to pick a different name. A common practice is to use the company name acronym or abbreviation to prefix all bucket names (but please, don’t use this as a security measure).
+* The number of objects in a bucket is essentially unlimited. Customers routinely have millions of objects.
+* **Durability**: Durability of S3 is extremely high, since internally it keeps several replicas. If you don’t delete it by accident, you can count on S3 not losing your data. (AWS offers the seemingly improbable durability rate of [99.999999999%](https://aws.amazon.com/s3/faqs/#How_durable_is_Amazon_S3), but this is a mathematical calculation based on independent failure rates and levels of replication — not a true probability estimate. Either way, S3 has had [a very good record](https://www.quora.com/Has-Amazon-S3-ever-lost-data-permanently) of durability.) Note this is *much* higher durability than EBS! If durability is less important for your application, you can use [S3 Reduced Redundancy Storage](https://aws.amazon.com/s3/reduced-redundancy/), which lowers the cost per GB, as well as the redundancy.
+* ⏱**Performance**: Data throughput is complex, both in terms of bandwidth and number of operations:
+    * Throughput is of course highest from within AWS, and between EC2 instances and S3 buckets that are in the same region.
+    * Throughput is extremely high when accessed in a distributed way, from many EC2 instances. It’s possible to read or write objects from S3 from thousands of instances at once.
+    * However, throughput is very limited when accessed sequentially, from a single instance. Individual operations take many milliseconds, and bandwidth to and from instances is limited by instance type.
+    * Therefore, to perform large numbers of operations, it’s necessary to use high levels of parallelization, both in terms of threads and EC2 instances.
+    * For large objects you want to take advantage of the multi-part uploading capabilities (starting with minimum chunk sizes of 5 MB).
+    * Also you can download chunks in parallel by exploiting the HTTP GET range-header capability.
+    * Listing contents happens at 1000 responses per request, so for buckets with many millions of objects listings will take time.
+    * 🔸 In addition, latency on operations is [highly dependent on prefix similarities among key names](http://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html). If you have need for high volumes of operations, it is essential to consider naming schemes with more randomness early in the key name (first 7 or 8 characters) in order to avoid “hot spots”.
+    * 🔸 Note that sadly, the latter advice about random key names goes against having a consistent layout with common prefixes to manage data lifecycles in an automated way.
+* 💸**S3 pricing** depends on [storage, requests, and transfer](http://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html).
+    * For transfer, putting data into AWS is free, but you’ll pay on the way out. Transfer from S3 to EC2 in the *same region *is free. Transfer to other regions or the Internet in general is not free.
+* **Command-line applications**: There are a few ways to use S3 from the command line:
+    * Originally, [**s3cmd**](https://github.com/s3tools/s3cmd) was the best tool for the job. It’s still used heavily by many.
+    * The regular [**aws**](https://aws.amazon.com/cli/) command-line interface now supports S3 well, and is useful for most situations.
+    * [**s4cmd**](https://github.com/bloomreach/s4cmd) is a replacement, with greater emphasis on performance via multi-threading, which is helpful for large files and large sets of files, and also offers Unix-like globbing support.
+* **GUI applications**: You may prefer a GUI, or wish to support GUI access for less technical users. Some options:
+    * The [AWS Console](https://aws.amazon.com/console/) does offer a graphical way to use S3. Use caution telling non-technical people to use it, however, since without tight permissions, it offers access to many other AWS features.
+    * [Transmit](https://panic.com/transmit/) is a good option on OS X.
+* **S3 and CloudFront**: S3 is tightly integrated with the CloudFront CDN. See the CloudFront section for more information.
+* **Static website hosting:**
+    * S3 has a [static website hosting option](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html) that is simply a setting that enables configurable HTTP index and error pages and [HTTP redirect support](http://docs.aws.amazon.com/AmazonS3/latest/dev/how-to-page-redirect.html) to [public content](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html) in S3. It’s a simple way to host static assets or a fully static website.
+    * Consider using CloudFront in front of most or all assets:
+        * Like any CDN, CloudFront improves performance significantly.
+        * 🔸 SSL is only supported on the built-in amazonaws.com domain. S3 does support serving these sites through a [custom domain](http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html), but [not over SSL on a custom domain](http://stackoverflow.com/questions/11201316/how-to-configure-ssl-for-amazon-s3-bucket).
+        * 🔸 If you are including resources across domains, such as fonts inside CSS files, you may need to [configure CORS](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) for the bucket serving those resources.
+        * Since pretty much everything is moving to SSL nowadays, and you likely want control over the domain, you probably want to set up CloudFront your own certificate in front of S3 (and to ignore the [AWS example on this](http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html) as it is non-SSL only).
+        * That said, if you do, you’ll need to think through invalidation or updates on CloudFront. You may wish to [include versions or hashes in filenames](https://abhishek-tiwari.com/post/CloudFront-design-patterns-and-best-practices) so invalidation is not necessary.
+* **Permissions:**
+    * 🔸It’s important to manage permissions sensibly on S3 if you have data sensitivities, as fixing this later can be a difficult task if you have a lot of assets and internal users.
+    * 🔹Do create new buckets if you have different data sensitivities, as this is much less error prone than complex permissions rules.
+    * 🔹If data is for administrators only, like log data, put it in a bucket that only administrators can access.
+    * 💸Limit individual user (or IAM role) access to S3 to the minimal required and catalog the “approved” locations. Otherwise, S3 tends to become the dumping ground where people put data to random locations that are not cleaned up for years, costing you big bucks.
+* Manage data lifecycles sensibly.
+    * When putting data into a bucket, think about its lifecycle — its end of life, not just its beginning. Rule: data with different expiration policies should be stored under separate prefixes at the top level.
+    * For example, some voluminous logs might need to be deleted automatically monthly, while other data is critical and should never be deleted. Having the former in a separate bucket or at least a separate folder is wise.
+    * Thinking about this up front will save you pain. It’s very hard to clean up large collections of files created by many engineers with varying lifecycles and no coherent organization.
+    * Alternatively you can set a lifecycle policy to archive old data to Glacier. [Be careful](https://alestic.com/2012/12/s3-glacier-costs/) with archiving large numbers of small objects to Glacier, since it may actually cost more.
+    * There is also a product called S3 Infrequent Access that has the same durability as Standard S3, but is discounted per GB. It is suitable for objects that are infrequently accessed.
+* Creation of objects in S3 is atomic. You’ll never upload a file and have another client see only half the file. Also, if you create a new file, you’ll see it instantly. If you overwrite or delete a file, however, you’re only guaranteed [eventual consistency](https://aws.amazon.com/s3/faqs/#What_data_consistency_model_does_Amazon_S3_employ).
+* If you are primarily using a VPC, consider setting up a [VPC Endpoint](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html) for S3 in order to allow your VPC-hosted resources to easily access it without the need for extra network configuration or hops.
+
+### Gotchas and Limitations
+
+* ❗The number of buckets per account is [severely limited](http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) (100 per account). Use buckets sparingly. You can ask for a raise in the number of buckets but it will still be capped.
+* 🔸Amazon S3 has an [SLA](https://aws.amazon.com/s3/sla/) with 99.9% uptime. If you use S3 heavily, you’ll inevitably see occasional error accessing or storing data as disks or other infrastructure fail. Availability is usually restored in seconds or minutes. Although availability is not extremely high, as mentioned above, durability is excellent.
+* 🔸After uploading, any change that you make to the object causes a full rewrite of the object, so avoid appending-like behavior with regular files.
+* 🔸Sometimes, S3 suffers from replication issues, when an object is visible from a subset of the machines, depending on which S3 endpoint they hit. Those usually resolve within seconds, however, we’ve seen isolated cases when the issue lingered for 20-30 hours.
+* 🔸MD5s and multi-part uploads**: In S3, the [ETag header in S3](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonResponseHeaders.html) is a hash on the object. And in many cases, it is the MD5 hash. However, this [is not the case in general](http://stackoverflow.com/questions/12186993/what-is-the-algorithm-to-compute-the-amazon-s3-etag-for-a-file-larger-than-5gb) when you use multi-part uploads. One workaround is to compute MD5s yourself and put them in a custom header (such as is done by [s4cmd](https://github.com/bloomreach/s4cmd)).
+* 🔸**US Standard region:** Most S3 endpoints match the region they’re in, with the exception of the us-east-1 region, which is called 'us-standard' in S3 terminology. This region is also the only region that is replicated across coasts. As a result, latency varies more in this region than in others. You can minimize latency from us-east-1 by using *[s3-external-1.amazonaws.com](http://s3-external-1.amazonaws.com/)*.   
 
 
 ## EC2
@@ -589,65 +649,6 @@ We cover overall security first, since configuring user accounts is something yo
 * If an Elastic IP is not attached to an active resource there is a small [hourly fee](https://aws.amazon.com/ec2/pricing/#Elastic_IP_Addresses).
 
 
-## S3
-
-### Tips
-
-* For most practical purposes, you can consider S3 capacity unlimited, both in total size of files and number of objects.
-* The buckets use a global naming scheme , so if another AWS has already created a bucket under a name that you want to use you will need to pick a different name. A common practice is to use the company name acronym or abbreviation to prefix all bucket names (but please, don’t use this as a security measure).
-* The number of objects in a bucket is essentially unlimited. Customers routinely have millions of objects.
-* **Durability**: Durability of S3 is extremely high, since internally it keeps several replicas. If you don’t delete it by accident, you can count on S3 not losing your data. (AWS offers the seemingly improbable durability rate of [99.999999999%](https://aws.amazon.com/s3/faqs/#How_durable_is_Amazon_S3), but this is a mathematical calculation based on independent failure rates and levels of replication — not a true probability estimate. Either way, S3 has had [a very good record](https://www.quora.com/Has-Amazon-S3-ever-lost-data-permanently) of durability.) Note this is *much* higher durability than EBS! If durability is less important for your application, you can use [S3 Reduced Redundancy Storage](https://aws.amazon.com/s3/reduced-redundancy/), which lowers the cost per GB, as well as the redundancy.
-* ⏱**Performance**: Data throughput is complex, both in terms of bandwidth and number of operations:
-    * Throughput is of course highest from within AWS, and between EC2 instances and S3 buckets that are in the same region.
-    * Throughput is extremely high when accessed in a distributed way, from many EC2 instances. It’s possible to read or write objects from S3 from thousands of instances at once.
-    * However, throughput is very limited when accessed sequentially, from a single instance. Individual operations take many milliseconds, and bandwidth to and from instances is limited by instance type.
-    * Therefore, to perform large numbers of operations, it’s necessary to use high levels of parallelization, both in terms of threads and EC2 instances.
-    * For large objects you want to take advantage of the multi-part uploading capabilities (starting with minimum chunk sizes of 5 MB).
-    * Also you can download chunks in parallel by exploiting the HTTP GET range-header capability.
-    * Listing contents happens at 1000 responses per request, so for buckets with many millions of objects listings will take time.
-    * 🔸 In addition, latency on operations is [highly dependent on prefix similarities among key names](http://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html). If you have need for high volumes of operations, it is essential to consider naming schemes with more randomness early in the key name (first 7 or 8 characters) in order to avoid “hot spots”.
-    * 🔸 Note that sadly, the latter advice about random key names goes against having a consistent layout with common prefixes to manage data lifecycles in an automated way.
-* 💸**S3 pricing** depends on [storage, requests, and transfer](http://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html).
-    * For transfer, putting data into AWS is free, but you’ll pay on the way out. Transfer from S3 to EC2 in the *same region *is free. Transfer to other regions or the Internet in general is not free.
-* **Command-line applications**: There are a few ways to use S3 from the command line:
-    * Originally, [**s3cmd**](https://github.com/s3tools/s3cmd) was the best tool for the job. It’s still used heavily by many.
-    * The regular [**aws**](https://aws.amazon.com/cli/) command-line interface now supports S3 well, and is useful for most situations.
-    * [**s4cmd**](https://github.com/bloomreach/s4cmd) is a replacement, with greater emphasis on performance via multi-threading, which is helpful for large files and large sets of files, and also offers Unix-like globbing support.
-* **GUI applications**: You may prefer a GUI, or wish to support GUI access for less technical users. Some options:
-    * The [AWS Console](https://aws.amazon.com/console/) does offer a graphical way to use S3. Use caution telling non-technical people to use it, however, since without tight permissions, it offers access to many other AWS features.
-    * [Transmit](https://panic.com/transmit/) is a good option on OS X.
-* **S3 and CloudFront**: S3 is tightly integrated with the CloudFront CDN. See the CloudFront section for more information.
-* **Static website hosting:**
-    * S3 has a [static website hosting option](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html) that is simply a setting that enables configurable HTTP index and error pages and [HTTP redirect support](http://docs.aws.amazon.com/AmazonS3/latest/dev/how-to-page-redirect.html) to [public content](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html) in S3. It’s a simple way to host static assets or a fully static website.
-    * Consider using CloudFront in front of most or all assets:
-        * Like any CDN, CloudFront improves performance significantly.
-        * 🔸 SSL is only supported on the built-in amazonaws.com domain. S3 does support serving these sites through a [custom domain](http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html), but [not over SSL on a custom domain](http://stackoverflow.com/questions/11201316/how-to-configure-ssl-for-amazon-s3-bucket).
-        * 🔸 If you are including resources across domains, such as fonts inside CSS files, you may need to [configure CORS](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) for the bucket serving those resources.
-        * Since pretty much everything is moving to SSL nowadays, and you likely want control over the domain, you probably want to set up CloudFront your own certificate in front of S3 (and to ignore the [AWS example on this](http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html) as it is non-SSL only).
-        * That said, if you do, you’ll need to think through invalidation or updates on CloudFront. You may wish to [include versions or hashes in filenames](https://abhishek-tiwari.com/post/CloudFront-design-patterns-and-best-practices) so invalidation is not necessary.
-* **Permissions:**
-    * 🔸It’s important to manage permissions sensibly on S3 if you have data sensitivities, as fixing this later can be a difficult task if you have a lot of assets and internal users.
-    * 🔹Do create new buckets if you have different data sensitivities, as this is much less error prone than complex permissions rules.
-    * 🔹If data is for administrators only, like log data, put it in a bucket that only administrators can access.
-    * 💸Limit individual user (or IAM role) access to S3 to the minimal required and catalog the “approved” locations. Otherwise, S3 tends to become the dumping ground where people put data to random locations that are not cleaned up for years, costing you big bucks.
-* Manage data lifecycles sensibly.
-    * When putting data into a bucket, think about its lifecycle — its end of life, not just its beginning. Rule: data with different expiration policies should be stored under separate prefixes at the top level.
-    * For example, some voluminous logs might need to be deleted automatically monthly, while other data is critical and should never be deleted. Having the former in a separate bucket or at least a separate folder is wise.
-    * Thinking about this up front will save you pain. It’s very hard to clean up large collections of files created by many engineers with varying lifecycles and no coherent organization.
-    * Alternatively you can set a lifecycle policy to archive old data to Glacier. [Be careful](https://alestic.com/2012/12/s3-glacier-costs/) with archiving large numbers of small objects to Glacier, since it may actually cost more.
-    * There is also a product called S3 Infrequent Access that has the same durability as Standard S3, but is discounted per GB. It is suitable for objects that are infrequently accessed.
-* Creation of objects in S3 is atomic. You’ll never upload a file and have another client see only half the file. Also, if you create a new file, you’ll see it instantly. If you overwrite or delete a file, however, you’re only guaranteed [eventual consistency](https://aws.amazon.com/s3/faqs/#What_data_consistency_model_does_Amazon_S3_employ).
-* If you are primarily using a VPC, consider setting up a [VPC Endpoint](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html) for S3 in order to allow your VPC-hosted resources to easily access it without the need for extra network configuration or hops.
-
-### Gotchas and Limitations
-
-* ❗The number of buckets per account is [severely limited](http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) (100 per account). Use buckets sparingly. You can ask for a raise in the number of buckets but it will still be capped.
-* 🔸Amazon S3 has an [SLA](https://aws.amazon.com/s3/sla/) with 99.9% uptime. If you use S3 heavily, you’ll inevitably see occasional error accessing or storing data as disks or other infrastructure fail. Availability is usually restored in seconds or minutes. Although availability is not extremely high, as mentioned above, durability is excellent.
-* 🔸After uploading, any change that you make to the object causes a full rewrite of the object, so avoid appending-like behavior with regular files.
-* 🔸Sometimes, S3 suffers from replication issues, when an object is visible from a subset of the machines, depending on which S3 endpoint they hit. Those usually resolve within seconds, however, we’ve seen isolated cases when the issue lingered for 20-30 hours.
-* 🔸MD5s and multi-part uploads**: In S3, the [ETag header in S3](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonResponseHeaders.html) is a hash on the object. And in many cases, it is the MD5 hash. However, this [is not the case in general](http://stackoverflow.com/questions/12186993/what-is-the-algorithm-to-compute-the-amazon-s3-etag-for-a-file-larger-than-5gb) when you use multi-part uploads. One workaround is to compute MD5s yourself and put them in a custom header (such as is done by [s4cmd](https://github.com/bloomreach/s4cmd)).
-* 🔸**US Standard region:** Most S3 endpoints match the region they’re in, with the exception of the us-east-1 region, which is called 'us-standard' in S3 terminology. This region is also the only region that is replicated across coasts. As a result, latency varies more in this region than in others. You can minimize latency from us-east-1 by using *[s3-external-1.amazonaws.com](http://s3-external-1.amazonaws.com/)*.   
-
 
 ## Glacier
 
@@ -699,6 +700,36 @@ We cover overall security first, since configuring user accounts is something yo
 
 * 🔸 DynamoDB doesn’t provide a way to bulk-load data, and this has some [unfortunate consequences](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GuidelinesForTables.html#GuidelinesForTables.AvoidExcessivePTIncreases). Since you need to use the regular service APIs to update existing or create new rows, it is common to temporarily turn up a destination table’s write throughput to speed import. But when the table’s write capacity is increased, DynamoDB may do an irreversible split of the partitions underlying the table, spreading the total table capacity evenly across the new generation of tables. Later, if the capacity is reduced, the capacity for each partition is also reduced but the total number of partitions is not, leaving less capacity for each partition. This leaves the table in a state where it much easier for hotspots to overwhelm individual partitions.
 * It is important to make sure that DynamoDB [resource limits](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html#limits-data-types) are compatible with your dataset and workload. For example, the maximum size value that can be added to a DynamoDB table is 400 KB.
+
+
+## ECS
+
+### Basics
+
+* [ECS](https://aws.amazon.com/ecs/) (EC2 Container Service) is a relatively new service (launched end of 2014) that manages clusters of services deployed via Docker.
+* See the [Containers and AWS](#containers-and-aws) section for more context on containers.
+* ECS is growing in adoption, especially for companies that embrace microservices.
+* Deploying Docker directly in EC2 yourself is another common approach to using Docker on AWS. Using ECS is not required, and ECS does not (yet) seem to be the predominant way many companies are using Docker on AWS.
+* It’s also possible to use [Elastic Beanstalk with Docker](http://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create_deploy_docker.html), which is reasonable if you’re already using Elastic Beanstalk.
+* Using Docker may change the way your services are deployed within EC2 or Elastic Beanstalk, but it does not radically change how most other services are used.
+* [ECR](https://aws.amazon.com/ecr/) (EC2 Container Registry) is Amazon’s managed Docker registry service. While simpler than running your own registry, it is missing some features that might be desired by some users:
+    * Doesn’t support cross-region replication of images.
+        * If you want fast fleet-wide pulls of large images, you’ll need to push your image into a region-local registry.
+    * Doesn’t support custom domains / certificates.
+
+[🚧 Please help expand this section.]
+
+
+## Lambda
+
+### Basics
+
+* Lambda is a relatively new service (launched at end of 2014) that offers a different type of compute abstraction: A user-defined function that can perform a small operation, where AWS manages provisioning and scheduling how it is run.
+* This abstraction has grown to be called “serverless” since you don't explicitly manage server inistances, as with EC2. (This term is a bit confusing since the functions themselves do of course run on servers managed by AWS.)
+* Adoption of Lambda has grown very rapidly in 2015, with many use cases that traditionally would be solved by managing EC2 services migrating to serverless architectures.
+* The [Awesome Serverless](https://github.com/anaibol/awesome-serverless) list gives a good set of examples of modern tools.
+
+[🚧 Please help expand this section.]
 
 
 ## Route 53
