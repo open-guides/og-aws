@@ -1,8 +1,8 @@
 # Authors
 
 This work is a collaborative effort that has benefit from contributions and review of many people.
-It was begun and is edited by [@jlevy](https://github.com/jlevy) and [@ThanosBaskous]((https://github.com/ThanosBaskous).
-Contributors and reviewers (in alphabetical order):
+It was begun and is edited by [@jlevy](https://github.com/jlevy) and [@ThanosBaskous](https://github.com/ThanosBaskous).
+The following people (in alphabetical order) have contributed or reviewed this or earlier versions of the guide.
 
 
 * [Alexander Atallah (alexanderatallah)](https://github.com/alexanderatallah)
@@ -10,7 +10,7 @@ Contributors and reviewers (in alphabetical order):
 * [Donne Martin (donnemartin)](https://github.com/donnemartin)
 * [Max Grigorev (forwidur)](https://github.com/forwidur)
 * [Dmitry Golyshev (golyshev)](https://github.com/golyshev)
-* [Joshua Levy (jlevy)](https://github.com/jlevy) — [4+](https://github.com/jlevy/og-aws/commits?author=jlevy)/[0+](https://github.com/jlevy/og-aws/issues?q=author%3Ajlevy) — _project editor_
+* [Joshua Levy (jlevy)](https://github.com/jlevy) — [5+](https://github.com/jlevy/og-aws/commits?author=jlevy)/[0+](https://github.com/jlevy/og-aws/issues?q=author%3Ajlevy) — _project editor_
 * [KAZUYUKI TANIMURA (kazuyukitanimura)](https://github.com/kazuyukitanimura)
 * [Marcello Bastéa-Forte (marcello3d)](https://github.com/marcello3d)
 * Max Zanko
@@ -21,8 +21,8 @@ Contributors and reviewers (in alphabetical order):
 * [Thanos Baskous (ThanosBaskous)](https://github.com/ThanosBaskous) — _project editor_
 * [Stefan Zier (weirded)](https://github.com/weirded)
 
-Additional authors are welcome! Please see the [contribution guidelines](CONTRIBUTING.md).
-Please let the editors know of any errors or ommisions on this list.
+Additional authors are welcome; see the [contribution guidelines](CONTRIBUTING.md).
+Please let the editors know of any errors or omissions on this list.
 
 
 

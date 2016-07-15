@@ -2,12 +2,13 @@
 
 header: |
   This work is a collaborative effort that has benefit from contributions and review of many people.
-  It was begun and is edited by [@jlevy](https://github.com/jlevy) and [@ThanosBaskous]((https://github.com/ThanosBaskous).
-  Contributors and reviewers (in alphabetical order):
+  It was begun and is edited by [@jlevy](https://github.com/jlevy) and [@ThanosBaskous](https://github.com/ThanosBaskous).
+  The following people (in alphabetical order) have contributed or reviewed this or earlier versions of the guide.
+
 
 footer: |
-  Additional authors are welcome! Please see the [contribution guidelines](CONTRIBUTING.md).
-  Please let the editors know of any errors or ommisions on this list.
+  Additional authors are welcome; see the [contribution guidelines](CONTRIBUTING.md).
+  Please let the editors know of any errors or omissions on this list.
 
 exclude:
   gitter-badger
