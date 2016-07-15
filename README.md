@@ -717,7 +717,7 @@ We cover overall security first, since configuring user accounts is something yo
         * If you want fast fleet-wide pulls of large images, you’ll need to push your image into a region-local registry.
     * Doesn’t support custom domains / certificates.
 
-[🚧 Please help expand this section.]
+🚧 *Please help expand this section.*
 
 
 ## Lambda
@@ -725,11 +725,11 @@ We cover overall security first, since configuring user accounts is something yo
 ### Basics
 
 * Lambda is a relatively new service (launched at end of 2014) that offers a different type of compute abstraction: A user-defined function that can perform a small operation, where AWS manages provisioning and scheduling how it is run.
-* This abstraction has grown to be called “serverless” since you don't explicitly manage server inistances, as with EC2. (This term is a bit confusing since the functions themselves do of course run on servers managed by AWS.)
+* This abstraction has grown to be called “serverless” since you don't explicitly manage any server instances, as you would with EC2. (This term is a bit confusing since the functions themselves do of course run on servers managed by AWS.)
 * Adoption of Lambda has grown very rapidly in 2015, with many use cases that traditionally would be solved by managing EC2 services migrating to serverless architectures.
-* The [Awesome Serverless](https://github.com/anaibol/awesome-serverless) list gives a good set of examples of modern tools.
+* The [Awesome Serverless](https://github.com/anaibol/awesome-serverless) list gives a good set of examples of the relatively immature, modern set of tools and frameworks around Lambda.
 
-[🚧 Please help expand this section.]
+🚧 *Please help expand this section.*
 
 
 ## Route 53
@@ -743,7 +743,7 @@ We cover overall security first, since configuring user accounts is something yo
 
 ### Tips
 
-* Know about Route 53’s “alias” records:
+* 🔹Know about Route 53’s “alias” records:
     * Route 53 supports all the standard DNS record types, but note that [**alias resource record sets**](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resource-record-sets-choosing-alias-non-alias.html) are not standard part of DNS, but a specific Route 53 feature. (It’s available from other DNS providers too, but each provider has a different name for it.)
     * Aliases are like an internal name (a bit like a CNAME) that is resolved internally on the server side. For example, traditionally you could have a CNAME to the DNS name of an ELB, but it’s often better to make an alias to the same ELB. The effect is the same, but in the latter case, externally, all a client sees is the target the record points to.
     * It’s often wise to use alias record as an alternative to CNAMEs, since they can be updated instantly with an API call, without worrying about DNS propagation.
@@ -782,7 +782,7 @@ We cover overall security first, since configuring user accounts is something yo
 
 ### Tips
 
-* **Security groups** are your first line of defense for your servers. Be extremely restrictive of what ports are open to all incoming connections. In general, if you use ELBs or other load balancing, the only ports that need to be open to incoming traffic would be port 22 and whatever port your application uses.
+* ❗**Security groups** are your first line of defense for your servers. Be extremely restrictive of what ports are open to all incoming connections. In general, if you use ELBs or other load balancing, the only ports that need to be open to incoming traffic would be port 22 and whatever port your application uses.
 * **Port hygiene**: A good habit is to pick unique ports within an unusual range for each different kind of production service. For example, your web fronted might use 3010, your backend services 3020 and 3021, and your Postgres instances the usual 5432. Then make sure you have fine-grained security groups for each set of servers. This makes you disciplined about listing out your services, but also is more error-proof. For example, should you accidentally have an extra Apache server running on the default port 80 on a backend server, it will not be exposed.
 * All modern AWS accounts (those created [after 2013-12-04](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html)) are “EC2-VPC” accounts that support VPCs, and all instances will be in a default VPC. Older accounts may still be using “EC2-Classic” mode. Some features don’t work without VPCs, so you probably will want to [migrate](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html).
 * For migrating from older EC2-Classic deployments to modern EC2-VPC setup, [this article](http://blog.kiip.me/engineering/ec2-to-vpc-executing-a-zero-downtime-migration/) may be of help.
