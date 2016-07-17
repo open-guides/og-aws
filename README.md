@@ -23,28 +23,28 @@
 * [VPCs, Network Security, and Security Groups](#vpcs-network-security-and-security-groups)
 * [CloudFront](#cloudfront)
 * [DirectConnect](#directconnect)
-* [High Availability](#high-availability)
 * [Redshift](#redshift)
 * [EMR](#emr)
+* [High Availability](#high-availability)
 * [Further Reading](#further-reading)
 * [Disclaimer](#disclaimer)
 * [License](#license)
 
 ## Why an Open Guide?
 
-A lot of information on AWS is already written. Most people learn AWS by reading a blog or a “[getting started guide](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)” and referring to the [standard AWS references](https://aws.amazon.com/documentation/). Nonetheless, trustworthy and practical information and recommendations aren’t easy to come by. AWS’s own documentation is a great resource but no one reads it all, and it doesn’t include anything but official facts, so omits experiences of engineers. The information in blogs or [Stack Overflow](http://stackoverflow.com/questions/tagged/amazon-web-services) is also not consistently up to date.
+A lot of information on AWS is already written. Most people learn AWS by reading a blog or a “[getting started guide](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)” and referring to the [standard AWS references](https://aws.amazon.com/documentation/). Nonetheless, trustworthy and practical information and recommendations aren’t easy to come by. AWS’s own documentation is a great but sprawling resource few have time time to read fully, and it doesn’t include anything but official facts, so omits experiences of engineers. The information in blogs or [Stack Overflow](http://stackoverflow.com/questions/tagged/amazon-web-services) is also not consistently up to date.
 
-This guide aims to be a useful, living reference that consolidates links, tips, gotchas and best practices.
+This guide is by and for engineers who use AWS.
+It aims to be a useful, living reference that consolidates links, tips, gotchas, and best practices.
 It arose from discussion and editing over beers by [several engineers](AUTHORS.md) who have used AWS extensively.
-Please read the [**license**](#license) and [**disclaimer**](#disclaimer).
-
-### Please help
 
 **July 2016: This is an early in-progress draft!**
 It’s our first attempt at assembling this information, so is certain to have omissions and errors.
 [**Please contribute**](CONTRIBUTING.md) by filing issues or PRs to comment, expand, correct, or otherwise improve it.
 This guide is *open to contributions*, so unlike a blog, it can keep improving.
 Like any open source effort, we combine efforts but also review ensure high quality.
+
+Before using the guide, please read the [**license**](#license) and [**disclaimer**](#disclaimer).
 
 
 ## Scope
@@ -53,7 +53,7 @@ Like any open source effort, we combine efforts but also review ensure high qual
 * It is not a tutorial, but rather a collection of information you can read and return to. It is for both beginners and the experienced.
 * The goal of this guide is to be:
     * **Brief**: Keep it dense and use links
-    * **Practical**: Basic facts, concrete facts, details, advice, gotchas, and “folk knowledge”
+    * **Practical**: Basic facts, concrete details, advice, gotchas, and other “folk knowledge”
     * **Current**: We can keep updating it, and anyone can contribute improvements
     * **Thoughtful**: The goal is to be helpful rather than present dry facts. Thoughtful opinion with rationale is welcome. Suggestions, notes, and opinions based on real experience can be extremely valuable. (We believe this is both possible with a guide of this format, unlike in some [other venues](http://meta.stackexchange.com/questions/201994/is-there-a-place-to-ask-opinion-based-questions).)
 * This guide is not sponsored by AWS or AWS-affiliated vendors. It is written by and for engineers who use AWS.
@@ -838,29 +838,6 @@ We cover overall security first, since configuring user accounts is something yo
     * Example: Make services that are hosted outside of AWS for financial, regulatory, or legacy reasons callable from within a VPC.
 
 
-## High Availability
-
-### Tips
-
-* AWS offers two levels of redundancy, [regions and availability zones (AZs)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions-availability-zones).
-* When used correctly, regions and zones do allow for high availability. You may want to use non-AWS providers for larger business risk mitigation (i.e. not tying your company to one vendor), but reliability of AWS across regions is very high.
-* **Multiple regions**: Using multiple regions is complex, since it’s essentially like completely separate infrastructure. It is necessary for business-critical services which highest levels of redundancy. However, for many applications (like your average consumer startup), deploying extensive redundancy across regions may be overkill.
-* The [High Scalability Blog](http://highscalability.com/blog/2016/1/11/a-beginners-guide-to-scaling-to-11-million-users-on-amazons.html) has a good guide to help you understand when you need to scale an application to multiple regions.
-* 🔹**Multiple AZs**: Using AZs wisely is the primary tool for high availability!
-    * The bulk of outages in AWS services affect one zone only. There have been rare outages affecting multiple zones simultaneously (for example, the [great EBS failure of 2011](http://aws.amazon.com/message/65648/)) but in general most customers’ outages are due to using only a single AZ for some infrastructure.
-    * Consequently, design your architecture to minimize the impact of AZ outages, especially single-zone outages.
-    * Deploy key infrastructure across at least two or three AZs. Replicating a single resource across more than three zones often won’t make sense if you have other backup mechanisms in place, like S3 snapshots.
-    * Deploy instances evenly across all available AZs, so that only a minimal fraction of your capacity is lost in case of an AZ outage.
-    * If your architecture has single points of failure, put all of them into a single AZ. This may seem counter-intuitive, but it minimizes the likelihood of any one SPOF to go down on an outage of a single AZ.
-* **EBS vs instance storage**: For a number of years, EBSs had a poorer track record for availability than instance storage. For systems where individual instances can be killed and restarted easily, instance storage with sufficient redundancy could give higher availability overall. EBS has improved, and modern instance types (since 2015) are now EBS-only, so this approach, while helpful at one time, may be increasingly archaic.
-* Be sure you use and understand **ELBs** whenever appropriate. (See the section on ELBs.) Many outages are due to not using load balancers, or misunderstandings or misconfigurations of ELBs.
-
-### Gotchas and Limitations
-
-* **AZ naming** differs from one customer account to the next. Your “us-west-1a” is not the same as another customer’s “us-west-1a” — the letters are assigned to physical AZs randomly per account. This can also be a gotcha if you have multiple AWS accounts.
-* **Cross-AZ traffic** is not free. At large scale, the costs add up to a significant amount of money. If possible, optimize your traffic to stay within the same AZ as much as possible.  
-
-
 ## Redshift
 
 ### Tips
@@ -889,6 +866,29 @@ We cover overall security first, since configuring user accounts is something yo
 * ⏱Off-the-shelf EMR and Hadoop can have significant overhead when compared with efficient processing on a single machine. If your data is small and performance matters, you may wish to consider alternatives, as [this post](http://aadrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html) illustrates.
 * Python programmers may want to take a look at Yelp’s [mrjob](https://github.com/Yelp/mrjob).
 * It takes time to tune performance of EMR jobs, which is why third-party services such as [Qubole’s data service](https://www.qubole.com/mapreduce-as-a-service/) are gaining popularity as ways to improve performance or reduce costs.
+
+
+## High Availability
+
+### Tips
+
+* AWS offers two levels of redundancy, [regions and availability zones (AZs)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions-availability-zones).
+* When used correctly, regions and zones do allow for high availability. You may want to use non-AWS providers for larger business risk mitigation (i.e. not tying your company to one vendor), but reliability of AWS across regions is very high.
+* **Multiple regions**: Using multiple regions is complex, since it’s essentially like completely separate infrastructure. It is necessary for business-critical services which highest levels of redundancy. However, for many applications (like your average consumer startup), deploying extensive redundancy across regions may be overkill.
+* The [High Scalability Blog](http://highscalability.com/blog/2016/1/11/a-beginners-guide-to-scaling-to-11-million-users-on-amazons.html) has a good guide to help you understand when you need to scale an application to multiple regions.
+* 🔹**Multiple AZs**: Using AZs wisely is the primary tool for high availability!
+    * The bulk of outages in AWS services affect one zone only. There have been rare outages affecting multiple zones simultaneously (for example, the [great EBS failure of 2011](http://aws.amazon.com/message/65648/)) but in general most customers’ outages are due to using only a single AZ for some infrastructure.
+    * Consequently, design your architecture to minimize the impact of AZ outages, especially single-zone outages.
+    * Deploy key infrastructure across at least two or three AZs. Replicating a single resource across more than three zones often won’t make sense if you have other backup mechanisms in place, like S3 snapshots.
+    * Deploy instances evenly across all available AZs, so that only a minimal fraction of your capacity is lost in case of an AZ outage.
+    * If your architecture has single points of failure, put all of them into a single AZ. This may seem counter-intuitive, but it minimizes the likelihood of any one SPOF to go down on an outage of a single AZ.
+* **EBS vs instance storage**: For a number of years, EBSs had a poorer track record for availability than instance storage. For systems where individual instances can be killed and restarted easily, instance storage with sufficient redundancy could give higher availability overall. EBS has improved, and modern instance types (since 2015) are now EBS-only, so this approach, while helpful at one time, may be increasingly archaic.
+* Be sure you use and understand **ELBs** whenever appropriate. (See the section on ELBs.) Many outages are due to not using load balancers, or misunderstandings or misconfigurations of ELBs.
+
+### Gotchas and Limitations
+
+* **AZ naming** differs from one customer account to the next. Your “us-west-1a” is not the same as another customer’s “us-west-1a” — the letters are assigned to physical AZs randomly per account. This can also be a gotcha if you have multiple AWS accounts.
+* **Cross-AZ traffic** is not free. At large scale, the costs add up to a significant amount of money. If possible, optimize your traffic to stay within the same AZ as much as possible.  
 
 
 ## Further Reading
