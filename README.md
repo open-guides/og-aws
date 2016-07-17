@@ -113,40 +113,40 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
 * Just because AWS has a service that sounds promising, it doesn’t mean you should use it. Some services are very narrow in use case, not mature, are overly opinionated, or have limitations, so very few people use them. More on this next.
 * Many customers combine AWS with other non-AWS services. For example, legacy systems or secure data might be in a managed hosting provider, while other systems are AWS. Or a company might only use S3 with another provider doing everything else. However small startups or projects starting fresh will typically stick to AWS or Google Cloud only.
 * **Must-know infrastructure**: Most typical small to medium-size users will focus on the following services first. If you manage use of AWS systems, you likely need to know at least a little about all of these. (Even if you don’t use them, you should learn enough to make that choice intelligently.)
-    * [IAM](https://aws.amazon.com/iam/): User accounts and identities (you need to think about accounts early on!)
-    * [EC2](https://aws.amazon.com/ec2/): Virtual servers and associated components, including:
-        * [AMIs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html): Machine Images
-        * [ELBs](https://aws.amazon.com/elasticloadbalancing/): Load balancing
+    * [IAM](#security-and-iam): User accounts and identities (you need to think about accounts early on!)
+    * [EC2](#ec2): Virtual servers and associated components, including:
+        * [AMIs](#amis): Machine Images
+        * [ELBs](#elbs): Load balancing
         * [Autoscaling](https://aws.amazon.com/autoscaling/): Capacity scaling (adding and removing servers based on load)
-        * [EBS](https://aws.amazon.com/ebs/): Network-attached disks
-        * [Elastic IPs](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html): Assigned IP addresses
-    * [S3](https://aws.amazon.com/s3/): Storage of files
-    * [Route 53](https://aws.amazon.com/route53/): DNS and domain registration
-    * [VPC](https://aws.amazon.com/vpc/): Virtual networking, network security, and co-location; you automatically use
-    * [CloudFront](https://aws.amazon.com/cloudfront/): CDN for hosting content
+        * [EBS](#ebs): Network-attached disks
+        * [Elastic IPs](#elastic-ips): Assigned IP addresses
+    * [S3](#s3): Storage of files
+    * [Route 53](#route-53): DNS and domain registration
+    * [VPC](#vpcs-network-security-and-security-groups): Virtual networking, network security, and co-location; you automatically use
+    * [CloudFront](#cloudfront): CDN for hosting content
     * [CloudWatch](https://aws.amazon.com/cloudwatch/): Alerts, paging, monitoring
 * **Managed services**: Existing software solutions you could run on your own, but with managed deployment:
-    * [RDS](https://aws.amazon.com/rds/): Managed relational databases (managed MySQL, Postgres, and Amazon’s own Aurora database)
-    * [EMR](https://aws.amazon.com/elasticmapreduce/): Managed Hadoop
+    * [RDS](#rds): Managed relational databases (managed MySQL, Postgres, and Amazon’s own Aurora database)
+    * [EMR](#emr): Managed Hadoop
     * [Elasticsearch](https://aws.amazon.com/elasticsearch-service/): Managed Elasticsearch
     * [ElastiCache](https://aws.amazon.com/elasticache/): Managed Redis and Memcached
 * **Optional but important infrastructure**: These are key and useful infrastructure are less widely known used. You may have legitimate reasons to prefer alternatives, so evaluate with care you to be sure they fit your needs:
-    * [Lambda](https://aws.amazon.com/lambda/): Running small, fully managed tasks “serverless”
+    * [Lambda](#lambda): Running small, fully managed tasks “serverless”
     * [CloudTrail](https://aws.amazon.com/cloudtrail/): AWS API logging and audit (often neglected but important)
-    * 🕍[CloudFormation](https://aws.amazon.com/cloudformation/): Templatized configuration of collections of AWS resources
+    * 🕍[CloudFormation](#cloudformation): Templatized configuration of collections of AWS resources
     * 🕍[Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/): Fully managed (PaaS) deployment of packaged Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker applications
     * 🐥[EFS](https://aws.amazon.com/efs/): Network filesystem
-    * 🕍[ECS](https://aws.amazon.com/ecs/): Docker container/cluster management. Note Docker can be used directly, without ECS.
+    * 🕍[ECS](#ecs): Docker container/cluster management. Note Docker can be used directly, without ECS.
     * [ECR](https://aws.amazon.com/ecr/): Hosted private Docker registry.
     * 🐥[Config](https://aws.amazon.com/config/): AWS configuration inventory, history, change notifications
 * **Special-purpose infrastructure**: These services are focused on specific use cases and should be evaluated if they apply to your situation:
-    * [Glacier](https://aws.amazon.com/glacier/): Slow and cheap alternative to S3
+    * [DynamoDB](#dynamodb): Low-latency NoSQL key-value store
+    * [Glacier](#glacier): Slow and cheap alternative to S3
     * [Kinesis](https://aws.amazon.com/kinesis/): Streaming (distributed log) service
     * [SQS](https://aws.amazon.com/sqs/): Message queueing service
-    * [Redshift](https://aws.amazon.com/redshift/): Data warehouse
+    * [Redshift](#redshift): Data warehouse
     * 🐥[QuickSight](https://aws.amazon.com/quicksight/): Business intelligence service
     * [SES](https://aws.amazon.com/ses/): Send and receive e-mail for marketing or transactions
-    * [DynamoDB](https://aws.amazon.com/dynamodb/): Low-latency NoSQL key-value store
     * [API Gateway](https://aws.amazon.com/api-gateway/): Proxy, manage, and secure API calls
     * [WAF](https://aws.amazon.com/waf/): Web firewall for CloudFront to deflect attacks
     * [KMS](https://aws.amazon.com/kms/): Store and manage encryption keys securely
@@ -738,7 +738,7 @@ We cover security basics first, since configuring user accounts is something you
         * If you want fast fleet-wide pulls of large images, you’ll need to push your image into a region-local registry.
     * Doesn’t support custom domains / certificates.
 
-🚧 *Please help expand this section.*
+🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
 
 ## Lambda
@@ -750,7 +750,7 @@ We cover security basics first, since configuring user accounts is something you
 * Adoption of Lambda has grown very rapidly in 2015, with many use cases that traditionally would be solved by managing EC2 services migrating to serverless architectures.
 * The [Awesome Serverless](https://github.com/anaibol/awesome-serverless) list gives a good set of examples of the relatively immature, modern set of tools and frameworks around Lambda.
 
-🚧 *Please help expand this section.*
+🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
 
 ## Route 53
