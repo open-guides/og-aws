@@ -32,7 +32,7 @@
 
 ## Why an Open Guide?
 
-A lot of information on AWS is already written. Most people learn AWS by reading a blog or a “[getting started guide](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)” and referring to the standard AWS references. Nonetheless, trustworthy and practical information and recommendations aren’t easy to come by. [AWS’s own documentation](https://aws.amazon.com/documentation/) is a great resource but no one reads it all, and it doesn’t include anything but official facts, so omits experiences of engineers. The information in blogs or [Stack Overflow](http://stackoverflow.com/questions/tagged/amazon-web-services) is also not consistently up to date.
+A lot of information on AWS is already written. Most people learn AWS by reading a blog or a “[getting started guide](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html)” and referring to the [standard AWS references](https://aws.amazon.com/documentation/). Nonetheless, trustworthy and practical information and recommendations aren’t easy to come by. AWS’s own documentation is a great resource but no one reads it all, and it doesn’t include anything but official facts, so omits experiences of engineers. The information in blogs or [Stack Overflow](http://stackoverflow.com/questions/tagged/amazon-web-services) is also not consistently up to date.
 
 This guide aims to be a useful, living reference that consolidates links, tips, gotchas and best practices.
 It arose from discussion and editing over beers by [several engineers](AUTHORS.md) who have used AWS extensively.
@@ -43,7 +43,7 @@ Please read the [**license**](#license) and [**disclaimer**](#disclaimer).
 **July 2016: This is an early in-progress draft!**
 It’s our first attempt at assembling this information, so is certain to have omissions and errors.
 [**Please contribute**](CONTRIBUTING.md) by filing issues or PRs to comment, expand, correct, or otherwise improve it.
-This guide *open to contributions*, so unlike a blog, it can keep improving.
+This guide is *open to contributions*, so unlike a blog, it can keep improving.
 Like any open source effort, we combine efforts but also review ensure high quality.
 
 
@@ -189,7 +189,7 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 | Virtual server | EC2 | Compute Engine (GCE) |  |  | DigitalOcean | OpenStack |
 | PaaS | Elastic Beanstalk | App Engine | App Engine |  | Heroku | Meteor, AppScale |
 | Serverless, microservices | Lambda | Functions |  |  |  | |
-| Container, cluster manager | ECS | Container Engine/Kubernetes | Borg or Omega |  |  | Kubernetes, Mesos/Aurora |
+| Container, cluster manager | ECS | Container Engine, Kubernetes | Borg or Omega |  |  | Kubernetes, Mesos, Aurora |
 | File storage | S3 | Cloud Storage | GFS |  |  | Swift, HDFS |
 | Block storage | EBS | Persistent Disk |  |  |  | NFS |
 | SQL datastore | RDS | Cloud SQL |  |  |  | MySQL, PostgreSQL |
@@ -212,7 +212,7 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 | Email | SES |  |  |  | Sendgrid, Mandrill, Postmark |
 | Git hosting | CodeCommit |  |  |  | GitHub, BitBucket | GitLab |
 | User authentication | Cognito |  |  |  |  | oauth.io |
-| Mobile app analytics | Mobile Analytics |  |  |  |  | Mixpanel |
+| Mobile app analytics | Mobile Analytics |  |  |  | Mixpanel |  |
 
 
 Selected resources with more detail on this chart:
@@ -440,6 +440,7 @@ We cover overall security first, since configuring user accounts is something yo
     * Unfortunately it can’t be enforced in software, so an administrative policy has to be established.
     * Most users can use the Google Authenticator app (on [iOS](https://itunes.apple.com/us/app/google-authenticator/id388497605) or [Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)) to support two-factor authentication. For the root account, consider a hardware fob.
 * 🔹Consider creating separate AWS accounts for independent parts of your infrastructure if you expect a high rate of AWS API calls, since AWS [throttles calls](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-api-troubleshooting.html#api-request-rate) at the AWS account level.
+* [**Inspector**](https://aws.amazon.com/inspector/) is an automated security assessment service from AWS that helps identify common security risks. This allows validation that you adhere to certain security practices and may help with compliance.
 * [**Key Management Service (KMS)**](https://aws.amazon.com/kms/) is likely one of your best and most secure options for storing keys, such as for [EBS](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) and [S3 encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html). (⛓ At the cost of lock-in.)
 * [**AWS WAF**](https://aws.amazon.com/waf) is a web application firewall to help you protect your applications for common attack patterns.
 

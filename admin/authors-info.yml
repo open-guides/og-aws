@@ -1,9 +1,9 @@
 # This file is used to configure the "ghizmo assemble-authors" command.
 
 header: |
-  This work is a collaborative effort that has benefit from contributions and review of many people.
+  This work is a collaborative effort.
   It was begun and is edited by [@jlevy](https://github.com/jlevy) and [@ThanosBaskous](https://github.com/ThanosBaskous).
-  The following people (in alphabetical order) have contributed or reviewed this or earlier versions of the guide.
+  The following people (in alphabetical order) have contributed to or reviewed this or earlier versions of the guide.
 
 
 footer: |

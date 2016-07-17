@@ -1,8 +1,8 @@
 # Authors
 
-This work is a collaborative effort that has benefit from contributions and review of many people.
+This work is a collaborative effort.
 It was begun and is edited by [@jlevy](https://github.com/jlevy) and [@ThanosBaskous](https://github.com/ThanosBaskous).
-The following people (in alphabetical order) have contributed or reviewed this or earlier versions of the guide.
+The following people (in alphabetical order) have contributed to or reviewed this or earlier versions of the guide.
 
 
 * [Alexander Atallah (alexanderatallah)](https://github.com/alexanderatallah)
@@ -10,7 +10,7 @@ The following people (in alphabetical order) have contributed or reviewed this o
 * [Donne Martin (donnemartin)](https://github.com/donnemartin)
 * [Max Grigorev (forwidur)](https://github.com/forwidur)
 * [Dmitry Golyshev (golyshev)](https://github.com/golyshev)
-* [Joshua Levy (jlevy)](https://github.com/jlevy) — [5+](https://github.com/jlevy/og-aws/commits?author=jlevy)/[0+](https://github.com/jlevy/og-aws/issues?q=author%3Ajlevy) — _project editor_
+* [Joshua Levy (jlevy)](https://github.com/jlevy) — [6+](https://github.com/open-guides/og-aws/commits?author=jlevy)/[13+](https://github.com/open-guides/og-aws/issues?q=author%3Ajlevy) — _project editor_
 * [KAZUYUKI TANIMURA (kazuyukitanimura)](https://github.com/kazuyukitanimura)
 * [Marcello Bastéa-Forte (marcello3d)](https://github.com/marcello3d)
 * Max Zanko
