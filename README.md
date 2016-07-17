@@ -6,7 +6,7 @@
 * [Managing AWS](#managing-aws)
 * [Managing Servers](#managing-servers)
 * [Billing and Cost Management](#billing-and-cost-management)
-* [AWS Security and IAM](#aws-security-and-iam)
+* [Security and IAM](#security-and-iam)
 * [S3](#s3)
 * [EC2](#ec2)
 * [AMIs](#amis)
@@ -106,7 +106,7 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
     * AWS’s [list of customers ](https://aws.amazon.com/solutions/case-studies/netflix/)includes a large numbers of mainstream sites, such as Netflix, Pinterest, Spotify, Airbnb, and Yelp.
     * Google Cloud’s [list of customers](https://cloud.google.com/customers/) is large as well, and includes a few mainstream sites, such as [Snapchat](http://www.businessinsider.com/snapchat-is-built-on-googles-cloud-2014-1), Best Buy, Domino’s, and Sony Music.
 
-### Which services to use
+### Which Services to Use
 
 * AWS offers a *lot* of different services — [about fifty](https://aws.amazon.com/products/) at last count.
 * Most customers use a few services heavily, a few services lightly, and the rest not at all. What services you’ll use depends on your use cases. Choices  differ substantially from company to company.
@@ -180,7 +180,7 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
     * 🕍[OpsWorks](https://aws.amazon.com/opsworks/): Management of your deployments using Chef. While Chef is popular, it seems few people use OpsWorks, since it involves going in on a whole different code deployment framework.
 * [AWS in Plain English](https://www.expeditedssl.com/aws-in-plain-english) offers more friendly explanation of what all the other different services are.
 
-### Service matrix
+### Service Matrix
 
 Many services within AWS can at least be compared with Google Cloud offerings or with internal Google services. And often times you could assemble the same thing yourself with open source software. This table is an effort at listing these rough correspondences. (Remember that this table is imperfect as in almost every case there are subtle differences of features!)
 
@@ -415,15 +415,31 @@ This guide is about AWS, not DevOps or server configuration management in genera
 * Multiple Amazon accounts can be linked for billing purposes using the [Consolidated Billing](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html) feature. Large enterprises may need complex billing structures depending on ownership and approval processes.
 
 
-## AWS Security and IAM
+## Security and IAM
 
-We cover overall security first, since configuring user accounts is something you usually have to do early on when setting up your system.
+We cover security basics first, since configuring user accounts is something you usually have to do early on when setting up your system.
 
-* ❗A lot of first-time AWS users create one account and one set of credentials, and then use them for a while, sharing among engineers and others within a company. This is easy. But *don’t do this*.
+### Basics
+
+* [**IAM**](https://aws.amazon.com/iam/) is the service you use to manage accounts and permissioning for AWS.
+* Managing security and access control with AWS is critical, so every AWS administrator needs to use and understand IAM, at least at a basic level.
+* IAM manages various kinds of authentication, for both users and for software services that may need to authenticate with AWS, including:
+    * [**Passwords**](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords.html) to log into the console. These are a username and password for real users.
+    * [**Access keys**](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html), which you may use with command-line tools. These are two strings, one the “id”, which is an upper-case alphabetic string of the form 'AXXXXXXXXXXXXXXXXXXX', and the other is the secret, which is a 40-character mixed-case base64-style string. These are often set up for services, not just users.
+    * [**Multi-factor authentication (MFA)**](https://aws.amazon.com/iam/details/mfa/), which is the highly recommended practice of using a keychain fob or smartphone app as a second layer of protection for user authentication.
+* IAM allows complex and fine-grained control of permissions, dividing users into groups, assigning permissions to roles, and so on. There is a [policy language](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) that can be used to customize security policies in a fine-grained way.
+    * 🔸The policy language has a complex and error-prone JSON syntax that’s quite confusing, so unless you are an expert, it is wise to base yours off trusted examples or AWS’ own pre-defined [managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html).
+* At the beginning, IAM policy may be very simple, but for large systems, it will grow in complexity, and need to be managed with care.
+    * 🔹Make sure one person (perhaps with a backup) in your organization is formally assigned ownership of managing IAM policies, make sure every administrator works with that person to have changes reviewed. This goes a long way to avoiding accidental and serious misconfigurations.
+* It is best to give each user or service the minimum privileges needed to perform their duties. This is the
+[principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege), one of the foundations of good security. Organize all IAM users and groups according to levels of access they need.
+
+
+### Tips
+
 * 🔹Use IAM to create individual user accounts and **use them from the beginning**. This is slightly more work, but not that much.
     * That way, you define different users, and groups with different levels of privilege (if you want, choose from Amazon’s default suggestions, of administrator, power user, etc.).
     * This allows credential revocation, which is critical in some situations. If an employee leaves, or a key is compromised, you can revoke credentials with little effort.
-    * Organizing your IAM users and groups according to the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege) means the security of your system is much higher.
 * **Multiple accounts:** Decide on whether you want to use multiple AWS accounts and [research](https://dab35129f0361dca3159-2fe04d8054667ffada6c4002813eccf0.ssl.cf1.rackcdn.com/downloads/pdfs/Rackspace%20Best%20Practices%20for%20AWS%20-%20Identity%20Managment%20-%20Billing%20-%20Auditing.pdf) how to organize access across them. Factors to consider:
     * Number of users
     * Importance of isolation
@@ -435,14 +451,18 @@ We cover overall security first, since configuring user accounts is something yo
     * Workload
     * Size of infrastructure
     * Cost of multi-account “overhead”: Internal AWS service management tools may need to be custom built or adapted.
-* ❗Enable [**multi-factor authentication (MFA)**](https://aws.amazon.com/iam/details/mfa/) on your account.
+* ❗**Enable [MFA](https://aws.amazon.com/iam/details/mfa/)** on your account.
     * You should always use MFA, and the sooner the better — enabling it when you already have many users is extra work.
     * Unfortunately it can’t be enforced in software, so an administrative policy has to be established.
     * Most users can use the Google Authenticator app (on [iOS](https://itunes.apple.com/us/app/google-authenticator/id388497605) or [Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)) to support two-factor authentication. For the root account, consider a hardware fob.
 * 🔹Consider creating separate AWS accounts for independent parts of your infrastructure if you expect a high rate of AWS API calls, since AWS [throttles calls](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-api-troubleshooting.html#api-request-rate) at the AWS account level.
 * [**Inspector**](https://aws.amazon.com/inspector/) is an automated security assessment service from AWS that helps identify common security risks. This allows validation that you adhere to certain security practices and may help with compliance.
-* [**Key Management Service (KMS)**](https://aws.amazon.com/kms/) is likely one of your best and most secure options for storing keys, such as for [EBS](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) and [S3 encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html). (⛓ At the cost of lock-in.)
+* [**Key Management Service (KMS)**](https://aws.amazon.com/kms/) is likely one of your best and most secure options for storing keys, such as for [EBS](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) and [S3 encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html). (⛓At the cost of lock-in.)
 * [**AWS WAF**](https://aws.amazon.com/waf) is a web application firewall to help you protect your applications for common attack patterns.
+
+### Gotchas and Limitations
+
+* ❗**Don’t share user credentials.** It’s remarkably common for first-time AWS users create one account and one set of credentials (access key or password), and then use them for a while, sharing among engineers and others within a company. This is easy. But *don’t do this*. This is an insecure practice for many reasons, but in particular, if you do, you will have reduced ability to revoke credentials on a per-user or per-service basis (for example, if an employee leaves or a key is compromised), which can lead to serious complications.
 
 
 ## S3
