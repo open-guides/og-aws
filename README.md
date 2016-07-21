@@ -10,6 +10,7 @@
 * [S3](#s3)
 * [EC2](#ec2)
 * [AMIs](#amis)
+* [Auto Scaling](#auto-scaling)
 * [EBS](#ebs)
 * [ELBs](#elbs)
 * [Elastic IPs](#elastic-ips)
@@ -579,6 +580,7 @@ We cover security basics first, since configuring user accounts is something you
 * Instance reservations are not tied to specific EC2 instances - they are applied at the billing level to eligible compute hours as they are consumed across all of the instances in an account.
 * If you have multiple AWS accounts and have configured them to roll charges up to one account using the “Consolidated Billing” feature, you can expect _unused_ Reserved Instance hours from one account to be applied to matching (region, availability zone, instance type) compute hours from another account.
 * If you have multiple AWS accounts that are linked with Consolidated Billing, plan on using reservations, and want unused reservation capacity to be able to apply to compute hours from other accounts, you’ll need to create your instances in the availability zone with the same _name_ across accounts. Keep in mind that when you have done this, your instances may not end up in the same _physical_ data center across accounts - Amazon shuffles availability zones names across accounts in order to equalize resource utilization.
+* Make use of dynamic [Auto Scaling](#auto-scaling), where possible, in order to better match your cluster size (and cost) to the current resource requirements of your service.
 
 ### Gotchas and Limitations
 
@@ -617,7 +619,20 @@ We cover security basics first, since configuring user accounts is something you
 * Use tools like [Packer](https://packer.io/) to simplify and automate AMI creation.
 * By [default](https://aws.amazon.com/amazon-linux-ami/faqs/#lock), instances based on Amazon Linux AMIs are configured point to 'latest' versions of packages in Amazon’s package repository. This means that the package versions that get installed are not locked and it is possible for changes, including breaking ones, to appear when applying updates in the future. If you bake your AMIs with updates already applied, this is unlikely to cause problems in running services whose instances are based on those AMIs – breaks will appear at the earlier AMI-baking stage of your build process, and will need to be fixed or worked around before new AMIs can be generated. There is a “lock on launch” feature that allows you to configure Amazon Linux instances to target the repository of a particular major version of the Amazon Linux AMI, reducing the likelihood that breaks caused by Amazon-initiated package version changes will occur at package install time but at the cost of not having updated packages get automatically installed by future update runs. Pairing use of the “lock on launch” feature with a process to advance the Amazon Linux AMI at your discretion can give you tighter control over update behaviors and timings.
 
+## Auto Scaling
 
+### Basics
+
+* Auto Scaling Groups are used to control the number of instances in a service.
+* They can be configured, through “[Scaling Policies](http://docs.aws.amazon.com/autoscaling/latest/userguide/policy_creating.html),” to automatically increase or decrease instance counts based on metrics like CPU utilization, or based on a schedule.
+
+### Tips
+
+* Better matching your cluster size to your current resource requirements through use of Auto Scaling Groups can result in significant cost savings for many types of workloads.
+* Pairing Auto Scaling Groups with Elastic Load Balancers is a common pattern used to deal with changes in the amount of traffic a service receives.
+* Dynamic Auto Scaling is easiest to use with stateless, horizontally scalable services.
+* Even if you are not using Auto Scaling Groups to dynamically increase or decrease instance counts, you should seriously consider maintaining all instances inside of ASGs – given a target instance count, the ASG will work to ensure that number of instances running is equal to that target, replacing instances for you if they die or are marked as being unhealthy. This results in consistent capacity and better stability for your service.
+* By default, ASGs will kill instances that the EC2 instance manager considers to be unresponsive. It is possible for instances whose CPU is completely saturated for minutes at a time to appear to be unresponsive, causing an ASG with the default '[ReplaceUnhealthy](http://docs.aws.amazon.com/autoscaling/latest/userguide/as-suspend-resume-processes.html#process-types)' setting turned on to replace them. When instances that are managed by ASGs are expected to consistently run with very high CPU, consider deactivating this setting. If you do so, however, detecting and killing unhealthy nodes will become your responsibility.
 
 ## EBS
 
