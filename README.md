@@ -118,7 +118,7 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
     * [EC2](#ec2): Virtual servers and associated components, including:
         * [AMIs](#amis): Machine Images
         * [ELBs](#elbs): Load balancing
-        * [Autoscaling](https://aws.amazon.com/autoscaling/): Capacity scaling (adding and removing servers based on load)
+        * [Autoscaling](#auto-scaling): Capacity scaling (adding and removing servers based on load)
         * [EBS](#ebs): Network-attached disks
         * [Elastic IPs](#elastic-ips): Assigned IP addresses
     * [S3](#s3): Storage of files
