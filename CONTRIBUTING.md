@@ -18,10 +18,10 @@ Please review current issues and pull requests to avoid duplication. Finally, if
 When you contribute, keep in mind these conventions:
 
 * Terms that appear for the first time in **boldface** are defined there in a brief summary, with a link if possible to what is probably the best page for that concept.
-* References or citations backing some info that is already explained in the text is in [brackets] (with link for web pages, no link for books).
-* Related content that elaborates or gives more detail is included via inline links within the text.
-* Key and important statistics are **boldfaced **(illustrative numbers should not be).
-* References, including all references to books, are linked in brackets at the end of the bulleted entry.
+- **Boldfaced headings:** When possible and appropriate, begin bulleted items with a boldfaced summary, as illustrated here. This helps the reader skim the contents.
+- It’s also fine to boldface **key statements** that guide the eye. In some cases, *just use italics*.
+* Related content that elaborates or gives more detail is included via standard inline hyperlinks within the text.
+* References or citations backing some info that is already explained in the text is in [brackets] at the end of the item (with link for web pages, no link for books).
 * Typographical conventions:
     * Use Unicode open and close quotes “like this” and not "like this".
     * Use oriented apostrophes (Unicode’s, not ASCII's).

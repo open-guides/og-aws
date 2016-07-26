@@ -53,10 +53,10 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
 * Currently, this guide covers selected “core” services, such as EC2, S3, ELBs, EBS, and IAM, and partial details and tips around other services. We expect it to expand.
 * It is not a tutorial, but rather a collection of information you can read and return to. It is for both beginners and the experienced.
 * The goal of this guide is to be:
-    * **Brief**: Keep it dense and use links
-    * **Practical**: Basic facts, concrete details, advice, gotchas, and other “folk knowledge”
-    * **Current**: We can keep updating it, and anyone can contribute improvements
-    * **Thoughtful**: The goal is to be helpful rather than present dry facts. Thoughtful opinion with rationale is welcome. Suggestions, notes, and opinions based on real experience can be extremely valuable. (We believe this is both possible with a guide of this format, unlike in some [other venues](http://meta.stackexchange.com/questions/201994/is-there-a-place-to-ask-opinion-based-questions).)
+    * **Brief:** Keep it dense and use links
+    * **Practical:** Basic facts, concrete details, advice, gotchas, and other “folk knowledge”
+    * **Current:** We can keep updating it, and anyone can contribute improvements
+    * **Thoughtful:** The goal is to be helpful rather than present dry facts. Thoughtful opinion with rationale is welcome. Suggestions, notes, and opinions based on real experience can be extremely valuable. (We believe this is both possible with a guide of this format, unlike in some [other venues](http://meta.stackexchange.com/questions/201994/is-there-a-place-to-ask-opinion-based-questions).)
 * This guide is not sponsored by AWS or AWS-affiliated vendors. It is written by and for engineers who use AWS.
 * Legend:
     * 🔹 Important or often overlooked tip
@@ -79,7 +79,7 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
     * In general, “[cloud computing](https://en.wikipedia.org/wiki/Cloud_computing)” can refer to one of three types of cloud: “public,” “private,” and “hybrid.” AWS is a public cloud provider, since anyone can use it. Private clouds are within a single (usually large) organization. Many companies use a hybrid of private and public clouds.
     * The core features of AWS are [infrastructure-as-a-service](https://en.wikipedia.org/wiki/Cloud_computing#Infrastructure_as_a_service_.28IaaS.29) (IaaS) — that is, virtual machines and supporting infrastructure. Other cloud service models include [platform-as-a-service](https://en.wikipedia.org/wiki/Cloud_computing#Platform_as_a_service_.28PaaS.29) (PaaS), which typically are more fully managed services that deploy customers’ applications, or [software-as-a-service](https://en.wikipedia.org/wiki/Cloud_computing#Software_as_a_service_.28SaaS.29) (SaaS), which are cloud-based applications. AWS does offer a few products that fit into these other models, too.
     * In business terms, with infrastructure-as-a-service you have a variable cost model — it is  [OpEx, not CapEx](http://www.investopedia.com/ask/answers/020915/what-difference-between-capex-and-opex.asp) (though some [pre-purchased contracts](https://aws.amazon.com/ec2/purchasing-options/reserved-instances/) are still CapEx).
-* **Main reasons to use AWS**:
+* **Main reasons to use AWS:**
     * If your company is building systems or products that may need to scale
     * and you have technical know-how
     * and you want the most flexible tools
@@ -90,20 +90,20 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
     * and you can afford, manage, or negotiate its somewhat higher costs
     * ... then AWS is likely a good option for your company.
 * Each of those reasons above might point to situations where other services are preferable. In practice, many, if not most, tech startups as well as a number of modern large companies fit those criteria. (Many large enterprises are partly migrating internal infrastructure to Azure, Google Cloud, and AWS.)
-* 🚪**AWS vs. IaaS alternatives**: While AWS is the dominant IaaS provider (31% market share in [this 2016 estimate](https://www.srgresearch.com/articles/aws-remains-dominant-despite-microsoft-and-google-growth-surges)), there is significant of competition and alternatives that are better suited to some companies:
+* 🚪**AWS vs. IaaS alternatives:** While AWS is the dominant IaaS provider (31% market share in [this 2016 estimate](https://www.srgresearch.com/articles/aws-remains-dominant-despite-microsoft-and-google-growth-surges)), there is significant of competition and alternatives that are better suited to some companies:
     * The most significant direct competitor is [**Google Cloud**](https://cloud.google.com/). It arrived later to market than AWS, but has vast resources and is now used widely by many companies, including a few large ones. It is gaining market share. Not all AWS services have similar or analogous services in Google Cloud. And vice versa: In particular Google offers some more advanced machine learning-based services like the [Vision API](https://cloud.google.com/vision/). It’s not common to switch once you’re up and running, but it does happen: [Spotify migrated](http://www.wsj.com/articles/google-cloud-lures-amazon-web-services-customer-spotify-1456270951) from AWS to Google Cloud. There is more discussion [on Quora](https://www.quora.com/What-are-the-reasons-to-choose-AWS-over-Google-Cloud-or-vice-versa-for-a-high-traffic-web-application) about relative benefits.
     * [**Microsoft Azure**](https://azure.microsoft.com/en) is the de facto choice for companies and teams that are focused on a Microsoft stack.
     * In China, AWS’ footprint is relatively small. The market is dominated by Alibaba’s [Aliyun](https://intl.aliyun.com/).
     * Companies at (very) large scale may want to reduce costs by managing their own infrastructure. For example, [Dropbox migrated](https://news.ycombinator.com/item?id=11282948) to their own infrastructure.
     * Other cloud providers such as [Digital Ocean](https://www.digitalocean.com/) offer similar services, sometimes with greater ease of use, more personalized support, or lower cost. However, none of these match the breadth of products, mind-share, and market domination AWS now enjoys.
     * Traditional managed hosting providers such as [Rackspace](https://www.rackspace.com/) offer cloud solutions as well.
-* 🚪**AWS vs. PaaS**: If your goal is just to put up a single service that does something relatively simple, and you’re trying to minimize time managing operations engineering, consider a [platform-as-a-service](https://en.wikipedia.org/wiki/Platform_as_a_service) such as [Heroku](https://www.heroku.com/) The AWS approach to PaaS, Elastic Beanstalk, is arguably more complex, especially for simple use cases.
-* 🚪**AWS vs. web hosting**: If your main goal is to host a website or blog, and you don’t expect to be building an app or more complex service, you may wish consider one of the myriad of [web hosting services](https://www.google.com/search?q=web+hosting).
-* 🚪**AWS vs. managed hosting**: Traditionally, many companies pay [managed hosting](https://en.wikipedia.org/wiki/Dedicated_hosting_service) providers to maintain physical servers for them, then build and deploy their software on top of the rented hardware. This makes sense for businesses who want direct control over hardware, due to legacy, performance, or special compliance constraints, but is usually considered old fashioned or unnecessary by many developer-centric startups and younger tech companies.
-* **Complexity**: AWS will let you build and scale systems to the size of the largest companies, but the complexity of the services when used at scale requires significant depth of knowledge and experience. Even very simple use cases often require more knowledge to do “right” in AWS than in a simpler environment like Heroku or Digital Ocean. (This guide may help!)
-* **Geographic locations**: AWS has data centers in [about 10 geographic locations](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) (known as **regions**) in Europe, Asia, and North and South America. If your infrastructure needs to be in close physical proximity to another service for latency or throughput reasons (for example, latency to an ad exchange), viability of AWS will depend on the location.
+* 🚪**AWS vs. PaaS:** If your goal is just to put up a single service that does something relatively simple, and you’re trying to minimize time managing operations engineering, consider a [platform-as-a-service](https://en.wikipedia.org/wiki/Platform_as_a_service) such as [Heroku](https://www.heroku.com/) The AWS approach to PaaS, Elastic Beanstalk, is arguably more complex, especially for simple use cases.
+* 🚪**AWS vs. web hosting:** If your main goal is to host a website or blog, and you don’t expect to be building an app or more complex service, you may wish consider one of the myriad of [web hosting services](https://www.google.com/search?q=web+hosting).
+* 🚪**AWS vs. managed hosting:** Traditionally, many companies pay [managed hosting](https://en.wikipedia.org/wiki/Dedicated_hosting_service) providers to maintain physical servers for them, then build and deploy their software on top of the rented hardware. This makes sense for businesses who want direct control over hardware, due to legacy, performance, or special compliance constraints, but is usually considered old fashioned or unnecessary by many developer-centric startups and younger tech companies.
+* **Complexity:** AWS will let you build and scale systems to the size of the largest companies, but the complexity of the services when used at scale requires significant depth of knowledge and experience. Even very simple use cases often require more knowledge to do “right” in AWS than in a simpler environment like Heroku or Digital Ocean. (This guide may help!)
+* **Geographic locations:** AWS has data centers in [about 10 geographic locations](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) (known as **regions**) in Europe, Asia, and North and South America. If your infrastructure needs to be in close physical proximity to another service for latency or throughput reasons (for example, latency to an ad exchange), viability of AWS will depend on the location.
 * ⛓**Lock-in:** As you use AWS, it’s important to be aware when you are depending on AWS services that do not have equivalents elsewhere. Basic services like virtual servers in EC2 are usually easy to migrate to other vendors, but the more services you use, the more lock-in you have to AWS, and the more difficult it will be to change to other providers in the future. It is quite common to mix and match services from different vendors (such as using S3 for storage but a different vendor for serving) and, in larger enterprises, to hybridize between private cloud or on-premises servers and AWS.
-* **Major customers**: Who uses AWS and Google Cloud?
+* **Major customers:** Who uses AWS and Google Cloud?
     * AWS’s [list of customers ](https://aws.amazon.com/solutions/case-studies/netflix/)includes a large numbers of mainstream sites, such as Netflix, Pinterest, Spotify, Airbnb, and Yelp.
     * Google Cloud’s [list of customers](https://cloud.google.com/customers/) is large as well, and includes a few mainstream sites, such as [Snapchat](http://www.businessinsider.com/snapchat-is-built-on-googles-cloud-2014-1), Best Buy, Domino’s, and Sony Music.
 
@@ -113,7 +113,7 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
 * Most customers use a few services heavily, a few services lightly, and the rest not at all. What services you’ll use depends on your use cases. Choices  differ substantially from company to company.
 * Just because AWS has a service that sounds promising, it doesn’t mean you should use it. Some services are very narrow in use case, not mature, are overly opinionated, or have limitations, so very few people use them. More on this next.
 * Many customers combine AWS with other non-AWS services. For example, legacy systems or secure data might be in a managed hosting provider, while other systems are AWS. Or a company might only use S3 with another provider doing everything else. However small startups or projects starting fresh will typically stick to AWS or Google Cloud only.
-* **Must-know infrastructure**: Most typical small to medium-size users will focus on the following services first. If you manage use of AWS systems, you likely need to know at least a little about all of these. (Even if you don’t use them, you should learn enough to make that choice intelligently.)
+* **Must-know infrastructure:** Most typical small to medium-size users will focus on the following services first. If you manage use of AWS systems, you likely need to know at least a little about all of these. (Even if you don’t use them, you should learn enough to make that choice intelligently.)
     * [IAM](#security-and-iam): User accounts and identities (you need to think about accounts early on!)
     * [EC2](#ec2): Virtual servers and associated components, including:
         * [AMIs](#amis): Machine Images
@@ -126,12 +126,12 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
     * [VPC](#vpcs-network-security-and-security-groups): Virtual networking, network security, and co-location; you automatically use
     * [CloudFront](#cloudfront): CDN for hosting content
     * [CloudWatch](https://aws.amazon.com/cloudwatch/): Alerts, paging, monitoring
-* **Managed services**: Existing software solutions you could run on your own, but with managed deployment:
+* **Managed services:** Existing software solutions you could run on your own, but with managed deployment:
     * [RDS](#rds): Managed relational databases (managed MySQL, Postgres, and Amazon’s own Aurora database)
     * [EMR](#emr): Managed Hadoop
     * [Elasticsearch](https://aws.amazon.com/elasticsearch-service/): Managed Elasticsearch
     * [ElastiCache](https://aws.amazon.com/elasticache/): Managed Redis and Memcached
-* **Optional but important infrastructure**: These are key and useful infrastructure are less widely known used. You may have legitimate reasons to prefer alternatives, so evaluate with care you to be sure they fit your needs:
+* **Optional but important infrastructure:** These are key and useful infrastructure are less widely known used. You may have legitimate reasons to prefer alternatives, so evaluate with care you to be sure they fit your needs:
     * [Lambda](#lambda): Running small, fully managed tasks “serverless”
     * [CloudTrail](https://aws.amazon.com/cloudtrail/): AWS API logging and audit (often neglected but important)
     * 🕍[CloudFormation](#cloudformation): Templatized configuration of collections of AWS resources
@@ -140,7 +140,7 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
     * 🕍[ECS](#ecs): Docker container/cluster management. Note Docker can be used directly, without ECS.
     * [ECR](https://aws.amazon.com/ecr/): Hosted private Docker registry.
     * 🐥[Config](https://aws.amazon.com/config/): AWS configuration inventory, history, change notifications
-* **Special-purpose infrastructure**: These services are focused on specific use cases and should be evaluated if they apply to your situation:
+* **Special-purpose infrastructure:** These services are focused on specific use cases and should be evaluated if they apply to your situation:
     * [DynamoDB](#dynamodb): Low-latency NoSQL key-value store
     * [Glacier](#glacier): Slow and cheap alternative to S3
     * [Kinesis](https://aws.amazon.com/kinesis/): Streaming (distributed log) service
@@ -153,18 +153,18 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
     * [KMS](https://aws.amazon.com/kms/): Store and manage encryption keys securely
     * [Inspector](https://aws.amazon.com/inspector/): Security audit
     * [Trusted Advisor](https://aws.amazon.com/premiumsupport/trustedadvisor/): Automated tips on reducing cost or making improvements
-* ⛓🕍**Compound services**: These are similarly specific, but are full-blown services that tackle complex problems and may tie you in. Usefulness depends on your requirements. If you have large or significant need, you may have these already managed by in-house systems and engineering teams:
+* ⛓🕍**Compound services:** These are similarly specific, but are full-blown services that tackle complex problems and may tie you in. Usefulness depends on your requirements. If you have large or significant need, you may have these already managed by in-house systems and engineering teams:
     * [Machine Learning](https://aws.amazon.com/machine-learning/): Machine learning model training and classification
     * [Data Pipeline](https://aws.amazon.com/datapipeline/): Managed ETL service
     * [SWF](https://aws.amazon.com/swf/): Managed background job workflow
     * [Lumberyard](https://aws.amazon.com/lumberyard/): 3D game engine
-* **Mobile/app development**:
+* **Mobile/app development:**
     * [SNS](https://aws.amazon.com/sns/): Manage app push notifications and other end-user notifications
     * [Cognito](https://aws.amazon.com/cognito/): User authentication via Facebook, Twitter, etc.
     * [Device Farm](https://aws.amazon.com/device-farm/): Cloud-based device testing
     * [Mobile Analytics](https://aws.amazon.com/mobileanalytics/): Analytics solution for app usage
     * 🕍[Mobile Hub](https://aws.amazon.com/mobile/): Comprehensive, managed mobile app framework
-* **Enterprise services**: These are relevant if you have significant corporate cloud-based or hybrid needs. Many smaller companies and startups use other solutions, like Google Apps or Box. Larger companies may also have their own non-AWS IT solutions.
+* **Enterprise services:** These are relevant if you have significant corporate cloud-based or hybrid needs. Many smaller companies and startups use other solutions, like Google Apps or Box. Larger companies may also have their own non-AWS IT solutions.
     * [AppStream](https://aws.amazon.com/appstream/): Windows apps in the cloud, with access from many devices
     * [Workspaces](https://aws.amazon.com/workspaces/): Windows desktop in the cloud, with access from many devices
     * [WorkDocs](https://aws.amazon.com/workdocs/) (formerly Zocalo): Enterprise document sharing
@@ -173,7 +173,7 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
     * [Direct Connect](https://aws.amazon.com/directconnect/): Dedicated network connection between office or data center and AWS
     * [Storage Gateway](https://aws.amazon.com/storagegateway/): Bridge between on-premises IT and cloud storage
     * [Service Catalog](https://aws.amazon.com/servicecatalog/): IT service approval and compliance
-* **Probably-don't-need-to-know services**: Bottom line, our informal polling indicates these services are just not broadly used — and often for good reasons:
+* **Probably-don't-need-to-know services:** Bottom line, our informal polling indicates these services are just not broadly used — and often for good reasons:
     * [Snowball](https://aws.amazon.com/importexport/): If you want to ship petabytes of data into or out of Amazon using a physical appliance, read on.
     * [CodeCommit](https://aws.amazon.com/codecommit/): Git service. You’re probably already using GitHub or your own solution ([Stackshare](http://stackshare.io/stackups/github-vs-bitbucket-vs-aws-codecommit) has informal stats).
     * 🕍[CodePipeline](https://aws.amazon.com/codepipeline/): Continuous integration. You likely have another solution already.
@@ -286,18 +286,18 @@ It’s important to know the maturity of each product. Here is a mostly complete
 
 ### Getting Help and Support
 
-* **Forums**: For many problems, it’s worth searching or asking for help in the [discussion forums](https://forums.aws.amazon.com/index.jspa) to see if it’s a known issue.
-* **Premium support**: AWS offers several levels of [premium support](https://aws.amazon.com/premiumsupport/).
+* **Forums:** For many problems, it’s worth searching or asking for help in the [discussion forums](https://forums.aws.amazon.com/index.jspa) to see if it’s a known issue.
+* **Premium support:** AWS offers several levels of [premium support](https://aws.amazon.com/premiumsupport/).
     * Any small company should probably pay for the cheap “Developer” support as it’s a flat $49/month and it lets you file support tickets with 12 to 24 hour turnaround time.
     * The higher-level support services are quite expensive — and increase your bill by at least 10%. Many large and effective companies never pay for this level of support. They are usually more helpful for midsize or larger companies needing rapid turnaround on deeper or more perplexing problems.
     * Keep in mind, a flexible architecture can reduce need for support. You shouldn’t be relying on AWS to solve your problems often. For example, if you can easily re-provision a new server, it may not be urgent to solve a rare kernel-level issue unique to one EC2 instance. If your EBS volumes have recent snapshots, you may be able to restore a volume before support can rectify the issue with the old volume. If your services have an issue in one availability zone, you should in any case be able to rely on a redundant zone or migrate services to another zone.
     * Larger customers also get access to AWS Enterprise support, with dedicated technical account managers (TAMs) and shorter response time SLAs.
     * There is definitely some controversy about how useful the paid support is. The support staff don’t always seem to have the information and authority to solve the problems that are brought to their attention. Often your ability to have a problem solved may depend on your relationship with your account rep.
-* **Account manager**: If you are at significant levels of spend (thousands of US dollars plus per month), you may be assigned (or may wish to ask for) a dedicated account manager.
+* **Account manager:** If you are at significant levels of spend (thousands of US dollars plus per month), you may be assigned (or may wish to ask for) a dedicated account manager.
     * These are a great resource, even if you’re not paying for premium support. Build a good relationship with them and make use of them, for questions, problems, and guidance.
     * Assign a single point of contact on your company’s side, to avoid confusing or overwhelming them.
-* **Contact**: The main web contact point for AWS is [here](https://aws.amazon.com/contact-us/). Many technical requests can be made via these channels.
-* **Consulting**: For more hands-on assistance, AWS maintains a list of [consulting partners](https://aws.amazon.com/partners/consulting/). These won’t be cheap but depending on your needs, may save you costs long term by helping you set up your architecture more effectively, or offering specific expertise, e.g. security.
+* **Contact:** The main web contact point for AWS is [here](https://aws.amazon.com/contact-us/). Many technical requests can be made via these channels.
+* **Consulting:** For more hands-on assistance, AWS maintains a list of [consulting partners](https://aws.amazon.com/partners/consulting/). These won’t be cheap but depending on your needs, may save you costs long term by helping you set up your architecture more effectively, or offering specific expertise, e.g. security.
 
 ### Restrictions and Other Notes
 
@@ -315,9 +315,9 @@ It’s important to know the maturity of each product. Here is a mostly complete
 
 A great challenge in using AWS to build complex systems (and with DevOps in general) is to manage infrastructure state effectively over time. In general, this boils down to three broad goals for the state of your infrastructure:
 
-* *Visibility*: Do you know the state of your infrastructure (what services you are using, and exactly how)? Do you also know when you — and anyone on your team — make changes? Can you detect misconfigurations, problems, and incidents with your service?
-* *Automation*: Can you reconfigure your infrastructure to reproduce past configurations or scale up existing ones without a lot of extra manual work, or requiring knowledge that’s only in someone’s head? Can you respond to incidents easily or automatically?
-* *Flexibility*: Can you improve your configurations and scale up in new ways without significant effort? Can you add more complexity using the same tools? Do you share, review, and improve your configurations within your team?
+* **Visibility**: Do you know the state of your infrastructure (what services you are using, and exactly how)? Do you also know when you — and anyone on your team — make changes? Can you detect misconfigurations, problems, and incidents with your service?
+* **Automation**: Can you reconfigure your infrastructure to reproduce past configurations or scale up existing ones without a lot of extra manual work, or requiring knowledge that’s only in someone’s head? Can you respond to incidents easily or automatically?
+* **Flexibility**: Can you improve your configurations and scale up in new ways without significant effort? Can you add more complexity using the same tools? Do you share, review, and improve your configurations within your team?
 
 Much of what we discuss below is really about how to improve the answers to these questions.
 
@@ -336,7 +336,7 @@ So if you’re not going to manage your AWS configurations manually, what should
     * It’s great for read-only usage. If you’re trying to understand the state of your system, logging in and browsing it is very helpful.
     * It is also reasonably workable for very small systems and teams (for example, one engineer setting up one server that doesn’t change often).
     * It can be useful for operations you’re only going to do rarely, like less than once a month. In this case using the console can be the simplest approach.
-* ❗However, if you’re likely to be making the same change multiple times, *avoid the console*. Favor some sort of automation, or at least have a path toward automation, as discussed next. Not only does using the console preclude automation, which wastes time later, but it prevents documentation, clarity, and standardization around processes for yourself and your team.
+* ❗**Think before you use the console:** The AWS Console is convenient, but also the enemy of automation and reproducibility. If you’re likely to be making the same change multiple times, avoid the console. Favor some sort of automation, or at least have a path toward automation, as discussed next. Not only does using the console preclude automation, which wastes time later, but it prevents documentation, clarity, and standardization around processes for yourself and your team.
 
 ### Command-Line tools
 
@@ -358,16 +358,15 @@ So if you’re not going to manage your AWS configurations manually, what should
     * Check return codes easily so success of each step depends on success of past steps.
     * Grab interesting bits of data from responses, like instance ids or DNS names.
     * Add useful environment information (for example, tag your instances with git revisions, or inject the latest build identifier into your initialization script).
-    * Here’s a [rough example](https://github.com/iodine/openfda-internal/blob/master/openfda/deploy/aws_util.py).
 
 ### Third-Party Tools and Services
 
-* **Tools**: Some open source tools can help manage or monitor AWS resources, such as [Netflix Ice](https://github.com/Netflix/ice) or [Security Monkey](https://github.com/Netflix/security_monkey) or [Cloud Custodian](https://github.com/capitalone/cloud-custodian).
-* **Third-party services**: Several companies offer services designed to help you gain insights into expenses or lower your AWS bill, such as [OpsClarity](http://http//www.opsclarity.com/), [Cloudability](https://www.cloudability.com/), [CloudHealth Technologies](https://www.cloudhealthtech.com/), and [ParkMyCloud](http://www.parkmycloud.com/).
+* **Tools:** Some open source tools can help manage or monitor AWS resources, such as [Netflix Ice](https://github.com/Netflix/ice) or [Security Monkey](https://github.com/Netflix/security_monkey) or [Cloud Custodian](https://github.com/capitalone/cloud-custodian).
+* **Third-party services:** Several companies offer services designed to help you gain insights into expenses or lower your AWS bill, such as [OpsClarity](http://http//www.opsclarity.com/), [Cloudability](https://www.cloudability.com/), [CloudHealth Technologies](https://www.cloudhealthtech.com/), and [ParkMyCloud](http://www.parkmycloud.com/).
 
 ### General Visibility
 
-* [Tagging resources](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html) is a great practice, especially as organizations grow, to better understand your resource usage. For example, you can through automation or convention add tags:
+* [**Tagging resources**](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html) is a great practice, especially as organizations grow, to better understand your resource usage. For example, you can through automation or convention add tags:
     * For the org or developer that “owns” that resource
     * For the product that resource supports
     * To label lifecycles, such as temporary resources or one that should be deprovisioned in the future
@@ -384,7 +383,7 @@ This guide is about AWS, not DevOps or server configuration management in genera
 ### Philosophy
 
 * Heroku’s [**Twelve-Factor App**](http://12factor.net/) principles list some established general best practices for deploying applications.
-* **Pets vs cattle**: Treat servers [like cattle, not pets](https://blog.engineyard.com/2014/pets-vs-cattle). That is, design systems so infrastructure is disposable. It should be minimally worrisome if a server is unexpectedly destroyed.
+* **Pets vs cattle:** Treat servers [like cattle, not pets](https://blog.engineyard.com/2014/pets-vs-cattle). That is, design systems so infrastructure is disposable. It should be minimally worrisome if a server is unexpectedly destroyed.
 * The concept of [**immutable infrastructure**](http://radar.oreilly.com/2015/06/an-introduction-to-immutable-infrastructure.html) is an extension of this idea.
 
 ### Server Configuration Management
@@ -411,7 +410,7 @@ This guide is about AWS, not DevOps or server configuration management in genera
     * Sometimes, the AWS billing console times out or is too slow to use. In such case, third-party tools (like [Ice](https://github.com/Netflix/ice) — see above) may be a better option.
 * AWS’s [Trusted Advisor ](https://aws.amazon.com/premiumsupport/trustedadvisor/)is another service that can help with cost concerns.
 * Don’t be shy about asking your account manager for guidance in reducing your bill. It’s their job to keep you happily using AWS.
-* **Tagging for cost visibility**: As the infrastructure grows, a key part of managing costs is understanding where they lie. It’s strongly advisable to [tag resources](https://aws.amazon.com/blogs/aws/resource-groups-and-tagging/), and as complexity grows, group them effectively. If you [set up billing allocation appropriately](http://aws.amazon.com/blogs/aws/aws-cost-allocation/), you can then get visibility into expenses according to organization, product, individual engineer, or any other way that is helpful.
+* **Tagging for cost visibility:** As the infrastructure grows, a key part of managing costs is understanding where they lie. It’s strongly advisable to [tag resources](https://aws.amazon.com/blogs/aws/resource-groups-and-tagging/), and as complexity grows, group them effectively. If you [set up billing allocation appropriately](http://aws.amazon.com/blogs/aws/aws-cost-allocation/), you can then get visibility into expenses according to organization, product, individual engineer, or any other way that is helpful.
 * If you need to do custom analysis of raw billing data or want to feed it to a third party cost analysis service, [enable](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/detailed-billing-reports.html#turnonreports) the [detailed billing report](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/detailed-billing-reports.html#detailed-billing-report) feature.
 * Multiple Amazon accounts can be linked for billing purposes using the [Consolidated Billing](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html) feature. Large enterprises may need complex billing structures depending on ownership and approval processes.
 
@@ -438,7 +437,7 @@ We cover security basics first, since configuring user accounts is something you
 
 ### Tips
 
-* 🔹Use IAM to create individual user accounts and **use them from the beginning**. This is slightly more work, but not that much.
+* 🔹Use IAM to create individual user accounts and **use IAM accounts from the beginning**. This is slightly more work, but not that much.
     * That way, you define different users, and groups with different levels of privilege (if you want, choose from Amazon’s default suggestions, of administrator, power user, etc.).
     * This allows credential revocation, which is critical in some situations. If an employee leaves, or a key is compromised, you can revoke credentials with little effort.
 * **Multiple accounts:** Decide on whether you want to use multiple AWS accounts and [research](https://dab35129f0361dca3159-2fe04d8054667ffada6c4002813eccf0.ssl.cf1.rackcdn.com/downloads/pdfs/Rackspace%20Best%20Practices%20for%20AWS%20-%20Identity%20Managment%20-%20Billing%20-%20Auditing.pdf) how to organize access across them. Factors to consider:
@@ -471,10 +470,10 @@ We cover security basics first, since configuring user accounts is something you
 ### Tips
 
 * For most practical purposes, you can consider S3 capacity unlimited, both in total size of files and number of objects.
-* The buckets use a global naming scheme , so if another AWS has already created a bucket under a name that you want to use you will need to pick a different name. A common practice is to use the company name acronym or abbreviation to prefix all bucket names (but please, don’t use this as a security measure).
+* S3 buckets use a **global naming scheme**, so if another AWS has already created a bucket under a name that you want to use you will need to pick a different name. A common practice is to use the company name acronym or abbreviation to prefix all bucket names (but please, don’t use this as a security measure).
 * The number of objects in a bucket is essentially unlimited. Customers routinely have millions of objects.
-* **Durability**: Durability of S3 is extremely high, since internally it keeps several replicas. If you don’t delete it by accident, you can count on S3 not losing your data. (AWS offers the seemingly improbable durability rate of [99.999999999%](https://aws.amazon.com/s3/faqs/#How_durable_is_Amazon_S3), but this is a mathematical calculation based on independent failure rates and levels of replication — not a true probability estimate. Either way, S3 has had [a very good record](https://www.quora.com/Has-Amazon-S3-ever-lost-data-permanently) of durability.) Note this is *much* higher durability than EBS! If durability is less important for your application, you can use [S3 Reduced Redundancy Storage](https://aws.amazon.com/s3/reduced-redundancy/), which lowers the cost per GB, as well as the redundancy.
-* ⏱**Performance**: Data throughput is complex, both in terms of bandwidth and number of operations:
+* **Durability:** Durability of S3 is extremely high, since internally it keeps several replicas. If you don’t delete it by accident, you can count on S3 not losing your data. (AWS offers the seemingly improbable durability rate of [99.999999999%](https://aws.amazon.com/s3/faqs/#How_durable_is_Amazon_S3), but this is a mathematical calculation based on independent failure rates and levels of replication — not a true probability estimate. Either way, S3 has had [a very good record](https://www.quora.com/Has-Amazon-S3-ever-lost-data-permanently) of durability.) Note this is *much* higher durability than EBS! If durability is less important for your application, you can use [S3 Reduced Redundancy Storage](https://aws.amazon.com/s3/reduced-redundancy/), which lowers the cost per GB, as well as the redundancy.
+* ⏱**Performance:** Data throughput is complex, both in terms of bandwidth and number of operations:
     * Throughput is of course highest from within AWS, and between EC2 instances and S3 buckets that are in the same region.
     * Throughput is extremely high when accessed in a distributed way, from many EC2 instances. It’s possible to read or write objects from S3 from thousands of instances at once.
     * However, throughput is very limited when accessed sequentially, from a single instance. Individual operations take many milliseconds, and bandwidth to and from instances is limited by instance type.
@@ -486,20 +485,20 @@ We cover security basics first, since configuring user accounts is something you
     * 🔸 Note that sadly, the latter advice about random key names goes against having a consistent layout with common prefixes to manage data lifecycles in an automated way.
 * 💸**S3 pricing** depends on [storage, requests, and transfer](http://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html).
     * For transfer, putting data into AWS is free, but you’ll pay on the way out. Transfer from S3 to EC2 in the *same region *is free. Transfer to other regions or the Internet in general is not free.
-* **Command-line applications**: There are a few ways to use S3 from the command line:
+* **Command-line applications:** There are a few ways to use S3 from the command line:
     * Originally, [**s3cmd**](https://github.com/s3tools/s3cmd) was the best tool for the job. It’s still used heavily by many.
     * The regular [**aws**](https://aws.amazon.com/cli/) command-line interface now supports S3 well, and is useful for most situations.
     * [**s4cmd**](https://github.com/bloomreach/s4cmd) is a replacement, with greater emphasis on performance via multi-threading, which is helpful for large files and large sets of files, and also offers Unix-like globbing support.
-* **GUI applications**: You may prefer a GUI, or wish to support GUI access for less technical users. Some options:
+* **GUI applications:** You may prefer a GUI, or wish to support GUI access for less technical users. Some options:
     * The [AWS Console](https://aws.amazon.com/console/) does offer a graphical way to use S3. Use caution telling non-technical people to use it, however, since without tight permissions, it offers access to many other AWS features.
     * [Transmit](https://panic.com/transmit/) is a good option on OS X.
-* **S3 and CloudFront**: S3 is tightly integrated with the CloudFront CDN. See the CloudFront section for more information.
+* **S3 and CloudFront:** S3 is tightly integrated with the CloudFront CDN. See the CloudFront section for more information.
 * **Static website hosting:**
     * S3 has a [static website hosting option](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html) that is simply a setting that enables configurable HTTP index and error pages and [HTTP redirect support](http://docs.aws.amazon.com/AmazonS3/latest/dev/how-to-page-redirect.html) to [public content](http://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html) in S3. It’s a simple way to host static assets or a fully static website.
     * Consider using CloudFront in front of most or all assets:
         * Like any CDN, CloudFront improves performance significantly.
-        * 🔸 SSL is only supported on the built-in amazonaws.com domain. S3 does support serving these sites through a [custom domain](http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html), but [not over SSL on a custom domain](http://stackoverflow.com/questions/11201316/how-to-configure-ssl-for-amazon-s3-bucket).
-        * 🔸 If you are including resources across domains, such as fonts inside CSS files, you may need to [configure CORS](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) for the bucket serving those resources.
+        * 🔸SSL is only supported on the built-in amazonaws.com domain. S3 does support serving these sites through a [custom domain](http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html), but [not over SSL on a custom domain](http://stackoverflow.com/questions/11201316/how-to-configure-ssl-for-amazon-s3-bucket).
+        * 🔸If you are including resources across domains, such as fonts inside CSS files, you may need to [configure CORS](https://docs.aws.amazon.com/AmazonS3/latest/dev/cors.html) for the bucket serving those resources.
         * Since pretty much everything is moving to SSL nowadays, and you likely want control over the domain, you probably want to set up CloudFront your own certificate in front of S3 (and to ignore the [AWS example on this](http://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-custom-domain-walkthrough.html) as it is non-SSL only).
         * That said, if you do, you’ll need to think through invalidation or updates on CloudFront. You may wish to [include versions or hashes in filenames](https://abhishek-tiwari.com/post/CloudFront-design-patterns-and-best-practices) so invalidation is not necessary.
 * **Permissions:**
@@ -507,22 +506,23 @@ We cover security basics first, since configuring user accounts is something you
     * 🔹Do create new buckets if you have different data sensitivities, as this is much less error prone than complex permissions rules.
     * 🔹If data is for administrators only, like log data, put it in a bucket that only administrators can access.
     * 💸Limit individual user (or IAM role) access to S3 to the minimal required and catalog the “approved” locations. Otherwise, S3 tends to become the dumping ground where people put data to random locations that are not cleaned up for years, costing you big bucks.
-* Manage data lifecycles sensibly.
-    * When putting data into a bucket, think about its lifecycle — its end of life, not just its beginning. Rule: data with different expiration policies should be stored under separate prefixes at the top level.
-    * For example, some voluminous logs might need to be deleted automatically monthly, while other data is critical and should never be deleted. Having the former in a separate bucket or at least a separate folder is wise.
-    * Thinking about this up front will save you pain. It’s very hard to clean up large collections of files created by many engineers with varying lifecycles and no coherent organization.
+* **Data lifecycles:**
+    * When managing data, the understanding the lifecycle of the data is as important as understanding the data itself. When putting data into a bucket, think about its lifecycle — its end of life, not just its beginning.
+    * 🔹In general, data with different expiration policies should be stored under separate prefixes at the top level. For example, some voluminous logs might need to be deleted automatically monthly, while other data is critical and should never be deleted. Having the former in a separate bucket or at least a separate folder is wise.
+    * 🔸Thinking about this up front will save you pain. It’s very hard to clean up large collections of files created by many engineers with varying lifecycles and no coherent organization.
     * Alternatively you can set a lifecycle policy to archive old data to Glacier. [Be careful](https://alestic.com/2012/12/s3-glacier-costs/) with archiving large numbers of small objects to Glacier, since it may actually cost more.
-    * There is also a product called S3 Infrequent Access that has the same durability as Standard S3, but is discounted per GB. It is suitable for objects that are infrequently accessed.
-* Creation of objects in S3 is atomic. You’ll never upload a file and have another client see only half the file. Also, if you create a new file, you’ll see it instantly. If you overwrite or delete a file, however, you’re only guaranteed [eventual consistency](https://aws.amazon.com/s3/faqs/#What_data_consistency_model_does_Amazon_S3_employ).
+    * There is also a storage class called [**Infrequent Access**](https://aws.amazon.com/s3/storage-classes/#Infrequent_Access) that has the same durability as Standard S3, but is discounted per GB. It is suitable for objects that are infrequently accessed.
+* **Data consistency:** Creation of objects in S3 is atomic. You’ll never upload a file and have another client see only half the file. Also, if you create a new file, you’ll see it instantly. If you overwrite or delete a file, however, you’re only guaranteed [eventual consistency](https://aws.amazon.com/s3/faqs/#What_data_consistency_model_does_Amazon_S3_employ).
+* 🔸Be careful not to make implicit assumptions about transactionality or sequencing of updates to objects. Never assume that if you modify a sequence of objects, the clients will see the same modifications in the same sequence, or if you upload a whole bunch of files, that they will all appear at once to all clients.
 * If you are primarily using a VPC, consider setting up a [VPC Endpoint](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html) for S3 in order to allow your VPC-hosted resources to easily access it without the need for extra network configuration or hops.
 
 ### Gotchas and Limitations
 
 * ❗The number of buckets per account is [severely limited](http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) (100 per account). Use buckets sparingly. You can ask for a raise in the number of buckets but it will still be capped.
-* 🔸Amazon S3 has an [SLA](https://aws.amazon.com/s3/sla/) with 99.9% uptime. If you use S3 heavily, you’ll inevitably see occasional error accessing or storing data as disks or other infrastructure fail. Availability is usually restored in seconds or minutes. Although availability is not extremely high, as mentioned above, durability is excellent.
+* 🔸S3 has an [**SLA**](https://aws.amazon.com/s3/sla/) with 99.9% uptime. If you use S3 heavily, you’ll inevitably see occasional error accessing or storing data as disks or other infrastructure fail. Availability is usually restored in seconds or minutes. Although availability is not extremely high, as mentioned above, durability is excellent.
 * 🔸After uploading, any change that you make to the object causes a full rewrite of the object, so avoid appending-like behavior with regular files.
 * 🔸Sometimes, S3 suffers from replication issues, when an object is visible from a subset of the machines, depending on which S3 endpoint they hit. Those usually resolve within seconds, however, we’ve seen isolated cases when the issue lingered for 20-30 hours.
-* 🔸MD5s and multi-part uploads**: In S3, the [ETag header in S3](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonResponseHeaders.html) is a hash on the object. And in many cases, it is the MD5 hash. However, this [is not the case in general](http://stackoverflow.com/questions/12186993/what-is-the-algorithm-to-compute-the-amazon-s3-etag-for-a-file-larger-than-5gb) when you use multi-part uploads. One workaround is to compute MD5s yourself and put them in a custom header (such as is done by [s4cmd](https://github.com/bloomreach/s4cmd)).
+* 🔸**MD5s and multi-part uploads:** In S3, the [ETag header in S3](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonResponseHeaders.html) is a hash on the object. And in many cases, it is the MD5 hash. However, this [is not the case in general](http://stackoverflow.com/questions/12186993/what-is-the-algorithm-to-compute-the-amazon-s3-etag-for-a-file-larger-than-5gb) when you use multi-part uploads. One workaround is to compute MD5s yourself and put them in a custom header (such as is done by [s4cmd](https://github.com/bloomreach/s4cmd)).
 * 🔸**US Standard region:** Most S3 endpoints match the region they’re in, with the exception of the us-east-1 region, which is called 'us-standard' in S3 terminology. This region is also the only region that is replicated across coasts. As a result, latency varies more in this region than in others. You can minimize latency from us-east-1 by using *[s3-external-1.amazonaws.com](http://s3-external-1.amazonaws.com/)*.   
 
 
@@ -536,33 +536,33 @@ We cover security basics first, since configuring user accounts is something you
 ### Alternatives and Lock-In
 
 * Running EC2 is akin to running a set of physical servers, as long as you don’t do automatic scaling or tooled cluster setup. If you just run a set of static instances, migrating to another VPS or dedicated server provider should not be too hard.
-* 🚪The direct alternatives are Google Cloud, Microsoft Azure, Rackspace, DigitalOcean and other VPS providers, some of which offer similar API for setting up and removing instances.
+* 🚪**Alternatives to EC2:** The direct alternatives are Google Cloud, Microsoft Azure, Rackspace, DigitalOcean and other VPS providers, some of which offer similar API for setting up and removing instances. (See the comparisons [above](#when-to-use-aws).)
 * **Should you use Amazon Linux?** AWS encourages use of their own [Amazon Linux](https://aws.amazon.com/amazon-linux-ami/), which is evolved from from [Red Hat Enterprise Linux (RHEL)](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux) and [CentOS](https://en.wikipedia.org/wiki/CentOS). It’s used by many, but [others are skeptical](https://www.exratione.com/2014/08/do-not-use-amazon-linux/). Whatever you do, think this decision through carefully. It’s true Amazon Linux is heavily tested and better supported in the unlikely event you have deeper issues with OS and virtualization on EC2. But in general, many companies do just fine using a standard, non-Amazon Linux distribution, such as Ubuntu or CentOS. Using a standard Linux distribution means you have an exactly replicable environment should you use another hosting provider instead of (or in addition to) AWS. It’s also helpful if you wish to test deployments on local developer machines running the same standard Linux distribution (a practice that’s getting more common with Docker, too).
 
 ### Tips
 
-* 🔹**Picking regions**: When you first set up, consider which [regions](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) you want to use first. Many people in North America just automatically set up in the us-east-1 (N. Virginia) region, which is the default, but it’s worth considering if this is best up front. For example, you might find it preferable to start in us-west-1 (N. California) or us-west-2 (Oregon) if you’re in California and latency matters. Some services [are not available in all regions](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/). Baseline costs also [vary by region](https://aws.amazon.com/ec2/pricing/), up to 10-30%.
-* **Instance types**: EC2 instances come in many types, corresponding to the capabilities of the virtual machine in CPU architecture and speed, RAM, disk sizes and types (SSD or magnetic), and network bandwidth.
+* 🔹**Picking regions:** When you first set up, consider which [regions](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) you want to use first. Many people in North America just automatically set up in the us-east-1 (N. Virginia) region, which is the default, but it’s worth considering if this is best up front. For example, you might find it preferable to start in us-west-1 (N. California) or us-west-2 (Oregon) if you’re in California and latency matters. Some services [are not available in all regions](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/). Baseline costs also [vary by region](https://aws.amazon.com/ec2/pricing/), up to 10-30%.
+* **Instance types:** EC2 instances come in many types, corresponding to the capabilities of the virtual machine in CPU architecture and speed, RAM, disk sizes and types (SSD or magnetic), and network bandwidth.
     * Selecting instance types is complex since there are so many types. Additionally, there are different generations, released [over the years](https://aws.amazon.com/blogs/aws/ec2-instance-history/).
     * 🔹Use the list at [**ec2instances.info**](http://www.ec2instances.info/) to review costs and features. [Amazon’s own list](https://aws.amazon.com/ec2/instance-types/) of instance types is hard to use, and doesn’t list features and price together, which makes it doubly difficult.
     * Prices vary a lot, so use [**ec2instances.info**](http://www.ec2instances.info/) to determine the set of machines that meet your needs and [**ec2price.com**](http://ec2price.com/) to find the cheapest type in the region you’re working in.  Depending on the timing and region, it might be much cheaper to rent an instance with *more* memory or CPU than the bare minimum.
 * [**Dedicated instances**](https://aws.amazon.com/ec2/purchasing-options/dedicated-instances/) and [**dedicated hosts**](https://aws.amazon.com/ec2/dedicated-hosts/) are assigned hardware, instead of usual virtual instances. They more expensive than virtual instances but [can be preferable](https://aws.amazon.com/ec2/dedicated-hosts/) for performance, compliance, or licensing reasons.
-* **32 bit vs 64 bit**: A few micro, small, and medium instances are still available to use as 32-bit architecture. You’ll be using 64-bit EC2 (“amd64”) instances nowadays, though smaller instances still support 32 bit (“i386”). Use 64 bit unless you have legacy constraints or other good reasons to use 32.
-* **HVM vs PV**: There are two kinds of virtualization technology used by EC2, [hardware virtual machine (HVM) and paravirtual (PV)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/virtualization_types.html). Historically, PV was the usual type, but [now HVM is becoming the standard](https://www.opswat.com/blog/aws-2015-why-you-need-switch-pv-hvm). If you want to use the newest instance types, you must use HVM. See the [instance type matrix](https://aws.amazon.com/amazon-linux-ami/instance-type-matrix/) for details.
-* **Operating system**: To use EC2, you’ll need to pick a base operating system. It can be Windows or Linux, such as Ubuntu or [Amazon Linux](https://aws.amazon.com/amazon-linux-ami/). You do this with AMIs, which are covered in more detail in their own section below.
-* **Limits**: You can’t create arbitrary numbers of instances. Default limits on numbers of EC2 instances per account vary by instance type, as described in [this list](http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2).
+* **32 bit vs 64 bit:** A few micro, small, and medium instances are still available to use as 32-bit architecture. You’ll be using 64-bit EC2 (“amd64”) instances nowadays, though smaller instances still support 32 bit (“i386”). Use 64 bit unless you have legacy constraints or other good reasons to use 32.
+* **HVM vs PV:** There are two kinds of virtualization technology used by EC2, [hardware virtual machine (HVM) and paravirtual (PV)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/virtualization_types.html). Historically, PV was the usual type, but [now HVM is becoming the standard](https://www.opswat.com/blog/aws-2015-why-you-need-switch-pv-hvm). If you want to use the newest instance types, you must use HVM. See the [instance type matrix](https://aws.amazon.com/amazon-linux-ami/instance-type-matrix/) for details.
+* **Operating system:** To use EC2, you’ll need to pick a base operating system. It can be Windows or Linux, such as Ubuntu or [Amazon Linux](https://aws.amazon.com/amazon-linux-ami/). You do this with AMIs, which are covered in more detail in their own section below.
+* **Limits:** You can’t create arbitrary numbers of instances. Default limits on numbers of EC2 instances per account vary by instance type, as described in [this list](http://aws.amazon.com/ec2/faqs/#How_many_instances_can_I_run_in_Amazon_EC2).
 * Termination protection: For any instances that are important, it is wise to [enable termination protection](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html#Using_ChangingDisableAPITermination).
-* **SSH key management**:
+* **SSH key management:**
     * When you start an instance, you need to have at least one [ssh key pair](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html) set up, to bootstrap, i.e., allow you to ssh in the first time.
     * Aside from bootstrapping, you should manage keys yourself on the instances, assigning individual keys to individual users or services as appropriate.
     * Avoid reusing the original boot keys except by administrators when creating new instances.
     * How to avoid sharing keys; how to add individual ssh keys for individual users.
-* **GPU support**: You can rent   GPU-enabled instances on EC2. There are [two instance types](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html). Both sport an NVIDIA card (K520,  1536 CUDA cores and M2050, 448 CUDA cores).
+* **GPU support:** You can rent   GPU-enabled instances on EC2. There are [two instance types](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html). Both sport an NVIDIA card (K520,  1536 CUDA cores and M2050, 448 CUDA cores).
 
 ### 💸 Cost Management
 
 * With EC2, there is a trade-off between engineering effort (more analysis, more tools, more complex architectures) and spend rate on AWS. If your EC2 costs are small, many of the efforts here are not worth the engineering time required to make them work. But once you know your costs will be growing in excess of an engineer’s salary, serious investment is often worthwhile.
-* **Spot instances**: EC2 [spot instances](https://aws.amazon.com/ec2/spot/) are a way to get EC2 resources at significant discount — often many times cheaper than standard on-demand prices — if you’re willing to accept the possibility that they be terminated little to no warning.
+* **Spot instances:** EC2 [spot instances](https://aws.amazon.com/ec2/spot/) are a way to get EC2 resources at significant discount — often many times cheaper than standard on-demand prices — if you’re willing to accept the possibility that they be terminated little to no warning.
 * Use spot instances for potentially very significant discounts whenever you can use resources that may be restarted and don’t maintain long-term state.
 * The huge savings that you can get with Spot come at the cost of a significant increase in complexity when provisioning and reasoning about the availability of compute capacity.
 * Amazon maintains spot prices at a market-driven fluctuating level, based on their inventory of unused capacity. Prices are typically low but can [spike](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-limits.html#spot-bid-limit) very high. See the [price history](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-history.html) to get a sense for this.
@@ -571,7 +571,7 @@ We cover security basics first, since configuring user accounts is something you
 * Compare prices across instance types for better deals.
 * Use spot instances whenever possible. Setting a high bid price will assure your machines stay up the vast majority of the time, at a fraction of the price of normal instances.
 * Get notified up to two minutes before price-triggered shutdown by polling [your spot instances’ metadata](https://aws.amazon.com/blogs/aws/new-ec2-spot-instance-termination-notices/).
-* **Spot fleet**: You can realize even bigger cost reductions at the same time as improvements to fleet stability relative to regular spot usage by using [Spot fleet](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html) to bid on instances across instance types, availability zones, and (through multiple Spot Fleet Requests) regions.
+* **Spot fleet:** You can realize even bigger cost reductions at the same time as improvements to fleet stability relative to regular spot usage by using [Spot fleet](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html) to bid on instances across instance types, availability zones, and (through multiple Spot Fleet Requests) regions.
     * Spot fleet targets maintaining a  specified (and weighted-by-instance-type) total capacity across a cluster of servers. If the spot price of one instance type and availability zone combination rises above the weighted bid, it will rotate running instances out and bring up new ones of another type and location up in order to maintain the target capacity without going over target cluster cost.
 * Make sure your usage profile works well for Spot before investing heavily in tools to manage a particular configuration.
 * It is often wise to employ **third-party services to manage costs **— see above.
@@ -603,10 +603,10 @@ We cover security basics first, since configuring user accounts is something you
     * EBS or instance store
     * PV or HVM [virtualization types](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/virtualization_types.html)
     * 32 bit (“i386”) vs 64 bit (“amd64”) architecture
-* As discussed above, modern deployments will usually be with *64-bit EBS-backed HVM.*
+* As discussed above, modern deployments will usually be with **64-bit EBS-backed HVM**.
 * You can create your own custom AMI by [snapshotting the state](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html) of an EC2 instance that you have modified.
 * [AMIs backed by EBS storage](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ComponentsAMIs.html#storage-for-the-root-device) have the necessary image data loaded into the EBS volume itself and don’t require an extra pull from S3, which results in EBS-backed instances coming up much faster than instance storage-backed ones.
-* *AMIs are per region*, so you must look up AMIs in your region, or copy your AMIs between regions with the [AMI Copy](https://aws.amazon.com/about-aws/whats-new/2013/03/12/announcing-ami-copy-for-amazon-ec2/) feature.
+* **AMIs are per region**, so you must look up AMIs in your region, or copy your AMIs between regions with the [AMI Copy](https://aws.amazon.com/about-aws/whats-new/2013/03/12/announcing-ami-copy-for-amazon-ec2/) feature.
 * As with other AWS resources, it’s wise to [use tags](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html) to version AMIs and manage their lifecycle.
 * If you create your own AMIs, there is always some tension in choosing how much installation and configuration you want to “bake” into them.
     * Baking less into your AMIs (for example, just a configuration management client that downloads, installs, and configures software on new EC2 instances when they are launched) allows you to minimize time spent automating AMI creation and managing the AMI lifecycle (you will likely be able to use fewer AMIs and will probably not need to update them as frequently), but results in longer waits before new instances are ready for use and results in a higher chance of launch-time installation or configuration failures.
@@ -639,7 +639,7 @@ We cover security basics first, since configuring user accounts is something you
 
 ### Tips
 
-* ⏱**RAID**: Use [RAID drives](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/raid-config.html) for [increased performance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSPerformance.html).
+* ⏱**RAID:** Use [RAID drives](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/raid-config.html) for [increased performance](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSPerformance.html).
 * ⏱A worthy read is AWS’ [post on EBS IO characteristics](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html) as well as their [performance tips](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSPerformance.html#d0e86148).
 * ⏱One can [provision IOPS](http://aws.amazon.com/ebs/details/) (that is, pay for a specific level of I/O operations per second) to ensure a particular level of performance for a disk.
 * ⏱A single EBS volume allows 10k IOPS max. To get the maximum performance out of an EBS volume, it has to be of a maximum size and attached to an EBS-optimized EC2 instance.
@@ -659,11 +659,11 @@ We cover security basics first, since configuring user accounts is something you
 * The [elastic load balancer](https://aws.amazon.com/elasticloadbalancing/) (ELB) is AWS’ load balancing product. They’re great for common load balancing situations. They support TCP, HTTP, and SSL termination.
 * If you don’t have opinions on your load balancing up front, and don’t have complex load balancing needs like application-specific routing of requests, it’s reasonable just to use an ELB for load balancing instead.
 * Even if you don’t want to think about load balancing at all, because your architecture is so simple (say, just one server), put an ELB in front of it anyway. This gives you more flexibility when upgrading, since you won’t have to change any DNS settings that will be slow to propagate, and also it lets you do a few things like terminate SSL more easily.
-* **ELBs have many IPs**: Internally, an ELB is simply a collection of individual software load balancers hosted within EC2, with DNS load balancing traffic among them. The pool can contain many IPs, at least one per availability zone, and depending on traffic levels. They also support SSL termination, which is very convenient.
+* **ELBs have many IPs:** Internally, an ELB is simply a collection of individual software load balancers hosted within EC2, with DNS load balancing traffic among them. The pool can contain many IPs, at least one per availability zone, and depending on traffic levels. They also support SSL termination, which is very convenient.
 * For single-instance deployments, you might consider just assigning an elastic IP to an instance, but it’s generally quicker to add or remove instances from an ELB than to reassign an elastic IP.
-* **Best practices**: [This article](http://aws.amazon.com/articles/1636185810492479) is a must-read if you use ELBs heavily, and has a lot more detail.
-* **Scaling**: ELBs can scale to very high throughput, but scaling up is not instantaneous. If you’re planning to be hit with a lot of traffic suddenly, it can make sense to load test them so they scale up in advance. You can also [contact Amazon](http://aws.amazon.com/articles/1636185810492479) and have them “pre-warm” the load balancer.
-* **Client IPs**: In general, if servers want to know true client IP addresses, load balancers must forward this information somehow. ELBs add the standard [X-Forwarded-For](https://en.wikipedia.org/wiki/X-Forwarded-For) header. When using an ELB as an HTTP load balancer, it’s possible to get the client’s IP address from this.
+* **Best practices:** [This article](http://aws.amazon.com/articles/1636185810492479) is a must-read if you use ELBs heavily, and has a lot more detail.
+* **Scaling:** ELBs can scale to very high throughput, but scaling up is not instantaneous. If you’re planning to be hit with a lot of traffic suddenly, it can make sense to load test them so they scale up in advance. You can also [contact Amazon](http://aws.amazon.com/articles/1636185810492479) and have them “pre-warm” the load balancer.
+* **Client IPs:** In general, if servers want to know true client IP addresses, load balancers must forward this information somehow. ELBs add the standard [X-Forwarded-For](https://en.wikipedia.org/wiki/X-Forwarded-For) header. When using an ELB as an HTTP load balancer, it’s possible to get the client’s IP address from this.
 * **Websockets** and **HTTP2/SPDY** are not currently supported directly. But you can use TCP instead of HTTP as the protocol to make it work. More details [here](http://www.quora.com/When-will-Amazon-ELB-offer-SPDY-support). You’ll want to [enable the obscure but useful Proxy Protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) ([more on this](https://chrislea.com/2014/03/20/using-proxy-protocol-nginx/)) to pass client IPs over a TCP load balancer.
 * Flip load balancer after spinning up a new stack with your latest version, keep old stack running for one or two hours, and either flip back to old stack in case of problems or tear down it down.
 
@@ -671,7 +671,7 @@ We cover security basics first, since configuring user accounts is something you
 
 * In general, ELBs are not as “smart” as some load balancers, and don’t have fancy features or fine-grained control a traditional hardware load balancer would offer. For most common cases involving sessionless apps or cookie-based sessions over HTTP, or SSL termination, they work well.
 * Complex rules for directing traffic are not supported. For example, you can’t direct traffic based on a regular expression in the URL, like [HAProxy](http://www.haproxy.org/) offers.
-* **Apex DNS names**: Once upon a time, you couldn’t assign an ELB to an apex DNS record (i.e. example.com instead of foo.example.com) because it needed to be an A record instead of a CNAME. This is now possible with a Route 53 alias record directly pointing to the load balancer.
+* **Apex DNS names:** Once upon a time, you couldn’t assign an ELB to an apex DNS record (i.e. example.com instead of foo.example.com) because it needed to be an A record instead of a CNAME. This is now possible with a Route 53 alias record directly pointing to the load balancer.
 * ❗ELBs have **no fixed external IP** that all clients see. For most consumer apps this doesn’t matter, but enterprise customers of yours may want this. IPs will be different for each user, and will vary unpredictably for a single client over time (within the standard [EC2 IP ranges](http://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html)).
 * ❗Some web clients or reverse proxies cache DNS lookups for a long time, which is problematic for ELBs, since they change their IPs. This means after a few minutes, hours, or days, your client will stop working, unless you disable DNS caching. Watch out for [Java’s settings](http://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html) and be sure to [adjust them properly](http://docs.aws.amazon.com/AWSSdkDocsJava/latest/DeveloperGuide/java-dg-jvm-ttl.html). Another example is nginx as a reverse proxy, which [resolves backends only at start-up](https://www.jethrocarr.com/2013/11/02/nginx-reverse-proxies-and-dns-resolution/).
 * ❗It’s not unheard of for IPs to be recycled between customers without a long cool-off period. So as a client, if you cache an IP and are not using SSL (to verify the server), you might get not just errors, but responses from completely different services or companies!
@@ -822,7 +822,7 @@ We cover security basics first, since configuring user accounts is something you
 ### Tips
 
 * ❗**Security groups** are your first line of defense for your servers. Be extremely restrictive of what ports are open to all incoming connections. In general, if you use ELBs or other load balancing, the only ports that need to be open to incoming traffic would be port 22 and whatever port your application uses.
-* **Port hygiene**: A good habit is to pick unique ports within an unusual range for each different kind of production service. For example, your web fronted might use 3010, your backend services 3020 and 3021, and your Postgres instances the usual 5432. Then make sure you have fine-grained security groups for each set of servers. This makes you disciplined about listing out your services, but also is more error-proof. For example, should you accidentally have an extra Apache server running on the default port 80 on a backend server, it will not be exposed.
+* **Port hygiene:** A good habit is to pick unique ports within an unusual range for each different kind of production service. For example, your web fronted might use 3010, your backend services 3020 and 3021, and your Postgres instances the usual 5432. Then make sure you have fine-grained security groups for each set of servers. This makes you disciplined about listing out your services, but also is more error-proof. For example, should you accidentally have an extra Apache server running on the default port 80 on a backend server, it will not be exposed.
 * All modern AWS accounts (those created [after 2013-12-04](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html)) are “EC2-VPC” accounts that support VPCs, and all instances will be in a default VPC. Older accounts may still be using “EC2-Classic” mode. Some features don’t work without VPCs, so you probably will want to [migrate](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html).
 * For migrating from older EC2-Classic deployments to modern EC2-VPC setup, [this article](http://blog.kiip.me/engineering/ec2-to-vpc-executing-a-zero-downtime-migration/) may be of help.
 * For basic AWS use, one default VPC may be sufficient. But as you scale up, you should consider mapping out network topology more thoroughly. A good overview of best practices is [here](http://blog.flux7.com/blogs/aws/vpc-best-configuration-practices).
@@ -912,15 +912,15 @@ We cover security basics first, since configuring user accounts is something you
 
 * AWS offers two levels of redundancy, [regions and availability zones (AZs)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions-availability-zones).
 * When used correctly, regions and zones do allow for high availability. You may want to use non-AWS providers for larger business risk mitigation (i.e. not tying your company to one vendor), but reliability of AWS across regions is very high.
-* **Multiple regions**: Using multiple regions is complex, since it’s essentially like completely separate infrastructure. It is necessary for business-critical services which highest levels of redundancy. However, for many applications (like your average consumer startup), deploying extensive redundancy across regions may be overkill.
+* **Multiple regions:** Using multiple regions is complex, since it’s essentially like completely separate infrastructure. It is necessary for business-critical services which highest levels of redundancy. However, for many applications (like your average consumer startup), deploying extensive redundancy across regions may be overkill.
 * The [High Scalability Blog](http://highscalability.com/blog/2016/1/11/a-beginners-guide-to-scaling-to-11-million-users-on-amazons.html) has a good guide to help you understand when you need to scale an application to multiple regions.
-* 🔹**Multiple AZs**: Using AZs wisely is the primary tool for high availability!
+* 🔹**Multiple AZs:** Using AZs wisely is the primary tool for high availability!
     * The bulk of outages in AWS services affect one zone only. There have been rare outages affecting multiple zones simultaneously (for example, the [great EBS failure of 2011](http://aws.amazon.com/message/65648/)) but in general most customers’ outages are due to using only a single AZ for some infrastructure.
     * Consequently, design your architecture to minimize the impact of AZ outages, especially single-zone outages.
     * Deploy key infrastructure across at least two or three AZs. Replicating a single resource across more than three zones often won’t make sense if you have other backup mechanisms in place, like S3 snapshots.
     * Deploy instances evenly across all available AZs, so that only a minimal fraction of your capacity is lost in case of an AZ outage.
     * If your architecture has single points of failure, put all of them into a single AZ. This may seem counter-intuitive, but it minimizes the likelihood of any one SPOF to go down on an outage of a single AZ.
-* **EBS vs instance storage**: For a number of years, EBSs had a poorer track record for availability than instance storage. For systems where individual instances can be killed and restarted easily, instance storage with sufficient redundancy could give higher availability overall. EBS has improved, and modern instance types (since 2015) are now EBS-only, so this approach, while helpful at one time, may be increasingly archaic.
+* **EBS vs instance storage:** For a number of years, EBSs had a poorer track record for availability than instance storage. For systems where individual instances can be killed and restarted easily, instance storage with sufficient redundancy could give higher availability overall. EBS has improved, and modern instance types (since 2015) are now EBS-only, so this approach, while helpful at one time, may be increasingly archaic.
 * Be sure you use and understand **ELBs** whenever appropriate. (See the section on ELBs.) Many outages are due to not using load balancers, or misunderstandings or misconfigurations of ELBs.
 
 ### Gotchas and Limitations
