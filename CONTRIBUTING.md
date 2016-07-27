@@ -28,4 +28,5 @@ When you contribute, keep in mind these conventions:
 	-	*Tips*: Everything you should know about the service, from big stuff to details.
 	-	*Cost Management*: Tips specific to that service on reducing or managing costs.
 	-	*Gotchas and Limitations*: Common problems, large and small, as well as misconceptions and quirks.
--	Keep consistent formatting in markdown via [markdownfmt](https://github.com/shurcooL/markdownfmt). Run **admin/reformat.sh** before committing.
+
+Note we try to keep consistent formatting in Markdown via [markdownfmt](https://github.com/shurcooL/markdownfmt). We run **admin/reformat.sh** to do this, but you don't have to worry about it unless you really want to.
