@@ -56,6 +56,7 @@ Scope
 -	This guide is not sponsored by AWS or AWS-affiliated vendors. It is written by and for engineers who use AWS.
 -	Legend:
 	-	🔹 Important or often overlooked tip
+	-	📒 Marks standard/official AWS pages and docs (suggestions for a better emoji welcome!)
 	-	❗ Gotcha or warning (where risks or time or resource costs are significant)
 	-	🔸 Limitation or quirk (where it’s not quite so bad)
 	-	🐥 Relatively new or immature services
@@ -176,6 +177,14 @@ General Information
 	-	🕍[CodeDeploy](https://aws.amazon.com/codedeploy/): Deployment of code to EC2 servers. Again, you likely have another solution.
 	-	🕍[OpsWorks](https://aws.amazon.com/opsworks/): Management of your deployments using Chef. While Chef is popular, it seems few people use OpsWorks, since it involves going in on a whole different code deployment framework.
 -	[AWS in Plain English](https://www.expeditedssl.com/aws-in-plain-english) offers more friendly explanation of what all the other different services are.
+
+### Common Concepts
+
+-	📒 The AWS [**General Reference**](https://docs.aws.amazon.com/general/latest/gr/Welcome.html) covers a bunch of common concepts that are relevant for multiple services.
+-	AWS allows deployments in [**regions**](https://docs.aws.amazon.com/general/latest/gr/rande.html), which are isolated geographic locations that help you reduce latency or offer additional redundancy (though typically availability zones are the first tool of choice for [high availability](#high-availability)).
+-	Each service has **endpoints** that are typically different for each service.
+-	Endpoints differ from service to service and not all services are available in each region, as listed in [these tables](https://docs.aws.amazon.com/general/latest/gr/rande.html).
+-	[**Amazon Resource Names (ARNs)**](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) are specially formatted identifiers for identifying resources. They start with 'arn:' and used in many services, and in particular for IAM policies.
 
 ### Service Matrix
 
@@ -343,6 +352,7 @@ So if you’re not going to manage your AWS configurations manually, what should
 ### APIs and SDKs
 
 -	**SDKs** for using AWS APIs are available in most major languages, with [Go](https://github.com/aws/aws-sdk-go), [iOS](https://github.com/aws/aws-sdk-ios), [Java](https://github.com/aws/aws-sdk-java), [JavaScript](https://github.com/aws/aws-sdk-js), [Python](https://github.com/boto/boto3), [Ruby](https://github.com/aws/aws-sdk-ruby), and [PHP](https://github.com/aws/aws-sdk-php) being most heavily used. AWS maintains [a short list](http://docs.aws.amazon.com/AmazonCloudFront/latest/APIReference/AWSLibraries.html), but the [awesome-aws list](https://github.com/donnemartin/awesome-aws#sdks-and-samples) is the most comprehensive and current. Note [support for C++](https://github.com/donnemartin/awesome-aws#c-sdk) is [still new](https://aws.amazon.com/blogs/aws/introducing-the-aws-sdk-for-c/).
+-	**Retry logic**: An important aspect to consider whenever using SDKs is error handling; under heavy use, a wide variety of failures, from programming errors to throttling to AWS-related outages or failures, can be expected to occur. SDKs typically implement [**exponential backoff**](https://docs.aws.amazon.com/general/latest/gr/api-retries.html) to address this, but this may need to be understood and adjusted over time for some applications. For example, it is often helpful to alert on some error codes and not on others.
 
 ### Boto
 
@@ -414,7 +424,8 @@ We cover security basics first, since configuring user accounts is something you
 
 ### Basics
 
--	[**IAM**](https://aws.amazon.com/iam/) is the service you use to manage accounts and permissioning for AWS.
+-	📒 [Homepage](https://aws.amazon.com/iam/) ∙ [User guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) ∙ [FAQ](https://aws.amazon.com/iam/faqs/)
+-	**IAM** is the service you use to manage accounts and permissioning for AWS.
 -	Managing security and access control with AWS is critical, so every AWS administrator needs to use and understand IAM, at least at a basic level.
 -	IAM manages various kinds of authentication, for both users and for software services that may need to authenticate with AWS, including:
 	-	[**Passwords**](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords.html) to log into the console. These are a username and password for real users.
@@ -454,15 +465,28 @@ We cover security basics first, since configuring user accounts is something you
 ### Gotchas and Limitations
 
 -	❗**Don’t share user credentials.** It’s remarkably common for first-time AWS users create one account and one set of credentials (access key or password), and then use them for a while, sharing among engineers and others within a company. This is easy. But *don’t do this*. This is an insecure practice for many reasons, but in particular, if you do, you will have reduced ability to revoke credentials on a per-user or per-service basis (for example, if an employee leaves or a key is compromised), which can lead to serious complications.
+-	🔸Some IAM operations are slower than other API calls (many seconds), since AWS needs to propagate these globally across regions.
 
 S3
 --
 
+### Basics
+
+-	📒 [Homepage](https://aws.amazon.com/s3/) ∙ [Developer guide](https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html) ∙ [FAQ](https://aws.amazon.com/s3/faqs/)
+-	**S3** (Simple Storage Service) is AWS’ standard cloud storage service, offering file (blob) storage of arbitrary number of files of small or large size (from 0 to 5 terabytes).
+-	Items, or **objects**, are placed into named **buckets** stored with names which are usually called **keys**. The main content is the **value**.
+-	Objects are created, deleted, or updated. Large objects can be streamed, but you cannot access or modify parts of a value; you need to update the whole object.
+-	Every object also has [**metadata**](https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html), which includes arbitrary key-value pairs, and is used in a way similar to HTTP headers. Some metadata is system-defined, some are significant when serving HTTP content from buckets or CloudFront, and you can also define arbitrary metadata for your own use.
+-	Although often bucket and key names are provided in APIs individually, it’s also common practice to write an S3 location in the form 's3://bucket-name/path/to/key' (where the key here is 'path/to/key'). (You’ll also see 's3n://' and 's3a://' prefixes [in Hadoop systems](https://wiki.apache.org/hadoop/AmazonS3).)
+-	AWS offers many storage services, and several besides S3 offer file-type abstractions. [Glacier](#glacier) is for cheaper and infrequently accessed archival storage. [EBS](#ebs), unlike S3, allows random access to file contents via a traditional filesystem, but can only be attached to one EC2 instance at a time.
+
 ### Tips
 
 -	For most practical purposes, you can consider S3 capacity unlimited, both in total size of files and number of objects.
--	S3 buckets use a **global naming scheme**, so if another AWS has already created a bucket under a name that you want to use you will need to pick a different name. A common practice is to use the company name acronym or abbreviation to prefix all bucket names (but please, don’t use this as a security measure).
+-	**Bucket naming:** Buckets are chosen from a global namespace (across all regions, even though S3 itself stores data in [whichever S3 region](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) you select), so you’ll find many bucket names are already taken. Creating a bucket means taking ownership of the name until you delete it. Bucket names have [a few restrictions](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) on them.
+	-	A common practice is to use the company name acronym or abbreviation to prefix all bucket names (but please, don’t be stupid and use a check on a bucket prefix as a security measure).
 -	The number of objects in a bucket is essentially unlimited. Customers routinely have millions of objects.
+-	**Versioning:** S3 has [optional versioning support](https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectVersioning.html), so that all versions of objects are preserved on a bucket. This is mostly useful if you want an archive of changes or the ability to back out mistakes (it has none of the features of full version control systems like Git).
 -	**Durability:** Durability of S3 is extremely high, since internally it keeps several replicas. If you don’t delete it by accident, you can count on S3 not losing your data. (AWS offers the seemingly improbable durability rate of [99.999999999%](https://aws.amazon.com/s3/faqs/#How_durable_is_Amazon_S3), but this is a mathematical calculation based on independent failure rates and levels of replication — not a true probability estimate. Either way, S3 has had [a very good record](https://www.quora.com/Has-Amazon-S3-ever-lost-data-permanently) of durability.) Note this is *much* higher durability than EBS! If durability is less important for your application, you can use [S3 Reduced Redundancy Storage](https://aws.amazon.com/s3/reduced-redundancy/), which lowers the cost per GB, as well as the redundancy.
 -	⏱**Performance:** Data throughput is complex, both in terms of bandwidth and number of operations:
 	-	Throughput is of course highest from within AWS, and between EC2 instances and S3 buckets that are in the same region.
@@ -521,7 +545,8 @@ EC2
 
 ### Basics
 
--	**EC2** (Elastic Compute Cloud) is the AWS’ offering of the most fundamental piece of cloud computing: A [virtual private server](https://en.wikipedia.org/wiki/Virtual_private_server). These “instances” and can run [most Linux, BSD, and Windows operating systems](https://aws.amazon.com/ec2/faqs/#What_operating_system_environments_are_supported). Internally, they use [Xen](https://en.wikipedia.org/wiki/Xen) virtualization.
+-	📒 [Homepage](https://aws.amazon.com/ec2/) ∙ [Documentation](https://aws.amazon.com/documentation/ec2/) ∙ [FAQ](https://aws.amazon.com/ec2/faqs/)
+-	**EC2** (Elastic Compute Cloud) is AWS’ offering of the most fundamental piece of cloud computing: A [virtual private server](https://en.wikipedia.org/wiki/Virtual_private_server). These “instances” and can run [most Linux, BSD, and Windows operating systems](https://aws.amazon.com/ec2/faqs/#What_operating_system_environments_are_supported). Internally, they use [Xen](https://en.wikipedia.org/wiki/Xen) virtualization.
 -	The term “EC2” is sometimes used to refer to the servers themselves, but technically refers more broadly to a whole collection of supporting services, too, like load balancing (ELBs), IP addresses (EIPs), bootable images (AMIs), security groups, and network drives (EBS) (which we discuss individually in this guide).
 
 ### Alternatives and Lock-In
@@ -588,7 +613,8 @@ AMIs
 
 ### Tips
 
--	[**Amazon Machine Images (AMIs)**](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html) are immutable images that are used to launch preconfigured EC2 instances. They come in both public and private flavors. Access to public AMIs is either freely available (shared/community AMIs) or bought and sold in the [**AWS Marketplace**](http://aws.amazon.com/marketplace).
+-	📒 [User guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)
+-	**AMIs** (Amazon Machine Images) are immutable images that are used to launch preconfigured EC2 instances. They come in both public and private flavors. Access to public AMIs is either freely available (shared/community AMIs) or bought and sold in the [**AWS Marketplace**](http://aws.amazon.com/marketplace).
 -	Many operating system vendors publish ready-to-use base AMIs. For Ubuntu, see the [Ubuntu AMI Finder](https://cloud-images.ubuntu.com/locator/ec2/). Amazon of course has [AMIs for Amazon Linux](https://aws.amazon.com/amazon-linux-ami/).
 -	AMIs are built independently based on how they will be deployed. You must select AMIs that match your deployment when using them or creating them:
 	-	EBS or instance store
@@ -615,8 +641,9 @@ Auto Scaling
 
 ### Basics
 
--	[**Auto Scaling Groups**](https://aws.amazon.com/autoscaling/) (ASGs) are used to control the number of instances in a service, reducing manual effort to provision or deprovision EC2 instances.
--	They can be configured, through “[Scaling Policies](http://docs.aws.amazon.com/autoscaling/latest/userguide/policy_creating.html),” to automatically increase or decrease instance counts based on metrics like CPU utilization, or based on a schedule.
+-	📒 [Homepage](https://aws.amazon.com/autoscaling/) ∙ [User guide](http://docs.aws.amazon.com/autoscaling/latest/userguide/) ∙ [FAQ](https://aws.amazon.com/ec2/faqs/#Auto_Scaling)
+-	[**Auto Scaling Groups (ASGs)**](https://aws.amazon.com/autoscaling/) are used to control the number of instances in a service, reducing manual effort to provision or deprovision EC2 instances.
+-	They can be configured, through [Scaling Policies](http://docs.aws.amazon.com/autoscaling/latest/userguide/policy_creating.html),” to automatically increase or decrease instance counts based on metrics like CPU utilization, or based on a schedule.
 -	There are three common ways of using ASGs - dynamic (automatically adjust instance count based on metrics for things like CPU utilization), static (maintain a specific instance count at all times), scheduled (maintain different instance counts at different times of day or on days of the week).
 
 ### Tips
@@ -629,6 +656,12 @@ Auto Scaling
 
 EBS
 ---
+
+### Basics
+
+-	📒 [Homepage](https://aws.amazon.com/ebs/) ∙ [User guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html) ∙ [FAQ](https://aws.amazon.com/ebs/faqs/)
+-	**EBS** (Elastic Block Store) provides block level storage. That is, it offers storage volumes that can be attached as filesystems, like traditional network drives.
+-	EBS volumes can only be attached to one EC2 instance at a time. In contrast, EFS can be shared but has a much higher price point ([a comparison](http://stackoverflow.com/questions/29575877/aws-efs-vs-ebs-vs-s3-differences-when-to-use)).
 
 ### Tips
 
@@ -647,9 +680,13 @@ EBS
 ELBs
 ----
 
+### Basics
+
+-	📒 [Homepage](https://aws.amazon.com/elasticloadbalancing/) ∙ [User guide](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide) ∙ [FAQ](https://aws.amazon.com/ec2/faqs/#Elastic_Load_Balancing)
+-	ELBs are AWS’ load balancing product. They’re great for many simple and common load balancing situations. They support TCP, HTTP, and SSL termination.
+
 ### Tips
 
--	The [elastic load balancer](https://aws.amazon.com/elasticloadbalancing/) (ELB) is AWS’ load balancing product. They’re great for common load balancing situations. They support TCP, HTTP, and SSL termination.
 -	If you don’t have opinions on your load balancing up front, and don’t have complex load balancing needs like application-specific routing of requests, it’s reasonable just to use an ELB for load balancing instead.
 -	Even if you don’t want to think about load balancing at all, because your architecture is so simple (say, just one server), put an ELB in front of it anyway. This gives you more flexibility when upgrading, since you won’t have to change any DNS settings that will be slow to propagate, and also it lets you do a few things like terminate SSL more easily.
 -	**ELBs have many IPs:** Internally, an ELB is simply a collection of individual software load balancers hosted within EC2, with DNS load balancing traffic among them. The pool can contain many IPs, at least one per availability zone, and depending on traffic levels. They also support SSL termination, which is very convenient.
@@ -675,6 +712,12 @@ ELBs
 Elastic IPs
 -----------
 
+### Basics
+
+-	📒 [Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) ∙ [FAQ](https://aws.amazon.com/ec2/faqs/#Elastic_IP)
+-	**Elastic IPs** are static IP addresses you can purchase from AWS to assign to EC2 instances.
+-	In many situations, you don’t need elastic IPs. For example, DNS records are often better pointed to ELBs, not specific instances. But in some situations, you do need to manage and fix IP addresses of EC2 instances.
+
 ### Tips
 
 -	Elastic IPs are limited to 5 per account. It’s possible to [request more](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase&limitType=service-code-elastic-ips-ec2-classic).
@@ -682,6 +725,11 @@ Elastic IPs
 
 Glacier
 -------
+
+### Basics
+
+-	📒 [Homepage](https://aws.amazon.com/glacier/) ∙ [Developer guide](http://docs.aws.amazon.com/amazonglacier/latest/dev/) ∙ [FAQ](https://aws.amazon.com/glacier/faqs/)
+-	**Glacier** is a a lower-cost alternative to S3 when data is infrequently accessed, such as for archival purposes.
 
 ### Tips
 
@@ -695,6 +743,11 @@ Glacier
 
 RDS
 ---
+
+### Basics
+
+-	📒 [Homepage](https://aws.amazon.com/rds/) ∙ [User guide](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/) ∙ [FAQ](https://aws.amazon.com/rds/faqs/)
+-	**RDS** is a managed relational database service, allowing you to deploy and scale databases more easily. It supports Amazon Aurora, Oracle, Microsoft SQL Server, PostgreSQL, MySQL and MariaDB.
 
 ### Tips
 
@@ -713,7 +766,8 @@ DynamoDB
 
 ### Basics
 
--	DynamoDB is a NoSQL database with focuses on speed, flexibility and scalability.
+-	📒 [Homepage](https://aws.amazon.com/dynamodb/) ∙ [Developer guide](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/dynamodb/faqs/)
+-	**DynamoDB** is a [NoSQL](https://en.wikipedia.org/wiki/NoSQL) database with focuses on speed, flexibility, and scalability.
 -	DynamoDB is priced on a combination of throughput and storage.
 
 ### Alternatives and Lock-in
@@ -737,7 +791,8 @@ ECS
 
 ### Basics
 
--	[ECS](https://aws.amazon.com/ecs/) (EC2 Container Service) is a relatively new service (launched end of 2014) that manages clusters of services deployed via Docker.
+-	📒 [Homepage](https://aws.amazon.com/ecs/) ∙ [Developer guide](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/ecs/faqs/)
+-	**ECS** (EC2 Containser Service) is a relatively new service (launched end of 2014) that manages clusters of services deployed via Docker.
 -	See the [Containers and AWS](#containers-and-aws) section for more context on containers.
 -	ECS is growing in adoption, especially for companies that embrace microservices.
 -	Deploying Docker directly in EC2 yourself is another common approach to using Docker on AWS. Using ECS is not required, and ECS does not (yet) seem to be the predominant way many companies are using Docker on AWS.
@@ -755,8 +810,9 @@ Lambda
 
 ### Basics
 
--	Lambda is a relatively new service (launched at end of 2014) that offers a different type of compute abstraction: A user-defined function that can perform a small operation, where AWS manages provisioning and scheduling how it is run.
--	This abstraction has grown to be called “serverless” since you don't explicitly manage any server instances, as you would with EC2. (This term is a bit confusing since the functions themselves do of course run on servers managed by AWS.)
+-	📒 [Homepage](https://aws.amazon.com/lambda/) ∙ [Developer guide](http://docs.aws.amazon.com/lambda/latest/dg/) ∙ [FAQ](https://aws.amazon.com/lambda/faqs/)
+-	**Lambda** is a relatively new service (launched at end of 2014) that offers a different type of compute abstraction: A user-defined function that can perform a small operation, where AWS manages provisioning and scheduling how it is run.
+-	This abstraction has grown to be called “**serverless**” since you don't explicitly manage any server instances, as you would with EC2. (This term is a bit confusing since the functions themselves do of course run on servers managed by AWS.)
 -	Adoption of Lambda has grown very rapidly in 2015, with many use cases that traditionally would be solved by managing EC2 services migrating to serverless architectures.
 -	The [Awesome Serverless](https://github.com/anaibol/awesome-serverless) list gives a good set of examples of the relatively immature, modern set of tools and frameworks around Lambda.
 
@@ -764,6 +820,11 @@ Lambda
 
 Route 53
 --------
+
+### Basics
+
+-	📒 [Homepage](https://aws.amazon.com/route53/) ∙ [Developer guide](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/) ∙ [FAQ](https://aws.amazon.com/route53/faqs/)
+-	**Route 53** is AWS’ DNS service.
 
 ### Alternatives and Lock-In
 
@@ -788,7 +849,8 @@ CloudFormation
 
 ### Basics
 
--	CloudFormation promises a way to save, templatize, and reproduce entire configurations.
+-	📒 [Homepage](https://aws.amazon.com/cloudformation/) ∙ [Developer guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/) ∙ [FAQ](https://aws.amazon.com/cloudformation/faqs/)
+-	**CloudFormation** offers mechanisms to create and manage entire configurations of many types of AWS resources, using a JSON-based templating language.
 
 ### Alternatives and Lock-In
 
@@ -811,12 +873,18 @@ CloudFormation
 VPCs, Network Security, and Security Groups
 -------------------------------------------
 
+### Basics
+
+-	📒 [Homepage](https://aws.amazon.com/vpc/) ∙ [User guide](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide) ∙ [FAQ](https://aws.amazon.com/vpc/faqs/) ∙ [Security groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html)
+-	**VPC** (Virtual Private Cloud) is the virtualized networking layer of your AWS systems.
+-	Most AWS users should have a basic understanding of VPC concepts, but few need to get into all the details. VPC configurations can be trivial or extremely complex, depending on the extent of your network and security needs.
+-	All modern AWS accounts (those created [after 2013-12-04](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html)) are “EC2-VPC” accounts that support VPCs, and all instances will be in a default VPC. Older accounts may still be using “EC2-Classic” mode. Some features don’t work without VPCs, so you probably will want to [migrate](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html).
+
 ### Tips
 
 -	❗**Security groups** are your first line of defense for your servers. Be extremely restrictive of what ports are open to all incoming connections. In general, if you use ELBs or other load balancing, the only ports that need to be open to incoming traffic would be port 22 and whatever port your application uses.
 -	**Port hygiene:** A good habit is to pick unique ports within an unusual range for each different kind of production service. For example, your web fronted might use 3010, your backend services 3020 and 3021, and your Postgres instances the usual 5432. Then make sure you have fine-grained security groups for each set of servers. This makes you disciplined about listing out your services, but also is more error-proof. For example, should you accidentally have an extra Apache server running on the default port 80 on a backend server, it will not be exposed.
--	All modern AWS accounts (those created [after 2013-12-04](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-vpc.html)) are “EC2-VPC” accounts that support VPCs, and all instances will be in a default VPC. Older accounts may still be using “EC2-Classic” mode. Some features don’t work without VPCs, so you probably will want to [migrate](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html).
--	For migrating from older EC2-Classic deployments to modern EC2-VPC setup, [this article](http://blog.kiip.me/engineering/ec2-to-vpc-executing-a-zero-downtime-migration/) may be of help.
+-	**Migrating from Classic**: For migrating from older EC2-Classic deployments to modern EC2-VPC setup, [this article](http://blog.kiip.me/engineering/ec2-to-vpc-executing-a-zero-downtime-migration/) may be of help.
 -	For basic AWS use, one default VPC may be sufficient. But as you scale up, you should consider mapping out network topology more thoroughly. A good overview of best practices is [here](http://blog.flux7.com/blogs/aws/vpc-best-configuration-practices).
 -	Consider controlling access to your private AWS resources through a [VPN](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpn-connections.html).
 	-	You get better visibility into and control of connection and connection attempts.
@@ -835,7 +903,8 @@ CloudFront
 
 ### Basics
 
--	[CloudFront](https://aws.amazon.com/cloudfront/) is AWS’ [content delivery network (CDN)](https://en.wikipedia.org/wiki/Content_delivery_network).
+-	📒 [Homepage](https://aws.amazon.com/cloudfront/) ∙ [Developer guide](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/) ∙ [FAQ](https://aws.amazon.com/cloudfront/faqs/)
+-	**CloudFront** is AWS’ [content delivery network (CDN)](https://en.wikipedia.org/wiki/Content_delivery_network).
 -	Its primary use is improving latency for end users in to accessing cacheable content by hosting it at [about 40 global edge locations](http://aws.amazon.com/cloudfront/details/).
 
 ### Alternatives and Lock-in
@@ -858,10 +927,14 @@ CloudFront
 DirectConnect
 -------------
 
+### Basics
+
+-	📒 [Homepage](https://aws.amazon.com/directconnect/) ∙ [User guide](http://docs.aws.amazon.com/directconnect/latest/UserGuide/) ∙ [FAQ](https://aws.amazon.com/directconnect/faqs/)
+-	**Direct Connect** is a private, dedicated connection from your network(s) to AWS.
+
 ### Tips
 
--	Direct Connect is a private, dedicated connection from your network(s) to AWS.
-	-	If your data center has [a partnering relationship](https://aws.amazon.com/directconnect/partners/) with AWS, this process is streamlined.
+-	If your data center has [a partnering relationship](https://aws.amazon.com/directconnect/partners/) with AWS, setup is streamlined.
 -	Use for more consistent predictable network performance guarantees.
 	-	1 Gbps or 10 Gbps per link
 -	Use to peer your colocation, corporate, or physical datacenter network with your VPC(s).
@@ -871,13 +944,21 @@ DirectConnect
 Redshift
 --------
 
+### Basics
+
+-	📒 [Homepage](https://aws.amazon.com/redshift/) ∙ [Developer guide](http://docs.aws.amazon.com/redshift/latest/dg/) ∙ [FAQ](https://aws.amazon.com/redshift/faqs/)
+-	**Redshift** is AWS’ [data warehouse](https://en.wikipedia.org/wiki/Data_warehouse) solution, which is highly parallel, share-nothing, and columnar. It is very widely used. It [was built](https://en.wikipedia.org/wiki/Amazon_Redshift) with [ParAccel](https://en.wikipedia.org/wiki/ParAccel) and [Postgres](https://en.wikipedia.org/wiki/PostgreSQL).
+
+### Alternatives and Lock-in
+
+-	⛓🚪Whatever data warehouse you select, your business will likely be locked in for a long time. Also (and not coincidentally) the data warehouse market is highly fragmented. Selecting a data warehouse is a choice to be made carefully, with research and awareness of [the market landscape](https://www.datanami.com/2016/03/14/data-warehouse-market-ripe-disruption-gartner-says/) and what [business intelligence](https://en.wikipedia.org/wiki/Business_intelligence) tools you’ll be using.
+
 ### Tips
 
--	[Redshift](https://aws.amazon.com/redshift/) is AWS’ data warehouse solution (built on top of [ParAccel](http://www.actian.com/)), which is highly parallel, share-nothing and columnar. It is very widely used.
--	Redshift is based on Postgres, but its SQL dialect and performance profile are different.
-	-	Redshift supports only [11 primitive data types](https://docs.aws.amazon.com/redshift/latest/dg/c_Supported_data_types.html). ([List of unsupported Postgres types](https://docs.aws.amazon.com/redshift/latest/dg/c_unsupported-postgresql-datatypes.html)\)
-	-	It has a leader node and computation nodes (the leader node distributes queries to the computation ones). Note that some functions [can be executed only on the lead node.](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions_leader_node_only.html)
-	-	🔸Redshift does not support many Postgres functions, most notable date/time related or aggregates. See the [full list here](https://docs.aws.amazon.com/redshift/latest/dg/c_unsupported-postgresql-functions.html).
+-	🔸Although Redshift is based on Postgres, its SQL dialect and performance profile are different.
+-	Redshift supports only [11 primitive data types](https://docs.aws.amazon.com/redshift/latest/dg/c_Supported_data_types.html). ([List of unsupported Postgres types](https://docs.aws.amazon.com/redshift/latest/dg/c_unsupported-postgresql-datatypes.html)\)
+-	It has a leader node and computation nodes (the leader node distributes queries to the computation ones). Note that some functions [can be executed only on the lead node.](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions_leader_node_only.html)
+-	🔸Redshift does not support many Postgres functions, most notable date/time related or aggregates. See the [full list here](https://docs.aws.amazon.com/redshift/latest/dg/c_unsupported-postgresql-functions.html).
 -	Major 3rd-party BI tools support Redshift integration (see [Quora](https://www.quora.com/Which-BI-visualisation-solution-goes-best-with-Redshift)).
 
 ### Gotchas and Limitations
@@ -890,6 +971,15 @@ Redshift
 EMR
 ---
 
+### Basics
+
+-	📒 [Homepage](https://aws.amazon.com/emr/) ∙ [Release guide](http://docs.aws.amazon.com/ElasticMapReduce/latest/ReleaseGuide/) ∙ [FAQ](https://aws.amazon.com/redshift/faqs/)
+-	**EMR** (which used to stand for Elastic Map Reduce, but not anymore, since it now extends beyond map-reduce) is a service that offers managed deployment of [Hadoop](https://en.wikipedia.org/wiki/Apache_Hadoop), [HBase](https://en.wikipedia.org/wiki/Apache_HBase) and [Spark](https://en.wikipedia.org/wiki/Apache_Spark). It reduces reduces the management burden of setting up and maintaining these services yourself.
+
+### Alternatives and Lock-in
+
+-	⛓Most of EMR is based open source technology that you can in principle deploy yourself. However, the job workflows and much other tooling is AWS-specific. Migrating from EMR to your own clusters is possible but not always trivial.
+
 ### Tips
 
 -	EMR relies on many versions of Hadoop and other supporting software. Be sure to check [which versions are in use](https://docs.aws.amazon.com/ElasticMapReduce/latest/ReleaseGuide/emr-release-components.html).
@@ -901,6 +991,8 @@ EMR
 High Availability
 -----------------
 
+This section covers tips and information on achieving [high availability](https://en.wikipedia.org/wiki/High_availability).
+
 ### Tips
 
 -	AWS offers two levels of redundancy, [regions and availability zones (AZs)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions-availability-zones).
@@ -908,13 +1000,14 @@ High Availability
 -	**Multiple regions:** Using multiple regions is complex, since it’s essentially like completely separate infrastructure. It is necessary for business-critical services which highest levels of redundancy. However, for many applications (like your average consumer startup), deploying extensive redundancy across regions may be overkill.
 -	The [High Scalability Blog](http://highscalability.com/blog/2016/1/11/a-beginners-guide-to-scaling-to-11-million-users-on-amazons.html) has a good guide to help you understand when you need to scale an application to multiple regions.
 -	🔹**Multiple AZs:** Using AZs wisely is the primary tool for high availability!
+	-	A typical single-region high availability architecture would be to deploy in two or more availability zones, with load balancing in front, as in [this AWS diagram](http://media.amazonwebservices.com/architecturecenter/AWS_ac_ra_ftha_04.pdf).
 	-	The bulk of outages in AWS services affect one zone only. There have been rare outages affecting multiple zones simultaneously (for example, the [great EBS failure of 2011](http://aws.amazon.com/message/65648/)) but in general most customers’ outages are due to using only a single AZ for some infrastructure.
 	-	Consequently, design your architecture to minimize the impact of AZ outages, especially single-zone outages.
 	-	Deploy key infrastructure across at least two or three AZs. Replicating a single resource across more than three zones often won’t make sense if you have other backup mechanisms in place, like S3 snapshots.
 	-	Deploy instances evenly across all available AZs, so that only a minimal fraction of your capacity is lost in case of an AZ outage.
 	-	If your architecture has single points of failure, put all of them into a single AZ. This may seem counter-intuitive, but it minimizes the likelihood of any one SPOF to go down on an outage of a single AZ.
 -	**EBS vs instance storage:** For a number of years, EBSs had a poorer track record for availability than instance storage. For systems where individual instances can be killed and restarted easily, instance storage with sufficient redundancy could give higher availability overall. EBS has improved, and modern instance types (since 2015) are now EBS-only, so this approach, while helpful at one time, may be increasingly archaic.
--	Be sure you use and understand **ELBs** whenever appropriate. (See the section on ELBs.) Many outages are due to not using load balancers, or misunderstandings or misconfigurations of ELBs.
+-	Be sure to [use and understand ELBs](#elbs) appropriately. Many outages are due to not using load balancers, or misunderstandings or misconfigurations of ELBs.
 
 ### Gotchas and Limitations
 
