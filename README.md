@@ -20,6 +20,7 @@ The Open Guide to Amazon Web Services
 -	[DynamoDB](#dynamodb)
 -	[ECS](#ecs)
 -	[Lambda](#lambda)
+-	[API Gateway](#api-gateway)
 -	[Route 53](#route-53)
 -	[CloudFormation](#cloudformation)
 -	[VPCs, Network Security, and Security Groups](#vpcs-network-security-and-security-groups)
@@ -219,6 +220,8 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 | Git hosting                   | CodeCommit                                                                   |                              |                 |            | GitHub, BitBucket                 | GitLab                                                     |
 | User authentication           | Cognito                                                                      |                              |                 |            |                                   | oauth.io                                                   |
 | Mobile app analytics          | Mobile Analytics                                                             |                              |                 |            | Mixpanel                          |                                                            |
+
+🚧 [*Please help fill this table in.*](CONTRIBUTING.md)
 
 Selected resources with more detail on this chart:
 
@@ -812,9 +815,39 @@ Lambda
 
 -	📒 [Homepage](https://aws.amazon.com/lambda/) ∙ [Developer guide](http://docs.aws.amazon.com/lambda/latest/dg/) ∙ [FAQ](https://aws.amazon.com/lambda/faqs/)
 -	**Lambda** is a relatively new service (launched at end of 2014) that offers a different type of compute abstraction: A user-defined function that can perform a small operation, where AWS manages provisioning and scheduling how it is run.
--	This abstraction has grown to be called “**serverless**” since you don't explicitly manage any server instances, as you would with EC2. (This term is a bit confusing since the functions themselves do of course run on servers managed by AWS.)
--	Adoption of Lambda has grown very rapidly in 2015, with many use cases that traditionally would be solved by managing EC2 services migrating to serverless architectures.
--	The [Awesome Serverless](https://github.com/anaibol/awesome-serverless) list gives a good set of examples of the relatively immature, modern set of tools and frameworks around Lambda.
+
+### Tips
+
+-	**What does “serverless” mean?** This idea of using Lambda for application logic has grown to be called **serverless** since you don't explicitly manage any server instances, as you would with EC2. This term is a bit confusing since the functions themselves do of course run on servers managed by AWS. [Serverless, Inc.](http://serverless.com/) also uses this word for the name of their company and [their own open source framework](https://github.com/serverless/serverless), but the term is usually meant more generally.
+-	The release of Lambda and [API Gateway](#api-gateway) in 2015 triggered a startlingly rapid adoption in 2016, with many people writing about [serverless architectures](http://martinfowler.com/articles/serverless.html) in which many applications traditionally solved by managing EC2 servers can be built without explicitly managing servers at all.
+-	**Frameworks:** [Several frameworks](https://github.com/anaibol/awesome-serverless#frameworks) for building and managing serverless deployment are emerging.
+-	The [Awesome Serverless](https://github.com/anaibol/awesome-serverless) list gives a good set of examples of the relatively new set of tools and frameworks around Lambda.
+-	The [**Serverless framework**](https://github.com/serverless/serverless) is a leading new approach designed to help group and manage Lambda functions. It’s approaching version 1 as of August 2016) and is popular among a small number of users.
+
+### Alternatives and Lock-in
+
+-	🚪Other clouds offer similar services with different names, including [Google Cloud Functions](https://cloud.google.com/functions/), [Azure Functions](https://azure.microsoft.com/en-us/services/functions/), and [IBM OpenWhisk](http://www.ibm.com/cloud-computing/bluemix/openwhisk/).
+
+### Gotchas and Limitations
+
+-	🔸Lambda is a new technology. As of mid 2016, only a few companies are using it for large-scale production applications.
+-	🔸Managing lots of Lambda functions is a workflow challenge, and tooling to manage Lambda deployments is still immature.
+-	🔸AWS’ official workflow around managing function [versioning and aliases](https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html) is painful.
+
+🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
+
+API Gateway
+-----------
+
+### Basics
+
+-	📒 [Homepage](https://aws.amazon.com/api-gateway/) ∙ [Developer guide](http://docs.aws.amazon.com/apigateway/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/api-gateway/faqs/)
+-	**API Gateway** provides a scalable, secured front-end for service APIs, and can work with Lambda, Elastic Beanstalk, or regular EC2 services.
+-	It allows “serverless” deployment of applications built with Lambda.
+
+### Gotchas and Limitations
+
+-	🔸API Gateway only supports encrypted (https) endpoints, and does not support unencrypted HTTP. (This is probably a good thing.)
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
@@ -862,13 +895,12 @@ CloudFormation
 
 ### Gotchas and Limitations
 
--	🔸Many users don’t use CloudFormation at all because of its limitations, or because they find other solutions preferable:
-	-	CloudFormation syntax is a confusing JSON format that makes both reading and debugging difficult.
+-	🔸CloudFormation is useful but complex and with a variety of pain points. Many companies find alternate solutions, and many companies use it, but only with significant additional tooling.
+-	🔸CloudFormation syntax is an awkward JSON format that makes both reading and debugging difficult.
 	-	To use it effectively often involves additional tooling, such as converting it to YAML or using Troposphere.
-	-	It’s hard to assemble good CloudFormation configurations from existing state. AWS does [offer a trick to do this](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-using-cloudformer.html), but it’s very clumsy.
-	-	Often there are other ways to accomplish the same goals, such as local scripts (Boto, Bash, Ansible, etc.) you manage yourself that build infrastructure, or Docker-based solutions ([Convox](https://convox.com/), etc.).
-	-	It is *very* slow for anything that isn’t a trivial example, as it essentially does not parallelize any of the resource creation.
-	-	Many companies do use CloudFormation, but usually with extensive investment.
+-	🔸CloudFormation can be very slow for anything that isn’t a trivial example, as it essentially does not parallelize any of the resource creation.
+-	🔸It’s hard to assemble good CloudFormation configurations from existing state. AWS does [offer a trick to do this](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-using-cloudformer.html), but it’s very clumsy.
+-	🔸Many users don’t use CloudFormation at all because of its limitations, or because they find other solutions preferable. Often there are other ways to accomplish the same goals, such as local scripts (Boto, Bash, Ansible, etc.) you manage yourself that build infrastructure, or Docker-based solutions ([Convox](https://convox.com/), etc.).
 
 VPCs, Network Security, and Security Groups
 -------------------------------------------
