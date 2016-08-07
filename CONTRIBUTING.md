@@ -13,6 +13,7 @@ Please review current issues and pull requests to avoid duplication. Finally, if
 
 When you contribute, keep in mind these conventions:
 
+-	For AWS service names, we use the abbreviation throughout the guide if it is more common, e.g. EC2 and not Elastic Compute Cloud. We also omit “Amazon” at the front of product names, e.g. EMR and not Amazon EMR.
 -	Terms that appear for the first time in **boldface** are defined there in a brief summary, with a link if possible to what is probably the best page for that concept.
 -	**Boldfaced headings:** When possible and appropriate, begin bulleted items with a boldfaced summary, as illustrated here. This helps the reader skim the contents.
 -	It’s also fine to boldface **key statements** that guide the eye. In some cases, *just use italics*.
