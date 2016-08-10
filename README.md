@@ -24,6 +24,7 @@ The Open Guide to Amazon Web Services
 -	[Route 53](#route-53)
 -	[CloudFormation](#cloudformation)
 -	[VPCs, Network Security, and Security Groups](#vpcs-network-security-and-security-groups)
+-	[KMS](#kms)
 -	[CloudFront](#cloudfront)
 -	[DirectConnect](#directconnect)
 -	[Redshift](#redshift)
@@ -87,11 +88,12 @@ General Information
 	-	and you don’t have a specific reason to use Google Cloud
 	-	and you can afford, manage, or negotiate its somewhat higher costs
 	-	... then AWS is likely a good option for your company.
--	Each of those reasons above might point to situations where other services are preferable. In practice, many, if not most, tech startups as well as a number of modern large companies fit those criteria. (Many large enterprises are partly migrating internal infrastructure to Azure, Google Cloud, and AWS.)
--	🚪**AWS vs. IaaS alternatives:** While AWS is the dominant IaaS provider (31% market share in [this 2016 estimate](https://www.srgresearch.com/articles/aws-remains-dominant-despite-microsoft-and-google-growth-surges)), there is significant of competition and alternatives that are better suited to some companies:
-	-	The most significant direct competitor is [**Google Cloud**](https://cloud.google.com/). It arrived later to market than AWS, but has vast resources and is now used widely by many companies, including a few large ones. It is gaining market share. Not all AWS services have similar or analogous services in Google Cloud. And vice versa: In particular Google offers some more advanced machine learning-based services like the [Vision API](https://cloud.google.com/vision/). It’s not common to switch once you’re up and running, but it does happen: [Spotify migrated](http://www.wsj.com/articles/google-cloud-lures-amazon-web-services-customer-spotify-1456270951) from AWS to Google Cloud. There is more discussion [on Quora](https://www.quora.com/What-are-the-reasons-to-choose-AWS-over-Google-Cloud-or-vice-versa-for-a-high-traffic-web-application) about relative benefits.
+-	Each of those reasons above might point to situations where other services are preferable. In practice, many, if not most, tech startups as well as a number of modern large companies can or already do benefit from using AWS. Many large enterprises are partly migrating internal infrastructure to Azure, Google Cloud, and AWS.
+-	🔹**EC2 vs. other services:** Most users of AWS are most familiar with [EC2](#ec2), AWS’ flagship virtual server product, and possibly a few others like S3 and ELBs. But AWS products now extend far beyond basic IaaS, and often companies do not properly understand or appreciate all the many AWS services and how they can be applied, due to the [sharply growing](#which-services-to-use) number of services, their novelty and complexity, branding confusion, and fear of ⛓lock-in to proprietary AWS technology. Although a bit daunting, it’s important for technical decision-makers in companies to understand the breadth of the AWS services and make informed decisions. (We hope this guide will help.)
+-	🚪**AWS vs. other cloud providers:** While AWS is the dominant IaaS provider (31% market share in [this 2016 estimate](https://www.srgresearch.com/articles/aws-remains-dominant-despite-microsoft-and-google-growth-surges)), there is significant of competition and alternatives that are better suited to some companies:
+	-	The most significant direct competitor is [**Google Cloud**](https://cloud.google.com/). It arrived later to market than AWS, but has vast resources and is now used widely by many companies, including a few large ones. It is gaining market share. Not all AWS services have similar or analogous services in Google Cloud. And vice versa: In particular Google offers some more advanced machine learning-based services like the [Vision](https://cloud.google.com/vision/), [Speech](https://cloud.google.com/speech/), and [Natural Language](https://cloud.google.com/natural-language/) APIs. It’s not common to switch once you’re up and running, but it does happen: [Spotify migrated](http://www.wsj.com/articles/google-cloud-lures-amazon-web-services-customer-spotify-1456270951) from AWS to Google Cloud. There is more discussion [on Quora](https://www.quora.com/What-are-the-reasons-to-choose-AWS-over-Google-Cloud-or-vice-versa-for-a-high-traffic-web-application) about relative benefits.
 	-	[**Microsoft Azure**](https://azure.microsoft.com/en) is the de facto choice for companies and teams that are focused on a Microsoft stack.
-	-	In China, AWS’ footprint is relatively small. The market is dominated by Alibaba’s [Aliyun](https://intl.aliyun.com/).
+	-	In **China**, AWS’ footprint is relatively small. The market is dominated by Alibaba’s [Aliyun](https://intl.aliyun.com/).
 	-	Companies at (very) large scale may want to reduce costs by managing their own infrastructure. For example, [Dropbox migrated](https://news.ycombinator.com/item?id=11282948) to their own infrastructure.
 	-	Other cloud providers such as [Digital Ocean](https://www.digitalocean.com/) offer similar services, sometimes with greater ease of use, more personalized support, or lower cost. However, none of these match the breadth of products, mind-share, and market domination AWS now enjoys.
 	-	Traditional managed hosting providers such as [Rackspace](https://www.rackspace.com/) offer cloud solutions as well.
@@ -102,7 +104,7 @@ General Information
 -	**Geographic locations:** AWS has data centers in [about 10 geographic locations](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) (known as **regions**) in Europe, Asia, and North and South America. If your infrastructure needs to be in close physical proximity to another service for latency or throughput reasons (for example, latency to an ad exchange), viability of AWS will depend on the location.
 -	⛓**Lock-in:** As you use AWS, it’s important to be aware when you are depending on AWS services that do not have equivalents elsewhere. Basic services like virtual servers in EC2 are usually easy to migrate to other vendors, but the more services you use, the more lock-in you have to AWS, and the more difficult it will be to change to other providers in the future. It is quite common to mix and match services from different vendors (such as using S3 for storage but a different vendor for serving) and, in larger enterprises, to hybridize between private cloud or on-premises servers and AWS.
 -	**Major customers:** Who uses AWS and Google Cloud?
-	-	AWS’s [list of customers ](https://aws.amazon.com/solutions/case-studies/netflix/)includes a large numbers of mainstream sites, such as Netflix, Pinterest, Spotify, Airbnb, and Yelp.
+	-	AWS’s [list of customers](https://aws.amazon.com/solutions/case-studies/) includes large numbers of mainstream online properties and major brands, such as Netflix, Pinterest, Spotify, Airbnb, Expedia, Yelp, Zynga, Comcast, Nokia, and Bristol-Myers Squibb.
 	-	Google Cloud’s [list of customers](https://cloud.google.com/customers/) is large as well, and includes a few mainstream sites, such as [Snapchat](http://www.businessinsider.com/snapchat-is-built-on-googles-cloud-2014-1), Best Buy, Domino’s, and Sony Music.
 
 ### Which Services to Use
@@ -147,8 +149,9 @@ General Information
 	-	🐥[QuickSight](https://aws.amazon.com/quicksight/): Business intelligence service
 	-	[SES](https://aws.amazon.com/ses/): Send and receive e-mail for marketing or transactions
 	-	[API Gateway](https://aws.amazon.com/api-gateway/): Proxy, manage, and secure API calls
+	-	[IoT](https://aws.amazon.com/iot/): Manage bidirectional communication over HTTP, WebSockets, and MQTT between AWS and clients (often but not necessarily “things” like appliances or sensors)
 	-	[WAF](https://aws.amazon.com/waf/): Web firewall for CloudFront to deflect attacks
-	-	[KMS](https://aws.amazon.com/kms/): Store and manage encryption keys securely
+	-	[KMS](#kms): Store and manage encryption keys securely
 	-	[Inspector](https://aws.amazon.com/inspector/): Security audit
 	-	[Trusted Advisor](https://aws.amazon.com/premiumsupport/trustedadvisor/): Automated tips on reducing cost or making improvements
 -	⛓🕍**Compound services:** These are similarly specific, but are full-blown services that tackle complex problems and may tie you in. Usefulness depends on your requirements. If you have large or significant need, you may have these already managed by in-house systems and engineering teams:
@@ -233,6 +236,7 @@ It’s important to know the maturity of each product. Here is a mostly complete
 | Service                                                                                                   | Original release | Availability |
 |-----------------------------------------------------------------------------------------------------------|------------------|--------------|
 | [Database Migration Service](https://aws.amazon.com/releasenotes/AWS-Database-Migration-Service?browse=1) | 2016-03          | General      |
+| [IoT](https://aws.amazon.com/blogs/aws/aws-iot-now-generally-available/)                                  | 2015-08          | General      |
 | [WAF](https://aws.amazon.com/releasenotes/AWS-WAF?browse=1)                                               | 2015-10          | General      |
 | [Data Pipeline](https://aws.amazon.com/releasenotes/AWS-Data-Pipeline?browse=1)                           | 2015-10          | General      |
 | [Elasticsearch](https://aws.amazon.com/releasenotes/Amazon-Elasticsearch-Service?browse=1)                | 2015-10          | General      |
@@ -461,8 +465,8 @@ We cover security basics first, since configuring user accounts is something you
 	-	Most users can use the Google Authenticator app (on [iOS](https://itunes.apple.com/us/app/google-authenticator/id388497605) or [Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)) to support two-factor authentication. For the root account, consider a hardware fob.
 -	🔹Consider creating separate AWS accounts for independent parts of your infrastructure if you expect a high rate of AWS API calls, since AWS [throttles calls](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-api-troubleshooting.html#api-request-rate) at the AWS account level.
 -	[**Inspector**](https://aws.amazon.com/inspector/) is an automated security assessment service from AWS that helps identify common security risks. This allows validation that you adhere to certain security practices and may help with compliance.
--	[**Key Management Service (KMS)**](https://aws.amazon.com/kms/) is likely one of your best and most secure options for storing keys, such as for [EBS](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) and [S3 encryption](http://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html). (⛓At the cost of lock-in.)
--	[**AWS WAF**](https://aws.amazon.com/waf) is a web application firewall to help you protect your applications for common attack patterns.
+-	**Use KMS for managing keys**: AWS offers [KMS](#kms) for securely managing encryption keys, which is usually a far better option than handling key security yourself. See [below](#kms).
+-	[**AWS WAF**](https://aws.amazon.com/waf) is a web application firewall to help you protect your applications from common attack patterns.
 
 ### Gotchas and Limitations
 
@@ -761,13 +765,13 @@ RDS
 
 -	If you’re looking for the managed convenience of RDS for MongoDB, this isn’t offered by AWS directly, but you may wish to consider a provider such as [**mLab**](https://mlab.com/).
 -	MySQL RDS allows access to [binary logs](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Concepts.MySQL.html#USER_LogAccess.MySQL.BinaryFormat).
+-	🔸**MySQL vs MariaDB vs Aurora:** If you prefer a MySQL-style database but are starting something new, you probably should consider Aurora and MariaDB as well. **Aurora** has increased availability and is the next-generation solution. That said, Aurora [may not be](http://blog.takipi.com/benchmarking-aurora-vs-mysql-is-amazons-new-db-really-5x-faster/) as fast relative to MySQL as is sometimes reported, and is more complex to administer. **MariaDB**, the modern [community fork](https://en.wikipedia.org/wiki/MariaDB) of MySQL, [likely now has the edge over MySQL](http://cloudacademy.com/blog/mariadb-vs-mysql-aws-rds/) for many purposes and is supported by RDS.
 
 ### Gotchas and Limitations
 
 -	RDS instances run on EBS volumes, and hence are constrained by the EBS performance.
 -	⏱RDS instances run on EBS volumes, and hence are constrained by the EBS performance.
 -	🔸Verify what database features you need, as not everything you might want is available on RDS. For example, if you are using Postgres, check the list of [supported features and extensions](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#SQLServer.Concepts.General.FeatureSupport). If the features you need aren’t supported by RDS, you’ll have to deploy your database yourself.
--	🔸If you prefer a MySQL-style database but are starting something new, don’t use MySQL on RDS. Use **Aurora** instead of RDS for increased availability. It’s the next-generation solution.
 
 DynamoDB
 --------
@@ -811,6 +815,10 @@ ECS
 		-	If you want fast fleet-wide pulls of large images, you’ll need to push your image into a region-local registry.
 	-	Doesn’t support custom domains / certificates.
 
+### Tips
+
+-	[This blog from Convox](https://convox.com/blog/ecs-challenges/) (and [commentary](https://news.ycombinator.com/item?id=11598058)) lists a number of common challenges with ECS as of early 2016.
+
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
 Lambda
@@ -849,10 +857,12 @@ API Gateway
 -	📒 [Homepage](https://aws.amazon.com/api-gateway/) ∙ [Developer guide](http://docs.aws.amazon.com/apigateway/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/api-gateway/faqs/) ∙ [Pricing](https://aws.amazon.com/api-gateway/pricing/)
 -	**API Gateway** provides a scalable, secured front-end for service APIs, and can work with Lambda, Elastic Beanstalk, or regular EC2 services.
 -	It allows “serverless” deployment of applications built with Lambda.
+-	🔸Switching over deployments after upgrades can be tricky. There are no built-in mechanisms to have a single domain name migrate fro one API gateway to another one. So it may be necessary to build an additional layer in front (even another API Gateway) to allow smooth migration from one deployment to another.
 
 ### Gotchas and Limitations
 
 -	🔸API Gateway only supports encrypted (https) endpoints, and does not support unencrypted HTTP. (This is probably a good thing.)
+-	🔸API Gateway endpoints are public — there is no mechanism to build private endpoints, e.g. for internal use.
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
@@ -935,6 +945,22 @@ VPCs, Network Security, and Security Groups
 -	🔸Security groups are not shared across data centers, so if you have infrastructure in multiple data centers, you should make sure your configuration/deployment tools take that into account.
 -	❗Be careful when choosing your VPC IP CIDR block: If you are going to need to make use of [ClassicLink](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html), make sure that your private IP range [doesn’t overlap](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html#classiclink-limitations) with that of EC2 Classic.
 -	❗If you are going to peer VPCs, carefully consider the cost of of [data transfer between VPCs](https://aws.amazon.com/vpc/faqs/#Peering_Connections), since for some workloads and integrations, this can be prohibitively expensive.
+
+KMS
+---
+
+### Basics
+
+-	📒 [Homepage](https://aws.amazon.com/kms/) ∙ [Developer guide](http://docs.aws.amazon.com/kms/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/kms/faqs/) ∙ [Pricing](https://aws.amazon.com/kms/pricing/)
+-	**KMS** (Key Management Service) is secure service for storing keys, such encryption keys for [EBS](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) and [S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html).
+
+### Tips
+
+-	🔹It’s very common for companies to manage keys completely via home-grown mechanisms, but it’s far preferable to use a service such as KMS from the beginning, as it encourages more secure design and improves policies and processes around managing keys.
+-	A good motivation and overview is in [this AWS presentation](http://www.slideshare.net/AmazonWebServices/encryption-and-key-management-in-aws).
+-	The cryptographic details are in [this AWS whitepaper](https://d0.awsstatic.com/whitepapers/KMS-Cryptographic-Details.pdf).
+
+🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
 CloudFront
 ----------
