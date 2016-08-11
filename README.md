@@ -57,8 +57,8 @@ Scope
 	-	**Thoughtful:** The goal is to be helpful rather than present dry facts. Thoughtful opinion with rationale is welcome. Suggestions, notes, and opinions based on real experience can be extremely valuable. (We believe this is both possible with a guide of this format, unlike in some [other venues](http://meta.stackexchange.com/questions/201994/is-there-a-place-to-ask-opinion-based-questions).)
 -	This guide is not sponsored by AWS or AWS-affiliated vendors. It is written by and for engineers who use AWS.
 -	Legend:
+	-	📒 Marks standard/official AWS pages and docs
 	-	🔹 Important or often overlooked tip
-	-	📒 Marks standard/official AWS pages and docs (suggestions for a better emoji welcome!)
 	-	❗ Gotcha or warning (where risks or time or resource costs are significant)
 	-	🔸 Limitation or quirk (where it’s not quite so bad)
 	-	🐥 Relatively new or immature services
@@ -701,8 +701,11 @@ ELBs
 -	**Best practices:** [This article](http://aws.amazon.com/articles/1636185810492479) is a must-read if you use ELBs heavily, and has a lot more detail.
 -	**Scaling:** ELBs can scale to very high throughput, but scaling up is not instantaneous. If you’re planning to be hit with a lot of traffic suddenly, it can make sense to load test them so they scale up in advance. You can also [contact Amazon](http://aws.amazon.com/articles/1636185810492479) and have them “pre-warm” the load balancer.
 -	**Client IPs:** In general, if servers want to know true client IP addresses, load balancers must forward this information somehow. ELBs add the standard [X-Forwarded-For](https://en.wikipedia.org/wiki/X-Forwarded-For) header. When using an ELB as an HTTP load balancer, it’s possible to get the client’s IP address from this.
--	**Websockets** and **HTTP2/SPDY** are not currently supported directly. But you can use TCP instead of HTTP as the protocol to make it work. More details [here](http://www.quora.com/When-will-Amazon-ELB-offer-SPDY-support). You’ll want to [enable the obscure but useful Proxy Protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) ([more on this](https://chrislea.com/2014/03/20/using-proxy-protocol-nginx/)) to pass client IPs over a TCP load balancer.
--	Flip load balancer after spinning up a new stack with your latest version, keep old stack running for one or two hours, and either flip back to old stack in case of problems or tear down it down.
+-	🐥**Classic and new Application Load Balancer**:
+	-	The traditional HTTP/1 ELB features are now called the [Classic Load Balancer](https://aws.amazon.com/elasticloadbalancing/classicloadbalancer/). The revised ELB for use with modern web applications is called the [**Application Load Balancer**](https://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/).
+	-	**Websockets and HTTP/2** are [now supported](https://aws.amazon.com/blogs/aws/new-aws-application-load-balancer/). This Application Load Balancer feature is new as of August 2016, so may not be mature yet.
+	-	Prior to the Application Load Balancer, you were advised to use TCP instead of HTTP as the protocol to make it work (as described [here](http://www.quora.com/When-will-Amazon-ELB-offer-SPDY-support)) and use [the obscure but useful Proxy Protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) ([more on this](https://chrislea.com/2014/03/20/using-proxy-protocol-nginx/)) to pass client IPs over a TCP load balancer.
+-	**Using ELBs to upgrade:** Flip the load balancer after spinning up a new stack with your latest version, keep old stack running for one or two hours, and either flip back to old stack in case of problems or tear down it down.
 
 ### Gotchas and Limitations
 
