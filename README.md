@@ -13,7 +13,7 @@ The Open Guide to Amazon Web Services
 -	[AMIs](#amis)
 -	[Auto Scaling](#auto-scaling)
 -	[EBS](#ebs)
--	[ELBs](#elbs)
+-	[Load Balancers](#load-balancers)
 -	[Elastic IPs](#elastic-ips)
 -	[Glacier](#glacier)
 -	[RDS](#rds)
@@ -117,7 +117,7 @@ General Information
 	-	[IAM](#security-and-iam): User accounts and identities (you need to think about accounts early on!)
 	-	[EC2](#ec2): Virtual servers and associated components, including:
 		-	[AMIs](#amis): Machine Images
-		-	[ELBs](#elbs): Load balancing
+		-	[Load Balancers](#load-balancers): ELBs and ALBs
 		-	[Autoscaling](#auto-scaling): Capacity scaling (adding and removing servers based on load)
 		-	[EBS](#ebs): Network-attached disks
 		-	[Elastic IPs](#elastic-ips): Assigned IP addresses
@@ -216,7 +216,7 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 | Monitoring                    | CloudWatch                                                                   | Monitoring                   | Borgmon         |            |                                   | Prometheus(?)                                              |
 | Metric management             |                                                                              |                              | Borgmon, TSDB   |            |                                   | Graphite, InfluxDB, OpenTSDB, Grafana, Riemann, Prometheus |
 | CDN                           | CloudFront                                                                   |                              |                 | Azure CDN  |                                   | Apache Traffic Server                                      |
-| Load balancer                 | ELB                                                                          | Load Balancing               | GFE             |            |                                   | nginx, HAProxy, Apache Traffic Server                      |
+| Load balancer                 | ELB/ALB                                                                          | Load Balancing               | GFE             |            |                                   | nginx, HAProxy, Apache Traffic Server                      |
 | DNS                           | Route53                                                                      | DNS                          |                 |            |                                   | bind                                                       |
 | Email                         | SES                                                                          |                              |                 |            | Sendgrid, Mandrill, Postmark      |                                                            |
 | Git hosting                   | CodeCommit                                                                   |                              |                 |            | GitHub, BitBucket                 | GitLab                                                     |
@@ -553,7 +553,7 @@ EC2
 
 -	📒 [Homepage](https://aws.amazon.com/ec2/) ∙ [Documentation](https://aws.amazon.com/documentation/ec2/) ∙ [FAQ](https://aws.amazon.com/ec2/faqs/) ∙ [Pricing](https://aws.amazon.com/ec2/pricing/) (see also [ec2instances.info](http://www.ec2instances.info/)\)
 -	**EC2** (Elastic Compute Cloud) is AWS’ offering of the most fundamental piece of cloud computing: A [virtual private server](https://en.wikipedia.org/wiki/Virtual_private_server). These “instances” and can run [most Linux, BSD, and Windows operating systems](https://aws.amazon.com/ec2/faqs/#What_operating_system_environments_are_supported). Internally, they use [Xen](https://en.wikipedia.org/wiki/Xen) virtualization.
--	The term “EC2” is sometimes used to refer to the servers themselves, but technically refers more broadly to a whole collection of supporting services, too, like load balancing (ELBs), IP addresses (EIPs), bootable images (AMIs), security groups, and network drives (EBS) (which we discuss individually in this guide).
+-	The term “EC2” is sometimes used to refer to the servers themselves, but technically refers more broadly to a whole collection of supporting services, too, like load balancing (ELBs/ALBs), IP addresses (EIPs), bootable images (AMIs), security groups, and network drives (EBS) (which we discuss individually in this guide).
 
 ### Alternatives and Lock-In
 
@@ -684,40 +684,61 @@ EBS
 -	🔸EBS has an [**SLA**](http://aws.amazon.com/ec2/sla/) with **99.95%** uptime. See notes on high availability below.
 -	❗EBS volumes have a [**volume type**](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html) indicating the physical storage type. The types called “standard” (**st1** or **sc1**) actually old spinning-platter disks, which deliver only hundreds of IOPS — not what you want unless you’re really trying to cut costs. Modern SSD-based **gp2** or **io1** are typically the options you want.
 
-ELBs
+Load Balancers
 ----
 
-### Basics
+### Load Balancer Basics
 
--	📒 [Homepage](https://aws.amazon.com/elasticloadbalancing/) ∙ [User guide](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide) ∙ [FAQ](https://aws.amazon.com/ec2/faqs/#Elastic_Load_Balancing) ∙ [Pricing](https://aws.amazon.com/elasticloadbalancing/pricing/)
--	ELBs are AWS’ load balancing product. They’re great for many simple and common load balancing situations. They support TCP, HTTP, and SSL termination.
+- AWS has 2 load balancing products - “Elastic Load Balancers” (ELBs) (now also called “Classic Load Balancers”) and “Application Load Balancers” (ALBs).
+- ELBs have been around since 2009 while ALBs are a recent (2016) addition to AWS.
+- ELBs support TCP and HTTP load balancing while ALBs support HTTP load balancing only.
+- Both can optionally handle termination for a single SSL certificate.
+- Both can optionally perform active health checks of instances and remove them from the destination pool if they become unhealthy.
+- ELBs don't support complex / rule-based routing, while ALBs support a (currently small) set of rule-based routing features.
+- ELBs can only forward traffic to a single globally configured port on destination instances, while ALBs can forward to ports that are configured on a per-instance basis, better supporting routing to services on shared clusters with dynamic port assignment (like ECS or Mesos).
+- ELBs are supported in EC2 Classic as well as in VPCs while ALBs are supported in VPCs only.
 
-### Tips
+### Load Balancer Tips
 
--	If you don’t have opinions on your load balancing up front, and don’t have complex load balancing needs like application-specific routing of requests, it’s reasonable just to use an ELB for load balancing instead.
--	Even if you don’t want to think about load balancing at all, because your architecture is so simple (say, just one server), put an ELB in front of it anyway. This gives you more flexibility when upgrading, since you won’t have to change any DNS settings that will be slow to propagate, and also it lets you do a few things like terminate SSL more easily.
--	**ELBs have many IPs:** Internally, an ELB is simply a collection of individual software load balancers hosted within EC2, with DNS load balancing traffic among them. The pool can contain many IPs, at least one per availability zone, and depending on traffic levels. They also support SSL termination, which is very convenient.
--	For single-instance deployments, you might consider just assigning an elastic IP to an instance, but it’s generally quicker to add or remove instances from an ELB than to reassign an elastic IP.
--	**Best practices:** [This article](http://aws.amazon.com/articles/1636185810492479) is a must-read if you use ELBs heavily, and has a lot more detail.
--	**Scaling:** ELBs can scale to very high throughput, but scaling up is not instantaneous. If you’re planning to be hit with a lot of traffic suddenly, it can make sense to load test them so they scale up in advance. You can also [contact Amazon](http://aws.amazon.com/articles/1636185810492479) and have them “pre-warm” the load balancer.
+-	If you don’t have opinions on your load balancing up front, and don’t have complex load balancing needs like application-specific routing of requests, it’s reasonable just to use an ELB or ALB for load balancing instead.
+-	Even if you don’t want to think about load balancing at all, because your architecture is so simple (say, just one server), put a load balancer in front of it anyway. This gives you more flexibility when upgrading, since you won’t have to change any DNS settings that will be slow to propagate, and also it lets you do a few things like terminate SSL more easily.
+-	**ELBs and ALBs have many IPs:** Internally, an AWS load balancer is simply a collection of individual software load balancers hosted within EC2, with DNS load balancing traffic among them. The pool can contain many IPs, at least one per availability zone, and depending on traffic levels. They also support SSL termination, which is very convenient.
+-	For single-instance deployments, you might consider just assigning an elastic IP to an instance, but it’s generally quicker to add or remove instances from an AWS-managed load balancer than to reassign an elastic IP.
+-	**Scaling:** ELBs and ALBs can scale to very high throughput, but scaling up is not instantaneous. If you’re planning to be hit with a lot of traffic suddenly, it can make sense to load test them so they scale up in advance. You can also [contact Amazon](http://aws.amazon.com/articles/1636185810492479) and have them “pre-warm” the load balancer.
 -	**Client IPs:** In general, if servers want to know true client IP addresses, load balancers must forward this information somehow. ELBs add the standard [X-Forwarded-For](https://en.wikipedia.org/wiki/X-Forwarded-For) header. When using an ELB as an HTTP load balancer, it’s possible to get the client’s IP address from this.
--	🐥**Classic and new Application Load Balancer**:
-	-	The traditional HTTP/1 ELB features are now called the [Classic Load Balancer](https://aws.amazon.com/elasticloadbalancing/classicloadbalancer/). The revised ELB for use with modern web applications is called the [**Application Load Balancer**](https://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/).
-	-	**Websockets and HTTP/2** are [now supported](https://aws.amazon.com/blogs/aws/new-aws-application-load-balancer/). This Application Load Balancer feature is new as of August 2016, so may not be mature yet.
-	-	Prior to the Application Load Balancer, you were advised to use TCP instead of HTTP as the protocol to make it work (as described [here](http://www.quora.com/When-will-Amazon-ELB-offer-SPDY-support)) and use [the obscure but useful Proxy Protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) ([more on this](https://chrislea.com/2014/03/20/using-proxy-protocol-nginx/)) to pass client IPs over a TCP load balancer.
--	**Using ELBs to upgrade:** Flip the load balancer after spinning up a new stack with your latest version, keep old stack running for one or two hours, and either flip back to old stack in case of problems or tear down it down.
+-	**Using load balancers when deploying:** One common pattern is to swap instances in the load balancer after spinning up a new stack with your latest version, keep old stack running for one or two hours, and either flip back to old stack in case of problems or tear down it down.
 
-### Gotchas and Limitations
+### Load Balancer Gotchas and Limitations
+-	❗ELBs and ALBs have **no fixed external IP** that all clients see. For most consumer apps this doesn’t matter, but enterprise customers of yours may want this. IPs will be different for each user, and will vary unpredictably for a single client over time (within the standard [EC2 IP ranges](http://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html)). And similarly, never resolve an ELB name to an IP and put it as the value of an A record — it will work for a while, then break!
+-	❗Some web clients or reverse proxies cache DNS lookups for a long time, which is problematic for ELBs and ALBs, since they change their IPs. This means after a few minutes, hours, or days, your client will stop working, unless you disable DNS caching. Watch out for [Java’s settings](http://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html) and be sure to [adjust them properly](http://docs.aws.amazon.com/AWSSdkDocsJava/latest/DeveloperGuide/java-dg-jvm-ttl.html). Another example is nginx as a reverse proxy, which [resolves backends only at start-up](https://www.jethrocarr.com/2013/11/02/nginx-reverse-proxies-and-dns-resolution/).
+-	❗It’s not unheard of for IPs to be recycled between customers without a long cool-off period. So as a client, if you cache an IP and are not using SSL (to verify the server), you might get not just errors, but responses from completely different services or companies!
+-	🔸As an operator of a service behind an ELB or ALB, the latter phenomenon means you can also see puzzling or erroneous requests by clients of other companies. This is most common with clients using back-end APIs (since web browsers typically cache for a limited period).
+-	❗ELBs and ALBs take time to scale up, it does not handle sudden spikes in traffic well. Therefore, if you anticipate a spike, you need to “pre-warm” the ELB by gradually sending an increasing amount of traffic.
 
+### ELB Tips
+-	📒 [Homepage](https://aws.amazon.com/elasticloadbalancing/classicloadbalancer/) ∙ [User guide](https://aws.amazon.com/elasticloadbalancing/classicloadbalancer/developer-resources/) ∙ [FAQ](https://aws.amazon.com/elasticloadbalancing/classicloadbalancer/faqs/) ∙ [Pricing](https://aws.amazon.com/elasticloadbalancing/classicloadbalancer/pricing/)
+-	**Best practices:** [This article](http://aws.amazon.com/articles/1636185810492479) is a must-read if you use ELBs heavily, and has a lot more detail.
+
+### ELB Gotchas and Limitations
 -	In general, ELBs are not as “smart” as some load balancers, and don’t have fancy features or fine-grained control a traditional hardware load balancer would offer. For most common cases involving sessionless apps or cookie-based sessions over HTTP, or SSL termination, they work well.
 -	Complex rules for directing traffic are not supported. For example, you can’t direct traffic based on a regular expression in the URL, like [HAProxy](http://www.haproxy.org/) offers.
 -	**Apex DNS names:** Once upon a time, you couldn’t assign an ELB to an apex DNS record (i.e. example.com instead of foo.example.com) because it needed to be an A record instead of a CNAME. This is now possible with a Route 53 alias record directly pointing to the load balancer.
--	❗ELBs have **no fixed external IP** that all clients see. For most consumer apps this doesn’t matter, but enterprise customers of yours may want this. IPs will be different for each user, and will vary unpredictably for a single client over time (within the standard [EC2 IP ranges](http://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html)). And similarly, never resolve an ELB name to an IP and put it as the value of an A record — it will work for a while, then break!
--	❗Some web clients or reverse proxies cache DNS lookups for a long time, which is problematic for ELBs, since they change their IPs. This means after a few minutes, hours, or days, your client will stop working, unless you disable DNS caching. Watch out for [Java’s settings](http://docs.oracle.com/javase/8/docs/api/java/net/InetAddress.html) and be sure to [adjust them properly](http://docs.aws.amazon.com/AWSSdkDocsJava/latest/DeveloperGuide/java-dg-jvm-ttl.html). Another example is nginx as a reverse proxy, which [resolves backends only at start-up](https://www.jethrocarr.com/2013/11/02/nginx-reverse-proxies-and-dns-resolution/).
--	❗It’s not unheard of for IPs to be recycled between customers without a long cool-off period. So as a client, if you cache an IP and are not using SSL (to verify the server), you might get not just errors, but responses from completely different services or companies!
--	🔸As an operator of a service behind an ELB, the latter phenomenon means you can also see puzzling or erroneous requests by clients of other companies. This is most common with clients using back-end APIs (since web browsers typically cache for a limited period).
 -	🔸ELBs use [HTTP keep-alives](https://en.wikipedia.org/wiki/HTTP_persistent_connection) on the internal side. This can cause an unexpected side effect: Requests from different clients, each in their own TCP connection on the external side, can end up on the same TCP connection on the internal side. Never assume that multiple requests on the same TCP connection are from the same client!
--	❗ELB takes time to scale up, it does not handle sudden spikes in traffic well. Therefore, if you anticipate a spike, you need to “pre-warm” the ELB by gradually sending an increasing amount of traffic.
+
+### ALB Basics
+-	📒 [Homepage](https://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/) ∙ [User guide](https://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/developer-resources/) ∙ [FAQ](https://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/faqs/) ∙ [Pricing](https://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/pricing/)
+-	**Websockets and HTTP/2** are [now supported](https://aws.amazon.com/blogs/aws/new-aws-application-load-balancer/).
+-	Prior to the Application Load Balancer, you were advised to use TCP instead of HTTP as the protocol to make it work (as described [here](http://www.quora.com/When-will-Amazon-ELB-offer-SPDY-support)) and use [the obscure but useful Proxy Protocol](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/enable-proxy-protocol.html) ([more on this](https://chrislea.com/2014/03/20/using-proxy-protocol-nginx/)) to pass client IPs over a TCP load balancer.
+
+### ALB Tips
+-	Use ALBs to route to services that are hosted on shared clusters with dynamic port assignment (like ECS or Mesos).
+-	ALBs support HTTP path-based routing (send HTTP requests for “/api/*” -> {target-group-1}, “/blog/*” -> {target group 2}).
+
+### ALB Gotchas and Limitations
+-	ALBs support HTTP routing but not port-based TCP routing.
+-	ALBs do not (yet) support routing based on HTTP “Host” header or HTTP verb.
+-	Instances in the ALB's target groups have to either have a single, fixed healthcheck port (“EC2 instance”-level healthcheck) or the healthcheck port for a target has to be the same as its application port (“Application instance”-level healthcheck) - you can't configure a per-target healthcheck port that is different than the application port.
+-	ALBs are VPC-only (they are not available in EC2 Classic)
 
 Elastic IPs
 -----------
@@ -933,7 +954,7 @@ VPCs, Network Security, and Security Groups
 
 ### Tips
 
--	❗**Security groups** are your first line of defense for your servers. Be extremely restrictive of what ports are open to all incoming connections. In general, if you use ELBs or other load balancing, the only ports that need to be open to incoming traffic would be port 22 and whatever port your application uses.
+-	❗**Security groups** are your first line of defense for your servers. Be extremely restrictive of what ports are open to all incoming connections. In general, if you use ELBs, ALBs or other load balancing, the only ports that need to be open to incoming traffic would be port 22 and whatever port your application uses.
 -	**Port hygiene:** A good habit is to pick unique ports within an unusual range for each different kind of production service. For example, your web fronted might use 3010, your backend services 3020 and 3021, and your Postgres instances the usual 5432. Then make sure you have fine-grained security groups for each set of servers. This makes you disciplined about listing out your services, but also is more error-proof. For example, should you accidentally have an extra Apache server running on the default port 80 on a backend server, it will not be exposed.
 -	**Migrating from Classic**: For migrating from older EC2-Classic deployments to modern EC2-VPC setup, [this article](http://blog.kiip.me/engineering/ec2-to-vpc-executing-a-zero-downtime-migration/) may be of help.
 -	For basic AWS use, one default VPC may be sufficient. But as you scale up, you should consider mapping out network topology more thoroughly. A good overview of best practices is [here](http://blog.flux7.com/blogs/aws/vpc-best-configuration-practices).
@@ -1074,7 +1095,7 @@ This section covers tips and information on achieving [high availability](https:
 	-	Deploy instances evenly across all available AZs, so that only a minimal fraction of your capacity is lost in case of an AZ outage.
 	-	If your architecture has single points of failure, put all of them into a single AZ. This may seem counter-intuitive, but it minimizes the likelihood of any one SPOF to go down on an outage of a single AZ.
 -	**EBS vs instance storage:** For a number of years, EBSs had a poorer track record for availability than instance storage. For systems where individual instances can be killed and restarted easily, instance storage with sufficient redundancy could give higher availability overall. EBS has improved, and modern instance types (since 2015) are now EBS-only, so this approach, while helpful at one time, may be increasingly archaic.
--	Be sure to [use and understand ELBs](#elbs) appropriately. Many outages are due to not using load balancers, or misunderstandings or misconfigurations of ELBs.
+-	Be sure to [use and understand ELBs/ALBs](#load-balancers) appropriately. Many outages are due to not using load balancers, or misunderstandings or misconfigurations of ELBs.
 
 ### Gotchas and Limitations
 
