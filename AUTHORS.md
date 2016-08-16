@@ -6,12 +6,12 @@ The following people (in alphabetical order) have contributed to or reviewed thi
 
 
 * [Alexander Atallah (alexanderatallah)](https://github.com/alexanderatallah)
-* [Ben Kehoe (benkehoe)](https://github.com/benkehoe)
+* [Ben Kehoe (benkehoe)](https://github.com/benkehoe) — [4+](https://github.com/open-guides/og-aws/commits?author=benkehoe)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Abenkehoe)
 * [Adam Mathias Bittlingmayer (bittlingmayer)](https://github.com/bittlingmayer)
 * [Donne Martin (donnemartin)](https://github.com/donnemartin)
 * [Max Grigorev (forwidur)](https://github.com/forwidur)
 * [Dmitry Golyshev (golyshev)](https://github.com/golyshev)
-* [Joshua Levy (jlevy)](https://github.com/jlevy) — [19+](https://github.com/open-guides/og-aws/commits?author=jlevy)/[34+](https://github.com/open-guides/og-aws/issues?q=author%3Ajlevy) — _project editor_
+* [Joshua Levy (jlevy)](https://github.com/jlevy) — [22+](https://github.com/open-guides/og-aws/commits?author=jlevy)/[37+](https://github.com/open-guides/og-aws/issues?q=author%3Ajlevy) — _project editor_
 * [KAZUYUKI TANIMURA (kazuyukitanimura)](https://github.com/kazuyukitanimura)
 * [Marcello Bastéa-Forte (marcello3d)](https://github.com/marcello3d)
 * Max Zanko
@@ -19,7 +19,7 @@ The following people (in alphabetical order) have contributed to or reviewed thi
 * [Ola Wiberg (olawiberg)](https://github.com/olawiberg)
 * Praveen Patnala
 * [Russell Power (rjpower)](https://github.com/rjpower)
-* [Thanos Baskous (ThanosBaskous)](https://github.com/ThanosBaskous) — [5+](https://github.com/open-guides/og-aws/commits?author=ThanosBaskous)/[3+](https://github.com/open-guides/og-aws/issues?q=author%3AThanosBaskous) — _project editor_
+* [Thanos Baskous (ThanosBaskous)](https://github.com/ThanosBaskous) — [7+](https://github.com/open-guides/og-aws/commits?author=ThanosBaskous)/[4+](https://github.com/open-guides/og-aws/issues?q=author%3AThanosBaskous) — _project editor_
 * [Stefan Zier (weirded)](https://github.com/weirded)
 
 Additional authors are welcome; see the [contribution guidelines](CONTRIBUTING.md).
