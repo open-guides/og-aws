@@ -5,13 +5,17 @@ Contributions of all kinds, including discussion, corrections, additions, and im
 
 [![Ask a Question](https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg)](https://airtable.com/shrXZ61VrovWfXYBg)
 
-The simplest thing you can do to contribute is [fill in this form](https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg). Questions help identify where the guide needs to be improved.
+The simplest thing you can do to contribute is [fill in this form](https://airtable.com/shrXZ61VrovWfXYBg). Questions help identify where the guide needs to be improved.
 
-[**File issues**](https://github.com/open-guides/og-aws/issues). Don’t be shy about creating issues. Use them to discuss questions or topics, identify errors, or suggest improvemetns or new things to cover.
+[**File issues**](https://github.com/open-guides/og-aws/issues). Don’t be shy about creating issues. Use them to discuss questions or topics, identify errors, or suggest improvements or new things to cover.
 
 [**Pull requests**](https://github.com/open-guides/og-aws/pulls) with changes are even better. Please keep them small and focused, so we can add items individually, and review the conventions below.
 
-Please review current issues and pull requests to avoid duplication. Finally, for other concerns, you can shoot an e-mail to [@jlevy](https://github.com/jlevy).
+Please review current issues and pull requests to avoid duplication.
+
+We gladly [credit](/AUTHORS.md) all contributors.
+
+Finally, if an issue isn’t appropriate, or if you might have skills and inclination to help improve the guide in a more substantial way, please shoot an e-mail to [@jlevy](https://github.com/jlevy).
 
 ### Conventions
 
