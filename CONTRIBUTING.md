@@ -3,11 +3,15 @@ Contributing
 
 Contributions of all kinds, including discussion, corrections, additions, and improvements, are welcome! We hope you'll join and help, in small ways or large. We gladly credit all contributors and authors. Here are few notes before you jump in.
 
-**Questions and discussion**: [File issues](https://github.com/open-guides/og-aws/issues) liberally. Don’t be shy about creating issues — they are the only way to discuss things here. Just tag it as a question or discussion. We or others can answer, and it may lead to improvements to the guide.
+[![Ask a Question](https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg)](https://airtable.com/shrXZ61VrovWfXYBg)
 
-**Corrections and improvements**: [File issues](https://github.com/open-guides/og-aws/issues) describing the problem. Use them to discuss topics, ask questions, identify issues, or suggest improvements. [Pull requests](https://github.com/open-guides/og-aws/pulls) with changes are even better. Please keep them small and focused, so we can add items individually, and review the conventions below.
+The simplest thing you can do to contribute is [fill in this form](https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg). Questions help identify where the guide needs to be improved.
 
-Please review current issues and pull requests to avoid duplication. Finally, if an issue isn't appropriate, please shoot an e-mail to [@jlevy](https://github.com/jlevy).
+[**File issues**](https://github.com/open-guides/og-aws/issues). Don’t be shy about creating issues. Use them to discuss questions or topics, identify errors, or suggest improvemetns or new things to cover.
+
+[**Pull requests**](https://github.com/open-guides/og-aws/pulls) with changes are even better. Please keep them small and focused, so we can add items individually, and review the conventions below.
+
+Please review current issues and pull requests to avoid duplication. Finally, for other concerns, you can shoot an e-mail to [@jlevy](https://github.com/jlevy).
 
 ### Conventions
 
