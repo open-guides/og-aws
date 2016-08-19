@@ -43,7 +43,9 @@ This guide is by and for engineers who use AWS. It aims to be a useful, living r
 
 **This is an early in-progress draft!** It’s our first attempt at assembling this information, so is far from comprehensive still, and likely to have omissions or errors.
 
-[![Ask a Question](https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg)](https://airtable.com/shrXZ61VrovWfXYBg) if you don’t see your question here, and we’ll work to include it.
+[![Ask a Question](https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg)](https://airtable.com/shrXZ61VrovWfXYBg)
+
+If you have a question that is not answered here, [fill in this form](https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg), and we’ll work to include it.
 
 [**Please contribute**](CONTRIBUTING.md) by filing issues or PRs to comment, expand, correct, or otherwise improve it. This guide is *open to contributions*, so unlike a blog, it can keep improving. Like any open source effort, we combine efforts but also review ensure high quality.
 
