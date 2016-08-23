@@ -418,8 +418,7 @@ This guide is about AWS, not DevOps or server configuration management in genera
 -	Companies that are embracing [microservice architectures](http://martinfowler.com/articles/microservices.html) will often turn to container-based deployments.
 -	AWS launched [ECS](https://aws.amazon.com/ecs/) as a service to manage clusters via Docker in late 2014, though many people still deploy Docker directly themselves. See the [ECS section](#ecs) for more details.
 
-Visibility
-----------
+### Visibility
 
 -	Store and track instance metadata (such as instance id, availability zone, etc.) and deployment info (application build id, Git revision, etc.) in your logs or reports. The [**instance metadata service**](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) can help collect some of the AWS data you’ll need.
 -	**Use log management services:** Be sure to set up a way to view and manage logs externally from servers.
@@ -429,6 +428,10 @@ Visibility
 -	**Track and graph statistics:** The AWS Console can show you simple graphs from CloudWatch, you typically will want to track and graph many kinds of statistics, from CloudWatch and your applications. Collect and export helpful metrics everywhere you can (and as long as volume is manageable enough you can afford it).
 	-	Services like [Librato](https://www.librato.com/), [KeenIO](https://keen.io/), and [Datadog](https://www.datadoghq.com/) have fancier features or better user interfaces that can save a lot of time. (A more detailed comparison is [here](http://blog.takipi.com/production-tools-guide/visualization-and-metrics/).)
 	-	[Grafana](https://github.com/grafana/grafana) and [Graphite](https://github.com/graphite-project/graphite-web) are leading open source options.
+
+### Tips
+
+-	**NTP and accurate time:** If you are not using Amazon Linux (which comes preconfigured), you should confirm your servers [configure NTP correctly](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html#configure_ntp), to avoid insidious time drift (which can then cause all sorts of issues, from breaking API calls to misleading logs). This should be part of your automatic configuration for every server. If this already happened, remember NTP won’t shift time by more than a small amount automatically, so you may need to remediate manually (for example, [like this](http://askubuntu.com/questions/254826/how-to-force-a-clock-update-using-ntp) on Ubuntu).
 
 Billing and Cost Management
 ---------------------------
