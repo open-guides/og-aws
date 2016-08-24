@@ -45,7 +45,7 @@ This guide is by and for engineers who use AWS. It aims to be a useful, living r
 
 [![Ask a Question](https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg)](https://airtable.com/shrXZ61VrovWfXYBg)
 
-If you have a question that is not answered here, [fill in this form](https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg), and we’ll work to include it.
+If you have a question that is not answered here, [fill in this form](https://airtable.com/shrXZ61VrovWfXYBg), and we’ll work to include it.
 
 [**Please contribute**](CONTRIBUTING.md) by filing issues or PRs to comment, expand, correct, or otherwise improve it. This guide is *open to contributions*, so unlike a blog, it can keep improving. Like any open source effort, we combine efforts but also review to ensure high quality.
 
@@ -402,7 +402,7 @@ This guide is about AWS, not DevOps or server configuration management in genera
 -	Heroku’s [**Twelve-Factor App**](http://12factor.net/) principles list some established general best practices for deploying applications.
 -	**Pets vs cattle:** Treat servers [like cattle, not pets](https://blog.engineyard.com/2014/pets-vs-cattle). That is, design systems so infrastructure is disposable. It should be minimally worrisome if a server is unexpectedly destroyed.
 -	The concept of [**immutable infrastructure**](http://radar.oreilly.com/2015/06/an-introduction-to-immutable-infrastructure.html) is an extension of this idea.
--	Minimize application state on EC2 instances. In general, instances should be able to be killed or die unexpectedly with minimal impact. State that is in your application should quickly move to RDS, S3, or other data stores not on that instance.
+-	Minimize application state on EC2 instances. In general, instances should be able to be killed or die unexpectedly with minimal impact. State that is in your application should quickly move to RDS, S3, DynamoDB, EFS, or other data stores not on that instance. EBS is also an option, though it generally should not be the bootable volume, and EBS will require manual or automated re-mounting.
 
 ### Server Configuration Management
 
@@ -431,7 +431,7 @@ This guide is about AWS, not DevOps or server configuration management in genera
 
 ### Tips
 
--	**NTP and accurate time:** If you are not using Amazon Linux (which comes preconfigured), you should confirm your servers [configure NTP correctly](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html#configure_ntp), to avoid insidious time drift (which can then cause all sorts of issues, from breaking API calls to misleading logs). This should be part of your automatic configuration for every server. If this already happened, remember NTP won’t shift time by more than a small amount automatically, so you may need to remediate manually (for example, [like this](http://askubuntu.com/questions/254826/how-to-force-a-clock-update-using-ntp) on Ubuntu).
+-	**NTP and accurate time:** If you are not using Amazon Linux (which comes preconfigured), you should confirm your servers [configure NTP correctly](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/set-time.html#configure_ntp), to avoid insidious time drift (which can then cause all sorts of issues, from breaking API calls to misleading logs). This should be part of your automatic configuration for every server. If time has already drifted substantially (generally >1000 seconds), remember NTP won’t shift shift it back, so you may need to remediate manually (for example, [like this](http://askubuntu.com/questions/254826/how-to-force-a-clock-update-using-ntp) on Ubuntu).
 
 Billing and Cost Management
 ---------------------------
