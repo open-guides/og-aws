@@ -598,10 +598,10 @@ As an illustration of comparative features and price, the table below gives S3 S
 
 |             | Durability (per year) | Availability “designed” | Availability SLA | Storage (per TB per month) | GET or retrieve (per million) | Write or archive (per million) |
 |-------------|-----------------------|-------------------------|------------------|----------------------------|-------------------------------|--------------------------------|
-| S3 Standard | Eleven 9s             | 99.99%                  | 99.9%            | $30                        | $0.40                         | $5                             |
-| S3 RRS      | 99.99%                | 99.99%                  | 99.9%            | $24                        | $0.40                         | $5                             |
-| S3 IA       | Eleven 9s             | 99.9%                   | 99%              | $12.50                     | $1                            | $10                            |
 | Glacier     | Eleven 9s             | Sloooow                 | –                | $7                         | $50                           | $50                            |
+| S3 IA       | Eleven 9s             | 99.9%                   | 99%              | $12.50                     | $1                            | $10                            |
+| S3 RRS      | 99.99%                | 99.99%                  | 99.9%            | $24                        | $0.40                         | $5                             |
+| S3 Standard | Eleven 9s             | 99.99%                  | 99.9%            | $30                        | $0.40                         | $5                             |
 | EBS         | 99.8%                 | Unstated                | 99.95%           | $100 and up                |                               |                                |
 | EFS         | “High”                | “High”                  | –                | $300                       |                               |                                |
 
