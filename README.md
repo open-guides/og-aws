@@ -1,6 +1,8 @@
 The Open Guide to Amazon Web Services
 =====================================
 
+**Table of Contents**
+
 -	[Why an Open Guide?](#why-an-open-guide)
 -	[Scope](#scope)
 -	[General Information](#general-information)
@@ -13,6 +15,7 @@ The Open Guide to Amazon Web Services
 -	[AMIs](#amis)
 -	[Auto Scaling](#auto-scaling)
 -	[EBS](#ebs)
+-	[EFS](#efs)
 -	[Load Balancers](#load-balancers)
 -	[Elastic IPs](#elastic-ips)
 -	[Glacier](#glacier)
@@ -33,6 +36,12 @@ The Open Guide to Amazon Web Services
 -	[Further Reading](#further-reading)
 -	[Disclaimer](#disclaimer)
 -	[License](#license)
+
+**List of Tables**
+
+-	[Service Matrix](#service-matrix)
+-	[Maturity and Releases](#maturity-and-releases)
+-	[Storage Durability, Availability, and Price](#storage-durability-availability-and-price)
 
 Why an Open Guide?
 ------------------
