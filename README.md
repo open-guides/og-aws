@@ -84,6 +84,7 @@ General Information
 	-	In general, “[cloud computing](https://en.wikipedia.org/wiki/Cloud_computing)” can refer to one of three types of cloud: “public,” “private,” and “hybrid.” AWS is a public cloud provider, since anyone can use it. Private clouds are within a single (usually large) organization. Many companies use a hybrid of private and public clouds.
 	-	The core features of AWS are [infrastructure-as-a-service](https://en.wikipedia.org/wiki/Cloud_computing#Infrastructure_as_a_service_.28IaaS.29) (IaaS) — that is, virtual machines and supporting infrastructure. Other cloud service models include [platform-as-a-service](https://en.wikipedia.org/wiki/Cloud_computing#Platform_as_a_service_.28PaaS.29) (PaaS), which typically are more fully managed services that deploy customers’ applications, or [software-as-a-service](https://en.wikipedia.org/wiki/Cloud_computing#Software_as_a_service_.28SaaS.29) (SaaS), which are cloud-based applications. AWS does offer a few products that fit into these other models, too.
 	-	In business terms, with infrastructure-as-a-service you have a variable cost model — it is [OpEx, not CapEx](http://www.investopedia.com/ask/answers/020915/what-difference-between-capex-and-opex.asp) (though some [pre-purchased contracts](https://aws.amazon.com/ec2/purchasing-options/reserved-instances/) are still CapEx).
+-	AWS revenue was [about $5 billion as of 2015](https://awsinsider.net/articles/2015/04/23/amazon-earnings-q1-2015.aspx) (roughly a fifth of Amazon.com’s total revenue).
 -	**Main reasons to use AWS:**
 	-	If your company is building systems or products that may need to scale
 	-	and you have technical know-how
@@ -522,18 +523,28 @@ S3
 -	The number of objects in a bucket is essentially unlimited. Customers routinely have millions of objects.
 -	**Versioning:** S3 has [optional versioning support](https://docs.aws.amazon.com/AmazonS3/latest/dev/ObjectVersioning.html), so that all versions of objects are preserved on a bucket. This is mostly useful if you want an archive of changes or the ability to back out mistakes (it has none of the features of full version control systems like Git).
 -	**Durability:** Durability of S3 is extremely high, since internally it keeps several replicas. If you don’t delete it by accident, you can count on S3 not losing your data. (AWS offers the seemingly improbable durability rate of [99.999999999%](https://aws.amazon.com/s3/faqs/#How_durable_is_Amazon_S3), but this is a mathematical calculation based on independent failure rates and levels of replication — not a true probability estimate. Either way, S3 has had [a very good record](https://www.quora.com/Has-Amazon-S3-ever-lost-data-permanently) of durability.) Note this is *much* higher durability than EBS! If durability is less important for your application, you can use [S3 Reduced Redundancy Storage](https://aws.amazon.com/s3/reduced-redundancy/), which lowers the cost per GB, as well as the redundancy.
--	⏱**Performance:** Data throughput is complex, both in terms of bandwidth and number of operations:
-	-	Throughput is of course highest from within AWS, and between EC2 instances and S3 buckets that are in the same region.
-	-	Throughput is extremely high when accessed in a distributed way, from many EC2 instances. It’s possible to read or write objects from S3 from thousands of instances at once.
-	-	However, throughput is very limited when accessed sequentially, from a single instance. Individual operations take many milliseconds, and bandwidth to and from instances is limited by instance type.
-	-	Therefore, to perform large numbers of operations, it’s necessary to use high levels of parallelization, both in terms of threads and EC2 instances.
-	-	For large objects you want to take advantage of the multi-part uploading capabilities (starting with minimum chunk sizes of 5 MB).
-	-	Also you can download chunks in parallel by exploiting the HTTP GET range-header capability.
-	-	Listing contents happens at 1000 responses per request, so for buckets with many millions of objects listings will take time.
-	-	🔸 In addition, latency on operations is [highly dependent on prefix similarities among key names](http://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html). If you have need for high volumes of operations, it is essential to consider naming schemes with more randomness early in the key name (first 7 or 8 characters) in order to avoid “hot spots”.
-	-	🔸 Note that sadly, the latter advice about random key names goes against having a consistent layout with common prefixes to manage data lifecycles in an automated way.
--	💸**S3 pricing** depends on [storage, requests, and transfer](http://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html).
-	-	For transfer, putting data into AWS is free, but you’ll pay on the way out. Transfer from S3 to EC2 in the *same region *is free. Transfer to other regions or the Internet in general is not free.
+-	💸**S3 pricing** depends on [storage, requests, and transfer](https://aws.amazon.com/s3/pricing/).
+	-	For transfer, putting data into AWS is free, but you’ll pay on the way out. Transfer from S3 to EC2 in the *same region* is free. Transfer to other regions or the Internet in general is not free.
+	-	Deletes are free.
+-	**S3 Reduced Redundancy and Infrequent Access:** Most people use the Standard storage class in S3, but are other storage classes with lower cost:
+	-	[Reduced Redundancy Storage (RRS)](https://aws.amazon.com/s3/reduced-redundancy/) has lower durability (99.99%, so just four nines). That is, there’s a small chance you’ll lose data. For some data sets where data has value in a statistical way (losing say half a percent of your objects isn’t a big deal) this is a reasonable trade-off.
+	-	[Infrequent Access (IA)](https://aws.amazon.com/s3/storage-classes/#Infrequent_Access) lets you get cheaper storage in exchange for more expensive access. This is great for archives like logs you already processed, but might want to look at later.
+	-	[Glacier](#glacier) is a third alternative discussed as a separate product.
+	-	See [the comparison table](#storage-durability-availability-and-price).
+-	⏱**Performance:** Maximizing S3 performance means improving overall throughput in terms of bandwidth and number of operations per second.
+	-	S3 is highly scalable, so in principle you can get arbitrarily high throughput. (A good example of this is [S3DistCp](https://docs.aws.amazon.com/ElasticMapReduce/latest/ReleaseGuide/UsingEMR_s3distcp.html).)
+	-	But usually you are constrained by the pipe between the source and S3 and/or the level of concurrency of operations.
+	-	Throughput is of course highest from within AWS to S3, and between EC2 instances and S3 buckets that are in the same region.
+	-	Bandwidth from EC2 depends on instance type. See the “Network Performance” column at [ec2instances.info](http://www.ec2instances.info/).
+	-	Throughput of many objects is extremely high when data is accessed in a distributed way, from many EC2 instances. It’s possible to read or write objects from S3 from hundreds or thousands of instances at once.
+	-	However, throughput is very limited when objects accessed sequentially from a single instance. Individual operations take many milliseconds, and bandwidth to and from instances is limited.
+	-	Therefore, to perform large numbers of operations, it’s necessary to use multiple worker threads and connections on individual instances, and for larger jobs, multiple EC2 instances as well.
+	-	**Multi-part uploads:** For large objects you want to take advantage of the multi-part uploading capabilities (starting with minimum chunk sizes of 5 MB).
+	-	**Large downloads:** Also you can download chunks of a single large object in parallel by exploiting the HTTP GET range-header capability.
+	-	🔸**List pagination:** Listing contents happens at 1000 responses per request, so for buckets with many millions of objects listings will take time.
+	-	❗In addition, latency on operations is [highly dependent on prefix similarities among key names](http://docs.aws.amazon.com/AmazonS3/latest/dev/request-rate-perf-considerations.html). If you have need for high volumes of operations, it is essential to consider naming schemes with more randomness early in the key name (first 6 or 8 characters) in order to avoid “hot spots”.
+	-	🔸Note that sadly, the latter advice about random key names goes against having a consistent layout with common prefixes to manage data lifecycles in an automated way.
+	-	For data outside AWS, [DirectConnect](https://aws.amazon.com/directconnect/) and [**S3 Transfer Acceleration**](https://aws.amazon.com/blogs/aws/aws-storage-update-amazon-s3-transfer-acceleration-larger-snowballs-in-more-regions/) can help. For S3 Transfer Acceleration, you [pay](https://aws.amazon.com/s3/pricing/) about the equivalent of 1-2 months of storage for the transfer in either direction for using nearer endpoints.
 -	**Command-line applications:** There are a few ways to use S3 from the command line:
 	-	Originally, [**s3cmd**](https://github.com/s3tools/s3cmd) was the best tool for the job. It’s still used heavily by many.
 	-	The regular [**aws**](https://aws.amazon.com/cli/) command-line interface now supports S3 well, and is useful for most situations.
@@ -561,18 +572,38 @@ S3
 	-	🔸Thinking about this up front will save you pain. It’s very hard to clean up large collections of files created by many engineers with varying lifecycles and no coherent organization.
 	-	Alternatively you can set a lifecycle policy to archive old data to Glacier. [Be careful](https://alestic.com/2012/12/s3-glacier-costs/) with archiving large numbers of small objects to Glacier, since it may actually cost more.
 	-	There is also a storage class called [**Infrequent Access**](https://aws.amazon.com/s3/storage-classes/#Infrequent_Access) that has the same durability as Standard S3, but is discounted per GB. It is suitable for objects that are infrequently accessed.
--	**Data consistency:** Creation of objects in S3 is atomic. You’ll never upload a file and have another client see only half the file. Also, if you create a new file, you’ll see it instantly. If you overwrite or delete a file, however, you’re only guaranteed [eventual consistency](https://aws.amazon.com/s3/faqs/#What_data_consistency_model_does_Amazon_S3_employ).
--	🔸Be careful not to make implicit assumptions about transactionality or sequencing of updates to objects. Never assume that if you modify a sequence of objects, the clients will see the same modifications in the same sequence, or if you upload a whole bunch of files, that they will all appear at once to all clients.
+-	**Data consistency:** Understanding [data consistency](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel) is critical for any use of S3 where there are multiple producers and consumers of data.
+	-	Creation of individual objects in S3 is atomic. You’ll never upload a file and have another client see only half the file.
+	-	Also, if you create a new object, you’ll be able to read it instantly, which is called **read-after-write consistency**.
+		-	Well, with the additional caveat that if you do a read on an object before it exists, then create it, [you get eventual consistency](https://docs.aws.amazon.com/AmazonS3/latest/dev/Introduction.html#ConsistencyModel) (not read-after-write).
+	-	If you overwrite or delete a object, you’re only guaranteed eventual consistency.
+	-	🔹Note that [until 2015](https://aws.amazon.com/about-aws/whats-new/2015/08/amazon-s3-introduces-new-usability-enhancements/), 'us-standard' region had had a weaker eventual consistency model, and the other (newer) regions were read-after-write. This was finally corrected — but watch for many old blogs mentioning this!
+	-	In practice, “eventual consistency” usually means within seconds, but expect rare cases of minutes or [hours](http://www.stackdriver.com/eventual-consistency-really-eventual/).
 -	If you are primarily using a VPC, consider setting up a [VPC Endpoint](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html) for S3 in order to allow your VPC-hosted resources to easily access it without the need for extra network configuration or hops.
+-	**Cross-region replication:** S3 has [a feature](https://docs.aws.amazon.com/AmazonS3/latest/dev/crr.html) for replicating a bucket between one region and a another. Note that S3 is already highly replicated within one region, so usually this isn’t necessary, except for compliance or latency reasons.
 
 ### Gotchas and Limitations
 
--	❗The number of buckets per account is [severely limited](http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) (100 per account). Use buckets sparingly. You can ask for a raise in the number of buckets but it will still be capped.
+-	🔸For many years, there was a notorious [**100-bucket limit**](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_s3) per account, which could not be raised and caused many companies significant pain. As of 2015, you can [request increases](https://aws.amazon.com/about-aws/whats-new/2015/08/amazon-s3-introduces-new-usability-enhancements/). You can ask for a raise in the number of buckets but it will still be capped (generally below ~1000 per account).
+-	🔸Be careful not to make implicit assumptions about transactionality or sequencing of updates to objects. Never assume that if you modify a sequence of objects, the clients will see the same modifications in the same sequence, or if you upload a whole bunch of files, that they will all appear at once to all clients.
 -	🔸S3 has an [**SLA**](https://aws.amazon.com/s3/sla/) with 99.9% uptime. If you use S3 heavily, you’ll inevitably see occasional error accessing or storing data as disks or other infrastructure fail. Availability is usually restored in seconds or minutes. Although availability is not extremely high, as mentioned above, durability is excellent.
 -	🔸After uploading, any change that you make to the object causes a full rewrite of the object, so avoid appending-like behavior with regular files.
--	🔸Sometimes, S3 suffers from replication issues, when an object is visible from a subset of the machines, depending on which S3 endpoint they hit. Those usually resolve within seconds, however, we’ve seen isolated cases when the issue lingered for 20-30 hours.
+-	🔸Eventual data consistency, as discussed above, can be surprising sometimes. If S3 at suffers from internal replication issues, an object may be visible from a subset of the machines, depending on which S3 endpoint they hit. Those usually resolve within seconds; however, we’ve seen isolated cases when the issue lingered for 20-30 hours.
 -	🔸**MD5s and multi-part uploads:** In S3, the [ETag header in S3](http://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonResponseHeaders.html) is a hash on the object. And in many cases, it is the MD5 hash. However, this [is not the case in general](http://stackoverflow.com/questions/12186993/what-is-the-algorithm-to-compute-the-amazon-s3-etag-for-a-file-larger-than-5gb) when you use multi-part uploads. One workaround is to compute MD5s yourself and put them in a custom header (such as is done by [s4cmd](https://github.com/bloomreach/s4cmd)).
 -	🔸**US Standard region:** Most S3 endpoints match the region they’re in, with the exception of the us-east-1 region, which is called 'us-standard' in S3 terminology. This region is also the only region that is replicated across coasts. As a result, latency varies more in this region than in others. You can minimize latency from us-east-1 by using *[s3-external-1.amazonaws.com](http://s3-external-1.amazonaws.com/)*.  
+
+### Storage Durability, Availability, and Price
+
+As an illustration of comparative features and price, the table below gives S3 Standard, RRS, IA, in comparison with [Glacier](#glacier), [EBS](#ebs), and EFS, using Virginia region as of August 2016. (Sources: S3 [pricing](https://aws.amazon.com/s3/pricing/), [SLA](https://aws.amazon.com/s3/sla/), [FAQ](https://aws.amazon.com/s3/faqs/), [RRS info](https://aws.amazon.com/s3/reduced-redundancy/), [Glacier pricing](https://aws.amazon.com/glacier/pricing/), [EBS pricing](https://aws.amazon.com/ebs/pricing/), [EFS pricing](https://aws.amazon.com/efs/pricing/), [EC2 SLA](https://aws.amazon.com/ec2/sla/).)
+
+|             | Durability (per year) | Availability “designed” | Availability SLA | Storage (per TB per month) | GET or retrieve (per million) | Write or archive (per million) |
+|-------------|-----------------------|-------------------------|------------------|----------------------------|-------------------------------|--------------------------------|
+| S3 Standard | Eleven 9s             | 99.99%                  | 99.9%            | $30                        | $0.40                         | $5                             |
+| S3 RRS      | 99.99%                | 99.99%                  | 99.9%            | $24                        | $0.40                         | $5                             |
+| S3 IA       | Eleven 9s             | 99.9%                   | 99%              | $12.50                     | $1                            | $10                            |
+| Glacier     | Eleven 9s             | Sloooow                 | –                | $7                         | $50                           | $50                            |
+| EBS         | 99.8%                 | Unstated                | 99.95%           | $100 and up                |                               |                                |
+| EFS         | “High”                | “High”                  | –                | $300                       |                               |                                |
 
 EC2
 ---
@@ -804,7 +835,9 @@ Glacier
 ### Basics
 
 -	📒 [Homepage](https://aws.amazon.com/glacier/) ∙ [Developer guide](http://docs.aws.amazon.com/amazonglacier/latest/dev/) ∙ [FAQ](https://aws.amazon.com/glacier/faqs/) ∙ [Pricing](https://aws.amazon.com/glacier/pricing/)
--	**Glacier** is a a lower-cost alternative to S3 when data is infrequently accessed, such as for archival purposes.
+-	**Glacier** is a lower-cost alternative to S3 when data is infrequently accessed, such as for archival purposes.
+-	It’s only useful for data that is rarely accessed. It generally takes [3-5 hours](https://aws.amazon.com/glacier/faqs/#dataretrievals) to fulfill a retrieval request.
+-	AWS [has not officially revealed](https://en.wikipedia.org/wiki/Amazon_Glacier#Storage) the storage media used by Glacier; it may be low-spin hard drives or even tapes.
 
 ### Tips
 
@@ -812,9 +845,9 @@ Glacier
 
 ### Gotchas and Limitations
 
--	Getting files off Glacier is glacially slow (on the order of 5-6 hours).
--	Due to a fixed overhead per file (you pay per PUT or GET operation), uploading and downloading many small files on/to Glacier might be very expensive. There is also a 32k storage overhead per file. Hence a good idea is to archive files before upload.
--	Glacier’s pricing policy is reportedly pretty complicated: “Glacier data retrievals are priced based on the peak hourly retrieval capacity used within a calendar month.” Some more info can be found [here](https://medium.com/@karppinen/how-i-ended-up-paying-150-for-a-single-60gb-download-from-amazon-glacier-6cb77b288c3e#.wjl4dbgza) and [here](https://news.ycombinator.com/item?id=10921365).
+-	🔸Getting files off Glacier is glacially slow (typically 3-5 hours or more).
+-	🔸Due to a fixed overhead per file (you pay per PUT or GET operation), uploading and downloading many small files on/to Glacier might be very expensive. There is also a 32k storage overhead per file. Hence it’s a good idea is to archive files before upload.
+-	🔸Glacier’s pricing policy is reportedly pretty complicated: “Glacier data retrievals are priced based on the peak hourly retrieval capacity used within a calendar month.” Some more info can be found [here](https://medium.com/@karppinen/how-i-ended-up-paying-150-for-a-single-60gb-download-from-amazon-glacier-6cb77b288c3e#.wjl4dbgza) and [here](https://news.ycombinator.com/item?id=10921365).
 
 RDS
 ---
