@@ -31,11 +31,13 @@ When you contribute, keep in mind these conventions:
 	-	Use Unicode open and close quotes “like this” and not "like this".
 	-	Use oriented apostrophes (Unicode’s, not ASCII's).
 	-	Use em dashes — like this (not two hyphens -- like this).
--	Section conventions: When appropriate please add sections covering these items:
-	-	*Basics*: The elementary facts you should know if you don't yet know anything about the service.
-	-	*Alternatives and Lock-In*: Should you be using this service or something else? Is the decision an important one that locks you in?
-	-	*Tips*: Everything you should know about the service, from big stuff to details.
-	-	*Cost Management*: Tips specific to that service on reducing or managing costs.
-	-	*Gotchas and Limitations*: Common problems, large and small, as well as misconceptions and quirks.
+-	Section conventions: When appropriate please add sections covering these items (where *X* = EC2, S3, etc.):
+	-	*X Basics*: The elementary facts you should know if you don’t yet know anything about the service.
+	-	*X Alternatives and Lock-In*: Should you be using this service or something else? Is the decision an important one that locks you in?
+	-	*X Tips*: Everything you should know about the service, from big stuff to details.
+	-	*X Cost Management*: Tips specific to that service on reducing or managing costs.
+	-	*X Gotchas and Limitations*: Common problems, large and small, as well as misconceptions and quirks.
+-	Not all sections need to follow the above conventions exactly. Strive for consistency, but clarity is more important.
+-	Note we try to make sections uniquely titled, so GitHub links to Markdown section anchors don’t collide and are stable.
 
-Note we try to keep consistent formatting in Markdown via [markdownfmt](https://github.com/shurcooL/markdownfmt). We run **admin/reformat.sh** to do this, but you don't have to worry about it unless you really want to.
+Note we try to keep consistent formatting in Markdown via [markdownfmt](https://github.com/shurcooL/markdownfmt). We run **admin/reformat.sh** to do this, but you don’t have to worry about it unless you really want to.
