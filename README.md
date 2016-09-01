@@ -606,16 +606,16 @@ S3
 
 ### Storage Durability, Availability, and Price
 
-As an illustration of comparative features and price, the table below gives S3 Standard, RRS, IA, in comparison with [Glacier](#glacier), [EBS](#ebs), and EFS, using Virginia region as of August 2016. (Sources: S3 [pricing](https://aws.amazon.com/s3/pricing/), [SLA](https://aws.amazon.com/s3/sla/), [FAQ](https://aws.amazon.com/s3/faqs/), [RRS info](https://aws.amazon.com/s3/reduced-redundancy/), [Glacier pricing](https://aws.amazon.com/glacier/pricing/), [EBS pricing](https://aws.amazon.com/ebs/pricing/), [EFS pricing](https://aws.amazon.com/efs/pricing/), [EC2 SLA](https://aws.amazon.com/ec2/sla/).)
+As an illustration of comparative features and price, the table below gives S3 Standard, RRS, IA, in comparison with [Glacier](#glacier), [EBS](#ebs), and [EFS](#efs), using Virginia region as of August 2016. (Sources: S3 [pricing](https://aws.amazon.com/s3/pricing/), [SLA](https://aws.amazon.com/s3/sla/), [FAQ](https://aws.amazon.com/s3/faqs/), [RRS info](https://aws.amazon.com/s3/reduced-redundancy/), [Glacier pricing](https://aws.amazon.com/glacier/pricing/), [EBS pricing](https://aws.amazon.com/ebs/pricing/), [EFS pricing](https://aws.amazon.com/efs/pricing/), [EC2 SLA](https://aws.amazon.com/ec2/sla/).)
 
-|             | Durability (per year) | Availability “designed” | Availability SLA | Storage (per TB per month) | GET or retrieve (per million) | Write or archive (per million) |
-|-------------|-----------------------|-------------------------|------------------|----------------------------|-------------------------------|--------------------------------|
-| Glacier     | Eleven 9s             | Sloooow                 | –                | $7                         | $50                           | $50                            |
-| S3 IA       | Eleven 9s             | 99.9%                   | 99%              | $12.50                     | $1                            | $10                            |
-| S3 RRS      | 99.99%                | 99.99%                  | 99.9%            | $24                        | $0.40                         | $5                             |
-| S3 Standard | Eleven 9s             | 99.99%                  | 99.9%            | $30                        | $0.40                         | $5                             |
-| EBS         | 99.8%                 | Unstated                | 99.95%           | $100 and up                |                               |                                |
-| EFS         | “High”                | “High”                  | –                | $300                       |                               |                                |
+|                 | Durability (per year) | Availability “designed” | Availability SLA | Storage (per TB per month) | GET or retrieve (per million) | Write or archive (per million) |
+|-----------------|-----------------------|-------------------------|------------------|----------------------------|-------------------------------|--------------------------------|
+| **Glacier**     | Eleven 9s             | Sloooow                 | –                | $7                         | $50                           | $50                            |
+| **S3 IA**       | Eleven 9s             | 99.9%                   | 99%              | $12.50                     | $1                            | $10                            |
+| **S3 RRS**      | 99.99%                | 99.99%                  | 99.9%            | $24                        | $0.40                         | $5                             |
+| **S3 Standard** | Eleven 9s             | 99.99%                  | 99.9%            | $30                        | $0.40                         | $5                             |
+| **EBS**         | 99.8%                 | Unstated                | 99.95%           | $100 and up                |                               |                                |
+| **EFS**         | “High”                | “High”                  | –                | $300                       |                               |                                |
 
 EC2
 ---
@@ -761,6 +761,22 @@ EBS
 -	❗EBS durability is reasonably good for a regular hardware drive (annual failure rate of [between 0.1% - 0.2%](http://aws.amazon.com/ebs/details/#availabilityanddurability)). On the other hand, that is very poor if you don’t have backups! By contrast, S3 durability is extremely high. *If you care about your data, back it up S3 with snapshots.*
 -	🔸EBS has an [**SLA**](http://aws.amazon.com/ec2/sla/) with **99.95%** uptime. See notes on high availability below.
 -	❗EBS volumes have a [**volume type**](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html) indicating the physical storage type. The types called “standard” (**st1** or **sc1**) actually old spinning-platter disks, which deliver only hundreds of IOPS — not what you want unless you’re really trying to cut costs. Modern SSD-based **gp2** or **io1** are typically the options you want.
+
+EFS
+---
+
+-	📒 [Homepage](https://aws.amazon.com/efs/) ∙ [User guide](http://docs.aws.amazon.com/efs/latest/ug) ∙ [FAQ](https://aws.amazon.com/efs/faq/) ∙ [Pricing](https://aws.amazon.com/efs/pricing/)
+
+### EFS Basics
+
+-	🐥**EFS** is Amazon’s new (general release 2016) network filesystem.
+-	It is similar to [EBS](#ebs) in that it is a network-attached drive, but it [differs in important ways](https://aws.amazon.com/efs/details/):
+	-	It can be attached to many instances (up to thousands), when EBS can only be attached to one drive. It does this via [NFSv4](https://en.wikipedia.org/wiki/Network_File_System).
+	-	It can offers higher thoughput (multiple gigabytes per second), higher latency, and likely better durability and availability than EBS (see [the comparison table](#storage-durability-availability-and-price)).
+	-	It cannot be used as a boot volume or in certain other ways EBS can.
+	-	It costs much more than EBS (up to three times as much).
+
+🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
 Load Balancers
 --------------
