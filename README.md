@@ -78,11 +78,11 @@ Scope
 	-	🔸 Limitation or quirk (where it’s not quite so bad)
 	-	🐥 Relatively new or immature services
 	-	⏱ Performance discussions
-	-	⛓ Lock-in (decisions that are likely to tie you to AWS in a new or significant way)
+	-	⛓ Lock-in: Products or decisions that are likely to tie you to AWS in a new or significant way — that is, later moving to a non-AWS alternative would be costly in terms of engineering effort
 	-	🚪 Alternative non-AWS options
-	-	💸 Cost issues and discussion
+	-	💸 Cost issues, discussion, and gotchas
 	-	🕍 A mild warning attached to “full solution” or opinionated frameworks that may take significant time to understand and/or might not fit your needs exactly; the opposite of a point solution (the cathedral is a nod to [Raymond’s metaphor](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar)\)
-	-	🚧 Areas where correction or improvement are needed (possibly with link to an issue — do help)
+	-	🚧 Areas where correction or improvement are needed (possibly with link to an issue — do help!)
 
 General Information
 -------------------
@@ -118,7 +118,12 @@ General Information
 -	🚪**AWS vs. managed hosting:** Traditionally, many companies pay [managed hosting](https://en.wikipedia.org/wiki/Dedicated_hosting_service) providers to maintain physical servers for them, then build and deploy their software on top of the rented hardware. This makes sense for businesses who want direct control over hardware, due to legacy, performance, or special compliance constraints, but is usually considered old fashioned or unnecessary by many developer-centric startups and younger tech companies.
 -	**Complexity:** AWS will let you build and scale systems to the size of the largest companies, but the complexity of the services when used at scale requires significant depth of knowledge and experience. Even very simple use cases often require more knowledge to do “right” in AWS than in a simpler environment like Heroku or Digital Ocean. (This guide may help!)
 -	**Geographic locations:** AWS has data centers in [about 10 geographic locations](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) (known as **regions**) in Europe, Asia, and North and South America. If your infrastructure needs to be in close physical proximity to another service for latency or throughput reasons (for example, latency to an ad exchange), viability of AWS will depend on the location.
--	⛓**Lock-in:** As you use AWS, it’s important to be aware when you are depending on AWS services that do not have equivalents elsewhere. Basic services like virtual servers in EC2 are usually easy to migrate to other vendors, but the more services you use, the more lock-in you have to AWS, and the more difficult it will be to change to other providers in the future. It is quite common to mix and match services from different vendors (such as using S3 for storage but a different vendor for serving) and, in larger enterprises, to hybridize between private cloud or on-premises servers and AWS.
+-	⛓**Lock-in:** As you use AWS, it’s important to be aware when you are depending on AWS services that do not have equivalents elsewhere.
+	-	Lock-in may be completely fine for your company. But it’s important from a business perspective to make this choice explicitly, and consider the cost, operational, business continuity, and competitive risks of being tied to AWS. AWS is such a dominant and reliable vendor, many companies are comfortable with using AWS to its full extent. Other companies avoid this.
+	-	Generally, the more AWS services you use, the more lock-in you have to AWS — that is, the more engineering resources (time and money) it will take to change to other providers in the future.
+	-	Basic services like virtual servers and standard databases are usually easy to migrate to other providers or on premises. Others like load balancers and IAM are specific to AWS but have close equivalents from other providers. The key thing to consider is whether engineers are architecting systems around specific AWS services that are not open source or relatively interchangeable. For example, Lambda, API Gateway, Kinesis, Redshift, and DynamoDB do not have have substantially equivalent open source or commercial service equivalents, while EC2, RDS (MySQL or Postgres), EMR, and ElastiCache more or less do. (See more [below](#which-services-to-use), where these are noted with ⛓.)
+-	**Combining AWS and other cloud providers:** Many customers combine AWS with other non-AWS services. For example, legacy systems or secure data might be in a managed hosting provider, while other systems are AWS. Or a company might only use S3 with another provider doing everything else. However small startups or projects starting fresh will typically stick to AWS or Google Cloud only.
+-	**Hybrid cloud:** In larger enterprises, it is common to have [hybrid deployments](https://aws.amazon.com/enterprise/hybrid/) encompassing private cloud or on-premises servers and AWS — or other enterprise cloud providers like [IBM](https://www.ibm.com/cloud-computing/solutions/hybrid-cloud)/[Bluemix](http://www.ibm.com/cloud-computing/bluemix/hybrid/), [Microsoft](https://www.microsoft.com/en-us/cloud-platform/hybrid-cloud)/[Azure](https://azure.microsoft.com/en-us/overview/azure-stack/), [NetApp](http://www.netapp.com/us/solutions/cloud/hybrid-cloud/), or [EMC](http://www.emc.com/en-us/cloud/hybrid-cloud-computing/index.htm).
 -	**Major customers:** Who uses AWS and Google Cloud?
 	-	AWS’s [list of customers](https://aws.amazon.com/solutions/case-studies/) includes large numbers of mainstream online properties and major brands, such as Netflix, Pinterest, Spotify, Airbnb, Expedia, Yelp, Zynga, Comcast, Nokia, and Bristol-Myers Squibb.
 	-	Google Cloud’s [list of customers](https://cloud.google.com/customers/) is large as well, and includes a few mainstream sites, such as [Snapchat](http://www.businessinsider.com/snapchat-is-built-on-googles-cloud-2014-1), Best Buy, Domino’s, and Sony Music.
@@ -127,8 +132,7 @@ General Information
 
 -	AWS offers a *lot* of different services — [about fifty](https://aws.amazon.com/products/) at last count.
 -	Most customers use a few services heavily, a few services lightly, and the rest not at all. What services you’ll use depends on your use cases. Choices differ substantially from company to company.
--	Just because AWS has a service that sounds promising, it doesn’t mean you should use it. Some services are very narrow in use case, not mature, are overly opinionated, or have limitations, so very few people use them. More on this next.
--	Many customers combine AWS with other non-AWS services. For example, legacy systems or secure data might be in a managed hosting provider, while other systems are AWS. Or a company might only use S3 with another provider doing everything else. However small startups or projects starting fresh will typically stick to AWS or Google Cloud only.
+-	**Immature and unpopular services:** Just because AWS has a service that sounds promising, it doesn’t mean you should use it. Some services are very narrow in use case, not mature, are overly opinionated, or have limitations, so building your own solution may be better. We try to give a sense for this by breaking products into categories.
 -	**Must-know infrastructure:** Most typical small to medium-size users will focus on the following services first. If you manage use of AWS systems, you likely need to know at least a little about all of these. (Even if you don’t use them, you should learn enough to make that choice intelligently.)
 	-	[IAM](#security-and-iam): User accounts and identities (you need to think about accounts early on!)
 	-	[EC2](#ec2): Virtual servers and associated components, including:
@@ -147,37 +151,37 @@ General Information
 	-	[EMR](#emr): Managed Hadoop
 	-	[Elasticsearch](https://aws.amazon.com/elasticsearch-service/): Managed Elasticsearch
 	-	[ElastiCache](https://aws.amazon.com/elasticache/): Managed Redis and Memcached
--	**Optional but important infrastructure:** These are key and useful infrastructure are less widely known used. You may have legitimate reasons to prefer alternatives, so evaluate with care you to be sure they fit your needs:
-	-	[Lambda](#lambda): Running small, fully managed tasks “serverless”
+-	**Optional but important infrastructure:** These are key and useful infrastructure that are less widely known used. You may have legitimate reasons to prefer alternatives, so evaluate with care you to be sure they fit your needs:
+	-	⛓[Lambda](#lambda): Running small, fully managed tasks “serverless”
 	-	[CloudTrail](https://aws.amazon.com/cloudtrail/): AWS API logging and audit (often neglected but important)
-	-	🕍[CloudFormation](#cloudformation): Templatized configuration of collections of AWS resources
+	-	⛓🕍[CloudFormation](#cloudformation): Templatized configuration of collections of AWS resources
 	-	🕍[Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/): Fully managed (PaaS) deployment of packaged Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker applications
-	-	🐥[EFS](https://aws.amazon.com/efs/): Network filesystem
-	-	🕍[ECS](#ecs): Docker container/cluster management. Note Docker can be used directly, without ECS.
-	-	[ECR](https://aws.amazon.com/ecr/): Hosted private Docker registry.
+	-	🐥⛓[EFS](https://aws.amazon.com/efs/): Network filesystem
+	-	⛓🕍[ECS](#ecs): Docker container/cluster management. Note Docker can be used directly, without ECS.
+	-	⛓[ECR](https://aws.amazon.com/ecr/): Hosted private Docker registry.
 	-	🐥[Config](https://aws.amazon.com/config/): AWS configuration inventory, history, change notifications
--	**Special-purpose infrastructure:** These services are focused on specific use cases and should be evaluated if they apply to your situation:
-	-	[DynamoDB](#dynamodb): Low-latency NoSQL key-value store
-	-	[Glacier](#glacier): Slow and cheap alternative to S3
-	-	[Kinesis](https://aws.amazon.com/kinesis/): Streaming (distributed log) service
-	-	[SQS](https://aws.amazon.com/sqs/): Message queueing service
-	-	[Redshift](#redshift): Data warehouse
+-	**Special-purpose infrastructure:** These services are focused on specific use cases and should be evaluated if they apply to your situation. Many also are proprietary architectures, so tend to tie you to AWS.
+	-	⛓[DynamoDB](#dynamodb): Low-latency NoSQL key-value store
+	-	⛓[Glacier](#glacier): Slow and cheap alternative to S3
+	-	⛓[Kinesis](https://aws.amazon.com/kinesis/): Streaming (distributed log) service
+	-	⛓[SQS](https://aws.amazon.com/sqs/): Message queueing service
+	-	⛓[Redshift](#redshift): Data warehouse
 	-	🐥[QuickSight](https://aws.amazon.com/quicksight/): Business intelligence service
 	-	[SES](https://aws.amazon.com/ses/): Send and receive e-mail for marketing or transactions
-	-	[API Gateway](https://aws.amazon.com/api-gateway/): Proxy, manage, and secure API calls
-	-	[IoT](https://aws.amazon.com/iot/): Manage bidirectional communication over HTTP, WebSockets, and MQTT between AWS and clients (often but not necessarily “things” like appliances or sensors)
-	-	[WAF](https://aws.amazon.com/waf/): Web firewall for CloudFront to deflect attacks
-	-	[KMS](#kms): Store and manage encryption keys securely
+	-	⛓[API Gateway](https://aws.amazon.com/api-gateway/): Proxy, manage, and secure API calls
+	-	⛓[IoT](https://aws.amazon.com/iot/): Manage bidirectional communication over HTTP, WebSockets, and MQTT between AWS and clients (often but not necessarily “things” like appliances or sensors)
+	-	⛓[WAF](https://aws.amazon.com/waf/): Web firewall for CloudFront to deflect attacks
+	-	⛓[KMS](#kms): Store and manage encryption keys securely
 	-	[Inspector](https://aws.amazon.com/inspector/): Security audit
 	-	[Trusted Advisor](https://aws.amazon.com/premiumsupport/trustedadvisor/): Automated tips on reducing cost or making improvements
--	⛓🕍**Compound services:** These are similarly specific, but are full-blown services that tackle complex problems and may tie you in. Usefulness depends on your requirements. If you have large or significant need, you may have these already managed by in-house systems and engineering teams:
+-	**Compound services:** These are similarly specific, but are full-blown services that tackle complex problems and may tie you in. Usefulness depends on your requirements. If you have large or significant need, you may have these already managed by in-house systems and engineering teams.
 	-	[Machine Learning](https://aws.amazon.com/machine-learning/): Machine learning model training and classification
-	-	[Data Pipeline](https://aws.amazon.com/datapipeline/): Managed ETL service
-	-	[SWF](https://aws.amazon.com/swf/): Managed background job workflow
-	-	[Lumberyard](https://aws.amazon.com/lumberyard/): 3D game engine
+	-	⛓🕍[Data Pipeline](https://aws.amazon.com/datapipeline/): Managed ETL service
+	-	⛓🕍[SWF](https://aws.amazon.com/swf/): Managed background job workflow
+	-	⛓🕍[Lumberyard](https://aws.amazon.com/lumberyard/): 3D game engine
 -	**Mobile/app development:**
 	-	[SNS](https://aws.amazon.com/sns/): Manage app push notifications and other end-user notifications
-	-	[Cognito](https://aws.amazon.com/cognito/): User authentication via Facebook, Twitter, etc.
+	-	⛓🕍[Cognito](https://aws.amazon.com/cognito/): User authentication via Facebook, Twitter, etc.
 	-	[Device Farm](https://aws.amazon.com/device-farm/): Cloud-based device testing
 	-	[Mobile Analytics](https://aws.amazon.com/mobileanalytics/): Analytics solution for app usage
 	-	🕍[Mobile Hub](https://aws.amazon.com/mobile/): Comprehensive, managed mobile app framework
@@ -618,16 +622,18 @@ S3
 
 ### Storage Durability, Availability, and Price
 
-As an illustration of comparative features and price, the table below gives S3 Standard, RRS, IA, in comparison with [Glacier](#glacier), [EBS](#ebs), and [EFS](#efs), using Virginia region as of August 2016. (Sources: S3 [pricing](https://aws.amazon.com/s3/pricing/), [SLA](https://aws.amazon.com/s3/sla/), [FAQ](https://aws.amazon.com/s3/faqs/), [RRS info](https://aws.amazon.com/s3/reduced-redundancy/), [Glacier pricing](https://aws.amazon.com/glacier/pricing/), [EBS pricing](https://aws.amazon.com/ebs/pricing/), [EFS pricing](https://aws.amazon.com/efs/pricing/), [EC2 SLA](https://aws.amazon.com/ec2/sla/).)
+As an illustration of comparative features and price, the table below gives S3 Standard, RRS, IA, in comparison with [Glacier](#glacier), [EBS](#ebs), and [EFS](#efs), using **Virginia region** as of **August 2016**.
 
-|                 | Durability (per year) | Availability “designed” | Availability SLA | Storage (per TB per month) | GET or retrieve (per million) | Write or archive (per million) |
-|-----------------|-----------------------|-------------------------|------------------|----------------------------|-------------------------------|--------------------------------|
-| **Glacier**     | Eleven 9s             | Sloooow                 | –                | $7                         | $50                           | $50                            |
-| **S3 IA**       | Eleven 9s             | 99.9%                   | 99%              | $12.50                     | $1                            | $10                            |
-| **S3 RRS**      | 99.99%                | 99.99%                  | 99.9%            | $24                        | $0.40                         | $5                             |
-| **S3 Standard** | Eleven 9s             | 99.99%                  | 99.9%            | $30                        | $0.40                         | $5                             |
-| **EBS**         | 99.8%                 | Unstated                | 99.95%           | $100 and up                |                               |                                |
-| **EFS**         | “High”                | “High”                  | –                | $300                       |                               |                                |
+|                 | Durability (per year) | Availability “designed” | Availability SLA | Storage (per TB per month)                                                                                               | GET or retrieve (per million) | Write or archive (per million) |
+|-----------------|-----------------------|-------------------------|------------------|--------------------------------------------------------------------------------------------------------------------------|-------------------------------|--------------------------------|
+| **Glacier**     | Eleven 9s             | Sloooow                 | –                | $7                                                                                                                       | $50                           | $50                            |
+| **S3 IA**       | Eleven 9s             | 99.9%                   | 99%              | $12.50                                                                                                                   | $1                            | $10                            |
+| **S3 RRS**      | 99.99%                | 99.99%                  | 99.9%            | $24                                                                                                                      | $0.40                         | $5                             |
+| **S3 Standard** | Eleven 9s             | 99.99%                  | 99.9%            | $30                                                                                                                      | $0.40                         | $5                             |
+| **EBS**         | 99.8%                 | Unstated                | 99.95%           | $25/$45/**$100**/$125+ ([sc1/st1/**gp2**/io1](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html)\) |                               |                                |
+| **EFS**         | “High”                | “High”                  | –                | $300                                                                                                                     |                               |                                |
+
+Sources: S3 [pricing](https://aws.amazon.com/s3/pricing/), [SLA](https://aws.amazon.com/s3/sla/), [FAQ](https://aws.amazon.com/s3/faqs/), [RRS info](https://aws.amazon.com/s3/reduced-redundancy/), [Glacier pricing](https://aws.amazon.com/glacier/pricing/), [EBS pricing](https://aws.amazon.com/ebs/pricing/), [EFS pricing](https://aws.amazon.com/efs/pricing/), [EC2 SLA](https://aws.amazon.com/ec2/sla/)
 
 EC2
 ---
