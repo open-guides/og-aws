@@ -328,7 +328,7 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 	-	These are a great resource, even if you’re not paying for premium support. Build a good relationship with them and make use of them, for questions, problems, and guidance.
 	-	Assign a single point of contact on your company’s side, to avoid confusing or overwhelming them.
 -	**Contact:** The main web contact point for AWS is [here](https://aws.amazon.com/contact-us/). Many technical requests can be made via these channels.
--	**Consulting:** For more hands-on assistance, AWS maintains a list of [consulting partners](https://aws.amazon.com/partners/consulting/). These won’t be cheap but depending on your needs, may save you costs long term by helping you set up your architecture more effectively, or offering specific expertise, e.g. security.
+-	**Consulting and managed services:** For more hands-on assistance, AWS has established relationships with many [consulting partners](https://aws.amazon.com/partners/consulting/) and [managed service partners](https://aws.amazon.com/partners/msp/). The big consultants won’t be cheap, but depending on your needs, may save you costs long term by helping you set up your architecture more effectively, or offering specific expertise, e.g. security. Managed service providers provide longer-term full-service management of cloud resources.
 -	**AWS Professional Services:** AWS provides [consulting services](https://aws.amazon.com/professional-services/) alone or in combination with partners.
 
 ### Restrictions and Other Notes
