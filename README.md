@@ -37,11 +37,12 @@ The Open Guide to Amazon Web Services
 -	[Disclaimer](#disclaimer)
 -	[License](#license)
 
-**List of Tables**
+**Figures and Tables**
 
--	[Service Matrix](#service-matrix)
--	[AWS Product Maturity and Releases](#aws-product-maturity-and-releases)
--	[Storage Durability, Availability, and Price](#storage-durability-availability-and-price)
+-	[Tools and Services Market Landscape](#tools-and-services-market-landscape): A selection of third-party companies/products
+-	[Service Matrix](#service-matrix): How AWS services compare to alternatives
+-	[AWS Product Maturity and Releases](#aws-product-maturity-and-releases): AWS product releases
+-	[Storage Durability, Availability, and Price](#storage-durability-availability-and-price): A quantitative comparison
 
 Why an Open Guide?
 ------------------
@@ -203,6 +204,16 @@ General Information
 	-	🕍[CodeDeploy](https://aws.amazon.com/codedeploy/): Deployment of code to EC2 servers. Again, you likely have another solution.
 	-	🕍[OpsWorks](https://aws.amazon.com/opsworks/): Management of your deployments using Chef. While Chef is popular, it seems few people use OpsWorks, since it involves going in on a whole different code deployment framework.
 -	[AWS in Plain English](https://www.expeditedssl.com/aws-in-plain-english) offers more friendly explanation of what all the other different services are.
+
+### Tools and Services Market Landscape
+
+There are now enough cloud and “big data” enterprise companies and products few can keep up with the market landscape. (See the [Big Data Evolving Landscape – 2016](https://practicalanalytics.co/2016/02/09/big-data-evolving-landscape-2016/) for one attempt at this.)
+
+We’ve assembled a landscape of a few of the services. This is far from complete, but tries to emphasize services that are popular with AWS practitioners — services that specifically help with AWS, or a complementary, or tools almost anyone using AWS must learn.
+
+![Popular Tools and Services for AWS Practitioners](figures/aws-market-landscape.png)
+
+🚧 *Suggestions to improve this figure? Please [file an issue](CONTRIBUTING.md).*
 
 ### Common Concepts
 
