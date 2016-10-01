@@ -15,8 +15,8 @@ exclude:
   ReadmeCritic
 
 roles:
-  jlevy: project editor
-  ThanosBaskous: project editor
+  jlevy: general editor
+  ThanosBaskous: general editor
   marcello3d:
   golyshev:
   forwidur:
@@ -31,3 +31,5 @@ roles:
   alexanderatallah:
   donnemartin:
   benkehoe:
+  Jurgen Philippaerts:
+  nitingithub: editor (cost management)
