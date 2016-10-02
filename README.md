@@ -44,11 +44,11 @@ The Open Guide to Amazon Web Services
 
 **Figures and Tables**
 
--	Figure: [Tools and Services Market Landscape](#tools-and-services-market-landscape): A selection of third-party companies/products
--	Table: [Service Matrix](#service-matrix): How AWS services compare to alternatives
--	Table: [AWS Product Maturity and Releases](#aws-product-maturity-and-releases): AWS product releases
--	Table: [Storage Durability, Availability, and Price](#storage-durability-availability-and-price): A quantitative comparison
--	Figure: [AWS Data Transfer Costs](#aws-data-transfer-costs): Visual overview of data transfer costs
+-	[Figure: Tools and Services Market Landscape](#tools-and-services-market-landscape): A selection of third-party companies/products
+-	[Table: Service Matrix](#service-matrix): How AWS services compare to alternatives
+-	[Table: AWS Product Maturity and Releases](#aws-product-maturity-and-releases): AWS product releases
+-	[Table: Storage Durability, Availability, and Price](#storage-durability-availability-and-price): A quantitative comparison
+-	[Figure: AWS Data Transfer Costs](#aws-data-transfer-costs): Visual overview of data transfer costs
 
 Why an Open Guide?
 ------------------
@@ -1229,10 +1229,10 @@ Billing and Cost Management
 ### AWS Data Transfer Costs
 
 -	For deployments that involve significant network traffic, a large fraction of AWS expenses are around data transfer. Furthermore, costs of data transfer, within AZs, within regions, between regions, and into and out of AWS and the internet vary significantly depending on deployment choices.
--	The figure gives an overview.
 -	Some of the most common gotchas:
 	-	🔸*AZ-to-AZ traffic:* Note EC2 traffic between AZs is effectively the same as between regions. For example, deploying a Cassandra cluster across AZs is helpful for [high availability](#high-availability), but can hurt on network costs.
 	-	🔸*Using public IPs when not necessary:* If you use an Elastic IP or public IP address of an EC2 instance, you will incur network costs, even if it is accessed locally within the AZ.
+-	This figure gives an overview:
 
 ![AWS Data Transfer Costs](figures/aws-data-transfer-costs.png)
 
