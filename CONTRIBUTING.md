@@ -3,7 +3,7 @@ Contributing
 
 Contributions of all kinds, including discussion, corrections, additions, and improvements, are welcome! We hope you'll join and help, in small ways or large. We gladly credit all contributors and authors. Here are few notes before you jump in.
 
-[![Ask a Question](https://img.shields.io/badge/%3f-Ask%20a%20Question-ff69b4.svg)](https://airtable.com/shrXZ61VrovWfXYBg)
+[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg)](https://og-aws.slack.lexikon.io/) [![Ask a Question](https://img.shields.io/badge/%3f-Ask%20a%20Question-dc9d47.svg)](https://airtable.com/shrXZ61VrovWfXYBg)
 
 The simplest thing you can do to contribute is [fill in this form](https://airtable.com/shrXZ61VrovWfXYBg). Questions help identify where the guide needs to be improved.
 
