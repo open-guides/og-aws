@@ -46,10 +46,11 @@ The Open Guide to Amazon Web Services
 
 **Figures and Tables**
 
--	[Tools and Services Market Landscape](#tools-and-services-market-landscape): A selection of third-party companies/products
--	[Service Matrix](#service-matrix): How AWS services compare to alternatives
--	[AWS Product Maturity and Releases](#aws-product-maturity-and-releases): AWS product releases
--	[Storage Durability, Availability, and Price](#storage-durability-availability-and-price): A quantitative comparison
+-	[Figure: Tools and Services Market Landscape](#tools-and-services-market-landscape): A selection of third-party companies/products
+-	[Table: Service Matrix](#service-matrix): How AWS services compare to alternatives
+-	[Table: AWS Product Maturity and Releases](#aws-product-maturity-and-releases): AWS product releases
+-	[Table: Storage Durability, Availability, and Price](#storage-durability-availability-and-price): A quantitative comparison
+-	[Figure: AWS Data Transfer Costs](#aws-data-transfer-costs): Visual overview of data transfer costs
 
 Why an Open Guide?
 ------------------
@@ -1226,6 +1227,16 @@ Billing and Cost Management
 -	**Tagging for cost visibility:** As the infrastructure grows, a key part of managing costs is understanding where they lie. It’s strongly advisable to [tag resources](https://aws.amazon.com/blogs/aws/resource-groups-and-tagging/), and as complexity grows, group them effectively. If you [set up billing allocation appropriately](http://aws.amazon.com/blogs/aws/aws-cost-allocation/), you can then get visibility into expenses according to organization, product, individual engineer, or any other way that is helpful.
 -	If you need to do custom analysis of raw billing data or want to feed it to a third party cost analysis service, [enable](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/detailed-billing-reports.html#turnonreports) the [detailed billing report](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/detailed-billing-reports.html#detailed-billing-report) feature.
 -	Multiple Amazon accounts can be linked for billing purposes using the [Consolidated Billing](http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/consolidated-billing.html) feature. Large enterprises may need complex billing structures depending on ownership and approval processes.
+
+### AWS Data Transfer Costs
+
+-	For deployments that involve significant network traffic, a large fraction of AWS expenses are around data transfer. Furthermore, costs of data transfer, within AZs, within regions, between regions, and into and out of AWS and the internet vary significantly depending on deployment choices.
+-	Some of the most common gotchas:
+	-	🔸*AZ-to-AZ traffic:* Note EC2 traffic between AZs is effectively the same as between regions. For example, deploying a Cassandra cluster across AZs is helpful for [high availability](#high-availability), but can hurt on network costs.
+	-	🔸*Using public IPs when not necessary:* If you use an Elastic IP or public IP address of an EC2 instance, you will incur network costs, even if it is accessed locally within the AZ.
+-	This figure gives an overview:
+
+![AWS Data Transfer Costs](figures/aws-data-transfer-costs.png)
 
 ### EC2 Cost Management
 
