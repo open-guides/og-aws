@@ -1256,6 +1256,35 @@ Billing and Cost Management
 -	**Spot fleet:**
 	-	You can realize even bigger cost reductions at the same time as improvements to fleet stability relative to regular Spot usage by using [Spot fleet](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-fleet.html) to bid on instances across instance types, availability zones, and (through multiple Spot Fleet Requests) regions.
 	-	Spot fleet targets maintaining a specified (and weighted-by-instance-type) total capacity across a cluster of servers. If the Spot price of one instance type and availability zone combination rises above the weighted bid, it will rotate running instances out and bring up new ones of another type and location up in order to maintain the target capacity without going over target cluster cost.
+
+        -  Profile your application to figure out it's runtime characteristics. That would help give an understanding of the minimum cpu, memory, disk required. Having this information is critical before you try to optimize spot costs.
+        - Once you know the minimum application requirements, instead of resorting to fixed instance types (r3.xlarge) you could bid across a variety of instance types (that gives you higher chances of getting a spot instance to run your application)
+-  **Spot Usage Best Practices:**
+
+    - **Spot Price Monitoring and Intelligence:**
+        - Spot Instance prices fluctuate depending on instance types, time of day, region and availability zone.  aws cli tools  and  api that allow you to describe spot price metadata given <Time, InstanceType,Region,AZ>.  
+        -  Based on history of spot instance prices, you could potentially build a myriad of algorithms that would help you to pick an instance type that either
+            - optimizes cost 
+            - maximizes availability
+            - offers predictable performance
+        - You could also track the number of times an instance of certain type got taken away (out bid) and plot that in graphite to improve your algorithm based on time of day.
+
+    - **Spot Machine Resource Utilization:**
+        - For running spiky workloads (spark, map reduce jobs) that are schedule based and where failure is non critical, spot instances become the perfect candidates. 
+        - The time it takes to satisfy a spot instance could vary between 2-10 mins depending on the type of instance. 
+        - If you are running an infrastructure with 100s of  jobs of spiky nature, it is advisable to start pooling instances to optimize for cost, performance and most importantly time to acquire an instance. 
+        - Pooling implies creating and maintaining spot instances so that they do not get terminated after use. This promotes re-use of spot instances across jobs. This of course comes with the overhead of  lifecycle management.
+        - Pooling has its own set of metrics that can be tracked to optimize resource utilization, efficiency and cost.
+        - Typical pooling implementations give anywhere between 45-60% cost optimizations & 40% reduction in spot instance creationg time.
+        - An excellent example of Pooling implementation is described here [credits to Netflix].
+            *  http://techblog.netflix.com/2015/09/creating-your-own-ec2-spot-market.html
+            * http://techblog.netflix.com/2015/11/creating-your-own-ec2-spot-market-part-2.html
+
+- **Spot Management Gotchas**
+    - 🔸 **Lifetime** - There is no guarantee for the lifetime of a spot instance. It is purely based on bidding. If anyone outbids your price, the instance is taken away. Spot is not suitable for time sensitive jobs that have strong SLA. Instances will fail based on demand for spot at that time. 
+    - 🔹 **Api Return Data** - The spot price api returns spot prices of varying granularity depending on the time range specified in the api call.E.g  If the last 10 min worth of history is requested, the data is more fine grained. If the last 2 day worth of history is requested, the data is more coarser. Do not assume you will get all the data points. There **will** be skipped intervals. 
+    - ❗**Lifecycle management** - Lifecycle management for spot implies that you have your own snapshot of the “running” instances that need to be constantly in sync with aws metadata. Do not attempt any fancy spot management unless absolutely necessary. If your entire usage is only a few machines and your cost is acceptable and your failure rate is lower, do not attempt to optimize. The pain for building/maintaining it is not worth just a few hundred dollar savings. 
+
 -	**Reserved Instances** allow you to get significant discounts on EC2 compute hours in return for a commitment to pay for instance hours of a specific instance type in a specific AWS region and availability zone for a pre-established time frame (1 or 3 years). Further discounts can be realized through “partial” or “all upfront” payment options.
 	-	Consider using Reserved Instances when you can predict your longer-term compute needs and need a stronger guarantee of compute availability and continuity than the (typically cheaper) Spot market can provide. However be aware that if your architecture changes your computing needs may change as well so long term contracts can seem attractive but may turn out to be cumbersome.
 	-	Instance reservations are not tied to specific EC2 instances - they are applied at the billing level to eligible compute hours as they are consumed across all of the instances in an account.
