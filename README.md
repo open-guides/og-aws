@@ -1248,6 +1248,7 @@ Billing and Cost Management
         -  Profile your application to figure out it's runtime characteristics. That would help give an understanding of the minimum cpu, memory, disk required. Having this information is critical before you try to optimize spot costs.
         - Once you know the minimum application requirements, instead of resorting to fixed instance types (r3.xlarge) you could bid across a variety of instance types (that gives you higher chances of getting a spot instance to run your application)
 -  **Spot Usage Best Practices:**
+
     - **Spot Price Monitoring and Intelligence:**
         - Spot Instance prices fluctuate depending on instance types, time of day, region and availability zone.  aws cli tools  and  api that allow you to describe spot price metadata given <Time, InstanceType,Region,AZ>.  
         -  Based on history of spot instance prices, you could potentially build a myriad of algorithms that would help you to pick an instance type that either
@@ -1255,7 +1256,8 @@ Billing and Cost Management
             - maximizes availability
             - offers predictable performance
         - You could also track the number of times an instance of certain type got taken away (out bid) and plot that in graphite to improve your algorithm based on time of day
-    - **Spot Machine Resource Pooling:**
+
+    - **Spot Machine Resource Utilization:**
         - For running spiky workloads (spark, map reduce jobs) that are schedule based and where failure is non critical, spot instances become the perfect candidates. 
         - The time it takes to satisfy a spot instance could vary between 2-10 mins depending on the type of instance. 
         - If you are running an infrastructure with 100s of  jobs of spiky nature, it is advisable to start pooling instances to optimize for cost, performance and most importantly time to acquire an instance. 
@@ -1265,6 +1267,7 @@ Billing and Cost Management
         - An excellent example of Pooling implementation is described here [credits to Netflix]
             *  http://techblog.netflix.com/2015/09/creating-your-own-ec2-spot-market.html
             * http://techblog.netflix.com/2015/11/creating-your-own-ec2-spot-market-part-2.html
+
 - **Spot Management Gotchas**
     - There is no guarantee for the lifetime of a spot instance. It is purely based on bidding. If anyone outbids your price, the instance is taken away. 
     - Spot is not suitable for time sensitive jobs that have strong SLA. Instances will fail based on demand for spot at that time. 
