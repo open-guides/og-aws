@@ -17,6 +17,8 @@ exclude:
 roles:
   jlevy: general editor
   ThanosBaskous: general editor
+  max-zanko: editor (S3, EMR, Redshift)
+  nitingithub: editor (cost management)
   marcello3d:
   golyshev:
   forwidur:
@@ -24,7 +26,6 @@ roles:
   Praveen Patnala:
   kazuyukitanimura:
   olawiberg:
-  max-zanko:
   weirded:
   bittlingmayer:
   rjpower:
@@ -32,4 +33,3 @@ roles:
   donnemartin:
   benkehoe:
   Jurgen Philippaerts:
-  nitingithub: editor (cost management)
