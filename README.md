@@ -48,7 +48,7 @@ The Open Guide to Amazon Web Services
 
 **Figures and Tables**
 
-[![Tools and Services Market Landscape](figures/aws-market-landscape-24px.png)](#tools-and-services-market-landscape) [![AWS Data Transfer Costs](figures/aws-data-transfer-costs-240px.png)](#aws-data-transfer-costs)
+[![Tools and Services Market Landscape](figures/aws-market-landscape-240px.png)](#tools-and-services-market-landscape) [![AWS Data Transfer Costs](figures/aws-data-transfer-costs-240px.png)](#aws-data-transfer-costs)
 
 -	[Figure: Tools and Services Market Landscape](#tools-and-services-market-landscape): A selection of third-party companies/products
 -	[Figure: AWS Data Transfer Costs](#aws-data-transfer-costs): Visual overview of data transfer costs
