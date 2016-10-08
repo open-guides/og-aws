@@ -48,15 +48,12 @@ The Open Guide to Amazon Web Services
 
 **Figures and Tables**
 
-[![Tools and Services Market Landscape](figures/aws-market-landscape-480px.png)](#tools-and-services-market-landscape) [![AWS Data Transfer Costs](figures/ws-data-transfer-costs-480px.png)](#aws-data-transfer-costs)
+[![Tools and Services Market Landscape](figures/aws-market-landscape-24px.png)](#tools-and-services-market-landscape) [![AWS Data Transfer Costs](figures/aws-data-transfer-costs-240px.png)](#aws-data-transfer-costs)
 
 -	[Figure: Tools and Services Market Landscape](#tools-and-services-market-landscape): A selection of third-party companies/products
 -	[Figure: AWS Data Transfer Costs](#aws-data-transfer-costs): Visual overview of data transfer costs
-
 -	[Table: Service Matrix](#service-matrix): How AWS services compare to alternatives
-
 -	[Table: AWS Product Maturity and Releases](#aws-product-maturity-and-releases): AWS product releases
-
 -	[Table: Storage Durability, Availability, and Price](#storage-durability-availability-and-price): A quantitative comparison
 
 Why an Open Guide?
