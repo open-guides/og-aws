@@ -264,6 +264,8 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 | Git hosting                   | CodeCommit                                                                   |                              |                 |            | GitHub, BitBucket                 | GitLab                                                     |
 | User authentication           | Cognito                                                                      |                              |                 |            |                                   | oauth.io                                                   |
 | Mobile app analytics          | Mobile Analytics                                                             |                              |                 |            | Mixpanel                          |                                                            |
+| Mobile app testing        | Device Farm                                                           |Cloud Test Lab                              |                 |Xamarin Test Cloud            | BrowserStack, Sauce Labs, Testdroid                          |                                                            |
+
 
 🚧 [*Please help fill this table in.*](CONTRIBUTING.md)
 
