@@ -10,6 +10,7 @@ The Open Guide to Amazon Web Services
 -	*Purpose*
 	-	[Why an Open Guide?](#why-an-open-guide)
 	-	[Scope](#scope)
+	-	[Legend](#legend)
 -	*AWS in General*
 	-	[General Information](#general-information)
 	-	[Managing AWS](#managing-aws)
@@ -90,18 +91,22 @@ Scope
 	-	**Current:** We can keep updating it, and anyone can contribute improvements
 	-	**Thoughtful:** The goal is to be helpful rather than present dry facts. Thoughtful opinion with rationale is welcome. Suggestions, notes, and opinions based on real experience can be extremely valuable. (We believe this is both possible with a guide of this format, unlike in some [other venues](http://meta.stackexchange.com/questions/201994/is-there-a-place-to-ask-opinion-based-questions).)
 -	This guide is not sponsored by AWS or AWS-affiliated vendors. It is written by and for engineers who use AWS.
--	Legend:
-	-	📒 Marks standard/official AWS pages and docs
-	-	🔹 Important or often overlooked tip
-	-	❗ Gotcha or warning (where risks or time or resource costs are significant)
-	-	🔸 Limitation or quirk (where it’s not quite so bad)
-	-	🐥 Relatively new (and perhaps immature) services or features
-	-	⏱ Performance discussions
-	-	⛓ Lock-in: Products or decisions that are likely to tie you to AWS in a new or significant way — that is, later moving to a non-AWS alternative would be costly in terms of engineering effort
-	-	🚪 Alternative non-AWS options
-	-	💸 Cost issues, discussion, and gotchas
-	-	🕍 A mild warning attached to “full solution” or opinionated frameworks that may take significant time to understand and/or might not fit your needs exactly; the opposite of a point solution (the cathedral is a nod to [Raymond’s metaphor](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar)\)
-	-	🚧 Areas where correction or improvement are needed (possibly with link to an issue — do help!)
+
+Legend
+------
+
+-	📒 Marks standard/official AWS pages and docs
+-	🔹 Important or often overlooked tip
+-	❗ Gotcha or warning (where risks or time or resource costs are significant)
+-	🔸 Limitation or quirk (where it’s not quite so bad)
+-	🐥 Relatively new (and perhaps immature) services or features
+-	⏱ Performance discussions
+-	⛓ Lock-in: Products or decisions that are likely to tie you to AWS in a new or significant way — that is, later moving to a non-AWS alternative would be costly in terms of engineering effort
+-	🚪 Alternative non-AWS options
+-	💸 Cost issues, discussion, and gotchas
+-	🕍 A mild warning attached to “full solution” or opinionated frameworks that may take significant time to understand and/or might not fit your needs exactly; the opposite of a point solution (the cathedral is a nod to [Raymond’s metaphor](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar)\)
+-	📗📘📙 Colors indicate basics, tips, and gotchas, respectively.
+-	🚧 Areas where correction or improvement are needed (possibly with link to an issue — do help!)
 
 General Information
 -------------------
@@ -247,24 +252,24 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 
 | Service                       | AWS                                                                          | Google Cloud                 | Google Internal | Microsoft  | Other providers                   | Open source “build your own”                               |
 |-------------------------------|------------------------------------------------------------------------------|------------------------------|-----------------|------------|-----------------------------------|------------------------------------------------------------|
-| Virtual server                | EC2                                                                          | Compute Engine (GCE)         |          | Azure VM      | DigitalOcean                      | OpenStack                                                  |
-| PaaS                          | Elastic Beanstalk                                                            | App Engine                   | App Engine      | Web Apps           | Heroku                            | Meteor, AppScale                                           |
-| Serverless, microservices     | Lambda, API Gateway                                                          | Functions                    |                 | Function Apps            |                                   |                                                            |
-| Container, cluster manager    | ECS                                                                          | Container Engine, Kubernetes | Borg or Omega   | Azure Container Service           |                                   | Kubernetes, Mesos, Aurora                                  |
-| File storage                  | S3                                                                           | Cloud Storage                | GFS             | Storage Account           |                                   | Swift, HDFS                                                |
+| Virtual server                | EC2                                                                          | Compute Engine (GCE)         |                 |            | DigitalOcean                      | OpenStack                                                  |
+| PaaS                          | Elastic Beanstalk                                                            | App Engine                   | App Engine      |            | Heroku                            | Meteor, AppScale                                           |
+| Serverless, microservices     | Lambda, API Gateway                                                          | Functions                    |                 |            |                                   |                                                            |
+| Container, cluster manager    | ECS                                                                          | Container Engine, Kubernetes | Borg or Omega   |            |                                   | Kubernetes, Mesos, Aurora                                  |
+| File storage                  | S3                                                                           | Cloud Storage                | GFS             |            |                                   | Swift, HDFS                                                |
 | Block storage                 | EBS                                                                          | Persistent Disk              |                 |            |                                   | NFS                                                        |
-| SQL datastore                 | RDS                                                                          | Cloud SQL                    |                 | SQL Database           |                                   | MySQL, PostgreSQL                                          |
+| SQL datastore                 | RDS                                                                          | Cloud SQL                    |                 |            |                                   | MySQL, PostgreSQL                                          |
 | Sharded RDBMS                 |                                                                              | Cloud SQL                    | F1, Spanner     |            |                                   | Crate.io                                                   |
 | Bigtable                      |                                                                              | Cloud Bigtable               | Bigtable        |            |                                   | CockroachDB                                                |
 | Key-value store, column store | DynamoDB                                                                     | Cloud Datastore              | Megastore       |            |                                   | Cassandra, CouchDB, RethinkDB, Redis                       |
 | Memory cache                  | ElastiCache                                                                  | App Engine Memcache          |                 |            |                                   | Memcached, Redis                                           |
 | Search                        | CloudSearch, Elasticsearch (managed)                                         |                              |                 |            | Algolia, QBox                     | Elasticsearch, Solr                                        |
-| Data warehouse                | Redshift                                                                     | BigQuery                     |                 | SQL Data Warehouse           | Oracle, IBM, SAP, HP, many others | Greenplum                                                  |
-| Business intelligence         | QuickSight                                                                   |                              |                 | Power BI           | Tableau                           |                                                            |
+| Data warehouse                | Redshift                                                                     | BigQuery                     |                 |            | Oracle, IBM, SAP, HP, many others | Greenplum                                                  |
+| Business intelligence         | QuickSight                                                                   |                              |                 |            | Tableau                           |                                                            |
 | Lock manager                  | [DynamoDB (weak)](https://gist.github.com/ryandotsmith/c95fd21fab91b0823328) |                              | Chubby          |            |                                   | ZooKeeper, Etcd, Consul                                    |
 | Message broker                | SQS, SNS, IoT                                                                | Pub/Sub                      | PubSub2         |            |                                   | RabbitMQ, Kafka, 0MQ                                       |
 | Streaming, distributed log    | Kinesis                                                                      | Dataflow                     | PubSub2         | Event Hubs |                                   | Kafka Streams, Apex, Flink, Spark Streaming, Storm         |
-| MapReduce                     | EMR                                                                          | Dataproc                     | MapReduce       | HDInsight           | Qubole                            | Hadoop                                                     |
+| MapReduce                     | EMR                                                                          | Dataproc                     | MapReduce       |            | Qubole                            | Hadoop                                                     |
 | Monitoring                    | CloudWatch                                                                   | Monitoring                   | Borgmon         |            |                                   | Prometheus(?)                                              |
 | Metric management             |                                                                              |                              | Borgmon, TSDB   |            |                                   | Graphite, InfluxDB, OpenTSDB, Grafana, Riemann, Prometheus |
 | CDN                           | CloudFront                                                                   |                              |                 | Azure CDN  |                                   | Apache Traffic Server                                      |
@@ -333,7 +338,7 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 | [CloudWatch](https://aws.amazon.com/releasenotes/CloudWatch?browse=1)                                      | 2009-05          | General                                                                       |
 | [CloudFront](https://aws.amazon.com/releasenotes/CloudFront?browse=1)                                      | 2008-11          | General                                                                       |
 | [Fulfillment Web Service](https://aws.amazon.com/releasenotes/Amazon-FWS?browse=1)                         | 2008-03          | Obsolete?                                                                     |
-| [SimpleDB](https://aws.amazon.com/releasenotes/Amazon-SimpleDB?browse=1)                                   | 2007-12          | ⚠️[Nearly obsolete](https://forums.aws.amazon.com/thread.jspa?threadID=121711) |
+| [SimpleDB](https://aws.amazon.com/releasenotes/Amazon-SimpleDB?browse=1)                                   | 2007-12          | ❗[Nearly obsolete](https://forums.aws.amazon.com/thread.jspa?threadID=121711) |
 | [DevPay](https://aws.amazon.com/releasenotes/DevPay?browse=1)                                              | 2007-12          | General                                                                       |
 | [Flexible Payments Service](https://aws.amazon.com/releasenotes/Amazon-FPS?browse=1)                       | 2007-08          | Retired                                                                       |
 | [EC2](https://aws.amazon.com/releasenotes/Amazon-EC2?browse=1)                                             | 2006-08          | General                                                                       |
@@ -778,7 +783,7 @@ EBS
 
 -	❗EBS durability is reasonably good for a regular hardware drive (annual failure rate of [between 0.1% - 0.2%](http://aws.amazon.com/ebs/details/#availabilityanddurability)). On the other hand, that is very poor if you don’t have backups! By contrast, S3 durability is extremely high. *If you care about your data, back it up S3 with snapshots.*
 -	🔸EBS has an [**SLA**](http://aws.amazon.com/ec2/sla/) with **99.95%** uptime. See notes on high availability below.
--	❗EBS volumes have a [**volume type**](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html) indicating the physical storage type. The types called “standard” (**st1** or **sc1**) actually old spinning-platter disks, which deliver only hundreds of IOPS — not what you want unless you’re really trying to cut costs. Modern SSD-based **gp2** or **io1** are typically the options you want.
+-	❗EBS volumes have a [**volume type**](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html) indicating the physical storage type. The types called “standard” (**st1** or **sc1**) are actually old spinning-platter disks, which deliver only hundreds of IOPS — not what you want unless you’re really trying to cut costs. Modern SSD-based **gp2** or **io1** are typically the options you want.
 
 EFS
 ---
