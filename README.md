@@ -36,7 +36,7 @@ Table of Contents
 | [Glacier](#glacier) | [📗](#glacier-basics) | [📘](#glacier-tips) | [📙](#glacier-gotchas-and-limitations) |
 | [RDS](#rds) | [📗](#rds-basics) | [📘](#rds-tips) | [📙](#rds-gotchas-and-limitations) |
 | [DynamoDB](#dynamodb) | [📗](#dynamodb-basics) | [📘](#dynamodb-tips) | [📙](#dynamodb-gotchas-and-limitations) |
-| [ECS](#ecs) | [📗](#ecs-basics) | [📘](#ecs-tips) |  |
+| [ECS](#ecs) | [📗](#ecs-basics) | [📘](#ecs-tips) | [📙](#ecs-gotchas-and-limitations) |
 | [Lambda](#lambda) | [📗](#lambda-basics) | [📘](#lambda-tips) | [📙](#lambda-gotchas-and-limitations) |
 | [API Gateway](#api-gateway) | [📗](#api-gateway-basics) |  | [📙](#api-gateway-gotchas-and-limitations) |
 | [Route 53](#route-53) | [📗](#route-53-basics) | [📘](#route-53-tips) |  |
@@ -986,6 +986,11 @@ ECS
 ### ECS Tips
 
 -	[This blog from Convox](https://convox.com/blog/ecs-challenges/) (and [commentary](https://news.ycombinator.com/item?id=11598058)) lists a number of common challenges with ECS as of early 2016.
+
+### ECS gotchas and limitations
+
+- ECS scheduler doesn't allow overprovisioining of resources and all the limits are hard limits
+	- Memory limits are example of that. If your application consumes more memory than you have allowed as limit it will be killed, sometimes with very odd error code.
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
