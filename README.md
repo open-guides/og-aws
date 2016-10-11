@@ -5,19 +5,22 @@ The Open Guide to Amazon Web Services
 
 [![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://og-aws.slack.lexikon.io/) [![Ask a Question](https://img.shields.io/badge/%3f-Ask%20a%20Question-dc9d47.svg "Questions help improve the Guide")](https://airtable.com/shrXZ61VrovWfXYBg)
 
-**Table of Contents**
+Table of Contents
+-----------------
 
--	*Purpose*
-	-	[Why an Open Guide?](#why-an-open-guide)
-	-	[Scope](#scope)
-	-	[Legend](#legend)
--	*AWS in General*
-	-	[General Information](#general-information)
-	-	[Managing AWS](#managing-aws)
-	-	[Managing Servers and Applications](#managing-servers-and-applications)
--	*Specific AWS Products*
+**Purpose**
 
-| Service                               | Basics                         | Tips                          | Gotchas                                        |
+-	[Why an Open Guide?](#why-an-open-guide)
+-	[Scope](#scope)
+-	[Legend](#legend)
+
+**AWS in General**
+
+-	[General Information](#general-information)
+-	[Managing AWS](#managing-aws)
+-	[Managing Servers and Applications](#managing-servers-and-applications)
+
+| Specific AWS Services                 | Basics                         | Tips                          | Gotchas                                        |
 |---------------------------------------|--------------------------------|-------------------------------|------------------------------------------------|
 | [Security and IAM](#security-and-iam) | [📗](#security-and-iam-basics) | [📘](#security-and-iam-tips) | [📙](#security-and-iam-gotchas-and-limitations) |
 | [S3](#s3) | [📗](#s3-basics) | [📘](#s3-tips) | [📙](#s3-gotchas-and-limitations) |
@@ -45,13 +48,16 @@ The Open Guide to Amazon Web Services
 | [Redshift](#redshift) | [📗](#redshift-basics) | [📘](#redshift-tips) | [📙](#redshift-gotchas-and-limitations) |
 | [EMR](#emr) | [📗](#emr-basics) | [📘](#emr-tips) |  |
 
--	*Special Topics*
-	-	[High Availability](#high-availability)
-	-	[Billing and Cost Management](#billing-and-cost-management)
-	-	[Further Reading](#further-reading)
--	*Legal*
-	-	[Disclaimer](#disclaimer)
-	-	[License](#license)
+**Special Topics**
+
+-	[High Availability](#high-availability)
+-	[Billing and Cost Management](#billing-and-cost-management)
+-	[Further Reading](#further-reading)
+
+**Legal**
+
+-	[Disclaimer](#disclaimer)
+-	[License](#license)
 
 **Figures and Tables**
 
