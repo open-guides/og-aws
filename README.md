@@ -1,4 +1,4 @@
-![An Open Guide](figures/signpost-horiz1-1600.jpg)
+﻿![An Open Guide](figures/signpost-horiz1-1600.jpg)
 
 The Open Guide to Amazon Web Services
 =====================================
@@ -935,6 +935,7 @@ RDS
 -	If you’re looking for the managed convenience of RDS for MongoDB, this isn’t offered by AWS directly, but you may wish to consider a provider such as [**mLab**](https://mlab.com/).
 -	MySQL RDS allows access to [binary logs](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Concepts.MySQL.html#USER_LogAccess.MySQL.BinaryFormat).
 -	🔸**MySQL vs MariaDB vs Aurora:** If you prefer a MySQL-style database but are starting something new, you probably should consider Aurora and MariaDB as well. **Aurora** has increased availability and is the next-generation solution. That said, Aurora [may not be](http://blog.takipi.com/benchmarking-aurora-vs-mysql-is-amazons-new-db-really-5x-faster/) as fast relative to MySQL as is sometimes reported, and is more complex to administer. **MariaDB**, the modern [community fork](https://en.wikipedia.org/wiki/MariaDB) of MySQL, [likely now has the edge over MySQL](http://cloudacademy.com/blog/mariadb-vs-mysql-aws-rds/) for many purposes and is supported by RDS.
+-	🔸**Aurora:** Aurora is based on MySQL 5.6. If you are planning to migrate to Aurora from an existing MySQL database, avoiding any MySQL features from 5.7 or later will ease the transition. The easiest migration path to Aurora is restoring a database snapshot from MySQL 5.6. The next easiest method is restoring a dump from a MySQL-compatible database such as MariaDB. If neither of those methods are options, Amazon offers a [fee-based data migration service](http://docs.aws.amazon.com/dms/latest/userguide/Welcome.html).
 
 ### RDS Gotchas and Limitations
 
