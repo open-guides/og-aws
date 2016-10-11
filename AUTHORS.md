@@ -25,6 +25,7 @@ The following people (in alphabetical order) have contributed to or reviewed thi
 * [Russell Power (rjpower)](https://github.com/rjpower)
 * [Thanos Baskous (ThanosBaskous)](https://github.com/ThanosBaskous) — [10+](https://github.com/open-guides/og-aws/commits?author=ThanosBaskous)/[10+](https://github.com/open-guides/og-aws/issues?q=author%3AThanosBaskous) — _general editor_
 * [Stefan Zier (weirded)](https://github.com/weirded)
+* [Tom Abbott(omgitstom)](https://github.com/omgitstom)
 
 Additional authors are welcome; see the [contribution guidelines](CONTRIBUTING.md).
 Please let the editors know of any errors or omissions on this list.
