@@ -5,18 +5,22 @@ The Open Guide to Amazon Web Services
 
 [![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://og-aws.slack.lexikon.io/) [![Ask a Question](https://img.shields.io/badge/%3f-Ask%20a%20Question-dc9d47.svg "Questions help improve the Guide")](https://airtable.com/shrXZ61VrovWfXYBg)
 
-**Table of Contents**
+Table of Contents
+-----------------
 
--	*Purpose*
-	-	[Why an Open Guide?](#why-an-open-guide)
-	-	[Scope](#scope)
--	*AWS in General*
-	-	[General Information](#general-information)
-	-	[Managing AWS](#managing-aws)
-	-	[Managing Servers and Applications](#managing-servers-and-applications)
--	*Specific AWS Products*
+**Purpose**
 
-| Service                               | Basics                         | Tips                          | Gotchas                                        |
+-	[Why an Open Guide?](#why-an-open-guide)
+-	[Scope](#scope)
+-	[Legend](#legend)
+
+**AWS in General**
+
+-	[General Information](#general-information)
+-	[Managing AWS](#managing-aws)
+-	[Managing Servers and Applications](#managing-servers-and-applications)
+
+| Specific AWS Services                 | Basics                         | Tips                          | Gotchas                                        |
 |---------------------------------------|--------------------------------|-------------------------------|------------------------------------------------|
 | [Security and IAM](#security-and-iam) | [📗](#security-and-iam-basics) | [📘](#security-and-iam-tips) | [📙](#security-and-iam-gotchas-and-limitations) |
 | [S3](#s3) | [📗](#s3-basics) | [📘](#s3-tips) | [📙](#s3-gotchas-and-limitations) |
@@ -44,17 +48,20 @@ The Open Guide to Amazon Web Services
 | [Redshift](#redshift) | [📗](#redshift-basics) | [📘](#redshift-tips) | [📙](#redshift-gotchas-and-limitations) |
 | [EMR](#emr) | [📗](#emr-basics) | [📘](#emr-tips) |  |
 
--	*Special Topics*
-	-	[High Availability](#high-availability)
-	-	[Billing and Cost Management](#billing-and-cost-management)
-	-	[Further Reading](#further-reading)
--	*Legal*
-	-	[Disclaimer](#disclaimer)
-	-	[License](#license)
+**Special Topics**
+
+-	[High Availability](#high-availability)
+-	[Billing and Cost Management](#billing-and-cost-management)
+-	[Further Reading](#further-reading)
+
+**Legal**
+
+-	[Disclaimer](#disclaimer)
+-	[License](#license)
 
 **Figures and Tables**
 
-[![Tools and Services Market Landscape](figures/aws-market-landscape-240px.png)](#tools-and-services-market-landscape) [![AWS Data Transfer Costs](figures/aws-data-transfer-costs-320px.png)](#aws-data-transfer-costs)
+[![Tools and Services Market Landscape](figures/aws-market-landscape-320px.png)](#tools-and-services-market-landscape) [![AWS Data Transfer Costs](figures/aws-data-transfer-costs-320px.png)](#aws-data-transfer-costs)
 
 -	[Figure: Tools and Services Market Landscape](#tools-and-services-market-landscape): A selection of third-party companies/products
 -	[Figure: AWS Data Transfer Costs](#aws-data-transfer-costs): Visual overview of data transfer costs
@@ -90,18 +97,22 @@ Scope
 	-	**Current:** We can keep updating it, and anyone can contribute improvements
 	-	**Thoughtful:** The goal is to be helpful rather than present dry facts. Thoughtful opinion with rationale is welcome. Suggestions, notes, and opinions based on real experience can be extremely valuable. (We believe this is both possible with a guide of this format, unlike in some [other venues](http://meta.stackexchange.com/questions/201994/is-there-a-place-to-ask-opinion-based-questions).)
 -	This guide is not sponsored by AWS or AWS-affiliated vendors. It is written by and for engineers who use AWS.
--	Legend:
-	-	📒 Marks standard/official AWS pages and docs
-	-	🔹 Important or often overlooked tip
-	-	❗ Gotcha or warning (where risks or time or resource costs are significant)
-	-	🔸 Limitation or quirk (where it’s not quite so bad)
-	-	🐥 Relatively new (and perhaps immature) services or features
-	-	⏱ Performance discussions
-	-	⛓ Lock-in: Products or decisions that are likely to tie you to AWS in a new or significant way — that is, later moving to a non-AWS alternative would be costly in terms of engineering effort
-	-	🚪 Alternative non-AWS options
-	-	💸 Cost issues, discussion, and gotchas
-	-	🕍 A mild warning attached to “full solution” or opinionated frameworks that may take significant time to understand and/or might not fit your needs exactly; the opposite of a point solution (the cathedral is a nod to [Raymond’s metaphor](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar)\)
-	-	🚧 Areas where correction or improvement are needed (possibly with link to an issue — do help!)
+
+Legend
+------
+
+-	📒 Marks standard/official AWS pages and docs
+-	🔹 Important or often overlooked tip
+-	❗ Gotcha or warning (where risks or time or resource costs are significant)
+-	🔸 Limitation or quirk (where it’s not quite so bad)
+-	🐥 Relatively new (and perhaps immature) services or features
+-	⏱ Performance discussions
+-	⛓ Lock-in: Products or decisions that are likely to tie you to AWS in a new or significant way — that is, later moving to a non-AWS alternative would be costly in terms of engineering effort
+-	🚪 Alternative non-AWS options
+-	💸 Cost issues, discussion, and gotchas
+-	🕍 A mild warning attached to “full solution” or opinionated frameworks that may take significant time to understand and/or might not fit your needs exactly; the opposite of a point solution (the cathedral is a nod to [Raymond’s metaphor](https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar)\)
+-	📗📘📙 Colors indicate basics, tips, and gotchas, respectively.
+-	🚧 Areas where correction or improvement are needed (possibly with link to an issue — do help!)
 
 General Information
 -------------------
@@ -141,7 +152,7 @@ General Information
 	-	See the [current list](https://aws.amazon.com/about-aws/global-infrastructure/) of regions and edge locations, including upcoming ones.
 	-	If your infrastructure needs to be in close physical proximity to another service for latency or throughput reasons (for example, latency to an ad exchange), viability of AWS may depend on the location.
 -	⛓**Lock-in:** As you use AWS, it’s important to be aware when you are depending on AWS services that do not have equivalents elsewhere.
-	-	Lock-in may be completely fine for your company. But it’s important from a business perspective to make this choice explicitly, and consider the cost, operational, business continuity, and competitive risks of being tied to AWS. AWS is such a dominant and reliable vendor, many companies are comfortable with using AWS to its full extent. Other companies avoid this.
+	-	Lock-in may be completely fine for your company, or a significant risk. It’s important from a business perspective to make this choice explicitly, and consider the cost, operational, business continuity, and competitive risks of being tied to AWS. AWS is such a dominant and reliable vendor, many companies are comfortable with using AWS to its full extent. Others can tell stories about the [dangers of “cloud jail” when costs spiral](http://firstround.com/review/the-three-infrastructure-mistakes-your-company-must-not-make/).
 	-	Generally, the more AWS services you use, the more lock-in you have to AWS — that is, the more engineering resources (time and money) it will take to change to other providers in the future.
 	-	Basic services like virtual servers and standard databases are usually easy to migrate to other providers or on premises. Others like load balancers and IAM are specific to AWS but have close equivalents from other providers. The key thing to consider is whether engineers are architecting systems around specific AWS services that are not open source or relatively interchangeable. For example, Lambda, API Gateway, Kinesis, Redshift, and DynamoDB do not have have substantially equivalent open source or commercial service equivalents, while EC2, RDS (MySQL or Postgres), EMR, and ElastiCache more or less do. (See more [below](#which-services-to-use), where these are noted with ⛓.)
 -	**Combining AWS and other cloud providers:** Many customers combine AWS with other non-AWS services. For example, legacy systems or secure data might be in a managed hosting provider, while other systems are AWS. Or a company might only use S3 with another provider doing everything else. However small startups or projects starting fresh will typically stick to AWS or Google Cloud only.
@@ -333,7 +344,7 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 | [CloudWatch](https://aws.amazon.com/releasenotes/CloudWatch?browse=1)                                      | 2009-05          | General                                                                       |
 | [CloudFront](https://aws.amazon.com/releasenotes/CloudFront?browse=1)                                      | 2008-11          | General                                                                       |
 | [Fulfillment Web Service](https://aws.amazon.com/releasenotes/Amazon-FWS?browse=1)                         | 2008-03          | Obsolete?                                                                     |
-| [SimpleDB](https://aws.amazon.com/releasenotes/Amazon-SimpleDB?browse=1)                                   | 2007-12          | ⚠️[Nearly obsolete](https://forums.aws.amazon.com/thread.jspa?threadID=121711) |
+| [SimpleDB](https://aws.amazon.com/releasenotes/Amazon-SimpleDB?browse=1)                                   | 2007-12          | ❗[Nearly obsolete](https://forums.aws.amazon.com/thread.jspa?threadID=121711) |
 | [DevPay](https://aws.amazon.com/releasenotes/DevPay?browse=1)                                              | 2007-12          | General                                                                       |
 | [Flexible Payments Service](https://aws.amazon.com/releasenotes/Amazon-FPS?browse=1)                       | 2007-08          | Retired                                                                       |
 | [EC2](https://aws.amazon.com/releasenotes/Amazon-EC2?browse=1)                                             | 2006-08          | General                                                                       |
@@ -778,7 +789,7 @@ EBS
 
 -	❗EBS durability is reasonably good for a regular hardware drive (annual failure rate of [between 0.1% - 0.2%](http://aws.amazon.com/ebs/details/#availabilityanddurability)). On the other hand, that is very poor if you don’t have backups! By contrast, S3 durability is extremely high. *If you care about your data, back it up S3 with snapshots.*
 -	🔸EBS has an [**SLA**](http://aws.amazon.com/ec2/sla/) with **99.95%** uptime. See notes on high availability below.
--	❗EBS volumes have a [**volume type**](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html) indicating the physical storage type. The types called “standard” (**st1** or **sc1**) actually old spinning-platter disks, which deliver only hundreds of IOPS — not what you want unless you’re really trying to cut costs. Modern SSD-based **gp2** or **io1** are typically the options you want.
+-	❗EBS volumes have a [**volume type**](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html) indicating the physical storage type. The types called “standard” (**st1** or **sc1**) are actually old spinning-platter disks, which deliver only hundreds of IOPS — not what you want unless you’re really trying to cut costs. Modern SSD-based **gp2** or **io1** are typically the options you want.
 
 EFS
 ---
@@ -927,7 +938,6 @@ RDS
 
 ### RDS Gotchas and Limitations
 
--	RDS instances run on EBS volumes, and hence are constrained by the EBS performance.
 -	⏱RDS instances run on EBS volumes, and hence are constrained by the EBS performance.
 -	🔸Verify what database features you need, as not everything you might want is available on RDS. For example, if you are using Postgres, check the list of [supported features and extensions](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#SQLServer.Concepts.General.FeatureSupport). If the features you need aren’t supported by RDS, you’ll have to deploy your database yourself.
 
@@ -1066,12 +1076,11 @@ CloudFormation
 ### CloudFormation Tips
 
 -	[Troposphere](https://github.com/cloudtools/troposphere) is a Python library that makes it much easier to create CloudFormation templates.
+-	🔹Until [2016](https://aws.amazon.com/about-aws/whats-new/2016/09/aws-cloudformation-introduces-yaml-template-support-and-cross-stack-references/), CloudFormation used only an awkward JSON format that makes both reading and debugging difficult. To use it effectively typically involved building additional tooling, including converting it to YAML, but now [this is supported directly](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html).
 
 ### CloudFormation Gotchas and Limitations
 
 -	🔸CloudFormation is useful but complex and with a variety of pain points. Many companies find alternate solutions, and many companies use it, but only with significant additional tooling.
--	🔸CloudFormation syntax is an awkward JSON format that makes both reading and debugging difficult.
-	-	To use it effectively often involves additional tooling, such as converting it to YAML or using Troposphere.
 -	🔸CloudFormation can be very slow, especially for items like CloudFront distributions.
 -	🔸It’s hard to assemble good CloudFormation configurations from existing state. AWS does [offer a trick to do this](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-using-cloudformer.html), but it’s very clumsy.
 -	🔸Many users don’t use CloudFormation at all because of its limitations, or because they find other solutions preferable. Often there are other ways to accomplish the same goals, such as local scripts (Boto, Bash, Ansible, etc.) you manage yourself that build infrastructure, or Docker-based solutions ([Convox](https://convox.com/), etc.).
