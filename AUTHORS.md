@@ -8,6 +8,7 @@ The following people (in alphabetical order) have contributed to or reviewed thi
 * [Alexander Atallah (alexanderatallah)](https://github.com/alexanderatallah)
 * [Artem Nikitin (artemnikitin)](https://github.com/artemnikitin) — [2+](https://github.com/open-guides/og-aws/commits?author=artemnikitin)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Aartemnikitin)
 * [Ben Kehoe (benkehoe)](https://github.com/benkehoe) — [4+](https://github.com/open-guides/og-aws/commits?author=benkehoe)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Abenkehoe)
+* [Bo Bayles (bbayles)](https://github.com/bbayles)
 * [Adam Mathias Bittlingmayer (bittlingmayer)](https://github.com/bittlingmayer)
 * [Donne Martin (donnemartin)](https://github.com/donnemartin)
 * [Max Grigorev (forwidur)](https://github.com/forwidur)
