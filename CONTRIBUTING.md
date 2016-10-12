@@ -28,7 +28,7 @@ Finally, if an issue isn’t appropriate, or if you might have skills and inclin
 
 When you contribute, keep in mind these conventions:
 
--	**Abbreviations:** For AWS service names, we use the abbreviation throughout the guide if it is more common, e.g. EC2 and not Elastic Compute Cloud. We also omit “Amazon” at the front of product names, e.g. EMR and not Amazon EMR.
+-	**Abbreviations:** For AWS service names, we use the abbreviation throughout the guide if it is more common, e.g. EC2 and not Elastic Compute Cloud. We also omit “Amazon” at the front of product names, e.g. EMR and not Amazon EMR. If an abbreviation is convenient but not always used, e.g. AZ instead of Availability Zone, either use the full term once per section/paragraph and abbreviate subsequent usages or do not abbreviate it at all.
 -	Terms that appear for the first time in **boldface** are defined there in a brief summary, with a link if possible to what is probably the best page for that concept. It’s also fine to boldface **key statements** that guide the eye.
 -	**Boldfaced headings:** When possible and appropriate, begin bulleted items with a boldfaced summary, as illustrated here. This helps the reader skim the contents.
 -	**Links:**
