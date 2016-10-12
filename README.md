@@ -1279,7 +1279,7 @@ This section covers tips and information on achieving [high availability](https:
 
 ### High Availability Gotchas and Limitations
 
--	**AZ naming** differs from one customer account to the next. Your “us-west-1a” is not the same as another customer’s “us-west-1a” — the letters are assigned to physical AZs randomly per account. If there are 3 physical AZs/DCs in eu-west-1 region - X, Y , Z ; for one customer it means us-west-1a = X, us-west-1b = Y, us-west-1c = Z for another customer it might mean  us-west-1a = Z, us-west-1b = Y, us-west-1c = X. You can run “aws ec2 describe-availability-zones --region $REGION“ to list AZs available to you.
+-	**AZ naming** differs from one customer account to the next. Your “us-west-1a” is not the same as another customer’s “us-west-1a” — the letters are assigned to physical AZs randomly per account. If there are 3 physical AZs/DCs in us-west-1 region - X, Y , Z ; for one customer it means us-west-1a = X, us-west-1b = Y, us-west-1c = Z for another customer it might mean  us-west-1a = Z, us-west-1b = Y, us-west-1c = X. You can run “aws ec2 describe-availability-zones --region $REGION“ to list AZs available to you.
 -	**Cross-AZ traffic** is not free. At large scale, the costs add up to a significant amount of money. If possible, optimize your traffic to stay within the same AZ as much as possible.
 
 Billing and Cost Management
