@@ -48,6 +48,7 @@ Table of Contents
 | [DirectConnect](#directconnect) | [📗](#directconnect-basics) | [📘](#directconnect-tips) |  |
 | [Redshift](#redshift) | [📗](#redshift-basics) | [📘](#redshift-tips) | [📙](#redshift-gotchas-and-limitations) |
 | [EMR](#emr) | [📗](#emr-basics) | [📘](#emr-tips) |  |
+| [Device Farm](#devicefarm) | [📗](#devicefarm-basics) |  |  |
 
 **Special Topics**
 
@@ -1253,6 +1254,17 @@ EMR
 -	⏱Off-the-shelf EMR and Hadoop can have significant overhead when compared with efficient processing on a single machine. If your data is small and performance matters, you may wish to consider alternatives, as [this post](http://aadrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html) illustrates.
 -	Python programmers may want to take a look at Yelp’s [mrjob](https://github.com/Yelp/mrjob).
 -	It takes time to tune performance of EMR jobs, which is why third-party services such as [Qubole’s data service](https://www.qubole.com/mapreduce-as-a-service/) are gaining popularity as ways to improve performance or reduce costs.
+
+DeviceFarm
+----------
+
+### Device Farm Basics
+-	📒 [Homepage](https://aws.amazon.com/device-farm/) ∙ [Developer guide](http://docs.aws.amazon.com/devicefarm/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/device-farm/faq/) ∙ [Pricing](https://aws.amazon.com/device-farm/pricing/)
+- **Device Farm** is AWS service for mobile app testing on real devices.
+- Support devices on iOS and Android, including Kindle Fire and mobile web.
+- Another feature is remote access to a particular device for interactive testing\debugging session.
+
+🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
 High Availability
 -----------------
