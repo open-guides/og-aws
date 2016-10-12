@@ -185,7 +185,7 @@ General Information
 	-	[EMR](#emr): Managed Hadoop
 	-	[Elasticsearch](https://aws.amazon.com/elasticsearch-service/): Managed Elasticsearch
 	-	[ElastiCache](https://aws.amazon.com/elasticache/): Managed Redis and Memcached
--	**Optional but important infrastructure:** These are key and useful infrastructure components that are less widely known and used. You may have legitimate reasons to prefer alternatives, so evaluate with care you to be sure they fit your needs:
+-	**Optional but important infrastructure:** These are key and useful infrastructure components that are less widely known and used. You may have legitimate reasons to prefer alternatives, so evaluate with care to be sure they fit your needs:
 	-	⛓[Lambda](#lambda): Running small, fully managed tasks “serverless”
 	-	[CloudTrail](https://aws.amazon.com/cloudtrail/): AWS API logging and audit (often neglected but important)
 	-	⛓🕍[CloudFormation](#cloudformation): Templatized configuration of collections of AWS resources
@@ -452,7 +452,7 @@ So if you’re not going to manage your AWS configurations manually, what should
 
 ### General Visibility
 
--	🔹[**Tagging resources**](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html) is an essential practice, especially as organizations grow, to better understand your resource usage. For example, you can through automation or convention add tags:
+-	🔹[**Tagging resources**](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html) is an essential practice, especially as organizations grow, to better understand your resource usage. For example, through automation or convention, you can add tags:
 	-	For the org or developer that “owns” that resource
 	-	For the product that resource supports
 	-	To label lifecycles, such as temporary resources or one that should be deprovisioned in the future
