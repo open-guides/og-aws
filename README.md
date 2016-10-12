@@ -1131,11 +1131,14 @@ VPCs, Network Security, and Security Groups
 		-	e.g. A bug in the YAML parser used by the Ruby on Rails admin site is much less serious when the admin site is only visible to the private network and accessed through VPN.
 	-	Another common pattern (especially as deployments get larger, security or regulatory requirements get more stringent, or team sizes increase) is to provide a [bastion host](https://www.pandastrike.com/posts/20141113-bastion-hosts) behind a VPN through which all SSH connections need to transit.
 
+
 ### VPC and Network Security Gotchas and Limitations
 
 -	🔸Security groups are not shared across data centers, so if you have infrastructure in multiple data centers, you should make sure your configuration/deployment tools take that into account.
 -	❗Be careful when choosing your VPC IP CIDR block: If you are going to need to make use of [ClassicLink](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html), make sure that your private IP range [doesn’t overlap](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html#classiclink-limitations) with that of EC2 Classic.
 -	❗If you are going to peer VPCs, carefully consider the cost of of [data transfer between VPCs](https://aws.amazon.com/vpc/faqs/#Peering_Connections), since for some workloads and integrations, this can be prohibitively expensive.
+-	❗**Connecting VPCs Between Regions with VPNs**:  It's not possible to use the Amazon VPC VPN functionality to interconnect VPCs in multiple regions (for instance, to connect a VPC in us-east-1 to a VPC in us-west-2.)  To do this, you will have to use an instance running VPN software (such as Libreswan) or virtual VPN appliance in at least one  of the VPCs to create a tunnel between the VPCs.  You can, however, connect using a device or appliance in one region and Amazon's VPC VPN functionality in the other.
+-	❗**Connecting Multiple VPCs to A Single IPSec VPN Endpoint**:  You cannot connect more than one VPC per region to a single IPSec endpoint (such as a router or a firewall on your network) using the VPC VPN functionality.  If you want to do this, you'll need to use an instance running VPN software (such as Libreswan) or a virtual VPN appliance in any VPC beyond your first VPC in that region.  You can use the VPC VPN functionality for your first VPC in the region, and then an instance or appliance for the second and subsequent VPCs, however this may increase complexity and you should consider using an instance or appliance for all VPCs.  (Note:  This applies across accounts.) 
 
 KMS
 ---
