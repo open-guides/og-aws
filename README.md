@@ -211,7 +211,7 @@ General Information
 -	**Compound services:** These are similarly specific, but are full-blown services that tackle complex problems and may tie you in. Usefulness depends on your requirements. If you have large or significant need, you may have these already managed by in-house systems and engineering teams.
 	-	[Machine Learning](https://aws.amazon.com/machine-learning/): Machine learning model training and classification
 	-	⛓🕍[Data Pipeline](https://aws.amazon.com/datapipeline/): Managed ETL service
-	-	⛓🕍[SWF](https://aws.amazon.com/swf/): Managed background job workflow
+	-	⛓🕍[SWF](https://aws.amazon.com/swf/): Managed state tracker for distributed polyglot job workflow
 	-	⛓🕍[Lumberyard](https://aws.amazon.com/lumberyard/): 3D game engine
 -	**Mobile/app development:**
 	-	[SNS](https://aws.amazon.com/sns/): Manage app push notifications and other end-user notifications
