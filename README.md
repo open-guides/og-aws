@@ -1141,6 +1141,7 @@ Redshift
 
 -	📒 [Homepage](https://aws.amazon.com/redshift/) ∙ [Developer guide](http://docs.aws.amazon.com/redshift/latest/dg/) ∙ [FAQ](https://aws.amazon.com/redshift/faqs/) ∙ [Pricing](https://aws.amazon.com/redshift/pricing/)
 -	**Redshift** is AWS’ [data warehouse](https://en.wikipedia.org/wiki/Data_warehouse) solution, which is highly parallel, share-nothing, and columnar. It is very widely used. It [was built](https://en.wikipedia.org/wiki/Amazon_Redshift) with [ParAccel](https://en.wikipedia.org/wiki/ParAccel) and [Postgres](https://en.wikipedia.org/wiki/PostgreSQL).
+-       AWS has a useful tutorial to get you started [loading data](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-loading-data.html) into Redshift.  It's important to understand the use of the table commands to [analyze](http://docs.aws.amazon.com/redshift/latest/dg/t_Analyzing_tables.html) and [vacuum](http://docs.aws.amazon.com/redshift/latest/dg/r_VACUUM_command.html) commands when loading data.
 
 ### Redshift Alternatives and Lock-in
 
