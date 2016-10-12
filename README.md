@@ -17,7 +17,7 @@ Table of Contents
 **AWS in General**
 
 -	[General Information](#general-information)
--	[Learning and Career Development](#learning-aws)
+-	[Learning and Career Development](#learning-and-career-development)
 -	[Managing AWS](#managing-aws)
 -	[Managing Servers and Applications](#managing-servers-and-applications)
 
