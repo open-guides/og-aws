@@ -12,6 +12,7 @@ The following people (in alphabetical order) have contributed to or reviewed thi
 * [Donne Martin (donnemartin)](https://github.com/donnemartin)
 * [Max Grigorev (forwidur)](https://github.com/forwidur)
 * [Dmitry Golyshev (golyshev)](https://github.com/golyshev)
+* [Jaanus Torp (jnsaff)](https://github.com/jnsaff)
 * [Joshua Levy (jlevy)](https://github.com/jlevy) — [77+](https://github.com/open-guides/og-aws/commits?author=jlevy)/[67+](https://github.com/open-guides/og-aws/issues?q=author%3Ajlevy) — _general editor_
 * Jurgen Philippaerts
 * [KAZUYUKI TANIMURA (kazuyukitanimura)](https://github.com/kazuyukitanimura)
