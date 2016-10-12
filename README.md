@@ -481,7 +481,8 @@ This guide is about AWS, not DevOps or server configuration management in genera
 
 ### Containers and AWS
 
--	[Docker](http://blog.scottlowe.org/2014/03/11/a-quick-introduction-to-docker/) and the containerization trend are changing the way many servers and services are deployed in general.
+-	[Docker](http://blog.scottlowe.org/2014/03/11/a-quick-introduction-to-docker/) and containers in general are changing the way many servers and services are deployed.
+-	Docker is [quickly being adopted](https://www.datadoghq.com/docker-adoption/) by many organizations.
 -	Containers are designed as a way to package up your application(s) and all of their dependencies in a known way. When you build a container, you are including every library or binary your application needs, outside of the kernel. A big advantage of this approach is that it’s easy to test and validate a container locally without worrying about some difference between your computer and the servers you deploy on.
 -	A consequence of this is that you need fewer AMIs and boot scripts; for most deployments, the only boot script you need is a template that fetches an exported docker image and runs it.
 -	Companies that are embracing [microservice architectures](http://martinfowler.com/articles/microservices.html) will often turn to container-based deployments.
