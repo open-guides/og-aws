@@ -1038,6 +1038,9 @@ Lambda
 -	🔸Lambda is a new technology. As of mid 2016, only a few companies are using it for large-scale production applications.
 -	🔸Managing lots of Lambda functions is a workflow challenge, and tooling to manage Lambda deployments is still immature.
 -	🔸AWS’ official workflow around managing function [versioning and aliases](https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html) is painful.
+-	🔸Lambda Functions must end in less than five minutes. If it is still running after that time it will be destroyed, considered failed and relaunched up to three times.
+-	🔸Any pending threads existing at the end of the caller function gets killed and the lambda is considered ended. If you raise background process (manually in python or by the normal node.js flow) you must ensure all threads are joined before let the function end.
+
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
