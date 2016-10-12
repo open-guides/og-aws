@@ -106,6 +106,7 @@ Legend
 -	🔹 Important or often overlooked tip
 -	❗ Gotcha or warning (where risks or time or resource costs are significant)
 -	🔸 Limitation or quirk (where it’s not quite so bad)
+-	📜 Undocumented feature (folklore)
 -	🐥 Relatively new (and perhaps immature) services or features
 -	⏱ Performance discussions
 -	⛓ Lock-in: Products or decisions that are likely to tie you to AWS in a new or significant way — that is, later moving to a non-AWS alternative would be costly in terms of engineering effort
