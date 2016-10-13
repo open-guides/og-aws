@@ -1261,7 +1261,7 @@ DeviceFarm
 ### Device Farm Basics
 -	📒 [Homepage](https://aws.amazon.com/device-farm/) ∙ [Developer guide](http://docs.aws.amazon.com/devicefarm/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/device-farm/faq/) ∙ [Pricing](https://aws.amazon.com/device-farm/pricing/)
 - **Device Farm** is an AWS service that enables mobile app testing on real devices.
-- Supports iOS and Android (including Kindle Fire) devices, as well as the mobile web."
+- Supports iOS and Android (including Kindle Fire) devices, as well as the mobile web.
 - Supports remote device access in order to allow for interactive testing/debugging.
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
