@@ -1141,7 +1141,7 @@ Redshift
 
 -	📒 [Homepage](https://aws.amazon.com/redshift/) ∙ [Developer guide](http://docs.aws.amazon.com/redshift/latest/dg/) ∙ [FAQ](https://aws.amazon.com/redshift/faqs/) ∙ [Pricing](https://aws.amazon.com/redshift/pricing/)
 -	**Redshift** is AWS’ [data warehouse](https://en.wikipedia.org/wiki/Data_warehouse) solution, which is highly parallel, share-nothing, and columnar. It is very widely used. It [was built](https://en.wikipedia.org/wiki/Amazon_Redshift) with [ParAccel](https://en.wikipedia.org/wiki/ParAccel) and [Postgres](https://en.wikipedia.org/wiki/PostgreSQL).
--       AWS has a useful tutorial to get you started [loading data](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-loading-data.html) into Redshift.  It's important to understand the use of the table commands to [analyze](http://docs.aws.amazon.com/redshift/latest/dg/t_Analyzing_tables.html) and [vacuum](http://docs.aws.amazon.com/redshift/latest/dg/r_VACUUM_command.html) commands when loading data.
+
 
 ### Redshift Alternatives and Lock-in
 
@@ -1154,6 +1154,7 @@ Redshift
 -	It has a leader node and computation nodes (the leader node distributes queries to the computation ones). Note that some functions [can be executed only on the lead node.](https://docs.aws.amazon.com/redshift/latest/dg/c_SQL_functions_leader_node_only.html)
 -	🔸Redshift does not support many Postgres functions, most notable date/time related or aggregates. See the [full list here](https://docs.aws.amazon.com/redshift/latest/dg/c_unsupported-postgresql-functions.html).
 -	Major 3rd-party BI tools support Redshift integration (see [Quora](https://www.quora.com/Which-BI-visualisation-solution-goes-best-with-Redshift)).
+-       AWS has a useful tutorial to get you started [loading data](http://docs.aws.amazon.com/redshift/latest/dg/tutorial-loading-data.html) into Redshift.  It is important to understand the use of the table commands to [analyze](http://docs.aws.amazon.com/redshift/latest/dg/t_Analyzing_tables.html) and [vacuum](http://docs.aws.amazon.com/redshift/latest/dg/r_VACUUM_command.html) commands when loading data.
 
 ### Redshift Gotchas and Limitations
 
