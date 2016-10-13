@@ -1109,7 +1109,6 @@ VPCs, Network Security, and Security Groups
 -   **VPC Flow Logs** allow you to monitor the network traffic to, from, and within your VPC. Logs are stored in CloudWatch Logs groups, and can be used for security monitoring (with third party tools), performance evaluation, and forensic investigation.
     -	See the [VPC Flow Logs User Guide](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html) for basic information.
     -	See the [flowlogs-reader](https://github.com/obsrvbl/flowlogs-reader) CLI tool and Python library to retrieve and work with VPC Flow Logs.
-    -	Services like [Observable Networks](https://observable.net/) and [Sumo Logic](https://www.sumologic.com/) can use VPC Flow Logs as input for security monitoring and/or searching.
 
 ### VPC and Network Security Gotchas and Limitations
 
