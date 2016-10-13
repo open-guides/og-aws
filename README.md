@@ -48,7 +48,7 @@ Table of Contents
 | [DirectConnect](#directconnect) | [📗](#directconnect-basics) | [📘](#directconnect-tips) |  |
 | [Redshift](#redshift) | [📗](#redshift-basics) | [📘](#redshift-tips) | [📙](#redshift-gotchas-and-limitations) |
 | [EMR](#emr) | [📗](#emr-basics) | [📘](#emr-tips) |  |
-| [Device Farm](#devicefarm) | [📗](#devicefarm-basics) |  |  |
+| [Device Farm](#device-farm) | [📗](#device-farm-basics) |  |  |
 
 **Special Topics**
 
@@ -1255,8 +1255,8 @@ EMR
 -	Python programmers may want to take a look at Yelp’s [mrjob](https://github.com/Yelp/mrjob).
 -	It takes time to tune performance of EMR jobs, which is why third-party services such as [Qubole’s data service](https://www.qubole.com/mapreduce-as-a-service/) are gaining popularity as ways to improve performance or reduce costs.
 
-DeviceFarm
-----------
+Device Farm
+-----------
 
 ### Device Farm Basics
 -	📒 [Homepage](https://aws.amazon.com/device-farm/) ∙ [Developer guide](http://docs.aws.amazon.com/devicefarm/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/device-farm/faq/) ∙ [Pricing](https://aws.amazon.com/device-farm/pricing/)
