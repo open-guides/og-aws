@@ -1301,7 +1301,7 @@ Kinesis Streams
 -  Kinesis Streams' shards each only permit 5 reads per second. If you are using ```n``` shards in a particular stream, and evenly distributing your data across all of them, you will end up with a total of 5 reads per second. This is because a consumer cannot know which shard will contain new data, and will therefore need to check every single one. This means that there is a hard limit on the number of consumers you can have per stream, for any given latency.
 	- If you wish to have 5 consumers all reading data from one Stream with 5 shards, with a maximum permitted latency of 0.5 seconds, you will need to either split your data across two streams, or reduce your latency requirements.
 	- Each consumer will need to poll each shard once every 0.5 seconds, meaning each Shard will need to be queried 10 times a second - a value in excess of the maximum.
-	- There is a good blog by Brandur, an engineer at Stripe that discusses the performance and limitations of Kinesis in production [here](https://brandur.org/kinesis-in-production).
+	- There is a good blog by Brandur, an engineer at Stripe, that discusses the performance and limitations of Kinesis in production [here](https://brandur.org/kinesis-in-production).
 
 High Availability
 -----------------
