@@ -59,11 +59,11 @@ Note we keep consistent formatting in Markdown via [markdownfmt](https://github.
 	-	**Project leads:** Own overall quality of the Guide, direction, and process.
 	-	**Editors:** Contributors own specific sections or aspects of the Guide, reviewing PRs and/or writing. requires expert knowledge.
 	-	**Experts:** People with expert knowledge in various areas, who have agreed to review or help on demand with tougher questions or PRs.
-	-	**Contributors:** Everyone who helps one way or another.
+	-	**Contributors:** Everyone who contributes content or helps one way or another.
 -	All PRs are reviewed by an **editor** and for non-trivial changes, a **project lead**, usually in that order, but it can be reversed for expediency.
 -	In addition, anyone with relevant knowledge is encouraged to review/comment on PRs.
 -	Both editors and project leads are responsible for checking for style or problems.
--	Trivial changes may be merged in directly by project leads or editors.
+-	Trivial changes (including copy editing) may be merged in directly by project leads or editors.
 
 ### Contact
 
