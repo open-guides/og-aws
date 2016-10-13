@@ -4,8 +4,8 @@ The Open Guide to Amazon Web Services
 =====================================
 
 [![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://og-aws.slack.lexikon.io/) [![Ask a Question](https://img.shields.io/badge/%3f-Ask%20a%20Question-dc9d47.svg "Questions help improve the Guide")](https://airtable.com/shrXZ61VrovWfXYBg)
-[Authors](AUTHORS.md)
-[Contributing](CONTRIBUTING.md)
+
+[Credits](AUTHORS.md) ∙ [Contributing guidelines](CONTRIBUTING.md)
 
 Table of Contents
 -----------------
