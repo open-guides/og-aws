@@ -1144,7 +1144,7 @@ VPCs, Network Security, and Security Groups
 	-	You expose a smaller surface area for attack compared to exposing separate (potentially authenticated) services over the public internet.
 		-	e.g. A bug in the YAML parser used by the Ruby on Rails admin site is much less serious when the admin site is only visible to the private network and accessed through VPN.
 	-	Another common pattern (especially as deployments get larger, security or regulatory requirements get more stringent, or team sizes increase) is to provide a [bastion host](https://www.pandastrike.com/posts/20141113-bastion-hosts) behind a VPN through which all SSH connections need to transit.
--   🔹 Consider using other Security Groups as sources for Security Group rules instead of CIDR, this way all hosts in that security group and only hosts in that security group are allowed access. This is much more dynamic and secure way of managing Security Group rules within a VPC.
+-   🔹Consider using other security groups as sources for security group rules instead of using CIDRs — that way, all hosts in the source security group and only hosts in that security group are allowed access. This is a much more dynamic and secure way of managing security group rules.
 
 ### VPC and Network Security Gotchas and Limitations
 
