@@ -1234,8 +1234,6 @@ Redshift
 -	A compound sort key is made up of all columns listed in the sort key definition. It is most useful when you have queries with operations using prefix of the sortkey.
 -	An interleaved sort key on the other hand gives equal weight to each column or a subset of columns in the sort key. So if you don't know ahead of time which column you want to choose for sorting and filtering, this is a much better choice than compound key.[Here](https://aws.amazon.com/blogs/aws/quickly-filter-data-in-amazon-redshift-using-interleaved-sorting/) is an example using interleaved sort key.
 
-https://aws.amazon.com/blogs/aws/quickly-filter-data-in-amazon-redshift-using-interleaved-sorting/
-
 ### Redshift Gotchas and Limitations
 
 -	❗⏱While Redshift can handle heavy queries well, its does not scale horizontally, i.e. does not handle multiple queries in parallel. Therefore, if you expect a high parallel load, consider replicating or (if possible) sharding your data across multiple clusters.
