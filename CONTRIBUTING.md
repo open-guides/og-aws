@@ -1,10 +1,9 @@
 Contributing
 ------------
 
-Contributions of all kinds, including discussion, corrections, additions, and improvements, are welcome! We hope you'll join and help, in small ways or large. We gladly [credit](/AUTHORS.md) all contributors. Here are few notes before you jump in.
+[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://og-aws.slack.lexikon.io/) [![Ask a Question](https://img.shields.io/badge/%3f-Ask%20a%20Question-dc9d47.svg "Questions help improve the Guide")](https://airtable.com/shrXZ61VrovWfXYBg)
 
-[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://og-aws.slack.lexikon.io/) [![Ask a Question](https://img.shields.io/badge/%3f-Ask%20a%20Question-dc9d47.svg "Questions help improve the Guide")](https://airtable.com
-/shrXZ61VrovWfXYBg)
+Contributions of all kinds, including discussion, corrections, additions, and improvements, are welcome! We hope you'll join and help, in small ways or large. We gladly [credit](/AUTHORS.md) all contributors. Here are few notes before you jump in.
 
 ### Please Help
 
@@ -57,7 +56,7 @@ Note we keep consistent formatting in Markdown via [markdownfmt](https://github.
 ### Editorial Process
 
 -	Roles:
-	-	**Project leads:** Own general direction of process and overall quality of the Guide.
+	-	**Project leads:** Own overall quality of the Guide, direction, and process.
 	-	**Editors:** Contributors own specific sections or aspects of the Guide, reviewing PRs and/or writing. requires expert knowledge.
 	-	**Experts:** People with expert knowledge in various areas, who have agreed to review or help on demand with tougher questions or PRs.
 	-	**Contributors:** Everyone who helps one way or another.
