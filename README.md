@@ -938,7 +938,7 @@ Glacier
 -	🔸Getting files off Glacier is glacially slow (typically 3-5 hours or more).
 -	🔸Due to a fixed overhead per file (you pay per PUT or GET operation), uploading and downloading many small files on/to Glacier might be very expensive. There is also a 32k storage overhead per file. Hence it’s a good idea is to archive files before upload.
 -	🔸Glacier’s pricing policy is reportedly pretty complicated: “Glacier data retrievals are priced based on the peak hourly retrieval capacity used within a calendar month.” Some more info can be found [here](https://medium.com/@karppinen/how-i-ended-up-paying-150-for-a-single-60gb-download-from-amazon-glacier-6cb77b288c3e#.wjl4dbgza) and [here](https://news.ycombinator.com/item?id=10921365).
--	🔸Be aware of the cost associated with archiving S3 data to Glacier. [It costs $0.05 per 1,000 requests](https://aws.amazon.com/s3/pricing/). If you have small s3 data but many of them, it is probably not worth it or takes a long time to reach a breakeven point (initial archving cost vs lower strage pricing).
+-	🔸Be aware of the cost associated with archiving S3 data to Glacier. [It costs $0.05 per 1,000 requests](https://aws.amazon.com/s3/pricing/). If you have large numbers of S3 objects of relatively small size (less than 13Kb), [it will take time to reach a breakeven point (initial archving cost vs lower storage pricing).](https://alestic.com/2012/12/s3-glacier-costs/)
 
 RDS
 ---
