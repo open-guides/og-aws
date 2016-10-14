@@ -1252,6 +1252,9 @@ Redshift
 -	❗ Never resize a live cluster. The resize operation takes hours depending on the dataset size. In rare cases, the operation may also get stuck and you'll end up having a non-functional cluster. The safer approach is to create a new cluster from a snapshot, resize the new cluster and shut down the old one.
 -	Redshift has reserved keywords which are not present in Postgres (see full list [here](https://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html)). Watch out for DELTA ([Delta Encodings](https://docs.aws.amazon.com/redshift/latest/dg/c_Delta_encoding.html)).
 -	Redshift does not support many Postgres functions, most notably several date/time-related and aggregation functions. See the [full list here](https://docs.aws.amazon.com/redshift/latest/dg/c_unsupported-postgresql-functions.html).
+-	🔹 If you need to change sort key or dist key of a table, you need to create a new table with new key and move your data to new table with insert into new_table select * from old_table. [Choosing Sort Key](http://docs.aws.amazon.com/redshift/latest/dg/t_Sorting_data.html)
+-	❗🚪 When moving data with insert into x select from y; you need to have at least twice of y table size free space on your harddisk. Redshift first copies data to disk then to new table. 
+-	🔹 Vacuum delete only does not block copy commands, but vacuum reindex can block if you execute copy command every minute or so.
 
 EMR
 ---
