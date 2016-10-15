@@ -289,7 +289,7 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 | User authentication           | Cognito                                                                      |                              |                 | Azure Active Directory             |                                   | oauth.io                                                   |
 | Mobile app analytics          | Mobile Analytics                                                             |                              |                 | HockeyApp                          | Mixpanel                          |                                                            |
 | Mobile app testing            | Device Farm                                                                  |Cloud Test Lab                |                 | Xamarin Test Cloud                 | BrowserStack, Sauce Labs, Testdroid                                                            |
-| Manage SSL/TLS certificates            | Certificate Manager                                                                  |                |                 |                 | Let's Encrypt, Comodo, Symantec, GlobalSign |
+| Managing SSL/TLS certificates            | Certificate Manager                                                                  |                |                 |                 | Let's Encrypt, Comodo, Symantec, GlobalSign |
 
 
 🚧 [*Please help fill this table in.*](CONTRIBUTING.md)
