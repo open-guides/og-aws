@@ -50,6 +50,7 @@ Table of Contents
 | [DirectConnect](#directconnect) | [📗](#directconnect-basics) | [📘](#directconnect-tips) |  |
 | [Redshift](#redshift) | [📗](#redshift-basics) | [📘](#redshift-tips) | [📙](#redshift-gotchas-and-limitations) |
 | [EMR](#emr) | [📗](#emr-basics) | [📘](#emr-tips) | [📙](#emr-gotchas-and-limitations) |
+| [IoT](#iot) | [📗](#iot-basics) | [📘](#iot-tips) | [📙](#iot-gotchas-and-limitations) |
 
 **Special Topics**
 
@@ -1342,7 +1343,7 @@ IoT
     * When testing locally, if using MQTT, it may be helpful to download and use the open source [Mosquitto broker](https://mosquitto.org/download/) tool for local testing with devices and/or device simulators
     * Use this [MQTT load simulator](https://github.com/awslabs/aws-iot-mqtt-load-generator) to test device message load throughout your IoT solution.
 
-### IoT Gotchas
+### IoT Gotchas and Limitations
 
 * **IoT protocols:** It is important to verify the exact type of support for your particular IoT device message protocol. For example, one commonly used IoT protocol is [MQTT](https://www.ibm.com/developerworks/community/blogs/5things/entry/5_things_to_know_about_mqtt_the_protocol_for_internet_of_things?lang=en). Within MQTT there are [three possible levels of QoS in MQTT](https://dzone.com/articles/internet-things-mqtt-quality).  AWS IoT supports MQTT [QoS 0](http://docs.aws.amazon.com/iot/latest/developerguide/protocols.html) (fire and forget, or at most once) and QoS 1(at least once, or includes confirmation), but *not* QoS 2 (exactly once, requires 4-step confirmation).  This is important in understanding how much code you’ll need to write for your particular application message resolution needs.  Here is a [presentation about the nuances of connecting](http://www.slideshare.net/AmazonWebServices/overview-of-iot-infrastructure-and-connectivity-at-aws-getting-started-with-aws-iot).
 * The ecosystems to match **IAM users or roles** to **IoT policies** and their associated authorized AWS IoT devices is immature. Custom coding to enforce your security requirements is common.
