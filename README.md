@@ -50,8 +50,10 @@ Table of Contents
 | [DirectConnect](#directconnect) | [📗](#directconnect-basics) | [📘](#directconnect-tips) |  |
 | [Redshift](#redshift) | [📗](#redshift-basics) | [📘](#redshift-tips) | [📙](#redshift-gotchas-and-limitations) |
 | [EMR](#emr) | [📗](#emr-basics) | [📘](#emr-tips) | [📙](#emr-gotchas-and-limitations) |
+| [Kinesis Streams](#kinesis-streams) | [📗](#kinesis-streams-basics) | [📘](#kinesis-streams-tips) | [📙](#kinesis-streams-gotchas-and-limitations) |
 | [Device Farm](#device-farm) | [📗](#device-farm-basics) |  |  |
 | [IoT](#iot) | [📗](#iot-basics) | [📘](#iot-tips) | [📙](#iot-gotchas-and-limitations) |
+
 
 **Special Topics**
 
@@ -1288,6 +1290,33 @@ EMR
 ### EMR Gotchas and Limitations
 -	💸❗**EMR costs** can pile up quickly since it involves lots of instances, efficiency can be poor depending on cluster configuration and choice of workload, and accidents like hung jobs are costly. See the [section on EC2 cost management](#ec2-cost-management), especially the tips there about Spot instances and avoiding hourly billing. [This blog post](http://engineering.bloomreach.com/strategies-for-reducing-your-amazon-emr-costs/) has additional tips.
 -	💸 Beware of “double-dipping”. With EMR, you pay for the EC2 capacity and the service fees. In addition, EMR syncs task logs to S3, which means you pay for the storage and **PUT requests** at [S3 standard rates](https://aws.amazon.com/s3/pricing/#Request_Pricing). While the log files tend to be relatively small, every Hadoop job, depending on the size, generates thousands of log files that can quickly add up to thousands of dollars on the AWS bill. YARN's [log aggregation](http://hortonworks.com/blog/simplifying-user-logs-management-and-access-in-yarn/) is not available on EMR.
+
+Kinesis Streams
+---
+
+### Kinesis Streams Basics
+
+-	📒 [Homepage](https://aws.amazon.com/kinesis/streams/) ∙ [Developer guide](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) ∙ [FAQ](https://aws.amazon.com/kinesis/streams/faqs/) ∙ [Pricing](https://aws.amazon.com/kinesis/streams/pricing/)
+-	**Kinesis Streams** (which used to be only called Kinesis, before Kinesis Firehose and Kinesis Analytics were launched) is a service that allows you to injest high-throughput data streams for immediate or delayed processing by other AWS services
+- Kinesis Streams' subcomponents are called [Shards](https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html). Each shard provides 1MB/s of write capacity and 2MB/s of read capacity at a maximum of 5 reads per second. A stream can have its Shards programatically increased or decreased based on a variety of metrics
+- All records entered into a Kinesis Stream are assigned a unique Sequence Number as they are captured. The records in a Stream are ordered by this number, so any time-ordering is preserved.
+
+### Kinesis Streams Alternatives and Lock-in
+
+-	⛓Kinesis is most closely compared to [Apache Kafka](https://kafka.apache.org/), an open-source data injestion solution. It is possible to set up a Kafka cluster hosted on [EC2 instances](#ec2) (or any other VPS), however you are responsible for managing and maintaining both Zookeeper and the Kafka brokers in a highly availible configuration. Confluent have a good blog post on their recommendations on doing this [here](http://www.confluent.io/blog/design-and-deployment-considerations-for-deploying-apache-kafka-on-aws/), which has links on the bottom to several other blogs they have written on the subject.
+-   Kinesis uses very AWS-specific APIs and terms (e.g. Shards), so you should be aware of the potential future costs of migrating away from it, should you choose to use it.
+
+### Kinesis Streams Tips
+
+-	The [KCL](https://docs.aws.amazon.com/streams/latest/dev/developing-consumers-with-kcl.html) (Kinesis Client Library) is a very useful Java program (wrapped in a Multi-Language Daemon that makes it useable in Java, Node, Python, Ruby and .NET programs) that provides very simple interfaces for clients to use when consuming data from a Kinesis Stream. It provides the skeleton for 3 basic functions - ```intitialise```, ```process-records```, and ```shutdown```. As a developer, all you need to do is set up the config file to point at the correct Kinesis Stream, and fill out the provided functions in order to start consuming data from Kinesis.
+	- The KCL uses a DynamoDB table to keep track of which records have been processed by the KCL. This ensures that all records are processed 'at least once'. It is up to the developer to ensure that the program can handle doubly-processed records.
+	- The KCL also uses DynamoDB to keep track of other KCL 'workers'. It automatically shares the available Kinesis Shards across all the workers as equally as possible.
+
+### Kinesis Streams Gotchas and Limitations
+-	💸❗**Kinesis Streams are not included in the free tier!** Make sure if you do any experimentation with it on a personal account, you shut down the stream, or you can run up unexpected costs (~$11 per shard-month)
+-  Kinesis Streams' shards each only permit 5 reads per second. If you are using ```n``` shards in a particular stream, and evenly distributing your data across all of them, you will end up with a total of 5 reads per second. This is because a consumer cannot know which shard will contain new data, and will therefore need to check every single one. This means that there is a hard limit on the number of consumers you can have per stream, for any given latency.
+	- If you wish to have 5 consumers all reading data from one Stream with 5 shards, with a maximum permitted latency of 0.5 seconds, you will need to either split your data across two streams, or reduce your latency requirements - with the setup described above, each consumer will need to poll each shard once every 0.5 seconds, meaning each Shard will need to be queried 10 times a second - a value in excess of the maximum.
+	- There is a good blog by Brandur, an engineer at Stripe, that discusses the performance and limitations of Kinesis in production [here](https://brandur.org/kinesis-in-production).
 
 Device Farm
 -----------
