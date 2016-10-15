@@ -49,7 +49,12 @@ Table of Contents
 | [CloudFront](#cloudfront) | [📗](#cloudfront-basics) | [📘](#cloudfront-tips) | [📙](#cloudfront-gotchas-and-limitations) |
 | [DirectConnect](#directconnect) | [📗](#directconnect-basics) | [📘](#directconnect-tips) |  |
 | [Redshift](#redshift) | [📗](#redshift-basics) | [📘](#redshift-tips) | [📙](#redshift-gotchas-and-limitations) |
+<<<<<<< HEAD
 | [EMR](#emr) | [📗](#emr-basics) | [📘](#emr-tips) | [📙](#emr-gotchas-and-limitations) |
+=======
+| [EMR](#emr) | [📗](#emr-basics) | [📘](#emr-tips) |  |
+>>>>>>> origin/device-farm-basics
+| [Device Farm](#device-farm) | [📗](#device-farm-basics) |  |  |
 
 **Special Topics**
 
@@ -1278,11 +1283,23 @@ EMR
 -	Python programmers may want to take a look at Yelp’s [mrjob](https://github.com/Yelp/mrjob).
 -	It takes time to tune performance of EMR jobs, which is why third-party services such as [Qubole’s data service](https://www.qubole.com/mapreduce-as-a-service/) are gaining popularity as ways to improve performance or reduce costs.
 
+<<<<<<< HEAD
 ### EMR Gotchas and Limitations
 -	💸❗**EMR costs** can pile up quickly since it involves lots of instances, efficiency can be poor depending on cluster configuration and choice of workload, and accidents like hung jobs are costly. See the [section on EC2 cost management](#ec2-cost-management), especially the tips there about Spot instances and avoiding hourly billing. [This blog post](http://engineering.bloomreach.com/strategies-for-reducing-your-amazon-emr-costs/) has additional tips.
 -	💸 Beware of “double-dipping”. With EMR, you pay for the EC2 capacity and the service fees. In addition, EMR syncs task logs to S3, which means you pay for the storage and **PUT requests** at [S3 standard rates](https://aws.amazon.com/s3/pricing/#Request_Pricing). While the log files tend to be relatively small, every Hadoop job, depending on the size, generates thousands of log files that can quickly add up to thousands of dollars on the AWS bill. YARN's [log aggregation](http://hortonworks.com/blog/simplifying-user-logs-management-and-access-in-yarn/) is not available on EMR.
 
+=======
+>>>>>>> origin/device-farm-basics
+Device Farm
+-----------
 
+### Device Farm Basics
+-	📒 [Homepage](https://aws.amazon.com/device-farm/) ∙ [Developer guide](http://docs.aws.amazon.com/devicefarm/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/device-farm/faq/) ∙ [Pricing](https://aws.amazon.com/device-farm/pricing/)
+- **Device Farm** is an AWS service that enables mobile app testing on real devices.
+- Supports iOS and Android (including Kindle Fire) devices, as well as the mobile web.
+- Supports remote device access in order to allow for interactive testing/debugging.
+
+🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
 High Availability
 -----------------
