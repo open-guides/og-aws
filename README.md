@@ -208,7 +208,7 @@ General Information
 	-	🐥[QuickSight](https://aws.amazon.com/quicksight/): Business intelligence service
 	-	[SES](https://aws.amazon.com/ses/): Send and receive e-mail for marketing or transactions
 	-	⛓[API Gateway](https://aws.amazon.com/api-gateway/): Proxy, manage, and secure API calls
-	-	⛓[IoT](https://aws.amazon.com/iot/): Manage bidirectional communication over HTTP, WebSockets, and MQTT between AWS and clients (often but not necessarily “things” like appliances or sensors)
+	-	⛓[IoT](#iot): Manage bidirectional communication over HTTP, WebSockets, and MQTT between AWS and clients (often but not necessarily “things” like appliances or sensors)
 	-	⛓[WAF](https://aws.amazon.com/waf/): Web firewall for CloudFront to deflect attacks
 	-	⛓[KMS](#kms): Store and manage encryption keys securely
 	-	[Inspector](https://aws.amazon.com/inspector/): Security audit
