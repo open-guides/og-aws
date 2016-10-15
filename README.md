@@ -1283,7 +1283,7 @@ Kinesis Streams
 -	📒 [Homepage](https://aws.amazon.com/kinesis/streams/) ∙ [Developer guide](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) ∙ [FAQ](https://aws.amazon.com/kinesis/streams/faqs/) ∙ [Pricing](https://aws.amazon.com/kinesis/streams/pricing/)
 -	**Kinesis Streams** (which used to be only called Kinesis, before Kinesis Firehose and Kinesis Analytics were launched) is a service that allows you to injest high-throughput data streams for immediate or delayed processing by other AWS services
 - Kinesis Streams' subcomponents are called [Shards](https://docs.aws.amazon.com/streams/latest/dev/key-concepts.html). Each shard provides 1MB/s of write capacity and 2MB/s of read capacity at a maximum of 5 reads per second. A stream can have its Shards programatically increased or decreased based on a variety of metrics
-- All records entered into a Kinesis Stream are kept in time-order, but obviously it is up to the developer to ensure they are entered into the Stream in the correct order.
+- All records entered into a Kinesis Stream are assigned a unique Sequence Number as they are captured. The records in a Stream are ordered by this number, so any time-ordering is preserved.
 
 ### Kinesis Streams Alternatives and Lock-in
 
@@ -1299,8 +1299,7 @@ Kinesis Streams
 ### Kinesis Streams Gotchas and Limitations
 -	💸❗**Kinesis Streams are not included in the free tier!** Make sure if you do any experimentation with it on a personal account, you shut down the stream, or you can run up unexpected costs (~$11 per shard-month)
 -  Kinesis Streams' shards each only permit 5 reads per second. If you are using ```n``` shards in a particular stream, and evenly distributing your data across all of them, you will end up with a total of 5 reads per second. This is because a consumer cannot know which shard will contain new data, and will therefore need to check every single one. This means that there is a hard limit on the number of consumers you can have per stream, for any given latency.
-	- If you wish to have 5 consumers all reading data from one Stream with 5 shards, with a maximum permitted latency of 0.5 seconds, you will need to either split your data across two streams, or reduce your latency requirements.
-	- Each consumer will need to poll each shard once every 0.5 seconds, meaning each Shard will need to be queried 10 times a second - a value in excess of the maximum.
+	- If you wish to have 5 consumers all reading data from one Stream with 5 shards, with a maximum permitted latency of 0.5 seconds, you will need to either split your data across two streams, or reduce your latency requirements - with the setup described above, each consumer will need to poll each shard once every 0.5 seconds, meaning each Shard will need to be queried 10 times a second - a value in excess of the maximum.
 	- There is a good blog by Brandur, an engineer at Stripe, that discusses the performance and limitations of Kinesis in production [here](https://brandur.org/kinesis-in-production).
 
 High Availability
