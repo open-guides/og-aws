@@ -1156,7 +1156,7 @@ VPCs, Network Security, and Security Groups
 -	❗Be careful when choosing your VPC IP CIDR block: If you are going to need to make use of [ClassicLink](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html), make sure that your private IP range [doesn’t overlap](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html#classiclink-limitations) with that of EC2 Classic.
 -	❗If you are going to peer VPCs, carefully consider the cost of [data transfer between VPCs](https://aws.amazon.com/vpc/faqs/#Peering_Connections), since for some workloads and integrations, this can be prohibitively expensive.
 -	❗If you delete the default VPC, the only way to create another VPC marked as “default” is to contact AWS technical support. See this [note](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/default-vpc.html#deleting-default-vpc) in the documentation.
--	❗Be careful with VPC VPN credentials! If lost or compromised, the VPN endpoint must be deleted and recreated. Instructions for [Replacing Compromised Credentials](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html#CompromisedCredentials).
+-	❗Be careful with VPC VPN credentials! If lost or compromised, the VPN endpoint must be deleted and recreated. See the instructions for [Replacing Compromised Credentials](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html#CompromisedCredentials).
 
 KMS
 ---
