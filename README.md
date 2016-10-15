@@ -1055,7 +1055,7 @@ Lambda
 -	🔸Lambda is a new technology. As of mid 2016, only a few companies are using it for large-scale production applications.
 -	🔸Managing lots of Lambda functions is a workflow challenge, and tooling to manage Lambda deployments is still immature.
 -	🔸AWS’ official workflow around managing function [versioning and aliases](https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html) is painful.
--	❗Currently (October,2016) Lambda functions can sometimes stop working for 2-3 minutes for failure recovery purposes according to a support ticket answer from Lambda dev team. They are working to prevent this in the future.
+-	❗Currently (as of October, 2016) Lambda functions can sometimes stop working for 2-3 minutes for failure recovery purposes according to a support ticket answer from Lambda dev team. They are working to prevent this in the future.
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
