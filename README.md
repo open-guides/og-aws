@@ -532,7 +532,7 @@ We cover security basics first, since configuring user accounts is something you
 -	At the beginning, IAM policy may be very simple, but for large systems, it will grow in complexity, and need to be managed with care.
 	-	🔹Make sure one person (perhaps with a backup) in your organization is formally assigned ownership of managing IAM policies, make sure every administrator works with that person to have changes reviewed. This goes a long way to avoiding accidental and serious misconfigurations.
 -	It is best to give each user or service the minimum privileges needed to perform their duties. This is the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege), one of the foundations of good security. Organize all IAM users and groups according to levels of access they need.
-- If an organization has more then one account (per project / per unit), all account can be consolidated under one account (master account) and IAM users and accesses can be managed under one IAM section. It also makes it easy to switch sub accounts with one click. (https://aws.amazon.com/blogs/aws/new-cross-account-access-in-the-aws-management-console/)
+-	If your organization has more then one AWS account (for example, per-project or per-business unit), administration will be easier if you create and manage users in a single "master" account IAM. You can set things up so that users can switch to sub-accounts with one click by configuring them to be able to [switch roles] (https://aws.amazon.com/blogs/aws/new-cross-account-access-in-the-aws-management-console/).
 
 ### Security and IAM Tips
 
