@@ -1391,12 +1391,12 @@ SES
 
 ### SES Tips
 
--       🔹**Bounce Handling:** Ensure you handle this early enough. Your email sending can be shut down in case of repeated bounces. 📒 [Processing Bounces and Complaints](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/best-practices-bounces-complaints.html)
--       🔹**Credentials:** Many developers get confused between SES credentials and AWS API keys. Ensure you enter SMTP credentials while using the SMTP APIs 📒 [Using Credentials With Amazon SES](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/using-credentials.html) ∙ [Obtaining Your Amazon SES SMTP Credentials](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/smtp-credentials.html)
+-       🔹**Bounce Handling:** Ensure you handle this early enough. Your email sending can be shut down in case of repeated bounces. 📒 [Processing Bounces and Complaints](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/best-practices-bounces-complaints.html).
+-       🔹**Credentials:** Many developers get confused between SES credentials and AWS API keys. Ensure you enter SMTP credentials while using the SMTP APIs 📒 [Using Credentials With Amazon SES](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/using-credentials.html) ∙ [Obtaining Your Amazon SES SMTP Credentials](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/smtp-credentials.html).
 
 ### SES Gotchas and Limitations
 
--       🔸**Internet Access:** The SMTP endpoints are on the Internet and will not be accessible from a location without Internet access (e.g. a private subnet without NAT gateway route in the routing table). Setup a SMTP relay instance in a subnet with Internet access for the same(📒 [Integrating Amazon SES with Your Existing Email Server](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-smtp-existing-server.html)). ❗If you are using a proxy instead of a NAT, confirm if your proxy service supports SMTP
+-       🔸**Internet Access:** The SMTP endpoints are on the Internet and will not be accessible from a location without Internet access (e.g. a private subnet without NAT gateway route in the routing table). Set up a SMTP relay instance in a subnet with Internet access for the same (📒 [Integrating Amazon SES with Your Existing Email Server](http://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-smtp-existing-server.html)). ❗If you are using a proxy instead of a NAT, confirm that your proxy service supports SMTP.
 
 High Availability
 -----------------
