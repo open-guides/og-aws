@@ -1317,7 +1317,7 @@ Kinesis Streams
 
 -	The [KCL](https://docs.aws.amazon.com/streams/latest/dev/developing-consumers-with-kcl.html) (Kinesis Client Library) provides a skeleton interface for Java, Node, Python, Ruby and .NET programs to easily consume data from a Kinesis Stream. It provides the outline for 3 basic functions - ```initialize```, ```process-records```, and ```shutdown```. As a developer, all you need to do is set up the config file to point at the correct Kinesis Stream and fill out the provided functions in order to start consuming data from the Stream.
 	- The KCL uses a DynamoDB table to keep track of which records have been processed by the KCL. This ensures that all records are processed “at least once”. It is up to the developer to ensure that the program can handle doubly-processed records.
-	- The KCL also uses DynamoDB to keep track of other KCL ‘workers’. It automatically shares the available Kinesis Shards across all the workers as equally as possible.
+	- The KCL also uses DynamoDB to keep track of other KCL “workers”. It automatically shares the available Kinesis Shards across all the workers as equally as possible.
 
 ### Kinesis Streams Gotchas and Limitations
 - 🔸 Kinesis Streams’ shards each only permit [5 reads per second](http://docs.aws.amazon.com/streams/latest/dev/service-sizes-and-limits.html). If you are evenly distrubuting data across many shards, your read limit for the Stream will remain at 5 reads per second on aggregate, as each consuming application will need to check every single shard for new records. This puts a hard limit on the number of different consuming applications possible per Stream for a given maximum read latency.
