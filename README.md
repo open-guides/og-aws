@@ -1129,10 +1129,10 @@ CloudFormation
 
 -	[Troposphere](https://github.com/cloudtools/troposphere) is a Python library that makes it much easier to create CloudFormation templates.
 -	🔹Until [2016](https://aws.amazon.com/about-aws/whats-new/2016/09/aws-cloudformation-introduces-yaml-template-support-and-cross-stack-references/), CloudFormation used only an awkward JSON format that makes both reading and debugging difficult. To use it effectively typically involved building additional tooling, including converting it to YAML, but now [this is supported directly](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html).
--   CloudFormation can be set up to send SNS notifications upon state-changes, allowing you to programatically handle situations where stacks fail to build, or simply be alerted by email so a teammember can invstigate and fix the problem.
--   Cloudformation allows the use of basic conditionals when creating a stack.
-    -    This means that you can have a single template that creates Dev, QA, and Production infrastructure.
-	-    You could make the CloudFormation template take a parameter called 'environment', and reference this wherever the preexisting infrastructure is actually different between environments (e.g. VPC IDs, SecurityGroup IDs, AMI names) using an ```if-else``` statement, while reusing a single template for everything else that doesn't change (e.g. Autoscaling Group Launch Configurations)
+-   CloudFormation can be set up to send SNS notifications upon state-changes, enabling programatic handling of situations where stacks fail to build, or simple email alerts so the appropriate people are informed.
+-   CloudFormation allows the use of basic conditionals when creating a stack.
+    -    One common way to leverage this capability is in support of multi-environment CloudFormation templates – by configuring them to use ‘if-else’ statements on the value of an ‘environment’ parameter, environment-specific values for things like VPC IDs, SecurityGroup IDs, and AMI names can be passed into more generic templates.
+-   **Version control your CloudFormation templates!** In the Cloud, an application is the combination of the code written and the infrastructure it runs on. By version controlling **both**, it is easy to roll back to known good states.
 
 ### CloudFormation Gotchas and Limitations
 
