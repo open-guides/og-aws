@@ -1320,10 +1320,10 @@ Kinesis Streams
 	- The KCL also uses DynamoDB to keep track of other KCL ‘workers’. It automatically shares the available Kinesis Shards across all the workers as equally as possible.
 
 ### Kinesis Streams Gotchas and Limitations
--	💸 **Kinesis Streams are not included in the free tier.** Make sure if you do any experimentation with it on a personal account, you shut down the stream or it may run up unexpected costs (~$11 per shard-month.)
 - 🔸 Kinesis Streams’ shards each only permit [5 reads per second](http://docs.aws.amazon.com/streams/latest/dev/service-sizes-and-limits.html). If you are evenly distrubuting data across many shards, your read limit for the Stream will remain at 5 reads per second on aggregate, as each consuming application will need to check every single shard for new records. This puts a hard limit on the number of different consuming applications possible per Stream for a given maximum read latency.
    - An example: if you wish to have 5 consuming applications reading data from one Stream with ```n``` shards, with a desired maximum latency of 0.5 seconds, each consumer will need to poll each shard once every 0.5 seconds. This means each shard will need to be queried 10 times a second, a value higher than the limit of 5 per second.
 	- [This blog post](https://brandur.org/kinesis-in-production) further discusses the performance and limitations of Kinesis in production.
+-	💸 **Kinesis Streams are not included in the free tier.** Make sure if you do any experimentation with it on a personal account, you shut down the stream or it may run up unexpected costs (~$11 per shard-month.)
 
 Device Farm
 -----------
