@@ -1128,6 +1128,10 @@ CloudFormation
 ### CloudFormation Tips
 
 -	[Troposphere](https://github.com/cloudtools/troposphere) is a Python library that makes it much easier to create CloudFormation templates.
+	- Currently supports AWS and OpenStack resource types.
+	- Does not support all of the AWS resource type that can be built using pure CloudFormation/JSON.
+	- Built in error checking.
+	- Recommended soft dependency is awacs(https://github.com/cloudtools/awacs), which allows you to generate AWS access policy in JSON by writing python code.
 -	🔹Until [2016](https://aws.amazon.com/about-aws/whats-new/2016/09/aws-cloudformation-introduces-yaml-template-support-and-cross-stack-references/), CloudFormation used only an awkward JSON format that makes both reading and debugging difficult. To use it effectively typically involved building additional tooling, including converting it to YAML, but now [this is supported directly](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html).
 
 ### CloudFormation Gotchas and Limitations
