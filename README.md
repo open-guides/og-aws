@@ -1096,7 +1096,7 @@ CloudFormation
 ### CloudFormation Alternatives and Lock-In
 
 -	Hashicorp’s [Terraform](https://www.terraform.io/intro/vs/cloudformation.html) is a third-party alternative.
-	-	🔸Some AWS features may not be available in Terraform (ie., MultiAZ ElastiCache using Redis), and you may have to resort to embedded **CloudFormation** templates.
+	-	🔸Some AWS features may not be available in Terraform (i.e. MultiAZ ElastiCache using Redis), and you may have to resort to embedded **CloudFormation** templates.
 
 ### CloudFormation Tips
 
@@ -1107,7 +1107,7 @@ CloudFormation
 
 ### CloudFormation Gotchas and Limitations
 
--	❗Modifications to stack resources made outside CloudFormation can potentially lead to stacks stuck in UPDATE\_ROLLBACK\_FAILED mode. Stacks in this state can't be recovered without help from AWS Support.
+-	❗Modifications to stack resources made outside CloudFormation can potentially lead to stacks stuck in UPDATE\_ROLLBACK\_FAILED mode. Stacks in this state can‘t be recovered without help from AWS Support.
 -	🔸CloudFormation is useful but complex and with a variety of pain points. Many companies find alternate solutions, and many companies use it, but only with significant additional tooling.
 -	🔸CloudFormation can be very slow, especially for items like CloudFront distributions.
 -	🔸It’s hard to assemble good CloudFormation configurations from existing state. AWS does [offer a trick to do this](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-using-cloudformer.html), but it’s very clumsy.
