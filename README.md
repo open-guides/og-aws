@@ -738,7 +738,7 @@ EC2
 		- Third generation P2 series offers NVIDIA K80 GPUs in 1, 8 and 16 GPU configurations targeting machine learning and scientific workloads.
 		- Second generation G2 series offers NVIDIA K520 GPUs in 1 or 4 GPU configurations targeting graphics and video encoding.
 		- First generation CG1 instances are still available in some regions in a single configuration with a NVIDIA M2050 GPU.
-  - 🔹Typical GPU workloads are often a good fit for [Spot Instances](#ec2-cost-management).
+  - 🔹As with any expensive EC2 instance types, [Spot instances can offer significant savings](#ec2-cost-management) with GPU workloads when interruptions are tolerable.
 
 ### EC2 Gotchas and Limitations
 
