@@ -990,7 +990,7 @@ RDS
 
 -	⏱RDS instances run on EBS volumes, and hence are constrained by the EBS performance.
 -	🔸Verify what database features you need, as not everything you might want is available on RDS. For example, if you are using Postgres, check the list of [supported features and extensions](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#SQLServer.Concepts.General.FeatureSupport). If the features you need aren’t supported by RDS, you’ll have to deploy your database yourself.
-- If you use the failover support offered by RDS keep in mind that it is based on DNS changes. Therefore, you need to make sure that your client reacts to these changes appropriately. This is particularly important for Java, given how the [JVM TTL](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/java-dg-jvm-ttl.html) is configured by default.
+- If you use the failover support offered by RDS, keep in mind that it is based on DNS changes - make sure that your client reacts to these changes appropriately. This is particularly important for Java, given how its DNS resolver's TTL is [configured by default](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/java-dg-jvm-ttl.html).
 -	🔸**DB migration to RDS:** While importing your database into RDS ensure you take into consideration the maintenance window settings. If a backup is running at the same time, your import can take a considerable longer time than you would have expected.
 
 DynamoDB
