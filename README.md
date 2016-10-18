@@ -734,7 +734,12 @@ EC2
 	-	Aside from bootstrapping, you should manage keys yourself on the instances, assigning individual keys to individual users or services as appropriate.
 	-	Avoid reusing the original boot keys except by administrators when creating new instances.
 	-	Avoid sharing keys and [add individual ssh keys](http://security.stackexchange.com/questions/87480/managing-multiple-ssh-private-keys-for-a-team) for individual users.
--	**GPU support:** You can rent GPU-enabled instances on EC2. There are [two instance types](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html). Both sport an NVIDIA card (K520, 1536 CUDA cores and M2050, 448 CUDA cores).
+-	**GPU support:** You can rent GPU-enabled instances on EC2 for use in machine learning or graphics rendering workloads.
+  - There are [three generations](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html) of GPU-enabled instances available:
+		- Third generation P2 series offers NVIDIA K80 GPUs in 1, 8 and 16 GPU configurations targeting machine learning and scientific workloads.
+		- Second generation G2 series offers NVIDIA K520 GPUs in 1 or 4 GPU configurations targeting graphics and video encoding.
+		- First generation CG1 instances are still available in some regions in a single configuration with a NVIDIA M2050 GPU.
+  - 🔹As with any expensive EC2 instance types, [Spot instances can offer significant savings](#ec2-cost-management) with GPU workloads when interruptions are tolerable.
 
 ### EC2 Gotchas and Limitations
 
