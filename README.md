@@ -1229,10 +1229,10 @@ Redshift
 -	[Amazon Redshift Utils](https://github.com/awslabs/amazon-redshift-utils) contains useful utilities, scripts and views to simplify Redshift ops.
 -	[VACUUM](http://docs.aws.amazon.com/redshift/latest/dg/t_Reclaiming_storage_space202.html) regularly following a significant number of deletes or updates to reclaim space and improve query performance.
 -	Redshift provides various [column compression](http://docs.aws.amazon.com/redshift/latest/dg/t_Compressing_data_on_disk.html) options to optimize the stored data size. AWS strongly encourages users to use [automatic compression](http://docs.aws.amazon.com/redshift/latest/dg/c_Loading_tables_auto_compress.html) at the COPY stage, when Redshift uses a sample of the data being ingested to analyze the column compression options. However, automatic compression can only be applied to an empty table with no data. Therefore, make sure the initial load batch is big enough to provide Redshift with a representative sample of the data (the default sample size is 100000 rows).
--	Redshift uses columnar storage, hence it does not have indexing capability. You can, however, use distribution key and sort key to improve performance. 
--	Redshift has two type of sort keys: compounding sort key and interleaved sort key
+-	Redshift uses columnar storage, hence it does not have indexing capabilities. You can, however, use distribution key [distkey](http://docs.aws.amazon.com/redshift/latest/dg/c_best-practices-best-dist-key.html)and sort key [sortkey](docs.aws.amazon.com/redshift/latest/dg/c_best-practices-sort-key.html)to improve performance. Redshift has two type of sort keys: compounding sort key and interleaved sort key
 -	A compound sort key is made up of all columns listed in the sort key definition. It is most useful when you have queries with operations using prefix of the sortkey.
--	An interleaved sort key on the other hand gives equal weight to each column or a subset of columns in the sort key. So if you don't know ahead of time which column you want to choose for sorting and filtering, this is a much better choice than compound key.[Here](https://aws.amazon.com/blogs/aws/quickly-filter-data-in-amazon-redshift-using-interleaved-sorting/) is an example using interleaved sort key.
+-	An interleaved sort key on the other hand gives equal weight to each column or a subset of columns in the sort key. So if you don't know ahead of time which column you want to choose for sorting and filtering, this is a much better choice than the compound key.[Here](https://aws.amazon.com/blogs/aws/quickly-filter-data-in-amazon-redshift-using-interleaved-sorting/) is an example using interleaved sort key.
+
 
 ### Redshift Gotchas and Limitations
 
@@ -1246,7 +1246,7 @@ Redshift
 -	❗ Never resize a live cluster. The resize operation takes hours depending on the dataset size. In rare cases, the operation may also get stuck and you'll end up having a non-functional cluster. The safer approach is to create a new cluster from a snapshot, resize the new cluster and shut down the old one.
 -	Redshift has reserved keywords which are not present in Postgres (see full list [here](https://docs.aws.amazon.com/redshift/latest/dg/r_pg_keywords.html)). Watch out for DELTA ([Delta Encodings](https://docs.aws.amazon.com/redshift/latest/dg/c_Delta_encoding.html)).
 -	Redshift does not support many Postgres functions, most notably several date/time-related and aggregation functions. See the [full list here](https://docs.aws.amazon.com/redshift/latest/dg/c_unsupported-postgresql-functions.html).
--	Compression on sortkey can result in significant performance impact. So if your Redshift is slow in querying, you might want to consider removing compression on your sort key, and retest your table.
+-	Compression on sortkey can result in significant performance impact. So if your Redshift queries involving sort key(s) are slow, you might want to consider removing compression on your sort key(s)[Data Compression](https://aws.amazon.com/blogs/big-data/optimizing-for-star-schemas-and-interleaved-sorting-on-amazon-redshift/).
 
 EMR
 ---
