@@ -271,7 +271,7 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 |-------------------------------|------------------------------------------------------------------------------|------------------------------|-----------------|------------------------------------|-----------------------------------|------------------------------------------------------------|
 | Virtual server                | EC2                                                                          | Compute Engine (GCE)         |                 | Virtual Machine                    | DigitalOcean                      | OpenStack                                                  |
 | PaaS                          | Elastic Beanstalk                                                            | App Engine                   | App Engine      | Web Apps                           | Heroku, AppFog, OpenShift | Meteor, AppScale, Cloud Foundry, Convox                    |
-| Serverless, microservices     | Lambda, API Gateway                                                          | Functions                    |                 | Function Apps                      | PubNub Blocks, Auth0 Webtask    |                                                            |
+| Serverless, microservices     | Lambda, API Gateway                                                          | Functions                    |                 | Function Apps                      | PubNub Blocks, Auth0 Webtask      | Kong, Tyk                                                  |
 | Container, cluster manager    | ECS                                                                          | Container Engine, Kubernetes | Borg or Omega   | Container Service                  |                                   | Kubernetes, Mesos, Aurora                                  |
 | File storage                  | S3                                                                           | Cloud Storage                | GFS             | Storage Account                    |                                   | Swift, HDFS                                                |
 | Block storage                 | EBS                                                                          | Persistent Disk              |                 | Storage Account                    |                                   | NFS                                                        |
@@ -1086,6 +1086,11 @@ API Gateway
 -	**API Gateway** provides a scalable, secured front-end for service APIs, and can work with Lambda, Elastic Beanstalk, or regular EC2 services.
 -	It allows “serverless” deployment of applications built with Lambda.
 -	🔸Switching over deployments after upgrades can be tricky. There are no built-in mechanisms to have a single domain name migrate from one API gateway to another one. So it may be necessary to build an additional layer in front (even another API Gateway) to allow smooth migration from one deployment to another.
+
+### API Gateway Alternatives and Lock-In
+
+- [Kong](https://getkong.org) is an open-source, on-premises API and microservices gateway built on nginx with Lua. Kong is extensible through “plugins”.
+- [Tyk](https://tyk.io) is an open-source API gateway implemented in Go and available in the cloud, on-premises or hybrid.
 
 ### API Gateway Gotchas and Limitations
 
