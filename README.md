@@ -1048,7 +1048,6 @@ Lambda
 
 -	📒 [Homepage](https://aws.amazon.com/lambda/) ∙ [Developer guide](http://docs.aws.amazon.com/lambda/latest/dg/) ∙ [FAQ](https://aws.amazon.com/lambda/faqs/) ∙ [Pricing](https://aws.amazon.com/lambda/pricing/)
 -	**Lambda** is a relatively new service (launched at end of 2014) that offers a different type of compute abstraction: A user-defined function that can perform a small operation, where AWS manages provisioning and scheduling how it is run.
--	💸Lambda is free for the first 1 million requests and costs $0.20 for each 1 million requests thereafter. ([See pricing page](https://aws.amazon.com/lambda/pricing/)).
 
 ### Lambda Tips
 
@@ -1067,7 +1066,7 @@ Lambda
 -	🔸Lambda is a new technology. As of mid 2016, only a few companies are using it for large-scale production applications.
 -	🔸Managing lots of Lambda functions is a workflow challenge, and tooling to manage Lambda deployments is still immature.
 -	🔸AWS’ official workflow around managing function [versioning and aliases](https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html) is painful.
--	🔸Currently, Lambda does not natively provide for environment variables, which are a common way of storing configuration (see [factor 3 - Config, in the 12-factor app](https://12factor.net/config)). This is currently provided as part of the [Serverless Framework](https://github.com/serverless/serverless)
+-	🔸Currently, [Lambda does not natively provide for environment variables](https://forums.aws.amazon.com/thread.jspa?messageID=686261), which are a [common way](https://12factor.net/config) of storing configuration, so your must rely on additional mechanisms to achieve this (such as the [Serverless framework](https://serverless.com/framework/docs/guide/environment-variable-handling/#environment-variables-in-serverless) or [apex](http://apex.run/#environment-variables))
 
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
