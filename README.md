@@ -1139,6 +1139,7 @@ CloudFormation
 ### CloudFormation Alternatives and Lock-In
 
 -	Hashicorp’s [Terraform](https://www.terraform.io/intro/vs/cloudformation.html) is a third-party alternative.
+	-	🔸Some AWS features may not be available in Terraform (i.e. MultiAZ ElastiCache using Redis), and you may have to resort to embedded **CloudFormation** templates.
 
 ### CloudFormation Tips
 
@@ -1147,6 +1148,8 @@ CloudFormation
 	- Troposphere does not support all of the resources types you can describe with CloudFormation templates.
 	- Built in [error](https://github.com/cloudtools/troposphere#examples-of-the-error-checking-full-tracebacks-removed-for-clarity) checking.
 	- A recommended soft dependency is [awacs](https://github.com/cloudtools/awacs), which allows you to generate AWS access policy in JSON by writing Python code.
+-	If you are building different stacks with similar layers, it may be useful to build separate templates for each layer that you can reuse using [AWS::CloudFormation::Stack](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack.html).
+-	🔸Avoid hardcoding resource parameters that can potentially change. Use stack parameters as much as you can, and resort to default parameter values.
 -	🔹Until [2016](https://aws.amazon.com/about-aws/whats-new/2016/09/aws-cloudformation-introduces-yaml-template-support-and-cross-stack-references/), CloudFormation used only an awkward JSON format that makes both reading and debugging difficult. To use it effectively typically involved building additional tooling, including converting it to YAML, but now [this is supported directly](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-formats.html).
 -   CloudFormation can be set up to [send SNS notifications](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-add-tags.html) upon state changes, enabling programatic handling of situations where stacks fail to build, or simple email alerts so the appropriate people are informed.
 -   CloudFormation allows the use of [**conditionals**](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/conditions-section-structure.html) when creating a stack.
@@ -1155,6 +1158,7 @@ CloudFormation
 
 ### CloudFormation Gotchas and Limitations
 
+-	❗Modifications to stack resources made outside CloudFormation can potentially lead to stacks stuck in UPDATE\_ROLLBACK\_FAILED mode. Stacks in this state can‘t be recovered without help from AWS Support.
 -	🔸CloudFormation is useful but complex and with a variety of pain points. Many companies find alternate solutions, and many companies use it, but only with significant additional tooling.
 -	🔸CloudFormation can be very slow, especially for items like CloudFront distributions.
 -	🔸It’s hard to assemble good CloudFormation configurations from existing state. AWS does [offer a trick to do this](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-using-cloudformer.html), but it’s very clumsy.
