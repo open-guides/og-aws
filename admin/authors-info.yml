@@ -26,6 +26,7 @@ roles:
   donnemartin: expert (tools)
   merrells: expert (cloud infrastructure, when to use AWS)
   benkehoe: expert (IoT)
+  ehammond: expert (Lambda, serverless)
   marcello3d:
   golyshev:
   Praveen Patnala:
