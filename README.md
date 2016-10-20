@@ -1139,7 +1139,7 @@ CloudFormation
 ### CloudFormation Alternatives and Lock-In
 
 -	Hashicorp’s [Terraform](https://www.terraform.io/intro/vs/cloudformation.html) is a third-party alternative.
-	-	🔸Some AWS features may not be available in Terraform (i.e. MultiAZ ElastiCache using Redis), and you may have to resort to embedded **CloudFormation** templates.
+	-	🔸Some AWS features may not be available in Terraform (e.g. multi-AZ ElastiCache using Redis), and you may have to resort to embedded CloudFormation templates.
 
 ### CloudFormation Tips
 
