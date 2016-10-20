@@ -38,6 +38,9 @@ Table of Contents
 | [Elastic IPs](#elastic-ips) | [📗](#elastic-ip-basics) | [📘](#elastic-ip-tips) | [📙](#elastic-ip-gotchas-and-limitations) |
 | [Glacier](#glacier) | [📗](#glacier-basics) | [📘](#glacier-tips) | [📙](#glacier-gotchas-and-limitations) |
 | [RDS](#rds) | [📗](#rds-basics) | [📘](#rds-tips) | [📙](#rds-gotchas-and-limitations) |
+| [RDS MySQL and MariaDB](#rds-mysql-and-mariadb) | [📗](#rds-mysql-and-mariadb-basics) | [📘](#rds-mysql-and-mariadb-tips) | [📙](#rds-mysql-and-mariadb-gotchas-and-limitations) |
+| [RDS Aurora](#rds-aurora) | [📗](#rds-aurora-basics) | [📘](#rds-aurora-tips) | [📙](#rds-aurora-gotchas-and-limitations) |
+| [RDS Aurora](#rds-sql-server) | [📗](#rds-sql-server-basics) | [📘](#rds-sql-server-tips) | [📙](#rds-sql-server-gotchas-and-limitations) |
 | [DynamoDB](#dynamodb) | [📗](#dynamodb-basics) | [📘](#dynamodb-tips) | [📙](#dynamodb-gotchas-and-limitations) |
 | [ECS](#ecs) | [📗](#ecs-basics) | [📘](#ecs-tips) |  |
 | [Lambda](#lambda) | [📗](#lambda-basics) | [📘](#lambda-tips) | [📙](#lambda-gotchas-and-limitations) |
@@ -977,45 +980,35 @@ RDS
 ### RDS Basics
 
 -	📒 [Homepage](https://aws.amazon.com/rds/) ∙ [User guide](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/) ∙ [FAQ](https://aws.amazon.com/rds/faqs/) ∙ [Pricing](https://aws.amazon.com/rds/pricing/)(see also [ec2instances.info/rds/](http://www.ec2instances.info/rds/)\)
--	**RDS** is a managed relational database service, allowing you to deploy and scale databases more easily. It supports Oracle, Microsoft SQL Server, PostgreSQL, MySQL, MariaDB, and Amazon’s own Aurora.
+-	**RDS** is a managed relational database service, allowing you to deploy and scale databases more easily. It supports [Oracle](https://aws.amazon.com/rds/oracle/), [Microsoft SQL Server](https://aws.amazon.com/rds/sqlserver/), [PostgreSQL](https://aws.amazon.com/rds/postgresql/), [MySQL](https://aws.amazon.com/rds/mysql/), [MariaDB](https://aws.amazon.com/rds/mariadb/), and Amazon’s own [Aurora](https://aws.amazon.com/rds/aurora/).
 
 ### RDS Tips
 
 -	If you’re looking for the managed convenience of RDS for other data stores such as MongoDB or Cassandra, you may wish to consider third-party services from providers such as [mLab](https://mlab.com/), [Compose](https://www.compose.com/), or [InstaClustr](https://www.instaclustr.com/).
--	Wherever possible, create your database instances in a [VPC](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.html). There is a lot of effort and some functional limitations involved in managing VPC and non-VPC instances and migrating non-VPC instances into a VPC. 
--	Make sure to create a new parameter group and option group for your database since the default parameter group does not allow dynamic configuration changes.
+-	🔹Make sure to create a new [parameter group](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html) and option group for your database since the default parameter group does not allow dynamic configuration changes.
 
 ### RDS Gotchas and Limitations
 
 -	⏱RDS instances run on EBS volumes (either general-purpose or provisioned IOPS), and hence are constrained by the EBS performance.
 -	🔸Verify what database features you need, as not everything you might want is available on RDS. For example, if you are using Postgres, check the list of [supported features and extensions](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#SQLServer.Concepts.General.FeatureSupport). If the features you need aren’t supported by RDS, you’ll have to deploy your database yourself.
 -	🔸**DB migration to RDS:** While importing your database into RDS ensure you take into consideration the maintenance window settings. If a backup is running at the same time, your import can take a considerable longer time than you would have expected.
--	[Database sizes are limited](https://aws.amazon.com/about-aws/whats-new/2015/06/amazon-rds-increases-storage-limits-to-6TB-for-piops-and-gp2/) to 6TB for all database engines except for SQL Server which has a 4TB limit and Aurora which supports up to 64TB databases. 
+-	🔹[Database sizes are limited](https://aws.amazon.com/about-aws/whats-new/2015/06/amazon-rds-increases-storage-limits-to-6TB-for-piops-and-gp2/) to 6TB for all database engines except for SQL Server which has a 4TB limit and Aurora which supports up to 64TB databases. 
 
-RDS MySQL
----------
+RDS MySQL and MariaDB
+---------------------
 
-### RDS MySQL Basics
+### RDS MySQL and MariaDB Basics
 -	RDS offers MySQL versions 5.5, 5.6, and 5.7.
 
-### RDS MySQL Tips
+### RDS MySQL and MariaDB Tips
 -	MySQL RDS allows access to [binary logs](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Concepts.MySQL.html#USER_LogAccess.MySQL.BinaryFormat).
 -	Multi-AZ instances of MySQL transparently replicate data across AZs using DRBD. Automated backups of multi-AZ instances [run off the backup instance](https://www.percona.com/live/mysql-conference-2014/sessions/rds-mysql-tips-patterns-and-common-pitfalls) to reduce latency spikes on the primary.  
 -	🔸**MySQL vs MariaDB vs Aurora:** If you prefer a MySQL-style database but are starting something new, you probably should consider Aurora and MariaDB as well. **Aurora** has increased availability and is the next-generation solution. That said, Aurora [may not be](http://blog.takipi.com/benchmarking-aurora-vs-mysql-is-amazons-new-db-really-5x-faster/) as fast relative to MySQL as is sometimes reported, and is more complex to administer. **MariaDB**, the modern [community fork](https://en.wikipedia.org/wiki/MariaDB) of MySQL, [likely now has the edge over MySQL](http://cloudacademy.com/blog/mariadb-vs-mysql-aws-rds/) for many purposes and is supported by RDS.
 
-### RDS MySQL Gotchas and Limitations
--	No SUPER privileges. RDS provides some [stored procedures](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.MySQL.SQLRef.html) to perform some tasks that require SUPER privileges such as starting or stopping replication. 
--	You can replicate to non-RDS instances of MySQL, but [replication to these instances will break during AZ failovers](https://www.percona.com/live/mysql-conference-2014/sessions/rds-mysql-tips-patterns-and-common-pitfalls). 
--	There is no ability to manually CHANGE MASTER on replicas, so they must all be rebuilt after a failover of the master.
-
-RDS MariaDB
------------
-
-### RDS MariaDB Basics
--	RDS offers MariaDB versions 10.0 and 10.1.
-
-### RDS MariaDB Tips
--	Many of the tips in the RDS MySQL section apply also to MariaDB.
+### RDS MySQL and MariaDB Gotchas and Limitations
+-	🔸**No SUPER privileges.** RDS provides some [stored procedures](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.MySQL.SQLRef.html) to perform some tasks that require SUPER privileges such as starting or stopping replication. 
+-	🔸You can replicate to non-RDS instances of MySQL, but [replication to these instances will break during AZ failovers](https://www.percona.com/live/mysql-conference-2014/sessions/rds-mysql-tips-patterns-and-common-pitfalls). 
+-	🔸There is no ability to manually CHANGE MASTER on replicas, so they must all be rebuilt after a failover of the master.
 
 RDS Aurora
 -----------
@@ -1023,7 +1016,7 @@ RDS Aurora
 ### RDS Aurora Basics
 -	Amazon’s proprietary fork of MySQL intended to scale up for high concurrency workloads. Generally speaking, individual query performance under Aurora is not expected to improve significantly relative to MySQL or MariaDB, but Aurora is intended to maintain performance while executing many more queries concurrently than an equivalent MySQL or MariaDB server could handle.
 -	[Notable new features](http://www.slideshare.net/AmazonWebServices/amazon-aurora-amazons-new-relational-database-engine) include:
-	-	Log-structured storage instead of b-trees to improve write performance
+	-	Log-structured storage instead of B-trees to improve write performance
 	-	Out-of-process buffer pool so that databases instances can be restarted without clearing the buffer pool
 	-	The underlying physical storage is a specialized SSD array that automatically maintains 6 copies of your data across 3 AZs.
 	-	Aurora read replicas share the storage layer with the write master which significantly reduces replica lag, eliminates the need for the master to write and distribute the binary log for replication, and allows for zero-data-loss failovers from the master to a replica. The master and all the read replicas that share storage are known collectively as an **Aurora cluster**.
@@ -1036,7 +1029,7 @@ RDS Aurora
 -	You can replicate [from an Aurora cluster to MySQL or to another Aurora cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Overview.Replication.MySQLReplication.html). This requires enable binary logging and is not as performant as native Aurora replication.  
 
 ### RDS Aurora Gotchas and Limitations
--	[Aurora is based on MySQL 5.6.10](https://news.ycombinator.com/item?id=12415693) with some cherry-picking of later MySQL features. It is missing most 5.7 features as well as some online DDL features introduced in 5.6.17. 
+-	🔸[Aurora is based on MySQL 5.6.10](https://news.ycombinator.com/item?id=12415693) with some cherry-picking of later MySQL features. It is missing most 5.7 features as well as some online DDL features introduced in 5.6.17. 
 
 
 RDS SQL Server
@@ -1049,10 +1042,10 @@ RDS SQL Server
 -	Recently added support for [backup and restore to/from S3](https://www.brentozar.com/archive/2016/07/holy-cow-amazon-rds-sql-server-just-changed-everything/) which may make it an attractive DR option for on-premises installations.
 
 ### RDS SQL Server Gotchas and Limitations
--	The user is granted only db_owner privileges for each database on the instance.
--	Storage cannot be expanded for existing databases. If you need more space, you must restore your database on a new instance with larger storage.
--	4TB database size limit for non-Express editions.
--	Limited to [30 databases per instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html)
+-	🔸The user is granted only db_owner privileges for each database on the instance.
+-	🔸Storage cannot be expanded for existing databases. If you need more space, you must restore your database on a new instance with larger storage.
+-	🔸4TB database size limit for non-Express editions.
+-	🔸Limited to [30 databases per instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html)
 
 
 DynamoDB
