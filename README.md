@@ -528,7 +528,8 @@ We cover security basics first, since configuring user accounts is something you
 -	📒 IAM [Homepage](https://aws.amazon.com/iam/) ∙ [User guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) ∙ [FAQ](https://aws.amazon.com/iam/faqs/)
 -	The [AWS Security Blog](https://blogs.aws.amazon.com/security) is one of the best sources of news and information on AWS security.
 -	**IAM** is the service you use to manage accounts and permissioning for AWS.
--	Managing security and access control with AWS is critical, so every AWS administrator needs to use and understand IAM, at least at a basic level.  IAM objects include Users, Groups (containers for users and their permissions), Roles(container for permissions assigned to AWS service instances) and Policies (permissions).
+-	Managing security and access control with AWS is critical, so every AWS administrator needs to use and understand IAM, at least at a basic level.  
+-	[IAM identities](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html) include users (people or services that are using AWS), groups (containers for sets of users and their permissions), and roles (containers for permissions assigned to AWS service instances). [Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_permissions.html) for these identities are governed by [policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) You can use AWS pre-defined policies or custom policies that you create.
 -	IAM manages various kinds of authentication, for both users and for software services that may need to authenticate with AWS, including:
 	-	[**Passwords**](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords.html) to log into the console. These are a username and password for real users.
 	-	[**Access keys**](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html), which you may use with command-line tools. These are two strings, one the “id”, which is an upper-case alphabetic string of the form 'AXXXXXXXXXXXXXXXXXXX', and the other is the secret, which is a 40-character mixed-case base64-style string. These are often set up for services, not just users.
@@ -539,7 +540,7 @@ We cover security basics first, since configuring user accounts is something you
 -	At the beginning, IAM policy may be very simple, but for large systems, it will grow in complexity, and need to be managed with care.
 	-	🔹Make sure one person (perhaps with a backup) in your organization is formally assigned ownership of managing IAM policies, make sure every administrator works with that person to have changes reviewed. This goes a long way to avoiding accidental and serious misconfigurations.
 -	It is best to give each user or service the minimum privileges needed to perform their duties. This is the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege), one of the foundations of good security. Organize all IAM users and groups according to levels of access they need.
--	You can verify policy permissions via the AWS IAM [policy simulator] tool(https://policysim.aws.amazon.com/home/index.jsp). This is particularly useful if you write custom policies.
+-	You can test policy permissions via the AWS IAM [policy simulator tool tool](https://policysim.aws.amazon.com/home/index.jsp). This is particularly useful if you write custom policies.
 
 ### Security and IAM Tips
 
