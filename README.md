@@ -1075,6 +1075,7 @@ Lambda
 -	🔸Lambda is a new technology. As of mid 2016, only a few companies are using it for large-scale production applications.
 -	🔸Managing lots of Lambda functions is a workflow challenge, and tooling to manage Lambda deployments is still immature.
 -	🔸AWS’ official workflow around managing function [versioning and aliases](https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html) is painful.
+-	🔸Currently, [Lambda does not natively provide for environment variables](https://forums.aws.amazon.com/thread.jspa?messageID=686261), which are a [common way](https://12factor.net/config) of storing configuration, so your must rely on additional mechanisms to achieve this (such as the [Serverless framework](https://serverless.com/framework/docs/guide/environment-variable-handling/#environment-variables-in-serverless) or [apex](http://apex.run/#environment-variables)).
 -	❗📜 Currently [as of October, 2016](https://github.com/open-guides/og-aws/pull/199/files/c99bddb4ee2437587f1e188d47be2bb1da01f81d#r83529126) Lambda functions can sometimes stop working for 2-3 minutes for failure recovery purposes according to a support ticket answer from Lambda development team. They are working to prevent this in the future.
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
