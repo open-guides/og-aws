@@ -5,7 +5,7 @@ Contributing
 
 Contributions of all kinds, including discussion, corrections, additions, and improvements, are welcome! We hope you'll join and help, in small ways or large. We gladly [credit](/AUTHORS.md) all contributors. Here are few notes before you jump in.
 
-### Please Help
+### Please Help ghjkl;
 
 If you’ve found this guide useful, you have many ways to help:
 
