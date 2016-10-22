@@ -1039,7 +1039,6 @@ RDS Aurora
 ### RDS Aurora Gotchas and Limitations
 -	🔸[Aurora is based on MySQL 5.6.10](https://news.ycombinator.com/item?id=12415693) with some cherry-picking of later MySQL features. It is missing most 5.7 features as well as some online DDL features introduced in 5.6.17. 
 
-
 RDS SQL Server
 --------------
 
