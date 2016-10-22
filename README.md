@@ -1009,6 +1009,67 @@ DynamoDB
 -	📒 [Homepage](https://aws.amazon.com/dynamodb/) ∙ [Developer guide](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/dynamodb/faqs/) ∙ [Pricing](https://aws.amazon.com/dynamodb/pricing/)
 -	**DynamoDB** is a [NoSQL](https://en.wikipedia.org/wiki/NoSQL) database with focuses on speed, flexibility, and scalability.
 -	DynamoDB is priced on a combination of throughput and storage.
+# The AWS Marketplace
+
+Gartner*1* confirms that because AWS has a multi-year competitive advantage over all its competitors, it’s been able to attract over a thousand technology partners and independent software vendors from popular vendors that have licensed and packaged their software to run on AWS, have integrated their software with AWS capabilities, or to deliver add-on services all through the AWS Marketplace. The AWS Marketplace is the largest “app store” in the world - surpassing Apple - regardless of being strictly a B2B app store!
+*1*Gartner
+
+When you combine the managed AWS Services with software solutions available from popular software vendors on AWS Marketplace, you can get the precise solutions you want that augment and enhances your project beyond what the services themselves provide. 
+
+Since AWS resources can be instantiated in seconds, you can treat these as “disposable” resources – not hardware or software you’ve spent months deciding which to choose and spending a significant up-front expenditure without knowing if it will solve your problems. The “Services not Servers” mantra of AWS provides many ways to increase developer productivity, operational efficiency and the ability to “try on” various solutions available that solve the same problem on AWS Marketplace to find the perfect fit for your business needs without commitment to long-term contracts.
+
+This allows iterative, experimental deployment to take advantage of advanced software packages and emerging technologies within minutes, paying only for what you consume, by the hour or by the month.
+
+The AWS Marketplace to-date has over 290 big data products ready to launch at the click of a button.
+
+**For example, you can:**
+
+* Launch pre-configured and pre-tested experimentation platforms for big data analysis
+* Query your data where it sits (in-datasource analysis) without moving or storing your data on an intermediate server while directly accessing the most powerful functions of the underlying database
+* Perform “ELT” (extract, load, and transform) vs. “ETL” (extract, transform, and load) your data into Amazon’s Redshift data warehouse so the data is in its original form, giving you the ability to perform multiple data warehouse transforms on the same data
+* Have long-term connectivity among many different databases
+* Ensure your data is clean and complete prior to analysis
+* Visualize millions of data points on a map
+* Develop route planning and geographic customer targeting
+* Embed visualizations in applications or stand-alone applications
+* Visualize billions of rows in seconds
+* Graph data and drill into areas of concern
+* Have built-in data science
+* Export information into any format
+* Deploy machine-learning algorithms for data mining and predictive analytics
+* Meet the needs of specialized data connector requirements
+* Create real-time geospatial visualization and interactive analytics
+* Have both OLAP and OLTP analytical processing
+* Map disparate data sources (cloud, social, Google Analytics, mobile, on-prem, big data or relational data) using high-performance massively parallel processing (MPP) with easy-to-use wizards
+* Fine-tune the type of analytical result (location, prescriptive, statistical, text, predictive, behavior, machine learning models and so on)
+* Customize the visualizations in countless views with different levels of interactivity
+* Integrate with existing SAP products
+* Deploy a new data warehouse or extend your existing one
+
+Amazon EC2 provides an ideal platform for operating your own self-managed big data analytics applications on AWS infrastructure. Almost any software you can install on Linux or Windows virtualized environments can be run on Amazon EC2 with a pay-as-you-go pricing model with a solution available on AWS Marketplace. Amazon EC2 uses the implemented architecture to distribute computing power across parallel servers to execute the algorithms in the most efficient manner.
+
+**Some examples of self-managed big data analytics that run on Amazon EC2 include the following:**
+
+* A Splunk Enterprise Platform_, the leading software platform for real-time Operational Intelligence. Splunk software and cloud services enable organizations to search, monitor, analyze and visualize machine-generated big data coming from websites, applications, servers, networks, sensors and mobile devices. A Splunk Analytics for Hadoop, within AWS, solution is available on AWS Marketplace also. It’s called _Hunk_ and it enables interactive exploration, analysis, and data visualization for data stored in Amazon EMR and Amazon S3_
+* A Tableau Server Data Visualization Instance, for users to interact with pre-built data visualizations created using Tableau Desktop. Tableau server allows for ad-hoc querying and data discovery, supports high-volume data visualization and historical analysis, and enables the creation of reports and dashboards
+* A SAP HANA One Instance, a single-tenant SAP HANA database instance that has SAP HANA’s in-memory platform, to do transactional processing, operational reporting, online analytical processing, predictive and text analysis
+* A Geospatial AMI such as MapLarge_,_ that brings high-performance, real-time geospatial visualization and interactive analytics. MapLarge’s visualization results are useful for plotting addresses on a map to determine demographics, analyzing law enforcement and intelligence data, delivering insight to public health information, and visualizing distances such as roads and pipelines
+* An Advanced Analytics Zementis ADAPA Decision Engine Instance, which is a platform and scoring engine to produce Data Science predictive models that integrate with other predictive models like R, Python, KNIME, SAS, SPSS, SAP, FICO and more. Zementis ADAPA Decision Engine can score data in real-time using web services or in batch mode from local files or data in Amazon S3 buckets. It provides predictive analytics through many predictive algorithms, sensor data processing (IoT), behavior analysis, and machine learning models
+* A Matillion Data Integration Instance, an ELT service natively built for Amazon Redshift, that uses Amazon Redshift’s processing for data transformations to utilize it’s blazing speed and scalability. Matillion gives the ability to orchestrate and/or transform data upon ingestion or simply load the data so it can be transformed multiple times as your business requires
+
+* * *
+DynamoDB indexing can include primary keys, which can either be a single-attrubute hash key or a composite hash-key range. You can also query non-primary key attributes using [Secondary Indexes](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html).
+
+### DynamoDB Gotchas and Limitations
+
+- 🔸 DynamoDB doesn’t provide an easy way to bulk-load data (it is possible through [Data Pipeline](http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-importexport-ddb-part1.html), and this has some [unfortunate consequences](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GuidelinesForTables.html#GuidelinesForTables.AvoidExcessivePTIncreases). Since you need to use the regular service APIs to update existing or create new rows, it is common to temporarily turn up a destination table’s write throughput to speed import. But when the table’s write capacity is increased, DynamoDB may do an irreversible split of the partitions underlying the table, spreading the total table capacity evenly across the new generation of tables. Later, if the capacity is reduced, the capacity for each partition is also reduced but the total number of partitions is not, leaving less capacity for each partition. This leaves the table in a state where it much easier for hotspots to overwhelm individual partitions.
+- It is important to make sure that DynamoDB [resource limits](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html#limits-data-types) are compatible with your dataset and workload. For example, the maximum size value that can be added to a DynamoDB table is 400 KB (larger items can be stored in S3 and a URL stored in DynamoDB).
+- 🔸 Dealing with **time series data** in DynamoDB can be challenging. A global secondary index together with down sampling timestamps can be a possible solution as explained [here](https://blogs.aws.amazon.com/bigdata/post/Tx3KPZDXIBJEQ4B/Scaling-Writes-on-Amazon-DynamoDB-Tables-with-Global-Secondary-Indexes).
+- DynamoDB does [not allow](https://forums.aws.amazon.com/thread.jspa?threadID=90137) an empty string as a valid attribute value. The most common work-around is to use a substitute value instead of leaving the field empty.
+- Data Types: DynamoDB supports three [data types](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.DataTypes.html) -- **number**, **string**, and **binary** -- in both scalar and multi-valued sets. DynamoDB can also support [JSON](https://aws.amazon.com/blogs/aws/dynamodb-update-json-and-more/).
+
+ECS
+
 
 ### DynamoDB Alternatives and Lock-in
 
@@ -1020,6 +1081,62 @@ DynamoDB
 -	There is a [local version](https://aws.amazon.com/blogs/aws/dynamodb-local-for-desktop-development/) of DynamoDB provided for developer use.
 -	[DynamoDB Streams](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html) provides an ordered stream of changes to a table. Use it to replicate, back up, or drive events off of data
 -	DynamoDB can be used [as a simple locking service](https://gist.github.com/ryandotsmith/c95fd21fab91b0823328).
+# The AWS Marketplace
+
+Gartner*1* confirms that because AWS has a multi-year competitive advantage over all its competitors, it’s been able to attract over a thousand technology partners and independent software vendors from popular vendors that have licensed and packaged their software to run on AWS, have integrated their software with AWS capabilities, or to deliver add-on services all through the AWS Marketplace. The AWS Marketplace is the largest “app store” in the world - surpassing Apple - regardless of being strictly a B2B app store!
+*1*Gartner
+
+When you combine the managed AWS Services with software solutions available from popular software vendors on AWS Marketplace, you can get the precise solutions you want that augment and enhances your project beyond what the services themselves provide. 
+
+Since AWS resources can be instantiated in seconds, you can treat these as “disposable” resources – not hardware or software you’ve spent months deciding which to choose and spending a significant up-front expenditure without knowing if it will solve your problems. The “Services not Servers” mantra of AWS provides many ways to increase developer productivity, operational efficiency and the ability to “try on” various solutions available that solve the same problem on AWS Marketplace to find the perfect fit for your business needs without commitment to long-term contracts.
+
+This allows iterative, experimental deployment to take advantage of advanced software packages and emerging technologies within minutes, paying only for what you consume, by the hour or by the month.
+
+The AWS Marketplace to-date has over 290 big data products ready to launch at the click of a button.
+
+**For example, you can:**
+
+* Launch pre-configured and pre-tested experimentation platforms for big data analysis
+* Query your data where it sits (in-datasource analysis) without moving or storing your data on an intermediate server while directly accessing the most powerful functions of the underlying database
+* Perform “ELT” (extract, load, and transform) vs. “ETL” (extract, transform, and load) your data into Amazon’s Redshift data warehouse so the data is in its original form, giving you the ability to perform multiple data warehouse transforms on the same data
+* Have long-term connectivity among many different databases
+* Ensure your data is clean and complete prior to analysis
+* Visualize millions of data points on a map
+* Develop route planning and geographic customer targeting
+* Embed visualizations in applications or stand-alone applications
+* Visualize billions of rows in seconds
+* Graph data and drill into areas of concern
+* Have built-in data science
+* Export information into any format
+* Deploy machine-learning algorithms for data mining and predictive analytics
+* Meet the needs of specialized data connector requirements
+* Create real-time geospatial visualization and interactive analytics
+* Have both OLAP and OLTP analytical processing
+* Map disparate data sources (cloud, social, Google Analytics, mobile, on-prem, big data or relational data) using high-performance massively parallel processing (MPP) with easy-to-use wizards
+* Fine-tune the type of analytical result (location, prescriptive, statistical, text, predictive, behavior, machine learning models and so on)
+* Customize the visualizations in countless views with different levels of interactivity
+* Integrate with existing SAP products
+* Deploy a new data warehouse or extend your existing one
+
+Amazon EC2 provides an ideal platform for operating your own self-managed big data analytics applications on AWS infrastructure. Almost any software you can install on Linux or Windows virtualized environments can be run on Amazon EC2 with a pay-as-you-go pricing model with a solution available on AWS Marketplace. Amazon EC2 uses the implemented architecture to distribute computing power across parallel servers to execute the algorithms in the most efficient manner.
+
+**Some examples of self-managed big data analytics that run on Amazon EC2 include the following:**
+
+* A Splunk Enterprise Platform_, the leading software platform for real-time Operational Intelligence. Splunk software and cloud services enable organizations to search, monitor, analyze and visualize machine-generated big data coming from websites, applications, servers, networks, sensors and mobile devices. A Splunk Analytics for Hadoop, within AWS, solution is available on AWS Marketplace also. It’s called _Hunk_ and it enables interactive exploration, analysis, and data visualization for data stored in Amazon EMR and Amazon S3_
+* A Tableau Server Data Visualization Instance, for users to interact with pre-built data visualizations created using Tableau Desktop. Tableau server allows for ad-hoc querying and data discovery, supports high-volume data visualization and historical analysis, and enables the creation of reports and dashboards
+* A SAP HANA One Instance, a single-tenant SAP HANA database instance that has SAP HANA’s in-memory platform, to do transactional processing, operational reporting, online analytical processing, predictive and text analysis
+* A Geospatial AMI such as MapLarge_,_ that brings high-performance, real-time geospatial visualization and interactive analytics. MapLarge’s visualization results are useful for plotting addresses on a map to determine demographics, analyzing law enforcement and intelligence data, delivering insight to public health information, and visualizing distances such as roads and pipelines
+* An Advanced Analytics Zementis ADAPA Decision Engine Instance, which is a platform and scoring engine to produce Data Science predictive models that integrate with other predictive models like R, Python, KNIME, SAS, SPSS, SAP, FICO and more. Zementis ADAPA Decision Engine can score data in real-time using web services or in batch mode from local files or data in Amazon S3 buckets. It provides predictive analytics through many predictive algorithms, sensor data processing (IoT), behavior analysis, and machine learning models
+* A Matillion Data Integration Instance, an ELT service natively built for Amazon Redshift, that uses Amazon Redshift’s processing for data transformations to utilize it’s blazing speed and scalability. Matillion gives the ability to orchestrate and/or transform data upon ingestion or simply load the data so it can be transformed multiple times as your business requires
+DynamoDB indexing can include **primary** **keys**, which can either be a single-attrubute hash key or a composite hash-key range. You can also query non-primary key attributes using [**secondary** **indexes**](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html).
+
+### DynamoDB Gotchas and Limitations
+
+- 🔸 DynamoDB doesn’t provide an easy way to bulk-load data (it is possible through [Data Pipeline](http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-importexport-ddb-part1.html), and this has some [unfortunate consequences](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GuidelinesForTables.html#GuidelinesForTables.AvoidExcessivePTIncreases). Since you need to use the regular service APIs to update existing or create new rows, it is common to temporarily turn up a destination table’s write throughput to speed import. But when the table’s write capacity is increased, DynamoDB may do an irreversible split of the partitions underlying the table, spreading the total table capacity evenly across the new generation of tables. Later, if the capacity is reduced, the capacity for each partition is also reduced but the total number of partitions is not, leaving less capacity for each partition. This leaves the table in a state where it much easier for hotspots to overwhelm individual partitions.
+- It is important to make sure that DynamoDB [resource limits](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html#limits-data-types) are compatible with your dataset and workload. For example, the maximum size value that can be added to a DynamoDB table is 400 KB (larger items can be stored in S3 and a URL stored in DynamoDB).
+- 🔸 Dealing with **time series data** in DynamoDB can be challenging. A global secondary index together with down sampling timestamps can be a possible solution as explained [here](https://blogs.aws.amazon.com/bigdata/post/Tx3KPZDXIBJEQ4B/Scaling-Writes-on-Amazon-DynamoDB-Tables-with-Global-Secondary-Indexes).
+- DynamoDB does [not allow](https://forums.aws.amazon.com/thread.jspa?threadID=90137) an empty string as a valid attribute value. The most common work-around is to use a substitute value instead of leaving the field empty.
+- Data Types: DynamoDB supports three [data types](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.DataTypes.html) -- **number**, **string**, and **binary** -- in both scalar and multi-valued sets. DynamoDB can also support [JSON](https://aws.amazon.com/blogs/aws/dynamodb-update-json-and-more/).
 
 ### DynamoDB Gotchas and Limitations
 
@@ -1027,7 +1144,7 @@ DynamoDB
 -	It is important to make sure that DynamoDB [resource limits](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html#limits-data-types) are compatible with your dataset and workload. For example, the maximum size value that can be added to a DynamoDB table is 400 KB (larger items can be stored in S3 and a URL stored in DynamoDB).
 -	🔸 Dealing with **time series data** in DynamoDB can be challenging. A global secondary index together with down sampling timestamps can be a possible solution as explained [here](https://blogs.aws.amazon.com/bigdata/post/Tx3KPZDXIBJEQ4B/Scaling-Writes-on-Amazon-DynamoDB-Tables-with-Global-Secondary-Indexes).
 -	DynamoDB does [not allow](https://forums.aws.amazon.com/thread.jspa?threadID=90137) an empty string as a valid attribute value. The most common work-around is to use a substitute value instead of leaving the field empty.
-
+-       DynamoDB indexing can include **primary** **keys**, which can either be a single-attrubute hash key or a composite hash-key range. You can also query non-primary key attributes using [**secondary** **indexes**](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html).
 
 ECS
 ---
