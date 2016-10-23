@@ -51,7 +51,7 @@ Table of Contents
 | [Redshift](#redshift) | [📗](#redshift-basics) | [📘](#redshift-tips) | [📙](#redshift-gotchas-and-limitations) |
 | [EMR](#emr) | [📗](#emr-basics) | [📘](#emr-tips) | [📙](#emr-gotchas-and-limitations) |
 | [Kinesis Streams](#kinesis-streams) | [📗](#kinesis-streams-basics) | [📘](#kinesis-streams-tips) | [📙](#kinesis-streams-gotchas-and-limitations) |
-| [Device Farm](#device-farm) | [📗](#device-farm-basics) |  |  |
+| [Device Farm](#device-farm) | [📗](#device-farm-basics) | [📘](#device-farm-tips) | [📙](#device-farm-gotchas-and-limitations) |
 | [IoT](#iot) | [📗](#iot-basics) | [📘](#iot-tips) | [📙](#iot-gotchas-and-limitations) |
 | [SES](#ses) | [📗](#ses-basics) | [📘](#ses-tips) | [📙](#ses-gotchas-and-limitations) |
 
@@ -1374,7 +1374,17 @@ Device Farm
 - Supports iOS and Android (including Kindle Fire) devices, as well as the mobile web.
 - Supports remote device access in order to allow for interactive testing/debugging.
 
-🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
+### Device Farm Tips
+- [AWS Mobile blog](https://aws.amazon.com/blogs/mobile/) contains several examples of Device Farm usage for testing.
+- Device Farm offers a free trial for users who want to evaluate their service.
+- Device Farm offers two pricing model depends on a client use case. Pay per device minute is useful for small usage levels or for situations where it's hard to predict an amount of usage. Unmetered plans are useful in situations where active usage expected from beginning.
+
+### Device Farm Gotchas and Limitations
+- Devices don't have a SIM card and therefore can't be used for testing SIM card related features.
+- Device Farm supports testing for most popular languages\frameworks, but not for all. An actual list of supported frameworks and languages presented on [this page](http://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types-overview.html).
+- AWS provide an API and CLI for Device Farm, but API is quite a low level and may require developing additional tools or scripts on top of it.
+- AWS provide several tools and plugins for Device Farm, however, it doesn't cover all cases or platforms. It may require developing specific tools or plugins to support specific requirements.
+- In general, Device Farm doesn't have Android devices from Chinese companies like Huawei, Meizu, Lenovo, etc. An actual list of supported devices located [here](https://aws.amazon.com/device-farm/device-list/).
 
 IoT
 ---
