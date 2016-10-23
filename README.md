@@ -1380,11 +1380,11 @@ Device Farm
 - Device Farm offers two pricing model depends on a client use case. Pay per device minute is useful for small usage levels or for situations where it's hard to predict an amount of usage. Unmetered plans are useful in situations where active usage expected from beginning.
 
 ### Device Farm Gotchas and Limitations
-- Devices don't have a SIM card and therefore can't be used for testing SIM card related features.
-- Device Farm supports testing for most popular languages\frameworks, but not for all. An actual list of supported frameworks and languages presented on [this page](http://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types-overview.html).
-- AWS provide an API and CLI for Device Farm, but API is quite a low level and may require developing additional tools or scripts on top of it.
-- AWS provide several tools and plugins for Device Farm, however, it doesn't cover all cases or platforms. It may require developing specific tools or plugins to support specific requirements.
-- In general, Device Farm doesn't have Android devices from Chinese companies like Huawei, Meizu, Lenovo, etc. An actual list of supported devices located [here](https://aws.amazon.com/device-farm/device-list/).
+- ❗Devices don't have a SIM card and therefore can't be used for testing SIM card related features.
+- 🔸Device Farm supports testing for most popular languages\frameworks, but not for all. An actual list of supported frameworks and languages presented on [this page](http://docs.aws.amazon.com/devicefarm/latest/developerguide/test-types-overview.html).
+- 🔸AWS provide an API and CLI for Device Farm, but API is quite a low level and may require developing additional tools or scripts on top of it.
+- 🔸AWS provide several tools and plugins for Device Farm, however, it doesn't cover all cases or platforms. It may require developing specific tools or plugins to support specific requirements.
+- ❗In general, Device Farm doesn't have Android devices from Chinese companies like Huawei, Meizu, Lenovo, etc. An actual list of supported devices located [here](https://aws.amazon.com/device-farm/device-list/).
 
 IoT
 ---
