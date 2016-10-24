@@ -1451,11 +1451,11 @@ Certificate Manager
 
 ### Certificate Manager Basics
 -	📒 [Homepage](https://aws.amazon.com/certificate-manager/) ∙ [User guide](http://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html) ∙ [FAQ](https://aws.amazon.com/certificate-manager/faqs/) ∙ [Pricing](https://aws.amazon.com/certificate-manager/pricing/)
-- **Certificate Manager** is an AWS service for managing SSL/TLS certificates for AWS services.
-- Supports import of already owned certificates and issuing new certificates.
+- Use the **Certificate Manager** to manage SSL/TLS certificates in other AWS services.
+- Supports importing existing certificates as well as issuing new ones.
 
 ### Certificate Manager Alternatives and Lock-in
-- Service allows import of existed certificates without limitations, but certificates issued via this service can't be used outside of AWS.
+- Certificates issued by the **Certificate Manager** can't be used outside of the services that support it. Imported certificates, however, can still be used elsewhere.
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
