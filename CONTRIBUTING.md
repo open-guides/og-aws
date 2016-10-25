@@ -5,9 +5,10 @@ Contributing
 
 Contributions of all kinds, including discussion, corrections, additions, and improvements, are welcome! We hope you'll join and help, in small ways or large. We gladly [credit](/AUTHORS.md) all contributors. Here are few notes before you jump in.
 
-### Please Help
+Please Help
+-----------
 
-If you’ve found this guide useful, you have many ways to help:
+If you’ve found this guide useful, please join us:
 
 -	The simplest thing you can do to contribute is [**join the Slack channel**](https://og-aws.slack.lexikon.io/) or [**add to our list of common questions**](https://airtable.com/shrXZ61VrovWfXYBg), which helps the community and guides what contributors can focus on. We encourage you to ask AWS questions and help others!
 -	[**File issues**](https://github.com/open-guides/og-aws/issues) if it’s clear something needs to be improved and you’re not able to make a pull request.
@@ -15,10 +16,13 @@ If you’ve found this guide useful, you have many ways to help:
 -	**Review** or **comment** on existing issues and pull requests if you have expertise.
 -	If you have deep expertise, we may ask you to be an **editor** or **expert**. Editors and experts are assigned roles that [help us review](#editorial-process) the Guide. Join Slack to discuss this.
 
+Making Contributions
+--------------------
+
 ### Pull Request Etiquette
 
 -	Keep changes as small as is practical. Do not make changes to multiple sections at once, alter whitespace in broad ways, etc.
--	Neutrality: If you have an affiliation related to what you are changing, please disclose it.
+-	**Neutrality:** If you have an affiliation related to what you are changing, please mention it.
 -	Please do your best to review current issues and pull requests to avoid duplication.
 
 ### Writing Style
@@ -28,7 +32,31 @@ If you’ve found this guide useful, you have many ways to help:
 -	**Include opinions and common practice:** Thoughtful opinion is helpful. If there are multiple conventions or ideas on something held by experts, mention the different ones.
 -	**Clarity:** Strive for consistency with conventions listed here, but clarity is most important.
 
-### Writing Conventions
+### Pull Request Review
+
+When creating a PR or reviewing one, it’s helpful to consider a few questions:
+
+1.	Are relevant docs linked (AWS and third party blogs)?
+2.	Can more details be added without lengthening it significantly?
+3.	Can the same information be conveyed with more succinctly or more clearly?
+4.	Copy editing: Does it match the [writing style](#writing-style) and [conventions](#writing-conventions) (including emoji symbols, punctuation, and grammar)?
+5.	Are there any other parts of the guide that should be updated at the same time? (Examples are adding new sections to the table of contents, adding new internal links, rows to tables, etc.)
+6.	Are there additional improvements that should be filed as issues?
+
+### Editorial Process
+
+-	Roles:
+	-	**Project leads:** Own overall quality of the Guide, direction, and process.
+	-	**Editors:** Contributors own specific sections or aspects of the Guide, reviewing PRs and/or writing. requires expert knowledge.
+	-	**Experts:** People with expert knowledge in various areas, who have agreed to review or help on demand with tougher questions or PRs.
+	-	**Contributors:** Everyone who contributes content or helps one way or another.
+-	All PRs are reviewed by an **editor** and for non-trivial changes, a **project lead**, usually in that order, but it can be reversed for expediency.
+-	In addition, anyone with relevant knowledge is encouraged to review/comment on PRs.
+-	Both editors and project leads are responsible for checking for style or problems.
+-	Trivial changes (including copy editing) may be merged in directly by project leads or editors.
+
+Writing Conventions
+-------------------
 
 When you contribute, keep in mind these conventions:
 
@@ -53,18 +81,7 @@ When you contribute, keep in mind these conventions:
 
 Note we keep consistent formatting in Markdown via [markdownfmt](https://github.com/shurcooL/markdownfmt). We run **admin/reformat.sh** to do this, but you don’t have to worry about it unless you really want to.
 
-### Editorial Process
-
--	Roles:
-	-	**Project leads:** Own overall quality of the Guide, direction, and process.
-	-	**Editors:** Contributors own specific sections or aspects of the Guide, reviewing PRs and/or writing. requires expert knowledge.
-	-	**Experts:** People with expert knowledge in various areas, who have agreed to review or help on demand with tougher questions or PRs.
-	-	**Contributors:** Everyone who contributes content or helps one way or another.
--	All PRs are reviewed by an **editor** and for non-trivial changes, a **project lead**, usually in that order, but it can be reversed for expediency.
--	In addition, anyone with relevant knowledge is encouraged to review/comment on PRs.
--	Both editors and project leads are responsible for checking for style or problems.
--	Trivial changes (including copy editing) may be merged in directly by project leads or editors.
-
-### Contact
+Contact
+-------
 
 If you have concerns or additional ideas of ways to help, e-mail **og-aws@lexikon.io** or use Slack to contact the [project leads](AUTHORS.md).
