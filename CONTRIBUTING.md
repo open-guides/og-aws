@@ -48,7 +48,7 @@ When creating a PR or reviewing one, it’s helpful to consider a few questions:
 
 -	Roles:
 	-	**Project leads:** Own overall quality of the Guide, direction, and process.
-	-	**Editors:** Contributors own specific sections or aspects of the Guide, reviewing PRs and/or writing. requires expert knowledge.
+	-	**Editors:** Contributors own specific sections or aspects of the Guide, reviewing PRs and/or writing. Requires expert knowledge.
 	-	**Experts:** People with expert knowledge in various areas, who have agreed to review or help on demand with tougher questions or PRs.
 	-	**Contributors:** Everyone who contributes content or helps one way or another.
 -	All PRs are reviewed by an **editor** and for non-trivial changes, a **project lead**, usually in that order, but it can be reversed for expediency.
