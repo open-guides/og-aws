@@ -1,7 +1,7 @@
 Contributing
 ------------
 
-[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://og-aws.slack.lexikon.io/) [![Ask a Question](https://img.shields.io/badge/%3f-Ask%20a%20Question-dc9d47.svg "Questions help improve the Guide")](https://airtable.com/shrXZ61VrovWfXYBg)
+[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://og-aws.slack.lexikon.io/)
 
 Contributions of all kinds, including discussion, corrections, additions, and improvements, are welcome! We hope you'll join and help, in small ways or large. We gladly [credit](/AUTHORS.md) all contributors. Here are few notes before you jump in.
 
@@ -10,7 +10,8 @@ Please Help
 
 If you’ve found this guide useful, please join us:
 
--	The simplest thing you can do to contribute is [**join the Slack channel**](https://og-aws.slack.lexikon.io/) or [**add to our list of common questions**](https://airtable.com/shrXZ61VrovWfXYBg), which helps the community and guides what contributors can focus on. We encourage you to ask AWS questions and help others!
+-	The simplest thing you can do to contribute is [**join the Slack channel**](https://og-aws.slack.lexikon.io/) and **ask or answer questions** or **discuss**, which
+helps the community and guides what contributors can focus on.
 -	[**File issues**](https://github.com/open-guides/og-aws/issues) if it’s clear something needs to be improved and you’re not able to make a pull request.
 -	[**Pull requests**](https://github.com/open-guides/og-aws/pulls) with changes are always welcome. Please keep them small and focused, so we can add items individually, and review the conventions below. If you want to make a larger change, try to discuss it in Slack.
 -	**Review** or **comment** on existing issues and pull requests if you have expertise.
