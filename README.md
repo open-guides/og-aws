@@ -1084,6 +1084,7 @@ DynamoDB
 -	[DynamoDB Streams](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html) provides an ordered stream of changes to a table. Use it to replicate, back up, or drive events off of data
 -	DynamoDB can be used [as a simple locking service](https://gist.github.com/ryandotsmith/c95fd21fab91b0823328).
 -	DynamoDB indexing can include **primary keys**, which can either be a single-attribute hash key or a composite hash-key range. You can also query non-primary key attributes using [**secondary indexes**](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/SecondaryIndexes.html).
+-       **Graph Database Support:** DynamoDB can be the storage backend to [Titan Graphs](http://titan.thinkaurelius.com/) as a [managed service](http://www.allthingsdistributed.com/2015/08/titan-graphdb-integration-in-dynamodb.html) to store and traverse small and large graphs up to hundreds of billions of vertices and edges distributed across a multi-machine cluster. [Plug-in on GitHub](https://github.com/awslabs/dynamodb-titan-storage-backend), two of many built-in AMIs in Marketplace [MicroStrategy Analytics Enterprise with SQL Server Standard](https://aws.amazon.com/marketplace/pp/B00JK1ZEK6?qid=1471986719808&sr=0-12&ref_=srh_res_product_title#product-details) and [Informatica Cloud for DynamoDB Linux](https://aws.amazon.com/marketplace/pp/B01G9AJB2C?qid=1471991516930&sr=0-1&ref_=srh_res_product_title#product-details). 
 
 ### DynamoDB Gotchas and Limitations
 
