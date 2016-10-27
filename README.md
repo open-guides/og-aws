@@ -1397,7 +1397,7 @@ EMR
 -	EMR relies on many versions of Hadoop and other supporting software. Be sure to check [which versions are in use](https://docs.aws.amazon.com/ElasticMapReduce/latest/ReleaseGuide/emr-release-components.html).
 -	⏱Off-the-shelf EMR and Hadoop can have significant overhead when compared with efficient processing on a single machine. If your data is small and performance matters, you may wish to consider alternatives, as [this post](http://aadrake.com/command-line-tools-can-be-235x-faster-than-your-hadoop-cluster.html) illustrates.
 -	Python programmers may want to take a look at Yelp’s [mrjob](https://github.com/Yelp/mrjob).
--	:money_with_wings: Hourly pricing roundoff: Since EMR jobs are billed at one-hour granularity, it can be beneficial to tune the number and/or type of instances so that jobs do not too quickly (if it runs for only a few minutes, you’ll still be billed for the full hour) or run just over an hour (where you’ll be billed for 2 hours). 
+-	:money_with_wings: Hourly pricing roundoff: Since EMR jobs are billed at one-hour granularity, considering changing the number and/or type of instances that your job runs in order to best make use of that time slice (fewer / smaller instances to make more efficient use of an undersubscribed hour, more / larger instances to reduce your job’s runtime).
 -	It takes time to tune performance of EMR jobs, which is why third-party services such as [Qubole’s data service](https://www.qubole.com/mapreduce-as-a-service/) are gaining popularity as ways to improve performance or reduce costs.
 
 ### EMR Gotchas and Limitations
@@ -1590,7 +1590,7 @@ Billing and Cost Management
 ### EC2 Cost Management
 
 -	With EC2, there is a trade-off between engineering effort (more analysis, more tools, more complex architectures) and spend rate on AWS. If your EC2 costs are small, many of the efforts here are not worth the engineering time required to make them work. But once you know your costs will be growing in excess of an engineer’s salary, serious investment is often worthwhile.
--	Larger instances don't neccessarily cost more in spot market. Therefore, you should look at different options and determine which instances you should bid for your jobs. See [Bid Advisor](https://aws.amazon.com/ec2/spot/bid-advisor/).
+-	Larger instances aren’t necessarily priced higher in the spot market – therefore, you should look at the available options and determine which instances will be most cost effective for your jobs. See [Bid Advisor](https://aws.amazon.com/ec2/spot/bid-advisor/).
 -	🔹**Spot instances:**
 	-	EC2 [Spot instances](https://aws.amazon.com/ec2/spot/) are a way to get EC2 resources at significant discount — often many times cheaper than standard on-demand prices — if you’re willing to accept the possibility that they be terminated with little to no warning.
 	-	Use Spot instances for potentially very significant discounts whenever you can use resources that may be restarted and don’t maintain long-term state.
