@@ -765,7 +765,7 @@ EC2
 -	❗Many newer EC2 instance types are EBS-only. Make sure to factor in EBS performance and costs when planning to use them.
 -	❗⏱ Instances come in two types: Fixed Performance Instances (e.g. M3, C3, and R3) and [Burstable Performance Instances](https://aws.amazon.com/ec2/instance-types/#burst) (e.g. T2). A T2 instance receives CPU credits continuously, the rate of which depends on the instance size. T2 instances accrue CPU credits when they are idle, and use CPU credits when they are active. However, once an instance runs out of credits, you'll notice a severe degradation in performance. If you need consistently high CPU performance for applications such as video encoding, high volume websites or HPC applications, it is recommended to use Fixed Performance Instances.
 -	🔸An IAM role can be assigned to an EC2 instance [only at launch time](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html). You cannot assign to a running instance.
--        Instance user-data is (limited to 16KB)[http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data](This limit applies to the data in raw form, not base64-encoded form). If larger data is needed, it can be downloaded from S3 by a user-data script.
+-        Instance user-data is (limited to 16 KB)[http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html#instancedata-add-user-data](This limit applies to the data in raw form, not base64-encoded form). If more data is needed, it can be downloaded from S3 by a user-data script.
 
 AMIs
 ----
