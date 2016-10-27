@@ -1171,6 +1171,7 @@ API Gateway
 
 -	🔸API Gateway only supports encrypted (https) endpoints, and does not support unencrypted HTTP. (This is probably a good thing.)
 -	🔸API Gateway endpoints are always public, i.e. internet facing, and there is no mechanism to build private endpoints, e.g. for internal use on a [VPC](#vpcs-network-security-and-security-groups) but endpoints and their related resources can, optionally, [require authentication](http://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-to-api.html).
+-	API Gateway doesn't support Multi-Region. It is a service that is deployed in a single region but comes with a global endpoint that is served from Amazons Edge Locations (like a CloudFront Distribution). You can not have multiple API Gateways with the same hostname in different AWS Regions. ∙ [AWS Forum](https://forums.aws.amazon.com/thread.jspa?messageID=735342&#735342)
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
