@@ -941,8 +941,8 @@ ALB
 
 ### ALB Gotchas and Limitations
 
--	ALBs support for HTTP/2 is only over HTTPS (no plain-text HTTP/2)
--	ALBs support for HTTP/2 is only Client <-> ALB and NOT for ALB <-> Instance/Container
+-	🔸ALBs only support HTTP/2 over HTTPS (no plain-text HTTP/2).
+-	🔸ALBs only support HTTP/2 to external clients and not to internal resources (Instance/Container).
 -	ALBs support HTTP routing but not port-based TCP routing.
 -	ALBs do not (yet) support routing based on HTTP “Host” header or HTTP verb.
 -	Instances in the ALB's target groups have to either have a single, fixed healthcheck port (“EC2 instance”-level healthcheck) or the healthcheck port for a target has to be the same as its application port (“Application instance”-level healthcheck) - you can't configure a per-target healthcheck port that is different than the application port.
