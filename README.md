@@ -924,6 +924,7 @@ CLB
 -	**Apex DNS names:** Once upon a time, you couldn’t assign an CLB to an apex DNS record (i.e. example.com instead of foo.example.com) because it needed to be an A record instead of a CNAME. This is now possible with a Route 53 alias record directly pointing to the load balancer.
 -	🔸CLBs use [HTTP keep-alives](https://en.wikipedia.org/wiki/HTTP_persistent_connection) on the internal side. This can cause an unexpected side effect: Requests from different clients, each in their own TCP connection on the external side, can end up on the same TCP connection on the internal side. Never assume that multiple requests on the same TCP connection are from the same client!
 -	🔸 Traffic between CLBs and back-end instances in the same subnet **will** have [Network ACL](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html) rules evaluated (EC2 to EC2 traffic in the same subnet would not have Network ACL rules evaluated). If the default '0.0.0.0/0 ALLOW' rule is removed from the Network ACL applied to the subnet, a rule that allows traffic on both the health check port and any listener port must be added.
+-	🔸If you want to use a self-obtained SSL certificate with a CLB. Make sure it's 2048 bits since CLB only support 2048 bits SSL certificates. [Ongoing discussion](https://forums.aws.amazon.com/thread.jspa?threadID=148783)
 
 ALB
 ---
@@ -948,8 +949,7 @@ ALB
 -	Instances in the ALB's target groups have to either have a single, fixed healthcheck port (“EC2 instance”-level healthcheck) or the healthcheck port for a target has to be the same as its application port (“Application instance”-level healthcheck) - you can't configure a per-target healthcheck port that is different than the application port.
 -	ALBs are VPC-only (they are not available in EC2 Classic)
 -	In a target group, if there is no healthy target, all requests are routed to all targets. For example, if you point a listener at a target group containing a single service that has a long initialization phase (during which the health checks would fail), requests will reach the service while it is still starting up.
--	If you want to use a self-obtained SSL certificate with a CLB. Make sure it's 2048 bits since CLB only s
-upport 2048 bits SSL certificates. [Ongoing discussion](https://forums.aws.amazon.com/thread.jspa?threadID=148783)
+-	🔸If you want to use a self-obtained SSL certificate with a ALB. Make sure it's 2048 bits since ALB only support 2048 bits SSL certificates. [Ongoing discussion](https://forums.aws.amazon.com/thread.jspa?threadID=148783)
 
 Elastic IPs
 -----------
