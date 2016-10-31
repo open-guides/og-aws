@@ -114,8 +114,8 @@ Legend
 
 -	📒 Marks standard/official AWS pages and docs
 -	🔹 Important or often overlooked tip
--	❗ Gotcha or warning (where risks or time or resource costs are significant)
--	🔸 Limitation or quirk (where it’s not quite so bad)
+-	❗ “Serious” gotcha (used where risks or time or resource costs are significant: critical security risks, mistakes with significant financial cost, or poor architectural choices that are fundamentally difficult to correct)
+-	🔸 “Regular” gotcha, limitation, or quirk (used where where consequences are things not working, breaking, or not scaling gracefully)
 -	📜 Undocumented feature (folklore)
 -	🐥 Relatively new (and perhaps immature) services or features
 -	⏱ Performance discussions
