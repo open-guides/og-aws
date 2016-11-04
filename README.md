@@ -1376,7 +1376,7 @@ Redshift
 -	Redshift uses columnar storage, hence it does not have indexing capabilities. You can, however, use distribution key [distkey](http://docs.aws.amazon.com/redshift/latest/dg/c_best-practices-best-dist-key.html) and sort key [sortkey](docs.aws.amazon.com/redshift/latest/dg/c_best-practices-sort-key.html) to improve performance. Redshift has two type of sort keys: compounding sort key and interleaved sort key.
 -	A compound sort key is made up of all columns listed in the sort key definition. It is most useful when you have queries with operations using prefix of the sortkey.
 -	An interleaved sort key on the other hand gives equal weight to each column or a subset of columns in the sort key. So if you don't know ahead of time which column you want to choose for sorting and filtering, this is a much better choice than the compound key.[Here](https://aws.amazon.com/blogs/aws/quickly-filter-data-in-amazon-redshift-using-interleaved-sorting/) is an example using interleaved sort key.
-
+-	Redshift includes a ability to condigure a [distribution key](http://docs.aws.amazon.com/redshift/latest/dg/c_choosing_dist_sort.html) for each table. The distribution key that you create on a table sets the type of physical data distribution for that table in your cluster and can have a significant impact on query performance.  There are three possible distribution key settings -- even (which is the default), key or all.  Use 'key' to collocate join key columns for tables which are joined in queries.  Use 'all' to place the data in small-sized tables on all cluster nodes.
 
 ### Redshift Gotchas and Limitations
 
