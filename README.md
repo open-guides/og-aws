@@ -57,7 +57,7 @@ Table of Contents
 | [Device Farm](#device-farm) | [📗](#device-farm-basics) | [📘](#device-farm-tips) | [📙](#device-farm-gotchas-and-limitations) |
 | [IoT](#iot) | [📗](#iot-basics) | [📘](#iot-tips) | [📙](#iot-gotchas-and-limitations) |
 | [SES](#ses) | [📗](#ses-basics) | [📘](#ses-tips) | [📙](#ses-gotchas-and-limitations) |
-| [Certificate Manager](#certificate-manager) | [📗](#certificate-manager-basics) | | |
+| [Certificate Manager](#certificate-manager) | [📗](#certificate-manager-basics) | [📘](#certificate-manager-tips) | [📙](#certificate-manager-gotchas-and-limitations) |
 
 **Special Topics**
 
@@ -1561,7 +1561,15 @@ Certificate Manager
 
 - Certificates issued by the **Certificate Manager** can't be used outside of the services that support it. Imported certificates, however, can still be used elsewhere.
 
-🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
+### Certificate Manager Tips    
+
+-       🔹**Supported services:** Elastic Load Balancer and CloudFront.  
+-		During certificate validation process **Certificate Manager** will send an email to every contact address specified in WHOIS and up to five common administrative addresses. Some anti-spam filters can mark emails as spam because of this. You should check the spam folder of your email if you don't receive a confirmation email.
+
+### Certificate Manager Gotchas and Limitations    
+
+-       ❗In order to use **Certificate Manager** for CloudFront distributions certificate must be issued or imported from US East (N. Virginia) region. Certificates from other regions can be used for Elastic Load Balancer only.    
+-       ❗**IoT** use their own process for work with certificates. Details described [here](http://docs.aws.amazon.com/iot/latest/developerguide/attach-cert-thing.html).    
 
 High Availability
 -----------------
