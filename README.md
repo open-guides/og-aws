@@ -202,7 +202,7 @@ General Information
 	-	[CloudTrail](https://aws.amazon.com/cloudtrail/): AWS API logging and audit (often neglected but important)
 	-	⛓🕍[CloudFormation](#cloudformation): Templatized configuration of collections of AWS resources
 	-	🕍[Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/): Fully managed (PaaS) deployment of packaged Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker applications
-	-	🐥[EFS](https://aws.amazon.com/efs/): Network filesystem compatible with NFSv4.1
+	-	🐥[EFS](#efs): Network filesystem compatible with NFSv4.1
 	-	⛓🕍[ECS](#ecs): Docker container/cluster management (note Docker can also be used directly, without ECS)
 	-	⛓[ECR](https://aws.amazon.com/ecr/): Hosted private Docker registry
 	-	🐥[Config](https://aws.amazon.com/config/): AWS configuration inventory, history, change notifications
@@ -865,7 +865,7 @@ EFS
 -	🐥**EFS** is Amazon’s new (general release 2016) network filesystem.
 -	It is designed to be highly available and durable and each EFS file system object is redundantly stored across multiple availability zones.
 -	EFS is designed to be used as a shared network drive and it can automatically scale up to petabytes of stored data and thousands of instances attached to it.
--	It's presented as an NFSv4.1 server, so any compatible NFS client can mount it.
+-	It's presented as an [NFSv4.1](https://en.wikipedia.org/wiki/Network_File_System#NFSv4) server, so any compatible NFS client can mount it.
 -	EFS can offer [higher throughput](http://docs.aws.amazon.com/efs/latest/ug/performance.html) (multiple gigabytes per second) and better durability and availability than EBS (see [the comparison table](#storage-durability-availability-and-price)), but with higher latency.
 -	EFS is priced based on the amount of data stored and it costs [much more than EBS](#storage-durability-availability-and-price), about three times as much compared to general purpose gp2 EBS volumes.
 -	⏱ [Performance](http://docs.aws.amazon.com/efs/latest/ug/performance.html) depends on the amount of data stored on it, which also determines the price:
@@ -875,7 +875,7 @@ EFS
 -	High availability is achieved by having [mount targets in different subnets / availability zones](http://docs.aws.amazon.com/efs/latest/ug/images/overview-flow.png).
 
 ### EFS Tips
--	⏱ Carefuly consider using one EFS for multiple applications. Any directory on the EFS can be mounted, it doesn't have to be the root directory. One application could mount fs-12345678:/prog1, another fs-12345678:/prog2. [User and group level permissions](https://docs.aws.amazon.com/efs/latest/ug/accessing-fs-nfs-permissions.html) can be used to limit access to some extent.
+-	⏱ Carefully consider using one EFS for multiple applications. Any directory on the EFS can be mounted, it doesn't have to be the root directory. One application could mount fs-12345678:/prog1, another fs-12345678:/prog2. [User and group level permissions](https://docs.aws.amazon.com/efs/latest/ug/accessing-fs-nfs-permissions.html) can be used to limit access to some extent.
 
 	Pros:
 	- Because performance is based on total size of stored files, having everything on one drive will increase performance for everyone and might offset one application consuming credits faster than it can accumulate by another application that just stores files on EFS and rarely accesses them.
@@ -887,13 +887,13 @@ EFS
 ### EFS Gotchas and Limitations
 
 -	🔸 A number of NFSv4.1 features are [not supported](http://docs.aws.amazon.com/efs/latest/ug/nfs4-unsupported-features.html) and there are some [limits](http://docs.aws.amazon.com/efs/latest/ug/limits.html) to the service.
--	🔸 EFS does not offer disk level encryption yet, though it is on the roadmap.
--	❗ Some applications, like SQLite and IPython, might not work properly on EFS when accessed from multiple clients. This is because of missing features in the file locking implementation. That is true for many NFS servers.
+-	🔸 As of 2016-11, EFS does not offer disk level encryption, though it is on the roadmap.
+-	❗ Some applications, like SQLite and IPython, [might not work properly](https://sqlite.org/faq.html#q5) on EFS when accessed from multiple clients. This is because lock upgrades and downgrades are [not supported](http://docs.aws.amazon.com/efs/latest/ug/nfs4-unsupported-features.html). There might be [workarounds](https://github.com/ipython/ipython/issues/882) for some issues.
 -	🔸 Mounting EFS over VPN connection, VPC peering, or AWS Direct Connect is not supported.
--	🔸 Using Amazon EFS with Windows is not supported. Apparently due to Microsoft implementing NFS differently.
+-	🔸 Using an EFS volume on Windows is not supported, apparently due to Microsoft implementing NFS differently.
 -	⏱ When a file is uploaded to EFS, it can take hours for EFS to update the details for billing and burst credit purposes.
--	🔸 Metadata operations can be costly in terms of burst credit consumption. Recursively traversing a tree containing thousands of files can easily ramp up to tens or even hundreds of megabytes of burst credits being consumed, even if no file is being touched. Commands like ```find``` or ```chown -R``` can have an adverse impact on performace if ran periodically.
--	🔸 Mount points are AZ-based. In an auto scaling group spread across zones, you can end up with instances in one zone mounting EFS from a different zone. That might decrease performance and would create an unintended single point of failure. One way to fix it would be [a shell script](https://gist.github.com/bgdnlp/9fd326dc4a23f46bab93a1eade023fe4) that runs before network drives are mounted and edits /etc/fstab with the proper AZ.
+-	🔸 ⏱  Metadata operations can be costly in terms of burst credit consumption. Recursively traversing a tree containing thousands of files can easily ramp up to tens or even hundreds of megabytes of burst credits being consumed, even if no file is being touched. Commands like ```find``` or ```chown -R``` can have an adverse impact on performace if run periodically.
+-	🔸 Mount points are AZ-based. In an Auto scaling group spread across zones, you can end up with instances in one zone mounting EFS from a different zone. That might decrease performance and would create an unintended single point of failure. One way to fix it would be [a shell script](https://gist.github.com/bgdnlp/9fd326dc4a23f46bab93a1eade023fe4) that runs before network drives are mounted and edits /etc/fstab with the proper AZ.
 
 
 Load Balancers
