@@ -4,10 +4,10 @@ header: |
   This “Open Guide” is a collaborative effort.
   It was begun and is led by [@jlevy](https://github.com/jlevy) and [@ThanosBaskous](https://github.com/ThanosBaskous),
   but the content is the result of a community of contributors, editors, and experts.
-  Please help if you can, and see the [contribution guidelines](CONTRIBUTING.md) for notes on roles and editorial process.
-  Alphabetically by username:
+  Please help if you can. See the [contribution guidelines](CONTRIBUTING.md) for notes on roles and editorial process.
 
 footer: |
+  Contributors are listed alphabetically with assigned roles first.
   Please don't PR the AUTHORS.md or authors-info.yml files! It is auto-generated regularly by the project leads.
   Please let the project leads know of any errors or omissions on this list.
 
@@ -23,6 +23,8 @@ roles:
   forwidur: editor (EBS, RDS)
   lynnlangit: editor (IoT)
   richadams: editor (VPC)
+  artemnikitin: editor (Certificate Manager)
+  bgdnlp: editor (EFS)
   donnemartin: expert (tools)
   merrells: expert (cloud infrastructure, when to use AWS)
   benkehoe: expert (IoT)
