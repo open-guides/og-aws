@@ -531,7 +531,7 @@ We cover security basics first, since configuring user accounts is something you
 
 ### Security and IAM Basics
 
--	📒 IAM [Homepage](https://aws.amazon.com/iam/) ∙ [User guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) ∙ [FAQ](https://aws.amazon.com/iam/faqs/)
+-	[📒](#legend "Official AWS docs") IAM [Homepage](https://aws.amazon.com/iam/) ∙ [User guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) ∙ [FAQ](https://aws.amazon.com/iam/faqs/)
 -	The [AWS Security Blog](https://blogs.aws.amazon.com/security) is one of the best sources of news and information on AWS security.
 -	**IAM** is the service you use to manage accounts and permissioning for AWS.
 -	Managing security and access control with AWS is critical, so every AWS administrator needs to use and understand IAM, at least at a basic level.  
