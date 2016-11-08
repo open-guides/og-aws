@@ -200,7 +200,7 @@ General Information
 -	**Optional but important infrastructure:** These are key and useful infrastructure components that are less widely known and used. You may have legitimate reasons to prefer alternatives, so evaluate with care to be sure they fit your needs:
 	-	[⛓](#legend "Lock in")[Lambda](#lambda): Running small, fully managed tasks “serverless”
 	-	[CloudTrail](https://aws.amazon.com/cloudtrail/): AWS API logging and audit (often neglected but important)
-	-	[⛓](#legend "Lock in")🕍[CloudFormation](#cloudformation): Templatized configuration of collections of AWS resources
+	-	[⛓](#legend "Lock in")[🕍](#legend "Caution")[CloudFormation](#cloudformation): Templatized configuration of collections of AWS resources
 	-	[🕍](#legend "Caution")[Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/): Fully managed (PaaS) deployment of packaged Java, .NET, PHP, Node.js, Python, Ruby, Go, and Docker applications
 	-	[🐥](#legend "New or immature")[⛓](#legend "Lock in")[EFS](https://aws.amazon.com/efs/): Network filesystem
 	-	[⛓](#legend "Lock in")[🕍](#legend "Caution")[ECS](#ecs): Docker container/cluster management (note Docker can also be used directly, without ECS)
@@ -262,7 +262,7 @@ We’ve assembled a landscape of a few of the services. This is far from complet
 
 ### Common Concepts
 
--	📒 The AWS [**General Reference**](https://docs.aws.amazon.com/general/latest/gr/Welcome.html) covers a bunch of common concepts that are relevant for multiple services.
+-	[📒](#legend "Official AWS docs") The AWS [**General Reference**](https://docs.aws.amazon.com/general/latest/gr/Welcome.html) covers a bunch of common concepts that are relevant for multiple services.
 -	AWS allows deployments in [**regions**](https://docs.aws.amazon.com/general/latest/gr/rande.html), which are isolated geographic locations that help you reduce latency or offer additional redundancy (though typically availability zones are the first tool of choice for [high availability](#high-availability)).
 -	Each service has API **endpoints** for each region. Endpoints differ from service to service and not all services are available in each region, as listed in [these tables](https://docs.aws.amazon.com/general/latest/gr/rande.html).
 -	[**Amazon Resource Names (ARNs)**](https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html) are specially formatted identifiers for identifying resources. They start with 'arn:' and are used in many services, and in particular for IAM policies.
