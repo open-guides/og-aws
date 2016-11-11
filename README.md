@@ -1318,12 +1318,14 @@ KMS
 ### KMS Basics
 
 -	📒 [Homepage](https://aws.amazon.com/kms/) ∙ [Developer guide](http://docs.aws.amazon.com/kms/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/kms/faqs/) ∙ [Pricing](https://aws.amazon.com/kms/pricing/)
--	**KMS** (Key Management Service) is secure service for creating, storing and auditing usage of cryptography keys.
-- **Service Integration** KMS is integrated with [EBS](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html) and [S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html).
-- **Encryption APIs** The [Encrypt](http://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html) and [Decrypt API](http://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html) allow you to encrypt and decrypt data on the KMS service side, never exposing the master key contents.
-- **Data Keys** The [GenerateDataKey](http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) API generates a new key off of a master key. The data key contents are exposed to you so you can use it to encrypt and decrypt any size of data in your application layer. KMS does not store, manage or track data keys, you are responsible for this in your application.
-- **Auditing** Turn on CloudTrail to audit all KMS API events.
-- **Access** Use IAM policies to grant different levels of KMS access. For example, an application should use an IAM profile that can only Decrypt data, not encrypt data describe or create keys.
+-	**KMS** (Key Management Service) is secure service for creating, storing and auditing usage of cryptographic keys.
+- **Service integration:** KMS is [integrates with other AWS services](http://docs.aws.amazon.com/kms/latest/developerguide/service-integration.html): EBS, Elastic Transcoder, EMR, Redshift, RDS, SES, S3, WorkMail and Workspaces.
+- **Encryption APIs:** The [Encrypt](http://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html) and [Decrypt API](http://docs.aws.amazon.com/kms/latest/APIReference/API_Decrypt.html) allow you to encrypt and decrypt data on the KMS service side, never exposing the master key contents.
+- **Data keys:** The [GenerateDataKey](http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) API generates a new key off of a master key. The data key contents are exposed to you so you can use it to encrypt and decrypt any size of data in your application layer. KMS does not store, manage or track data keys, you are responsible for this in your application.
+- 🔹**Auditing:** Turn on CloudTrail to audit all KMS API events.
+- **Access:** Use [key policies](http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html) and [IAM policies](http://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html) to grant different levels of KMS access. For example, you create an IAM policy that only [allows a user to encrypt and decrypt with a specific key](http://docs.aws.amazon.com/kms/latest/developerguide/iam-policies.html#iam-policy-example-encrypt-decrypt-specific-cmks).
+
+an application should use an IAM profile that can only decrypt data, not encrypt data describe or create keys.
 
 ### KMS Tips
 
@@ -1334,7 +1336,7 @@ KMS
 
 ### KMS Gotchas and Limitations
 
--	🔸The Encrypt API only works with < 4KB of data. Larger data requires generating and managing a Data Key in your application layer.
+-	🔸The Encrypt API only works with < 4KB of data. Larger data requires generating and managing a [data key](http://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#data-keys) in your application layer.
 -	🔸KMS audit events are not available in the [CloudTrail Lookup Events API](http://docs.aws.amazon.com/awscloudtrail/latest/APIReference/API_LookupEvents.html). You need to look find them in the raw .json.gz files that CloudTrail saves in S3.
 
 CloudFront
