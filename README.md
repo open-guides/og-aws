@@ -876,14 +876,17 @@ EFS
 -	High availability is achieved by having [mount targets in different subnets / availability zones](http://docs.aws.amazon.com/efs/latest/ug/images/overview-flow.png).
 
 ### EFS Tips
--	⏱ Carefully consider using one EFS for multiple applications. Any directory on the EFS can be mounted, it doesn't have to be the root directory. One application could mount fs-12345678:/prog1, another fs-12345678:/prog2. [User and group level permissions](https://docs.aws.amazon.com/efs/latest/ug/accessing-fs-nfs-permissions.html) can be used to limit access to some extent.
+
+-   With EFS being based on NFSv4.1, any directory on the EFS can be mounted directly, it doesn't have to be the root directory. One application could mount *fs-12345678:/prog1*, another *fs-12345678:/prog2*. 
+-   [User and group level permissions](https://docs.aws.amazon.com/efs/latest/ug/accessing-fs-nfs-permissions.html) can be used to control access to certain directories on the EFS file system.
+-	⏱ One EFS file system can be used for multiple applications or services, but it should be considered carefully: 
 
 	Pros:
-	- Because performance is based on total size of stored files, having everything on one drive will increase performance for everyone and might offset one application consuming credits faster than it can accumulate by another application that just stores files on EFS and rarely accesses them.
+	- Because performance is based on total size of stored files, having everything on one drive will increase performance for everyone. One application consuming credits faster than it can accumulate might be offset by another application that just stores files on EFS and rarely accesses them.
 	
 	Cons:
-	- Since credits are shared, if one application gets out of control it will affect the others.
-	- Security of the drive is compromised. All clients will have to have network access to the drive and any of the clients can mount another application's folder. Someone with root access on one client instance can easily read and write to any application's mount.
+	- Since credits are shared, if one application over-consumes them, it will affect the others.
+	- A compromise is made with regards to [security](http://docs.aws.amazon.com/efs/latest/ug/security-considerations.html). All clients will have to have network access to the drive. Someone with root access on one client instance can mount any directory on the EFS and they have read-write access to all files on the drive, even if they don't have access to the applications hosted on other clients.
 
 ### EFS Gotchas and Limitations
 
