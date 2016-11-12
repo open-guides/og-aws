@@ -1583,17 +1583,17 @@ Certificate Manager
 
 ### Certificate Manager Alternatives and Lock-in
 
-- 		⛓Certificates issued by the Certificate Manager can't be used outside of the services that support it. Imported certificates, however, can still be used elsewhere.
+- 		⛓Certificates issued by the Certificate Manager can’t be used outside of the services that support it. Imported certificates, however, can still be used elsewhere.
 
 ### Certificate Manager Tips    
 
--       🔹**Supported services:** Elastic Load Balancer and CloudFront.  
--		🔸During certificate validation process Certificate Manager will send an email to every contact address specified in WHOIS and up to five common administrative addresses. Some anti-spam filters can mark emails as spam because of this. You should check the spam folder of your email if you don't receive a confirmation email.
+-       🔹**Supported services:** Managed [Load Balancers](#load-balancers) and [CloudFront](#cloudfront).
+-		🔸During the domain validation process, Certificate Manager will send an email to every contact address specified in the domain’s WHOIS record and up to five common administrative addresses. Some anti-spam filters can mark emails as spam because of this. You should check the spam folder of your email if you don’t receive a confirmation email.
 
 ### Certificate Manager Gotchas and Limitations    
 
--       🔸In order to use **Certificate Manager** for CloudFront distributions certificate must be issued or imported from US East (N. Virginia) region. Certificates from other regions can be used for Elastic Load Balancer only. See [link](https://docs.aws.amazon.com/acm/latest/userguide/acm-services.html).        
--       🔸**IoT** use their own process for work with certificates. Details described [here](http://docs.aws.amazon.com/iot/latest/developerguide/attach-cert-thing.html).    
+-       🔸In order to use **Certificate Manager** for CloudFront distributions certificate must be issued or imported from us-east-1 (N. Virginia) region. Certificates from other regions can [only be used with Elastic Load Balancers](https://docs.aws.amazon.com/acm/latest/userguide/acm-services.html).
+-       🔸**IoT** has its [own way](http://docs.aws.amazon.com/iot/latest/developerguide/create-device-certificate.html) of setting up certificates.
 
 High Availability
 -----------------
