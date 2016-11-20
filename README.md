@@ -192,7 +192,7 @@ General Information
 	-	[Route 53](#route-53): DNS and domain registration
 	-	[VPC](#vpcs-network-security-and-security-groups): Virtual networking, network security, and co-location; you automatically use
 	-	[CloudFront](#cloudfront): CDN for hosting content
-	-	[CloudWatch](https://aws.amazon.com/cloudwatch/): Alerts, paging, monitoring
+	-	[CloudWatch](#cloudwatch): Alerts, paging, monitoring
 -	**Managed services:** Existing software solutions you could run on your own, but with managed deployment:
 	-	[RDS](#rds): Managed relational databases (managed MySQL, Postgres, and Amazon’s own Aurora database)
 	-	[EMR](#emr): Managed Hadoop
