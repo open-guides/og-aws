@@ -1192,6 +1192,13 @@ Lambda
 -	🔸Currently, [Lambda does not natively provide for environment variables](https://forums.aws.amazon.com/thread.jspa?messageID=686261), which are a [common way](https://12factor.net/config) of storing configuration, so you must rely on additional mechanisms to achieve this (such as the [Serverless framework](https://serverless.com/framework/docs/guide/environment-variable-handling/#environment-variables-in-serverless) or [apex](http://apex.run/#environment-variables)).
 -	❗📜 Currently [as of October, 2016](https://github.com/open-guides/og-aws/pull/199/files/c99bddb4ee2437587f1e188d47be2bb1da01f81d#r83529126) Lambda functions can sometimes stop working for 2-3 minutes for failure recovery purposes according to a support ticket answer from Lambda development team. They are working to prevent this in the future.
 
+### Lambda Code Samples
+
+-	Example of using Lambda to 'fan-out' or copy data from one service, in this case Kinesis to multiple other AWS data service as [Fan-out](https://github.com/awslabs/aws-lambda-fanout). Destinations for fan-out data in the sample include IoT, SQS and more.
+-	AWS Service Limit Monitor [using Lambdas](https://github.com/awslabs/aws-limit-monitor). Example code shows use of multiple lambdas for monitoring.
+-	Example of using Lambda with ECS in an 'extended worker' pattern via [Lambda ECS Worker Pattern](https://github.com/awslabs/lambda-ecs-worker-pattern). Example code shows use of lambda in a workflow, data from S3 is picked up by the lambda, pushed to a queue, then sent to ECS for more processing.
+-	Sample Java application which uses Lambda and API Gateway with Cognito (for user identity) via [Secure Pet Store](https://github.com/awslabs/api-gateway-secure-pet-store). Example shows services working together in a complete application.
+
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
 API Gateway
