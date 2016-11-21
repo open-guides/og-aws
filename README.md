@@ -1194,10 +1194,10 @@ Lambda
 
 ### Lambda Code Samples
 
--	Example of using Lambda to 'fan-out' or copy data from one service, in this case Kinesis to multiple other AWS data service as [Fan-out](https://github.com/awslabs/aws-lambda-fanout). Destinations for fan-out data in the sample include IoT, SQS and more.
--	AWS Service Limit Monitor [using Lambdas](https://github.com/awslabs/aws-limit-monitor). Example code shows use of multiple lambdas for monitoring.
--	Example of using Lambda with ECS in an 'extended worker' pattern via [Lambda ECS Worker Pattern](https://github.com/awslabs/lambda-ecs-worker-pattern). Example code shows use of lambda in a workflow, data from S3 is picked up by the lambda, pushed to a queue, then sent to ECS for more processing.
--	Sample Java application which uses Lambda and API Gateway with Cognito (for user identity) via [Secure Pet Store](https://github.com/awslabs/api-gateway-secure-pet-store). Example shows services working together in a complete application.
+-	[Fan-out](https://github.com/awslabs/aws-lambda-fanout) is an example of using Lambda to “fan-out” or copy data from one service, in this case Kinesis, to multiple other AWS data services. Destinations for fan-out data in the sample include IoT, SQS and more.
+-	This [AWS limit monitor using Lambdas](https://github.com/awslabs/aws-limit-monitor) shows use of multiple Lambdas for monitoring.
+-	This [Lambda ECS Worker Pattern](https://github.com/awslabs/lambda-ecs-worker-pattern) shows use of Lambda in a workflow where data from S3 is picked up by the Lambda, pushed to a queue, then sent to ECS for more processing.
+-	The [Secure Pet Store](https://github.com/awslabs/api-gateway-secure-pet-store) is a sample Java application which uses Lambda and API Gateway with Cognito (for user identity).
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
