@@ -1249,6 +1249,7 @@ Route 53
 	-	Somewhat confusingly, you can have CNAME and A aliases, depending on the type of the target.
 	-	Because aliases are extensions to regular DNS records, if exported, the output [zone file](https://en.wikipedia.org/wiki/Zone_file) will have additional non-standard “ALIAS” lines in it.
 -	Take advantage of AWS Route 53 latency based routing. This means that your users around the globe are automatically directed to the nearest AWS region where you are running in terms of having the shortest latency.
+-	Understand that domain registration and DNS management (hosted zones) are two separate Route 53 services. When you buy/transfer a domain, Route 53 automaticcaly assigns four name servers to it (e.g. ns-2.awsdns-00.com). Route 53 also offers to automatically create a hosted zone for DNS management, but you are not required do do your DNS management in the same account or even in Route 53. You just need to create an NS record pointing to the servers assigned to your domain in Route 53. A use case would be to put your domain registration (very mission critical) in a [bastion account] (https://cloudonaut.io/your-single-aws-account-is-a-serious-risk/) while managing the hosted zones within another account which is accessible by your applications. 
 
 CloudFormation
 --------------
