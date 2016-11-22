@@ -1202,7 +1202,7 @@ API Gateway
 -	🔸Switching over deployments after upgrades can be tricky. There are no built-in mechanisms to have a single domain name migrate from one API gateway to another one. So it may be necessary to build an additional layer in front (even another API Gateway) to allow smooth migration from one deployment to another.
 -	Following daigram gives a high-level view of executing a Lambda function with API gateway
 
-![Lambda with API Gateway](figures/aws-lambda-with-api-gateway.png)
+![Lambda with API Gateway](figures/aws-api-gateway-lambda.png)
 
 
 ### API Gateway Alternatives and Lock-In
