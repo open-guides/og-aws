@@ -14,13 +14,14 @@ Please help if you can. See the [contribution guidelines](CONTRIBUTING.md) for n
 * [Eric Hammond (ehammond)](https://github.com/ehammond) — _expert (Lambda, serverless)_
 * [Max Grigorev (forwidur)](https://github.com/forwidur) — _editor (EBS, RDS)_
 * [Jason Barry (JCBarry)](https://github.com/JCBarry) — [2+](https://github.com/open-guides/og-aws/commits?author=JCBarry)/[2+](https://github.com/open-guides/og-aws/issues?q=author%3AJCBarry) — _editor (CloudWatch)_
-* [Joshua Levy (jlevy)](https://github.com/jlevy) — [104+](https://github.com/open-guides/og-aws/commits?author=jlevy)/[104+](https://github.com/open-guides/og-aws/issues?q=author%3Ajlevy) — _project lead, editor (topics not otherwise assigned)_
+* [Joshua Levy (jlevy)](https://github.com/jlevy) — [105+](https://github.com/open-guides/og-aws/commits?author=jlevy)/[105+](https://github.com/open-guides/og-aws/issues?q=author%3Ajlevy) — _project lead, editor (topics not otherwise assigned)_
 * [Kim Schmidt (kimschmidtsbrain)](https://github.com/kimschmidtsbrain) — [1+](https://github.com/open-guides/og-aws/commits?author=kimschmidtsbrain)/[4+](https://github.com/open-guides/og-aws/issues?q=author%3Akimschmidtsbrain) — _expert (AWS Marketplace, Aurora)_
 * [Luke de Oliveira (lukedeo)](https://github.com/lukedeo) — [1+](https://github.com/open-guides/og-aws/commits?author=lukedeo)/[2+](https://github.com/open-guides/og-aws/issues?q=author%3Alukedeo) — _expert (machine learning, Terraform, orchestration)_
 * [Lynn Langit (lynnlangit)](https://github.com/lynnlangit) — [22+](https://github.com/open-guides/og-aws/commits?author=lynnlangit)/[14+](https://github.com/open-guides/og-aws/issues?q=author%3Alynnlangit) — _editor (IoT)_
 * [Max Zanko (max-zanko)](https://github.com/max-zanko) — [12+](https://github.com/open-guides/og-aws/commits?author=max-zanko)/[9+](https://github.com/open-guides/og-aws/issues?q=author%3Amax-zanko) — _editor (EC2, S3, Glacier, EMR, Redshift)_
 * [John Merrells (merrells)](https://github.com/merrells) — _expert (cloud infrastructure, when to use AWS)_
 * [Nitin S (nitingithub)](https://github.com/nitingithub) — [6+](https://github.com/open-guides/og-aws/commits?author=nitingithub)/[4+](https://github.com/open-guides/og-aws/issues?q=author%3Anitingithub) — _editor (cost management)_
+* [Noah Zoschke (nzoschke)](https://github.com/nzoschke) — [2+](https://github.com/open-guides/og-aws/commits?author=nzoschke)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Anzoschke) — _editor (KMS)_
 * [Rich Adams (richadams)](https://github.com/richadams) — [1+](https://github.com/open-guides/og-aws/commits?author=richadams)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Arichadams) — _editor (VPC)_
 * [Thanos Baskous (ThanosBaskous)](https://github.com/ThanosBaskous) — [26+](https://github.com/open-guides/og-aws/commits?author=ThanosBaskous)/[27+](https://github.com/open-guides/og-aws/issues?q=author%3AThanosBaskous) — _project lead, editor (topics not otherwise assigned)_
 * [0xmohit](https://github.com/0xmohit) — [3+](https://github.com/open-guides/og-aws/commits?author=0xmohit)/[3+](https://github.com/open-guides/og-aws/issues?q=author%3A0xmohit)
@@ -68,7 +69,6 @@ Please help if you can. See the [contribution guidelines](CONTRIBUTING.md) for n
 * [Mathias Leppich (muhqu)](https://github.com/muhqu) — [3+](https://github.com/open-guides/og-aws/commits?author=muhqu)/[2+](https://github.com/open-guides/og-aws/issues?q=author%3Amuhqu)
 * [nickbarclay](https://github.com/nickbarclay) — [2+](https://github.com/open-guides/og-aws/commits?author=nickbarclay)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Anickbarclay)
 * [Justin Mullis (nonadmin)](https://github.com/nonadmin) — [1+](https://github.com/open-guides/og-aws/commits?author=nonadmin)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Anonadmin)
-* [Noah Zoschke (nzoschke)](https://github.com/nzoschke) — [2+](https://github.com/open-guides/og-aws/commits?author=nzoschke)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Anzoschke)
 * [Ola Wiberg (olawiberg)](https://github.com/olawiberg)
 * [Pascal Borreli (pborreli)](https://github.com/pborreli) — [1+](https://github.com/open-guides/og-aws/commits?author=pborreli)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Apborreli)
 * [Phillip Calvin (pnc)](https://github.com/pnc) — [1+](https://github.com/open-guides/og-aws/commits?author=pnc)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Apnc)
