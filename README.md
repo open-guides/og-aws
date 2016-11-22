@@ -815,7 +815,7 @@ CloudWatch
 
 ### CloudWatch Gotchas and Limitations
 
-* 🔸Metrics in CloudWatch originate [on the hypervisor](https://forums.aws.amazon.com/message.jspa?messageID=403578). The hypervisor doesn't have access to OS information, so certain metrics are not available unless pushed to CloudWatch from inside the instance. Notably RAM utilization.
+* 🔸Metrics in CloudWatch originate [on the hypervisor](https://forums.aws.amazon.com/message.jspa?messageID=403578). The hypervisor doesn't have access to OS information, so certain metrics (most notably memory utilization) are not available unless pushed to CloudWatch from inside the instance.
 * 🔸You can not use [more than one metric for an alarm](https://forums.aws.amazon.com/thread.jspa?threadID=94984).
 * 🔸Notifications you receive from alarms will not have any contextual detail; they have only the specifics of the threshold, alarm state, and timing.
 * 🔸Minimum granularity in CloudWatch is 1 minute. That means that multiple values of a metric that are pushed to CloudWatch within the same minute are aggregated into minimum, maximum, average and total (sum) per minute.
