@@ -25,6 +25,7 @@ roles:
   richadams: editor (VPC)
   artemnikitin: editor (Certificate Manager)
   bgdnlp: editor (EFS)
+  JCBarry: editor (CloudWatch)
   donnemartin: expert (tools)
   merrells: expert (cloud infrastructure, when to use AWS)
   benkehoe: expert (IoT)
