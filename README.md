@@ -1200,6 +1200,7 @@ ECS
 		-	If you want fast fleet-wide pulls of large images, you’ll need to push your image into a region-local registry.
 	-	Doesn’t support custom domains / certificates.
 -	A container's health is monitored via [CLB](#clb) or [ALB](#alb). Those can also be used to address a containerized service. When using an ALB you do not need to handle port contention (i.e. services exposing the same port on the same host) since an ALB’s target groups can be associated with ECS-based services directly.
+-	ECS supports multiple log drivers (awslogs, splunk, fluentd, syslog, json, ... ). Use `awslogs` for cloudwatch (make sure a group is made for the logs first). Drivers such as fluentd are not enable by default. To do so, install the agent and enable the driver by adding `ECS_AVAILABLE_LOGGING_DRIVERS='["awslogs","fluentd"]'` to `/etc/ecs/ecs.config`. 
 
 ### ECS Tips
 
