@@ -1717,18 +1717,18 @@ WAF
 ### WAF Basics
 
 -	📒 [Homepage](https://aws.amazon.com/waf/) ∙ [Documentation](https://aws.amazon.com/documentation/waf/) ∙ [FAQ](https://aws.amazon.com/waf/faq/) ∙ [Pricing](https://aws.amazon.com/waf/pricing)
-- WAF (Web Application Firewall) is used in conjunction with the CloudFront and ALB services to inspect and block/allow web requests based on user-configurable conditions.
+- WAF is used in conjunction with the CloudFront and ALB services to inspect and block/allow web requests based on user-configurable conditions.
 - HTTPS and HTTP requests are supported with this service.
 - WAF's strength is in detecting malicious activity based on pattern-matching inputs for attacks such as SQL injections, XSS, etc.
-- WAF supports inspection of requests [received through both IPv6 and IPv4](https://aws.amazon.com/about-aws/whats-new/2016/10/ipv6-support-for-cloudfront-waf-and-s3-transfer-acceleration/).
+- WAF supports inspection of requests [received through both IPv6 and IPv4.](https://aws.amazon.com/about-aws/whats-new/2016/10/ipv6-support-for-cloudfront-waf-and-s3-transfer-acceleration/)
 
-### WAF Tips
+### WAF Tips    
 
 - Getting a WAF API call history can be done through CloudTrail. This is enabled through the CloudTrail console.
 
-### WAF Gotchas and Limitations
+### WAF Gotchas and Limitations    
 
-- As of December 2016, WAF is available in the US East (Northern Virginia), US West (Oregon), Asia Pacific (Tokyo) and EU (Ireland) regions.
+- As of December 2016, WAF is available in the US East (Northern Virginia), US West (Oregon), Asia Pacific (Tokyo) and EU (Ireland) regions. 
 
 OpsWorks
 -------------------
