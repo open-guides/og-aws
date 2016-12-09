@@ -1673,8 +1673,11 @@ OpsWorks
 ### OpsWorks Basics
 
 -	📒 [Homepage](https://aws.amazon.com/opsworks/) ∙ [Documentation](https://aws.amazon.com/documentation/opsworks/) ∙ [FAQ](https://aws.amazon.com/opsworks/faqs/) ∙ [Pricing - Stacks](https://aws.amazon.com/opsworks/stacks/pricing/) ∙ [Pricing - ChefAutomate](https://aws.amazon.com/opsworks/chefautomate/pricing/)
-- OpsWorks is automated deployments.
-- The separating factor between OpsWorks and other configuration management services like Elastic Beanstalk is that OpsWorks specializes in letting you control the details of the systems your application runs on, where a service like Elastic Beanstalk simplifies this to just application configuration.
+- OpsWorks is a configuration management service relying heavily on Chef for configuration-as-code deployment automation. The service lets you configure and launch stacks specific to your application's needs.
+- There are numerous options, in and out of AWS, that let you automate application deployments. The separating factor between OpsWorks and other configuration management services (Elastic Beanstalk for example) is that OpsWorks specializes in letting you control the details of the systems your application runs on, where a service like Elastic Beanstalk simplifies this to focus on application configuration.
+- Simply put, developers who are familiar with system administration and server configuration will find great freedom with customizing their deployments by using OpsWorks.
+- [OpsWorks Stacks](https://aws.amazon.com/opsworks/stacks/) allows you to run your deployment stacks both in the AWS cloud as well as on your own hardware on-premises.
+- [OpsWorks for ChefAutomate](https://aws.amazon.com/opsworks/chefautomate/) provides a managed Chef configuration management server for your deployment pipeline. This server stores configuration tasks and provides them to your deployment nodes without manual intervention, plus other management and monitoring features.
 
 ### OpsWorks Alternatives and Lock-in
 
@@ -1687,6 +1690,7 @@ OpsWorks
 ### OpsWorks Gotchas and Limitations    
 
 - Although OpsWorks will let you work with common Chef recipes when creating your stacks, creating custom recipes will require familiarity with Chef syntax.
+- As of December 2016, OpsWorks is available in all regions except GovCloud (US) and China (Beijing).
 
 High Availability
 -----------------
