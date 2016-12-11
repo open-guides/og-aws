@@ -43,6 +43,7 @@ Table of Contents
 | [RDS Aurora](#rds-aurora) | [📗](#rds-aurora-basics) | [📘](#rds-aurora-tips) | [📙](#rds-aurora-gotchas-and-limitations) |
 | [RDS SQL Server](#rds-sql-server) | [📗](#rds-sql-server-basics) | [📘](#rds-sql-server-tips) | [📙](#rds-sql-server-gotchas-and-limitations) |
 | [DynamoDB](#dynamodb) | [📗](#dynamodb-basics) | [📘](#dynamodb-tips) | [📙](#dynamodb-gotchas-and-limitations) |
+| [ElastiCache](#elasticache) | [📗](#elasticache-basics) | [📘](#elasticache-tips) | [📙](#elasticache-gotchas-and-limitations) |
 | [ECS](#ecs) | [📗](#ecs-basics) | [📘](#ecs-tips) |  |
 | [Lambda](#lambda) | [📗](#lambda-basics) | [📘](#lambda-tips) | [📙](#lambda-gotchas-and-limitations) |
 | [API Gateway](#api-gateway) | [📗](#api-gateway-basics) | [📘](#api-gateway-tips) | [📙](#api-gateway-gotchas-and-limitations) |
@@ -1171,6 +1172,58 @@ RDS SQL Server
 -	🔸Storage cannot be expanded for existing databases. If you need more space, you must restore your database on a new instance with larger storage.
 -	🔸There is a **4TB** database size limit for non-Express editions.
 -	🔸Limited to [30 databases per instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html)
+
+
+ElastiCache
+-----------
+
+### ElastiCache Basics
+
+- 📒 [Homepage](https://aws.amazon.com/elasticache/) ∙ [User
+  guide](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide) ∙
+  [FAQ](https://aws.amazon.com/elasticache/faqs/) ∙
+  [Pricing](https://aws.amazon.com/elasticathe/pricing/)
+- **ElastiCache** is a managed in-memory cache service, that can be used to
+  store temporary data in a fast in-memory cache, typically in order to avoid
+  repeating the same computation multiple times when it could be reused.
+- It supports both the [Memcached](https://memcached.org) and
+  [Redis](https://redis.io) open source in-memory cache software and exposes
+  them both using their native access APIs.
+- The main benefit is that AWS takes care of running, patching and optimizing
+  the cache nodes for you, so you just need to launch a cluster and configure
+  its endpoint in your application, while AWS will take of most of the operational
+  work of running the cache nodes.
+
+### ElastiCache Tips
+
+- Choose the
+  [engine](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html),
+  clustering configuration and [instance
+  type](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheNodes.SelectSize.html)
+  carefully based on your application needs. The documentation explains in
+  detail the pros, cons and limitations of each engine in order to help you
+  choose the best fit for your application. In a nutshell, Redis is
+  preferable for storing more complex data structures, while Memcached is just a
+  plain key/value store. The simplicity of Memcached allows it to be slightly
+  faster and allows it to scale out if needed, but Redis has more features which
+  you may use in your application.
+- For Memcached AWS provides enhanced SDKs for certain programming languages
+  which implement
+  [auto-discovery](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/AutoDiscovery.html),
+  a feature not available in the normal memcached client libraries.
+
+### ElastiCache Gotchas and Limitations
+
+- Since in some cases changing the cache clusters may have some restrictions,
+  like for
+  [scaling](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Scaling.html)
+  purposes, it may become a problem if they were launched using CloudFormation
+  in a stack that also contains other resources and you really need to change
+  the cache. In order to avoid getting your CloudFormation stacks in a
+  non-updateable state, it is recommended to launch ElastiCache clusters (just
+  like any other resource with similar constraints) in dedicated stacks which
+  can be replaced entirely with new stacks having the desired configuration.
+
 
 DynamoDB
 --------
