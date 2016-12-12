@@ -1,28 +1,42 @@
 # This file is used to configure the "ghizmo assemble-authors" command.
 
 header: |
-  This work is a collaborative effort.
-  It was begun and is edited by [@jlevy](https://github.com/jlevy) and [@ThanosBaskous](https://github.com/ThanosBaskous).
-  The following people (in alphabetical order) have contributed to or reviewed this or earlier versions of the guide.
-
+  This “Open Guide” is a collaborative effort.
+  It was begun and is led by [@jlevy](https://github.com/jlevy) and [@ThanosBaskous](https://github.com/ThanosBaskous),
+  but the content is the result of a community of contributors, editors, and experts.
+  Please help if you can. See the [contribution guidelines](CONTRIBUTING.md) for notes on roles and editorial process.
 
 footer: |
-  Additional authors are welcome; see the [contribution guidelines](CONTRIBUTING.md).
-  Please let the editors know of any errors or omissions on this list.
+  Contributors are listed alphabetically with assigned roles first.
+  Please don't PR the AUTHORS.md or authors-info.yml files! It is auto-generated regularly by the project leads.
+  Please let the project leads know of any errors or omissions on this list.
 
 exclude:
   gitter-badger
   ReadmeCritic
 
 roles:
-  jlevy: general editor
-  ThanosBaskous: general editor
-  max-zanko: editor (S3, EMR, Redshift)
+  jlevy: project lead, editor (topics not otherwise assigned)
+  ThanosBaskous: project lead, editor (topics not otherwise assigned)
+  max-zanko: editor (EC2, S3, Glacier, EMR, Redshift)
   nitingithub: editor (cost management)
+  forwidur: editor (EBS, RDS)
+  lynnlangit: editor (IoT)
+  richadams: editor (VPC)
+  artemnikitin: editor (Certificate Manager)
+  bgdnlp: editor (EFS)
+  JCBarry: editor (CloudWatch)
+  nzoschke: editor (KMS)
+  donnemartin: expert (tools)
+  merrells: expert (cloud infrastructure, when to use AWS)
+  benkehoe: expert (IoT)
+  ehammond: expert (Lambda, serverless)
+  danhermann: expert (RDS)
+  kimschmidtsbrain: expert (AWS Marketplace, Aurora)
+  wumintendy: expert (ECS, CloudWatch, SQS, RDS, WAF)
+  lukedeo: expert (machine learning, Terraform, orchestration)
   marcello3d:
   golyshev:
-  forwidur:
-  merrells:
   Praveen Patnala:
   kazuyukitanimura:
   olawiberg:
@@ -30,6 +44,4 @@ roles:
   bittlingmayer:
   rjpower:
   alexanderatallah:
-  donnemartin:
-  benkehoe:
   Jurgen Philippaerts:
