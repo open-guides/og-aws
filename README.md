@@ -560,6 +560,7 @@ We cover security basics first, since configuring user accounts is something you
 	-	That way, you define different users, and groups with different levels of privilege (if you want, choose from Amazon’s default suggestions, of administrator, power user, etc.).
 	-	This allows credential revocation, which is critical in some situations. If an employee leaves, or a key is compromised, you can revoke credentials with little effort.
 	-	You can set up [Active Directory federation](https://blogs.aws.amazon.com/security/post/Tx71TWXXJ3UI14/Enabling-Federation-to-AWS-using-Windows-Active-Directory-ADFS-and-SAML-2-0) to use organizational accounts in AWS.
+-	❗**Do NOT use the [IAM Root User account](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html)** other than when you initially create your account.  Create custom IAM users and/or roles and use those for your applications instead.
 -	❗**Enable [MFA](https://aws.amazon.com/iam/details/mfa/)** on your account.
 	-	You should always use MFA, and the sooner the better — enabling it when you already have many users is extra work.
 	-	Unfortunately it can’t be enforced in software, so an administrative policy has to be established.
