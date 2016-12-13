@@ -59,6 +59,7 @@ Table of Contents
 | [IoT](#iot) | [📗](#iot-basics) | [📘](#iot-tips) | [📙](#iot-gotchas-and-limitations) |
 | [SES](#ses) | [📗](#ses-basics) | [📘](#ses-tips) | [📙](#ses-gotchas-and-limitations) |
 | [Certificate Manager](#certificate-manager) | [📗](#certificate-manager-basics) | [📘](#certificate-manager-tips) | [📙](#certificate-manager-gotchas-and-limitations) |
+| [OpsWorks](#opsworks) | [📗](#opsworks-basics) | [📘](#opsworks-tips) | [📙](#opsworks-gotchas-and-limitations) |
 
 **Special Topics**
 
@@ -1665,6 +1666,30 @@ Certificate Manager
 
 -       🔸In order to use **Certificate Manager** for CloudFront distributions certificate must be issued or imported from us-east-1 (N. Virginia) region. Certificates from other regions can [only be used with Elastic Load Balancers](https://docs.aws.amazon.com/acm/latest/userguide/acm-services.html).
 -       🔸**IoT** has its [own way](http://docs.aws.amazon.com/iot/latest/developerguide/create-device-certificate.html) of setting up certificates.
+
+OpsWorks
+-------------------
+
+### OpsWorks Basics
+
+-	📒 [Homepage](https://aws.amazon.com/opsworks/) ∙ [Documentation](https://aws.amazon.com/documentation/opsworks/) ∙ [FAQ](https://aws.amazon.com/opsworks/faqs/) ∙ [Pricing - Stacks](https://aws.amazon.com/opsworks/stacks/pricing/) ∙ [Pricing - ChefAutomate](https://aws.amazon.com/opsworks/chefautomate/pricing/)
+- OpsWorks is a configuration management service that relies heavy on Chef for configuration-as-code deployment automation. The service lets you configure and launch stacks specific to your application's needs.
+- There are numerous options, in and out of AWS, that let you automate application deployments. The separating factor between OpsWorks and other configuration management services (Elastic Beanstalk for example) is that OpsWorks specializes in letting you control the details of the systems your application runs on, where a service like Elastic Beanstalk simplifies this to focus on application configuration.
+- [OpsWorks Stacks](https://aws.amazon.com/opsworks/stacks/) allows you to run your deployment stacks both in the AWS cloud as well as on your own hardware on-premises.
+- [OpsWorks for ChefAutomate](https://aws.amazon.com/opsworks/chefautomate/) provides a managed Chef configuration management server for your deployment pipeline. This server stores configuration tasks and provides them to your deployment nodes without manual intervention, in addition to providing other management and monitoring features.
+
+### OpsWorks Alternatives and Lock-in
+
+- Major competitors to OpsWorks include [Puppet](https://puppet.com/product/how-puppet-works) and [Ansible](https://www.ansible.com/how-ansible-works).
+
+### OpsWorks Tips    
+
+- OpsWorks relies heavily on Chef cookbooks and recipes, so familiarity with reading their syntax will help greatly with getting up and running.
+
+### OpsWorks Gotchas and Limitations    
+
+- Although OpsWorks will let you work with common Chef recipes when creating your stacks, creating custom recipes will require familiarity with Chef syntax.
+- As of December 2016, OpsWorks is available in all regions except GovCloud (US) and China (Beijing).
 
 High Availability
 -----------------
