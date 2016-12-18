@@ -1710,10 +1710,13 @@ OpsWorks
 - [OpsWorks for ChefAutomate](https://aws.amazon.com/opsworks/chefautomate/) provides a managed Chef configuration management server for your deployment pipeline. This server stores configuration tasks and provides them to your deployment nodes without manual intervention, in addition to providing other management and monitoring features.
 - As of December 2016, OpsWorks Stacks supports Chef versions [12, 11.10.4, 11.4.4 and 0.9.15.5](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
 - As of December 2016, OpsWorks for ChefAutomate uses [Chef Server version 12.11.1](http://docs.aws.amazon.com/opsworks/latest/userguide/welcome_opscm.html) This is the current stable version of Chef.
+- [Berkshelf can be used](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-chef11-10.html#workingcookbook-chef11-10-berkshelf) with Chef stacks of version 11.10 and later for managing cookbooks and their respective dependencies.
+- Running your own Chef environment may be an alternative to consider - some considerations are listed [in this Bitlancer article.](http://www.bitlancer.com/blog/2015/10/05/opsworks-vs-chef.html)
+- A key difference between running OpsWorks and rolling your own Chef environment is that the latter allows the scheduling of Chef runs, while the former has Chef runs occur according to lifecycle hooks.
 
 ### OpsWorks Alternatives and Lock-in
 
-- Major competitors to OpsWorks include [Puppet](https://puppet.com/product/how-puppet-works) and [Ansible](https://www.ansible.com/how-ansible-works).
+- Major competitors to Chef include [Puppet](https://puppet.com/product/how-puppet-works) and [Ansible](https://www.ansible.com/how-ansible-works).
 
 ### OpsWorks Tips
 
