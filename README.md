@@ -958,7 +958,6 @@ EFS
 -	🔸 Using an EFS volume on Windows is not supported.
 -	⏱ When a file is uploaded to EFS, it can take hours for EFS to update the details for billing and burst credit purposes.
 -	🔸⏱  Metadata operations can be costly in terms of burst credit consumption. Recursively traversing a tree containing thousands of files can easily ramp up to tens or even hundreds of megabytes of burst credits being consumed, even if no file is being touched. Commands like ```find``` or ```chown -R``` can have an adverse impact on performace if run periodically.
--	🔸 Mount points are AZ-based. In an Auto scaling group spread across zones, you can end up with instances in one zone mounting EFS from a different zone. That might decrease performance and would create an unintended single point of failure. One way to fix it would be [a shell script](https://gist.github.com/bgdnlp/9fd326dc4a23f46bab93a1eade023fe4) that runs before network drives are mounted and edits /etc/fstab with the proper AZ.
 
 
 Load Balancers
