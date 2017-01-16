@@ -944,7 +944,6 @@ EFS
 -	🔸 A number of NFSv4.1 features are [not supported](http://docs.aws.amazon.com/efs/latest/ug/nfs4-unsupported-features.html) and there are some [limits](http://docs.aws.amazon.com/efs/latest/ug/limits.html) to the service.
 -	🔸 As of 2016-11, EFS does not offer disk level encryption, though it is on the roadmap.
 -	❗ Some applications, like SQLite and IPython, [might not work properly](https://sqlite.org/faq.html#q5) on EFS when accessed from multiple clients. This is because lock upgrades and downgrades are [not supported](http://docs.aws.amazon.com/efs/latest/ug/nfs4-unsupported-features.html). There might be [workarounds](https://github.com/ipython/ipython/issues/882) for some issues.
--	🔸 Mounting EFS over a VPN connection or VPC peering is not supported. EFS [does support](https://aws.amazon.com/efs/faq/#on-premises) mounting over Direct Connect.
 -	🔸 An EFS file system [can be mounted on premises](https://aws.amazon.com/efs/faq/#on-premises) over Direct Connect.
 -	🔸 An EFS file system can NOT be mounted over VPC peering or VPN, even if the VPN is running on top of Direct Connect.
 -	🔸 Using an EFS volume on Windows is not supported.
