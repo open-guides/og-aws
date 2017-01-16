@@ -225,6 +225,9 @@ General Information
 	-	🐥[Certificate Manager](https://aws.amazon.com/certificate-manager/): Manage SSL/TLS certificates for AWS services
 -	**Compound services:** These are similarly specific, but are full-blown services that tackle complex problems and may tie you in. Usefulness depends on your requirements. If you have large or significant need, you may have these already managed by in-house systems and engineering teams.
 	-	[Machine Learning](https://aws.amazon.com/machine-learning/): Machine learning model training and classification
+	-	[Lex](https://aws.amazon.com/lex/): Automatic speech recognition (ASR) and natural language understanding (NLU)
+	-	[Polly](https://aws.amazon.com/polly/): Text-to-speech engine in the cloud
+	-	[Rekognition](https://aws.amazon.com/rekognition/): Service for image recognition
 	-	⛓🕍[Data Pipeline](https://aws.amazon.com/datapipeline/): Managed ETL service
 	-	⛓🕍[SWF](https://aws.amazon.com/swf/): Managed state tracker for distributed polyglot job workflow
 	-	⛓🕍[Lumberyard](https://aws.amazon.com/lumberyard/): 3D game engine
@@ -304,6 +307,9 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 | Mobile app analytics          | Mobile Analytics                                                             | Firebase Analytics           |                 | HockeyApp                          | Mixpanel                          |                                                            |
 | Mobile app testing            | Device Farm                                                                  | Firebase Test Lab            |                 | Xamarin Test Cloud                 | BrowserStack, Sauce Labs, Testdroid                                                            |
 | Managing SSL/TLS certificates            | Certificate Manager                                                                  |                |                 |                 | Let's Encrypt, Comodo, Symantec, GlobalSign |
+| Automatic speech recognition and natural language understanding            | Lex   | Natural Language API               |                 | Cognitive services                | AYLIEN Text Analysis API, Ambiverse Natural Language Understanding API  |Stanford's Core NLP Suite, Apache OpenNLP, Apache UIMA, spaCy |
+| Text-to-speech engine in the cloud            | Polly                                                                  |                |                 |                 |Nuance, Vocalware, IBM Watson |Mimic, eSpeak, MaryTTS |
+| Image recognition            | Rekognition                                                            |   Vision API              |                |Cognitive services                 | IBM Watson, Clarifai |TensorFlow, OpenCV |
 
 
 🚧 [*Please help fill this table in.*](CONTRIBUTING.md)
@@ -318,6 +324,9 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 
 | Service                                                                                                    | Original release | Availability                                                                  | CLI Support |
 |------------------------------------------------------------------------------------------------------------|------------------|-------------------------------------------------------------------------------|:-----------:|
+| 🐥[Lex](https://aws.amazon.com/releasenotes/Amazon-Lex?browse=1) | 2016-11          | Preview                                                                       |             |
+| 🐥[Polly](https://aws.amazon.com/releasenotes/Amazon-Polly?browse=1) | 2016-11          | General                                                                       |✓             |
+| 🐥[Rekognition](https://aws.amazon.com/releasenotes/Amazon-Rekognition?browse=1) | 2016-11          | General                                                                       |✓             |
 | 🐥[Database Migration Service](https://aws.amazon.com/releasenotes/AWS-Database-Migration-Service?browse=1) | 2016-03          | General                                                                       |             |
 | 🐥[Certificate Manager](https://aws.amazon.com/blogs/aws/new-aws-certificate-manager-deploy-ssltls-based-apps-on-aws/) | 2016-01          | General                                                                       | ✓
 | 🐥[IoT](https://aws.amazon.com/blogs/aws/aws-iot-now-generally-available/)                                  | 2015-08          | General                                                                       | ✓           |
