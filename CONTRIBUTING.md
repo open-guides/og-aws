@@ -1,7 +1,7 @@
 Contributing
 ------------
 
-[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://og-aws.slack.lexikon.io/)
+[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://og-aws-slack.lexikon.io/)
 
 Contributions of all kinds, including discussion, corrections, additions, and improvements, are welcome! We hope you'll join and help, in small ways or large. We gladly [credit](/AUTHORS.md) all contributors. Here are few notes before you jump in.
 
@@ -10,7 +10,7 @@ Please Help
 
 If you’ve found this guide useful, please see if you can help (in increasing levels of commitment and expertise):
 
--	**Discussion:** The easiest thing you can do to contribute is [**join the Slack channel**](https://og-aws.slack.lexikon.io/) and ask or answer questions. As we discuss, see if it points to new things you or others can contribute to the Guide.
+-	**Discussion:** The easiest thing you can do to contribute is [**join the Slack channel**](https://og-aws-slack.lexikon.io/) and ask or answer questions. As we discuss, see if it points to new things you or others can contribute to the Guide.
 helps the community and guides what contributors can focus on.
 -	**Focused pull requests:** [Pull requests](https://github.com/open-guides/og-aws/pulls) with focused changes like typos, specific tips, and corrections are always welcome and fast to review and merge in. Keep them small and focused, and *use multiple PRs for unrelated changes*. (See [writing conventions](#writing-conventions) below.)
 -	**Track issues:** [File issues](https://github.com/open-guides/og-aws/issues) to aggregate ideas or links if it’s clear something needs to be improved, but it’s not possible to file a PR immediately.
