@@ -3,7 +3,7 @@
 The Open Guide to Amazon Web Services
 =====================================
 
-[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://og-aws.slack.lexikon.io/) ⇦ Join us!
+[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://og-aws-slack.lexikon.io/) ⇦ Join us!
 
 [Credits](AUTHORS.md) ∙ [Contributing guidelines](CONTRIBUTING.md)
 
@@ -95,9 +95,9 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
 
 **This is an early in-progress draft!** It’s our first attempt at assembling this information, so is far from comprehensive still, and likely to have omissions or errors.
 
-[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://og-aws.slack.lexikon.io/)
+[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://og-aws-slack.lexikon.io/)
 
-Please help by [**joining the Slack channel**](https://og-aws.slack.lexikon.io/) (we like to talk about AWS in general, even if you only have questions — discussion helps the community and guides improvements) and [**contributing to the guide**](CONTRIBUTING.md). This guide is *open to contributions*, so unlike a blog, it can keep improving. Like any open source effort, we combine efforts but also review to ensure high quality.
+Please help by [**joining the Slack channel**](https://og-aws-slack.lexikon.io/) (we like to talk about AWS in general, even if you only have questions — discussion helps the community and guides improvements) and [**contributing to the guide**](CONTRIBUTING.md). This guide is *open to contributions*, so unlike a blog, it can keep improving. Like any open source effort, we combine efforts but also review to ensure high quality.
 
 Scope
 -----
@@ -225,6 +225,9 @@ General Information
 	-	🐥[Certificate Manager](https://aws.amazon.com/certificate-manager/): Manage SSL/TLS certificates for AWS services
 -	**Compound services:** These are similarly specific, but are full-blown services that tackle complex problems and may tie you in. Usefulness depends on your requirements. If you have large or significant need, you may have these already managed by in-house systems and engineering teams.
 	-	[Machine Learning](https://aws.amazon.com/machine-learning/): Machine learning model training and classification
+	-	[Lex](https://aws.amazon.com/lex/): Automatic speech recognition (ASR) and natural language understanding (NLU)
+	-	[Polly](https://aws.amazon.com/polly/): Text-to-speech engine in the cloud
+	-	[Rekognition](https://aws.amazon.com/rekognition/): Service for image recognition
 	-	⛓🕍[Data Pipeline](https://aws.amazon.com/datapipeline/): Managed ETL service
 	-	⛓🕍[SWF](https://aws.amazon.com/swf/): Managed state tracker for distributed polyglot job workflow
 	-	⛓🕍[Lumberyard](https://aws.amazon.com/lumberyard/): 3D game engine
@@ -245,6 +248,7 @@ General Information
 	-	[Service Catalog](https://aws.amazon.com/servicecatalog/): IT service approval and compliance
 -	**Probably-don't-need-to-know services:** Bottom line, our informal polling indicates these services are just not broadly used — and often for good reasons:
 	-	[Snowball](https://aws.amazon.com/importexport/): If you want to ship petabytes of data into or out of Amazon using a physical appliance, read on.
+	-	[Snowmobile](https://aws.amazon.com/snowmobile/): Appliances are great, but if you've got exabyte scale data to get into Amazon, nothing beats a tractor trailer full of drives.
 	-	[CodeCommit](https://aws.amazon.com/codecommit/): Git service. You’re probably already using GitHub or your own solution ([Stackshare](http://stackshare.io/stackups/github-vs-bitbucket-vs-aws-codecommit) has informal stats).
 	-	🕍[CodePipeline](https://aws.amazon.com/codepipeline/): Continuous integration. You likely have another solution already.
 	-	🕍[CodeDeploy](https://aws.amazon.com/codedeploy/): Deployment of code to EC2 servers. Again, you likely have another solution.
@@ -280,7 +284,7 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 | Serverless, microservices     | Lambda, API Gateway                                                          | Functions                    |                 | Function Apps                      | PubNub Blocks, Auth0 Webtask      | Kong, Tyk                                                  |
 | Container, cluster manager    | ECS                                                                          | Container Engine, Kubernetes | Borg or Omega   | Container Service                  |                                   | Kubernetes, Mesos, Aurora                                  |
 | File storage                  | S3                                                                           | Cloud Storage                | GFS             | Storage Account                    |                                   | Swift, HDFS                                                |
-| Block storage                 | EBS                                                                          | Persistent Disk              |                 | Storage Account                    |                                   | NFS                                                        |
+| Block storage                 | EBS                                                                          | Persistent Disk              |                 | Storage Account                    | DigitalOcean Volumes              | NFS                                                        |
 | SQL datastore                 | RDS                                                                          | Cloud SQL                    |                 | SQL Database                       |                                   | MySQL, PostgreSQL                                          |
 | Sharded RDBMS                 |                                                                              |                              | F1, Spanner     |                                    |                                   | Crate.io, CockroachDB                                      |
 | Bigtable                      |                                                                              | Cloud Bigtable               | Bigtable        |                                    |                                   | HBase                                                      |
@@ -304,6 +308,9 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 | Mobile app analytics          | Mobile Analytics                                                             | Firebase Analytics           |                 | HockeyApp                          | Mixpanel                          |                                                            |
 | Mobile app testing            | Device Farm                                                                  | Firebase Test Lab            |                 | Xamarin Test Cloud                 | BrowserStack, Sauce Labs, Testdroid                                                            |
 | Managing SSL/TLS certificates            | Certificate Manager                                                                  |                |                 |                 | Let's Encrypt, Comodo, Symantec, GlobalSign |
+| Automatic speech recognition and natural language understanding            | Lex   | Natural Language API               |                 | Cognitive services                | AYLIEN Text Analysis API, Ambiverse Natural Language Understanding API  |Stanford's Core NLP Suite, Apache OpenNLP, Apache UIMA, spaCy |
+| Text-to-speech engine in the cloud            | Polly                                                                  |                |                 |                 |Nuance, Vocalware, IBM Watson |Mimic, eSpeak, MaryTTS |
+| Image recognition            | Rekognition                                                            |   Vision API              |                |Cognitive services                 | IBM Watson, Clarifai |TensorFlow, OpenCV |
 
 
 🚧 [*Please help fill this table in.*](CONTRIBUTING.md)
@@ -318,6 +325,9 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 
 | Service                                                                                                    | Original release | Availability                                                                  | CLI Support |
 |------------------------------------------------------------------------------------------------------------|------------------|-------------------------------------------------------------------------------|:-----------:|
+| 🐥[Lex](https://aws.amazon.com/releasenotes/Amazon-Lex?browse=1) | 2016-11          | Preview                                                                       |             |
+| 🐥[Polly](https://aws.amazon.com/releasenotes/Amazon-Polly?browse=1) | 2016-11          | General                                                                       |✓             |
+| 🐥[Rekognition](https://aws.amazon.com/releasenotes/Amazon-Rekognition?browse=1) | 2016-11          | General                                                                       |✓             |
 | 🐥[Database Migration Service](https://aws.amazon.com/releasenotes/AWS-Database-Migration-Service?browse=1) | 2016-03          | General                                                                       |             |
 | 🐥[Certificate Manager](https://aws.amazon.com/blogs/aws/new-aws-certificate-manager-deploy-ssltls-based-apps-on-aws/) | 2016-01          | General                                                                       | ✓
 | 🐥[IoT](https://aws.amazon.com/blogs/aws/aws-iot-now-generally-available/)                                  | 2015-08          | General                                                                       | ✓           |
@@ -399,6 +409,7 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 ### Restrictions and Other Notes
 
 -	🔸Lots of resources in Amazon have [**limits**](http://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) on them. This is actually helpful, so you don’t incur large costs accidentally. You have to request that quotas be increased by opening support tickets. Some limits are easy to raise, and some are not. (Some of these are noted in sections below.)
+	- **Obtaining Current Limits and Usage:** Limit information for a service may be available from the service API, Trusted Advisor, both or neither (in which case you'll need to contact Support). [This page](http://awslimitchecker.readthedocs.io/en/latest/limits.html) from the awslimitchecker tool's documentation provides a nice summary of available retrieval options for each limit. The [tool](https://github.com/jantman/awslimitchecker) itself is also valuable for automating limit checks.
 -	🔸[**AWS terms of service**](https://aws.amazon.com/service-terms/) are extensive. Much is expected boilerplate, but it does contain important notes and restrictions on each service. In particular, there are restrictions against using many AWS services in **safety-critical systems**. (Those appreciative of legal humor may wish to review clause 57.10.)
 
 ### Related Topics
@@ -536,7 +547,7 @@ We cover security basics first, since configuring user accounts is something you
 -	📒 IAM [Homepage](https://aws.amazon.com/iam/) ∙ [User guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) ∙ [FAQ](https://aws.amazon.com/iam/faqs/)
 -	The [AWS Security Blog](https://blogs.aws.amazon.com/security) is one of the best sources of news and information on AWS security.
 -	**IAM** is the service you use to manage accounts and permissioning for AWS.
--	Managing security and access control with AWS is critical, so every AWS administrator needs to use and understand IAM, at least at a basic level.  
+-	Managing security and access control with AWS is critical, so every AWS administrator needs to use and understand IAM, at least at a basic level.
 -	[IAM identities](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html) include users (people or services that are using AWS), groups (containers for sets of users and their permissions), and roles (containers for permissions assigned to AWS service instances). [Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_permissions.html) for these identities are governed by [policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) You can use AWS pre-defined policies or custom policies that you create.
 -	IAM manages various kinds of authentication, for both users and for software services that may need to authenticate with AWS, including:
 	-	[**Passwords**](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_passwords.html) to log into the console. These are a username and password for real users.
@@ -561,6 +572,7 @@ We cover security basics first, since configuring user accounts is something you
 	-	That way, you define different users, and groups with different levels of privilege (if you want, choose from Amazon’s default suggestions, of administrator, power user, etc.).
 	-	This allows credential revocation, which is critical in some situations. If an employee leaves, or a key is compromised, you can revoke credentials with little effort.
 	-	You can set up [Active Directory federation](https://blogs.aws.amazon.com/security/post/Tx71TWXXJ3UI14/Enabling-Federation-to-AWS-using-Windows-Active-Directory-ADFS-and-SAML-2-0) to use organizational accounts in AWS.
+-	❗**Do NOT use the [IAM Root User account](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html)** other than when you initially create your account.  Create custom IAM users and/or roles and use those for your applications instead.
 -	❗**Enable [MFA](https://aws.amazon.com/iam/details/mfa/)** on your account.
 	-	You should always use MFA, and the sooner the better — enabling it when you already have many users is extra work.
 	-	Unfortunately it can’t be enforced in software, so an administrative policy has to be established.
@@ -582,7 +594,7 @@ We cover security basics first, since configuring user accounts is something you
 	-	Cost of multi-account “overhead”: Internal AWS service management tools may need to be custom built or adapted.
 	-	🔹It can help to use separate AWS accounts for independent parts of your infrastructure if you expect a high rate of AWS API calls, since AWS [throttles calls](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-api-troubleshooting.html#api-request-rate) at the AWS account level.
 -	[**Inspector**](https://aws.amazon.com/inspector/) is an automated security assessment service from AWS that helps identify common security risks. This allows validation that you adhere to certain security practices and may help with compliance.
--	[**Trusted Advisor**](https://aws.amazon.com/blogs/aws/trusted-advisor-console-basic/) addresses a variety of best practices, but also offers some basic security checks around IAM usage, security group configurations, and MFA.
+-      [**Trusted Advisor**](https://aws.amazon.com/blogs/aws/trusted-advisor-console-basic/) addresses a variety of best practices, but also offers some basic security checks around IAM usage, security group configurations, and MFA. At paid support tiers, Trusted Advisor exposes additional checks around other areas, such as reserved instance optimization.
 -	**Use KMS for managing keys**: AWS offers [KMS](#kms) for securely managing encryption keys, which is usually a far better option than handling key security yourself. See [below](#kms).
 -	[**AWS WAF**](https://aws.amazon.com/waf) is a web application firewall to help you protect your applications from common attack patterns.
 -	**Security auditing:**
@@ -734,7 +746,7 @@ EC2
 
 -	Running EC2 is akin to running a set of physical servers, as long as you don’t do automatic scaling or tooled cluster setup. If you just run a set of static instances, migrating to another VPS or dedicated server provider should not be too hard.
 -	🚪**Alternatives to EC2:** The direct alternatives are Google Cloud, Microsoft Azure, Rackspace, DigitalOcean and other VPS providers, some of which offer similar API for setting up and removing instances. (See the comparisons [above](#when-to-use-aws).)
--	**Should you use Amazon Linux?** AWS encourages use of their own [Amazon Linux](https://aws.amazon.com/amazon-linux-ami/), which is evolved from [Red Hat Enterprise Linux (RHEL)](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux) and [CentOS](https://en.wikipedia.org/wiki/CentOS). It’s used by many, but [others are skeptical](https://www.exratione.com/2014/08/do-not-use-amazon-linux/). Whatever you do, think this decision through carefully. It’s true Amazon Linux is heavily tested and better supported in the unlikely event you have deeper issues with OS and virtualization on EC2. But in general, many companies do just fine using a standard, non-Amazon Linux distribution, such as Ubuntu or CentOS. Using a standard Linux distribution means you have an exactly replicable environment should you use another hosting provider instead of (or in addition to) AWS. It’s also helpful if you wish to test deployments on local developer machines running the same standard Linux distribution (a practice that’s getting more common with Docker, too, and not currently possible with Amazon Linux).
+-	**Should you use Amazon Linux?** AWS encourages use of their own [Amazon Linux](https://aws.amazon.com/amazon-linux-ami/), which is evolved from [Red Hat Enterprise Linux (RHEL)](https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux) and [CentOS](https://en.wikipedia.org/wiki/CentOS). It’s used by many, but [others are skeptical](https://www.exratione.com/2014/08/do-not-use-amazon-linux/). Whatever you do, think this decision through carefully. It’s true Amazon Linux is heavily tested and better supported in the unlikely event you have deeper issues with OS and virtualization on EC2. But in general, many companies do just fine using a standard, non-Amazon Linux distribution, such as Ubuntu or CentOS. Using a standard Linux distribution means you have an exactly replicable environment should you use another hosting provider instead of (or in addition to) AWS. It’s also helpful if you wish to test deployments on local developer machines running the same standard Linux distribution (a practice that’s getting more common with Docker, too. Amazon now supports an official [Amazon Linux Docker image](http://docs.aws.amazon.com/AmazonECR/latest/userguide/amazon_linux_container_image.html), aimed at assisting with local development on a comparable environment, though this is new enough that it should be considered experimental).
 -	**EC2 costs:** See the [section on this](#ec2-cost-management).
 
 ### EC2 Tips
@@ -943,11 +955,11 @@ EFS
 -	🔸 A number of NFSv4.1 features are [not supported](http://docs.aws.amazon.com/efs/latest/ug/nfs4-unsupported-features.html) and there are some [limits](http://docs.aws.amazon.com/efs/latest/ug/limits.html) to the service.
 -	🔸 As of 2016-11, EFS does not offer disk level encryption, though it is on the roadmap.
 -	❗ Some applications, like SQLite and IPython, [might not work properly](https://sqlite.org/faq.html#q5) on EFS when accessed from multiple clients. This is because lock upgrades and downgrades are [not supported](http://docs.aws.amazon.com/efs/latest/ug/nfs4-unsupported-features.html). There might be [workarounds](https://github.com/ipython/ipython/issues/882) for some issues.
--	🔸 Mounting EFS over VPN connection, VPC peering, or AWS Direct Connect is not supported.
--	🔸 Using an EFS volume on Windows is not supported, apparently due to Microsoft implementing NFS differently.
+-	🔸 An EFS file system [can be mounted on premises](https://aws.amazon.com/efs/faq/#on-premises) over Direct Connect.
+-	🔸 An EFS file system can NOT be mounted over VPC peering or VPN, even if the VPN is running on top of Direct Connect.
+-	🔸 Using an EFS volume on Windows is not supported.
 -	⏱ When a file is uploaded to EFS, it can take hours for EFS to update the details for billing and burst credit purposes.
 -	🔸⏱  Metadata operations can be costly in terms of burst credit consumption. Recursively traversing a tree containing thousands of files can easily ramp up to tens or even hundreds of megabytes of burst credits being consumed, even if no file is being touched. Commands like ```find``` or ```chown -R``` can have an adverse impact on performace if run periodically.
--	🔸 Mount points are AZ-based. In an Auto scaling group spread across zones, you can end up with instances in one zone mounting EFS from a different zone. That might decrease performance and would create an unintended single point of failure. One way to fix it would be [a shell script](https://gist.github.com/bgdnlp/9fd326dc4a23f46bab93a1eade023fe4) that runs before network drives are mounted and edits /etc/fstab with the proper AZ.
 
 
 Load Balancers
@@ -1004,7 +1016,7 @@ CLB
 -	**Apex DNS names:** Once upon a time, you couldn’t assign an CLB to an apex DNS record (i.e. example.com instead of foo.example.com) because it needed to be an A record instead of a CNAME. This is now possible with a Route 53 alias record directly pointing to the load balancer.
 -	🔸CLBs use [HTTP keep-alives](https://en.wikipedia.org/wiki/HTTP_persistent_connection) on the internal side. This can cause an unexpected side effect: Requests from different clients, each in their own TCP connection on the external side, can end up on the same TCP connection on the internal side. Never assume that multiple requests on the same TCP connection are from the same client!
 -	🔸 Traffic between CLBs and back-end instances in the same subnet **will** have [Network ACL](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html) rules evaluated (EC2 to EC2 traffic in the same subnet would not have Network ACL rules evaluated). If the default '0.0.0.0/0 ALLOW' rule is removed from the Network ACL applied to the subnet, a rule that allows traffic on both the health check port and any listener port must be added.
-- As of December 2016, CLBs launched in VPCs do not support IPv6 addressing. CLBs launched in EC2-Classic support both IPv4 and IPv6 [with the "dualstack" DNS name.](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-internet-facing-load-balancers.html#internet-facing-ip-addresses)
+- As of December 2016, CLBs launched in VPCs do not support IPv6 addressing. CLBs launched in EC2-Classic support both IPv4 and IPv6 [with the "dualstack" DNS name](http://docs.aws.amazon.com/elasticloadbalancing/latest/classic/elb-internet-facing-load-balancers.html#internet-facing-ip-addresses).
 
 ALB
 ---
@@ -1029,7 +1041,7 @@ ALB
 -	Instances in the ALB’s target groups have to either have a single, fixed healthcheck port (“EC2 instance”-level healthcheck) or the healthcheck port for a target has to be the same as its application port (“Application instance”-level healthcheck) - you can't configure a per-target healthcheck port that is different than the application port.
 -	ALBs are VPC-only (they are not available in EC2 Classic)
 -	In a target group, if there is no healthy target, all requests are routed to all targets. For example, if you point a listener at a target group containing a single service that has a long initialization phase (during which the health checks would fail), requests will reach the service while it is still starting up.
-- Although it has been announced as coming soon, [ALBs do not presently support IPv6.](https://aws.amazon.com/about-aws/whats-new/2016/12/announcing-internet-protocol-version-6-support-for-ec2-instances-in-amazon-virtual-private-cloud/) Even if the ALB is launched in an IPv6-enabled VPC and subnet, it will only have IPv4 addressing.
+- As of December 2016, although it has been announced as coming soon, ALBs [do not yet support IPv6](https://aws.amazon.com/about-aws/whats-new/2016/12/announcing-internet-protocol-version-6-support-for-ec2-instances-in-amazon-virtual-private-cloud/). Even if the ALB is launched in an IPv6-enabled VPC and subnet, it will only have IPv4 addressing.
 
 Elastic IPs
 -----------
@@ -1107,7 +1119,7 @@ RDS MySQL and MariaDB
 ### RDS MySQL and MariaDB Tips
 
 -	MySQL RDS allows access to [binary logs](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.Concepts.MySQL.html#USER_LogAccess.MySQL.BinaryFormat).
--	Multi-AZ instances of MySQL transparently replicate data across AZs using DRBD. Automated backups of multi-AZ instances [run off the backup instance](https://www.percona.com/live/mysql-conference-2014/sessions/rds-mysql-tips-patterns-and-common-pitfalls) to reduce latency spikes on the primary.  
+-	Multi-AZ instances of MySQL transparently replicate data across AZs using DRBD. Automated backups of multi-AZ instances [run off the backup instance](https://www.percona.com/live/mysql-conference-2014/sessions/rds-mysql-tips-patterns-and-common-pitfalls) to reduce latency spikes on the primary.
 -	🔸**MySQL vs MariaDB vs Aurora:** If you prefer a MySQL-style database but are starting something new, you probably should consider Aurora and MariaDB as well. **Aurora** has increased availability and is the next-generation solution. That said, Aurora [may not be](http://blog.takipi.com/benchmarking-aurora-vs-mysql-is-amazons-new-db-really-5x-faster/) as fast relative to MySQL as is sometimes reported, and is more complex to administer. **MariaDB**, the modern [community fork](https://en.wikipedia.org/wiki/MariaDB) of MySQL, [likely now has the edge over MySQL](http://cloudacademy.com/blog/mariadb-vs-mysql-aws-rds/) for many purposes and is supported by RDS.
 
 ### RDS MySQL and MariaDB Gotchas and Limitations
@@ -1131,10 +1143,10 @@ RDS Aurora
 ### RDS Aurora Tips
 
 -	In order to take advantage of Aurora’s higher concurrency, applications should be configured with large database connection pools and should execute as many queries concurrently as possible. For example, Aurora servers have been tested to produce increasing performance on some OLTP workloads with [up to 5,000 connections](http://www.slideshare.net/AmazonWebServices/amazon-aurora-amazons-new-relational-database-engine/31).
--	[Aurora scales well with multiple CPUs](https://www.percona.com/blog/2016/05/26/aws-aurora-benchmarking-part-2/) and may require a large instance class for optimal performance.   
+-	[Aurora scales well with multiple CPUs](https://www.percona.com/blog/2016/05/26/aws-aurora-benchmarking-part-2/) and may require a large instance class for optimal performance.
 -	Because Aurora is based on MySQL 5.6.10, avoiding any MySQL features from 5.7 or later will ease the transition from a MySQL-compatible database into Aurora.
 -	The easiest migration path to Aurora is restoring a database snapshot from MySQL 5.6. The next easiest method is restoring a dump from a MySQL-compatible database such as MariaDB. For [low-downtime migrations](http://cantrill.io/howto/aws/2016/06/06/migrating-from-mysql-to-aurora-with-almost-no-downtime.html) from other MySQL-compatible databases, you can set up an Aurora instance as a replica of your existing database. If none of those methods are options, Amazon offers a fee-based data migration service.
--	You can replicate [from an Aurora cluster to MySQL or to another Aurora cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Overview.Replication.MySQLReplication.html). This requires binary logging to be enabled and is not as performant as native Aurora replication.  
+-	You can replicate [from an Aurora cluster to MySQL or to another Aurora cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Overview.Replication.MySQLReplication.html). This requires binary logging to be enabled and is not as performant as native Aurora replication.
 
 ### RDS Aurora Gotchas and Limitations
 
@@ -1203,9 +1215,10 @@ ECS
 	-	Doesn’t support cross-region replication of images.
 		-	If you want fast fleet-wide pulls of large images, you’ll need to push your image into a region-local registry.
 	-	Doesn’t support custom domains / certificates.
-
 -	A container’s health is monitored via [CLB](#clb) or [ALB](#alb). Those can also be used to address a containerized service. When using an ALB you do not need to handle port contention (i.e. services exposing the same port on the same host) since an ALB’s target groups can be associated with ECS-based services directly.
+
 -	ECS supports multiple log drivers (awslogs, splunk, fluentd, syslog, json, ... ). Use [`awslogs`](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html) for CloudWatch (make sure a group is made for the logs first). [Drivers such as fluentd are not enable by default](https://github.com/aws/amazon-ecs-agent/issues/535). To do so, install the agent and enable the driver by adding `ECS_AVAILABLE_LOGGING_DRIVERS='["awslogs","fluentd"]'` to `/etc/ecs/ecs.config`.
+-	ECS supports multiple log drivers (awslogs, splunk, fluentd, syslog, JSON, etc.). Use [`awslogs`](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html) for CloudWatch (make sure a group is made for the logs first). Drivers such as fluentd [are not enable by default](https://github.com/aws/amazon-ecs-agent/issues/535). To do so, install the agent and enable the driver by adding `ECS_AVAILABLE_LOGGING_DRIVERS='["awslogs","fluentd"]'` to `/etc/ecs/ecs.config`.
 
 ### ECS Tips
 
@@ -1246,7 +1259,8 @@ Lambda
 -	🔸Managing lots of Lambda functions is a workflow challenge, and tooling to manage Lambda deployments is still immature.
 -	🔸AWS’ official workflow around managing function [versioning and aliases](https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html) is painful.
 -	❗📜 Currently [as of October, 2016](https://github.com/open-guides/og-aws/pull/199/files/c99bddb4ee2437587f1e188d47be2bb1da01f81d#r83529126) Lambda functions can sometimes stop working for 2-3 minutes for failure recovery purposes according to a support ticket answer from Lambda development team. They are working to prevent this in the future.
-- 🔸 While adding/removing S3 buckets as triggers for lambda function, this error may occur : "There was an error creating the trigger: Configuration is ambiguously defined. Cannot have overlapping suffixes in two rules if the prefixes are overlapping for the same event type." In this case, remove the trigger manually by going to the Properties section of the S3 bucket, under Events, remove the lambda event.
+- 🔸 While adding/removing S3 buckets as triggers for Lambda function, this error may occur: "There was an error creating the trigger: Configuration is ambiguously defined. Cannot have overlapping suffixes in two rules if the prefixes are overlapping for the same event type." In this case, remove the trigger manually by going to the "Properties" section of the S3 bucket, under "Events", remove the Lambda event.
+-	🔸 At the time of writing (12 December 2016) Dead Letter Queues are only available in the Ohio (us-east-2) region.
 
 ### Lambda Code Samples
 
@@ -1277,6 +1291,7 @@ API Gateway
 -	🔸API Gateway only supports encrypted (https) endpoints, and does not support unencrypted HTTP. (This is probably a good thing.)
 -	🔸API Gateway endpoints are always public, i.e. internet facing, and there is no mechanism to build private endpoints, e.g. for internal use on a [VPC](#vpcs-network-security-and-security-groups) but endpoints and their related resources can, optionally, [require authentication](http://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-control-access-to-api.html).
 -	🔸API Gateway doesn’t support multi-region deployments for high availability. It is a service that is deployed in a single region but comes with a global endpoint that is served from AWS edge locations (similar to a CloudFront distribution). You cannot have multiple API Gateways with the same hostname in different AWS regions and use Route 53 to distribute the traffic. More in [this forum post](https://forums.aws.amazon.com/thread.jspa?messageID=735342&#735342).
+- 	🔸Integration timeout: All of the various integration types (eg: Lambda, HTTP) for API Gateway have timeouts, as described [here](http://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html#api-gateway-limits). Unlike some limits, these timeouts can't be increased.
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
@@ -1361,6 +1376,7 @@ VPCs, Network Security, and Security Groups
 -	❗**Security groups** are your first line of defense for your servers. Be extremely restrictive of what ports are open to all incoming connections. In general, if you use CLBs, ALBs or other load balancing, the only ports that need to be open to incoming traffic would be port 22 and whatever port your application uses. Security groups access policy is 'deny by default'.
 -	**Port hygiene:** A good habit is to pick unique ports within an unusual range for each different kind of production service. For example, your web frontend might use 3010, your backend services 3020 and 3021, and your Postgres instances the usual 5432. Then make sure you have fine-grained security groups for each set of servers. This makes you disciplined about listing out your services, but also is more error-proof. For example, should you accidentally have an extra Apache server running on the default port 80 on a backend server, it will not be exposed.
 -	**Migrating from Classic**: For migrating from older EC2-Classic deployments to modern EC2-VPC setup, [this article](http://blog.kiip.me/engineering/ec2-to-vpc-executing-a-zero-downtime-migration/) may be of help.
+	-	You can [migrate Elastic IPs between EC2-Classic and EC2-VPC](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#using-eip-migration).
 -	For basic AWS use, one default VPC may be sufficient. But as you scale up, you should consider mapping out network topology more thoroughly. A good overview of best practices is [here](http://blog.flux7.com/blogs/aws/vpc-best-configuration-practices).
 -	Consider controlling access to you private AWS resources through a [VPN](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpn-connections.html).
 	-	You get better visibility into and control of connection and connection attempts.
@@ -1372,6 +1388,8 @@ VPCs, Network Security, and Security Groups
 	-	See the [VPC Flow Logs User Guide](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html) for basic information.
 	-	See the [flowlogs-reader](https://github.com/obsrvbl/flowlogs-reader) CLI tool and Python library to retrieve and work with VPC Flow Logs.
 - **IPv6** [is available in VPC.](https://aws.amazon.com/blogs/aws/new-ipv6-support-for-ec2-instances-in-virtual-private-clouds/) Along with this announcement came the introduction of the Egress-Only Internet Gateway. In cases where one would use NAT Gateways to enable egress-only traffic for their VPC in IPv4, one can use an Egress-Only Internet Gateway for the same purpose in IPv6.
+- **IPv6** [is available in VPC](https://aws.amazon.com/blogs/aws/new-ipv6-support-for-ec2-instances-in-virtual-private-clouds/). Along with this announcement came the introduction of the [Egress-Only Internet Gateway](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/egress-only-internet-gateway.html). In cases where one would use NAT Gateways to enable egress-only traffic for their VPC in IPv4, one can use an Egress-Only Internet Gateway for the same purpose in IPv6.
+
 -	Amazon provides an IPv6 CIDR block for your VPC at your request - at present you cannot implement your own IPv6 block if you happen to own one already.
 -	New and existing VPCs can both use IPv6. Existing VPCs will need to be configured to have an IPv6 CIDR block associated with them, just as new VPCs do.
 
@@ -1426,7 +1444,7 @@ CloudFront
 
 ### CloudFront Tips
 
--	🐥**IPv6** is [supported](https://aws.amazon.com/about-aws/whats-new/2016/10/ipv6-support-for-cloudfront-waf-and-s3-transfer-acceleration/). This is a configurable setting, and is enabled by default on new CloudFront distribution. IPv6 support extends to the use of WAF with CloudFront.
+-	🐥**IPv6** is [supported](https://aws.amazon.com/about-aws/whats-new/2016/10/ipv6-support-for-cloudfront-waf-and-s3-transfer-acceleration/). This is a configurable setting, and is enabled by default on new CloudFront distributions. IPv6 support extends to the use of WAF with CloudFront.
 -	🐥**HTTP/2** is [now supported](https://aws.amazon.com/about-aws/whats-new/2016/09/amazon-cloudfront-now-supports-http2/)! Clients [must support TLS 1.2 and SNI](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesSupportedHTTPVersions).
 -	While the most common use is for users to browse and download content (GET or HEAD methods) requests, CloudFront also supports ([since 2013](https://aws.amazon.com/blogs/aws/amazon-cloudfront-content-uploads-post-put-other-methods/)) uploaded data (POST, PUT, DELETE, OPTIONS, and PATCH).
 	-	You must enable this by specifying the [allowed HTTP methods](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesAllowedHTTPMethods) when you create the distribution.
@@ -1600,7 +1618,7 @@ IoT
 - 	AWS has a useful [quick-start](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html) (using the Console) and a [slide presentation](http://www.slideshare.net/AmazonWebServices/connecting-to-aws-iot) on core topics.
 * **IoT terms:**
     * 	AWS [**IoT Things**](http://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-management.html) (metadata for devices in a [registry](http://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-management.html)) and can store device state in a JSON document, which is called a [**device shadow**](http://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-shadows.html).  Device metadata can also be stored in [**IoT Thing Types**](http://docs.aws.amazon.com/iot/latest/developerguide/thing-types.html). This aids in device metadata management by allowing for reuse of device description and configuration for more than one device.  Note that IoT Thing Types can be deprecated, but not changed — they are immutable.
-    * 	AWS [**IoT Certificates**](http://docs.aws.amazon.com/iot/latest/developerguide/attach-cert-thing.html) (device authentication) are the logical association of a unique certificate to the logical representation of a device. This association can be done in the Console.  In addition, the public key of the certificate must be copied to the physical device. This covers the authentication of devices to a particular AWS Device Gateway (or message broker).
+    * 	AWS [**IoT Certificates**](http://docs.aws.amazon.com/iot/latest/developerguide/attach-cert-thing.html) (device authentication) are the logical association of a unique certificate to the logical representation of a device. This association can be done in the Console.  In addition, the public key of the certificate must be copied to the physical device. This covers the authentication of devices to a particular AWS Device Gateway (or message broker). You can associate an AWS IoT certificate with an IoT device or you can [register your own CA (Certificate Authority) with AWS](http://docs.aws.amazon.com/iot/latest/developerguide/device-certs-your-own.html), generate your own certificate(s) and associate those certificates with your devices via the AWS Console or cli. 
     * 	AWS [**IoT Policies**](http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html) (device/topic authorization) are JSON files that are associated to one or more AWS IoT certificates. This authorizes associated devices to publish and/or subscribe to messages from one or more MQTT topics.
     * 	AWS [**IoT Rules**](http://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html) are SQL-like queries which allows for reuse of some or all device message data, as described in [this presentation, which summarizes design patterns with for IoT Rules](http://www.slideshare.net/AmazonWebServices/programming-the-physical-world-with-device-shadows-and-rules-engine-66486454).
     * 	Shown below is a [diagram](https://aws.amazon.com/iot/how-it-works/) which summarizes the flow of messages between the AWS IoT services:
@@ -1609,7 +1627,7 @@ IoT
 
 ### IoT Alternatives and Lock-in
 
-- 	AWS, Microsoft and Google have all introduced IoT-specific sets of cloud services since late 2015. AWS was first, moving their IoT services to [general availability](https://aws.amazon.com/blogs/aws/aws-iot-now-generally-available/) in Dec 2015. Microsoft released their set of IoT services for Azure in [Feb 2016](https://azure.microsoft.com/en-us/updates/generally-available-microsoft-azure-iot-hub/).  Google has only previewed, but not released their IoT services [Brillo](https://developers.google.com/brillo/) and [Weave](https://developers.google.com/weave/).
+- 	AWS, Microsoft and Google have all introduced IoT-specific sets of cloud services since late 2015. AWS was first, moving their IoT services to [general availability](https://aws.amazon.com/blogs/aws/aws-iot-now-generally-available/) in Dec 2015. Microsoft released their set of IoT services for Azure in [Feb 2016](https://azure.microsoft.com/en-us/updates/generally-available-microsoft-azure-iot-hub/).  Google has only previewed, but not released their IoT services [Android Things](https://developer.android.com/things/index.html) and [Weave](https://developers.google.com/weave/).
 - 	Issues of lock-in center around your devices —  [protocols](http://www.postscapes.com/internet-of-things-protocols/) (for example MQTT, AMQP), message formats (such as, JSON vs. Hex...) and security (certificates).
 
 ### IoT Tips
@@ -1670,12 +1688,12 @@ Certificate Manager
 
 - 		⛓Certificates issued by the Certificate Manager can’t be used outside of the services that support it. Imported certificates, however, can still be used elsewhere.
 
-### Certificate Manager Tips    
+### Certificate Manager Tips
 
 -       🔹**Supported services:** Managed [Load Balancers](#load-balancers) and [CloudFront](#cloudfront).
 -		🔸During the domain validation process, Certificate Manager will send an email to every contact address specified in the domain’s WHOIS record and up to five common administrative addresses. Some anti-spam filters can mark emails as spam because of this. You should check the spam folder of your email if you don’t receive a confirmation email.
 
-### Certificate Manager Gotchas and Limitations    
+### Certificate Manager Gotchas and Limitations
 
 -       🔸In order to use **Certificate Manager** for CloudFront distributions certificate must be issued or imported from us-east-1 (N. Virginia) region. Certificates from other regions can [only be used with Elastic Load Balancers](https://docs.aws.amazon.com/acm/latest/userguide/acm-services.html).
 -       🔸**IoT** has its [own way](http://docs.aws.amazon.com/iot/latest/developerguide/create-device-certificate.html) of setting up certificates.
@@ -1689,13 +1707,13 @@ WAF
 - WAF (Web Application Firewall) is used in conjunction with the CloudFront and ALB services to inspect and block/allow web requests based on user-configurable conditions.
 - HTTPS and HTTP requests are supported with this service.
 - WAF's strength is in detecting malicious activity based on pattern-matching inputs for attacks such as SQL injections, XSS, etc.
-- WAF supports inspection of requests [received through both IPv6 and IPv4.](https://aws.amazon.com/about-aws/whats-new/2016/10/ipv6-support-for-cloudfront-waf-and-s3-transfer-acceleration/)
+- WAF supports inspection of requests [received through both IPv6 and IPv4](https://aws.amazon.com/about-aws/whats-new/2016/10/ipv6-support-for-cloudfront-waf-and-s3-transfer-acceleration/).
 
-### WAF Tips    
+### WAF Tips
 
 - Getting a WAF API call history can be done through CloudTrail. This is enabled through the CloudTrail console.
 
-### WAF Gotchas and Limitations    
+### WAF Gotchas and Limitations
 
 - As of December 2016, WAF is available in the US East (Northern Virginia), US West (Oregon), Asia Pacific (Tokyo) and EU (Ireland) regions.
 
