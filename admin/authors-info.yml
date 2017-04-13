@@ -18,6 +18,7 @@ exclude:
 roles:
   jlevy: project lead, editor (topics not otherwise assigned)
   ThanosBaskous: project lead, editor (topics not otherwise assigned)
+  QuinnyPig: editor (news and updates, cost management)
   max-zanko: editor (EC2, S3, Glacier, EMR, Redshift)
   nitingithub: editor (cost management)
   forwidur: editor (EBS, RDS)

@@ -17,19 +17,21 @@ Please help if you can. See the [contribution guidelines](CONTRIBUTING.md) for n
 * [Joshua Levy (jlevy)](https://github.com/jlevy) — [112+](https://github.com/open-guides/og-aws/commits?author=jlevy)/[120+](https://github.com/open-guides/og-aws/issues?q=author%3Ajlevy) — _project lead, editor (topics not otherwise assigned)_
 * [Kim Schmidt (kimschmidtsbrain)](https://github.com/kimschmidtsbrain) — [1+](https://github.com/open-guides/og-aws/commits?author=kimschmidtsbrain)/[4+](https://github.com/open-guides/og-aws/issues?q=author%3Akimschmidtsbrain) — _expert (AWS Marketplace, Aurora)_
 * [Luke de Oliveira (lukedeo)](https://github.com/lukedeo) — [3+](https://github.com/open-guides/og-aws/commits?author=lukedeo)/[2+](https://github.com/open-guides/og-aws/issues?q=author%3Alukedeo) — _expert (machine learning, Terraform, orchestration)_
-* [Lynn Langit (lynnlangit)](https://github.com/lynnlangit) — [27+](https://github.com/open-guides/og-aws/commits?author=lynnlangit)/[19+](https://github.com/open-guides/og-aws/issues?q=author%3Alynnlangit) — _editor (IoT)_
+* [Lynn Langit (lynnlangit)](https://github.com/lynnlangit) — [28+](https://github.com/open-guides/og-aws/commits?author=lynnlangit)/[21+](https://github.com/open-guides/og-aws/issues?q=author%3Alynnlangit) — _editor (IoT)_
 * [Max Zanko (max-zanko)](https://github.com/max-zanko) — [12+](https://github.com/open-guides/og-aws/commits?author=max-zanko)/[10+](https://github.com/open-guides/og-aws/issues?q=author%3Amax-zanko) — _editor (EC2, S3, Glacier, EMR, Redshift)_
 * [John Merrells (merrells)](https://github.com/merrells) — _expert (cloud infrastructure, when to use AWS)_
 * [Nitin S (nitingithub)](https://github.com/nitingithub) — [6+](https://github.com/open-guides/og-aws/commits?author=nitingithub)/[4+](https://github.com/open-guides/og-aws/issues?q=author%3Anitingithub) — _editor (cost management)_
 * [Noah Zoschke (nzoschke)](https://github.com/nzoschke) — [2+](https://github.com/open-guides/og-aws/commits?author=nzoschke)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Anzoschke) — _editor (KMS)_
+* [Corey Quinn (QuinnyPig)](https://github.com/QuinnyPig) — [5+](https://github.com/open-guides/og-aws/commits?author=QuinnyPig)/[7+](https://github.com/open-guides/og-aws/issues?q=author%3AQuinnyPig) — _editor (news and updates, cost management)_
 * [Rich Adams (richadams)](https://github.com/richadams) — [2+](https://github.com/open-guides/og-aws/commits?author=richadams)/[2+](https://github.com/open-guides/og-aws/issues?q=author%3Arichadams) — _editor (VPC)_
-* [Thanos Baskous (ThanosBaskous)](https://github.com/ThanosBaskous) — [28+](https://github.com/open-guides/og-aws/commits?author=ThanosBaskous)/[29+](https://github.com/open-guides/og-aws/issues?q=author%3AThanosBaskous) — _project lead, editor (topics not otherwise assigned)_
+* [Thanos Baskous (ThanosBaskous)](https://github.com/ThanosBaskous) — [29+](https://github.com/open-guides/og-aws/commits?author=ThanosBaskous)/[30+](https://github.com/open-guides/og-aws/issues?q=author%3AThanosBaskous) — _project lead, editor (topics not otherwise assigned)_
 * [Min (wumintendy)](https://github.com/wumintendy) — _expert (ECS, CloudWatch, SQS, RDS, WAF)_
 * [0xmohit](https://github.com/0xmohit) — [3+](https://github.com/open-guides/og-aws/commits?author=0xmohit)/[3+](https://github.com/open-guides/og-aws/issues?q=author%3A0xmohit)
 * [Abdul Mohammed (abdulirfan3)](https://github.com/abdulirfan3) — [5+](https://github.com/open-guides/og-aws/commits?author=abdulirfan3)/[2+](https://github.com/open-guides/og-aws/issues?q=author%3Aabdulirfan3)
 * [AJ Kerrigan (ajkerrigan-mdsol)](https://github.com/ajkerrigan-mdsol) — [2+](https://github.com/open-guides/og-aws/commits?author=ajkerrigan-mdsol)/[2+](https://github.com/open-guides/og-aws/issues?q=author%3Aajkerrigan-mdsol)
 * [Alexander Atallah (alexanderatallah)](https://github.com/alexanderatallah)
 * [Andrew Lane (AndrewLane)](https://github.com/AndrewLane) — [1+](https://github.com/open-guides/og-aws/commits?author=AndrewLane)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3AAndrewLane)
+* [Mattias (apelsinet)](https://github.com/apelsinet) — [1+](https://github.com/open-guides/og-aws/commits?author=apelsinet)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Aapelsinet)
 * [Aron Woost (aronwoost)](https://github.com/aronwoost) — [1+](https://github.com/open-guides/og-aws/commits?author=aronwoost)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Aaronwoost)
 * [Bo Bayles (bbayles)](https://github.com/bbayles) — [1+](https://github.com/open-guides/og-aws/commits?author=bbayles)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Abbayles)
 * [Benjamin Bunk (benbunk)](https://github.com/benbunk) — [1+](https://github.com/open-guides/og-aws/commits?author=benbunk)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Abenbunk)
@@ -47,6 +49,7 @@ Please help if you can. See the [contribution guidelines](CONTRIBUTING.md) for n
 * [Cristian Măgherușan-Stanciu @magheru_san (cristim)](https://github.com/cristim) — [1+](https://github.com/open-guides/og-aws/commits?author=cristim)/[3+](https://github.com/open-guides/og-aws/issues?q=author%3Acristim)
 * [Dan Bower (danbower)](https://github.com/danbower) — [2+](https://github.com/open-guides/og-aws/commits?author=danbower)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Adanbower)
 * [Daniel Ehrlich (danielehrlich)](https://github.com/danielehrlich) — [3+](https://github.com/open-guides/og-aws/commits?author=danielehrlich)/[3+](https://github.com/open-guides/og-aws/issues?q=author%3Adanielehrlich)
+* [Chris Roe (dijitalmunky)](https://github.com/dijitalmunky) — [1+](https://github.com/open-guides/og-aws/commits?author=dijitalmunky)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Adijitalmunky)
 * [David Kocher (dkocher)](https://github.com/dkocher) — [2+](https://github.com/open-guides/og-aws/commits?author=dkocher)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Adkocher)
 * [Dorrin (DorrinPk)](https://github.com/DorrinPk) — [5+](https://github.com/open-guides/og-aws/commits?author=DorrinPk)/[4+](https://github.com/open-guides/og-aws/issues?q=author%3ADorrinPk)
 * [Matthew Lapworth (dragonndev)](https://github.com/dragonndev) — [5+](https://github.com/open-guides/og-aws/commits?author=dragonndev)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Adragonndev)
@@ -62,12 +65,13 @@ Please help if you can. See the [contribution guidelines](CONTRIBUTING.md) for n
 * [Theo Hultberg (iconara)](https://github.com/iconara) — [1+](https://github.com/open-guides/og-aws/commits?author=iconara)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Aiconara)
 * [Ben Bridts (ikben)](https://github.com/ikben) — [2+](https://github.com/open-guides/og-aws/commits?author=ikben)/[2+](https://github.com/open-guides/og-aws/issues?q=author%3Aikben)
 * [Itay Shakury (itaysk)](https://github.com/itaysk) — [1+](https://github.com/open-guides/og-aws/commits?author=itaysk)/[2+](https://github.com/open-guides/og-aws/issues?q=author%3Aitaysk)
-* [jbao](https://github.com/jbao) — [1+](https://github.com/open-guides/og-aws/commits?author=jbao)/[2+](https://github.com/open-guides/og-aws/issues?q=author%3Ajbao)
 * [Jose Luis Ordiales Coscia (jlordiales)](https://github.com/jlordiales) — [1+](https://github.com/open-guides/og-aws/commits?author=jlordiales)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Ajlordiales)
 * [Jaanus Torp (jnsaff)](https://github.com/jnsaff) — [1+](https://github.com/open-guides/og-aws/commits?author=jnsaff)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Ajnsaff)
+* [Jason Poley (jpoley)](https://github.com/jpoley) — [1+](https://github.com/open-guides/og-aws/commits?author=jpoley)/[4+](https://github.com/open-guides/og-aws/issues?q=author%3Ajpoley)
 * Jurgen Philippaerts
 * [KAZUYUKI TANIMURA (kazuyukitanimura)](https://github.com/kazuyukitanimura) — [3+](https://github.com/open-guides/og-aws/commits?author=kazuyukitanimura)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Akazuyukitanimura)
 * [Kyle Busekist (kbusekist)](https://github.com/kbusekist) — [2+](https://github.com/open-guides/og-aws/commits?author=kbusekist)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Akbusekist)
+* [David Kosslyn (kozzles)](https://github.com/kozzles) — [1+](https://github.com/open-guides/og-aws/commits?author=kozzles)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Akozzles)
 * [Krishan (KrishanBhasin)](https://github.com/KrishanBhasin) — [3+](https://github.com/open-guides/og-aws/commits?author=KrishanBhasin)/[5+](https://github.com/open-guides/og-aws/issues?q=author%3AKrishanBhasin)
 * [Laurent Jalbert-Simard (laurrentt)](https://github.com/laurrentt) — [1+](https://github.com/open-guides/og-aws/commits?author=laurrentt)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Alaurrentt)
 * [Łukasz Kostka (luqasz)](https://github.com/luqasz) — [4+](https://github.com/open-guides/og-aws/commits?author=luqasz)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Aluqasz)
@@ -75,6 +79,7 @@ Please help if you can. See the [contribution guidelines](CONTRIBUTING.md) for n
 * [Manoj M J (manojmj92)](https://github.com/manojmj92) — [1+](https://github.com/open-guides/og-aws/commits?author=manojmj92)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Amanojmj92)
 * [Marcello Bastéa-Forte (marcello3d)](https://github.com/marcello3d)
 * [Martijn Dwars (MartijnDwars)](https://github.com/MartijnDwars) — [3+](https://github.com/open-guides/og-aws/commits?author=MartijnDwars)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3AMartijnDwars)
+* [Mikael Finstad (mifi)](https://github.com/mifi) — [1+](https://github.com/open-guides/og-aws/commits?author=mifi)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Amifi)
 * [Mike  (mikejennings)](https://github.com/mikejennings) — [1+](https://github.com/open-guides/og-aws/commits?author=mikejennings)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Amikejennings)
 * [Mikhail Advani (mikhailadvani)](https://github.com/mikhailadvani) — [5+](https://github.com/open-guides/og-aws/commits?author=mikhailadvani)/[5+](https://github.com/open-guides/og-aws/issues?q=author%3Amikhailadvani)
 * [Magnus Kulke (mkulke)](https://github.com/mkulke) — [4+](https://github.com/open-guides/og-aws/commits?author=mkulke)/[3+](https://github.com/open-guides/og-aws/issues?q=author%3Amkulke)
@@ -85,7 +90,6 @@ Please help if you can. See the [contribution guidelines](CONTRIBUTING.md) for n
 * [Pascal Borreli (pborreli)](https://github.com/pborreli) — [1+](https://github.com/open-guides/og-aws/commits?author=pborreli)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Apborreli)
 * [Phillip Calvin (pnc)](https://github.com/pnc) — [1+](https://github.com/open-guides/og-aws/commits?author=pnc)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Apnc)
 * Praveen Patnala
-* [Corey Quinn (QuinnyPig)](https://github.com/QuinnyPig) — [3+](https://github.com/open-guides/og-aws/commits?author=QuinnyPig)/[3+](https://github.com/open-guides/og-aws/issues?q=author%3AQuinnyPig)
 * [Raajhesh Kannaa Chidambaram (raajheshkannaa)](https://github.com/raajheshkannaa) — [1+](https://github.com/open-guides/og-aws/commits?author=raajheshkannaa)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Araajheshkannaa)
 * [Ram Nadella (ram-nadella)](https://github.com/ram-nadella) — [1+](https://github.com/open-guides/og-aws/commits?author=ram-nadella)/[2+](https://github.com/open-guides/og-aws/issues?q=author%3Aram-nadella)
 * [Raphaël Riel (raphael-riel)](https://github.com/raphael-riel) — [1+](https://github.com/open-guides/og-aws/commits?author=raphael-riel)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Araphael-riel)
@@ -99,6 +103,7 @@ Please help if you can. See the [contribution guidelines](CONTRIBUTING.md) for n
 * [Seth Rutner (sprutner)](https://github.com/sprutner) — [1+](https://github.com/open-guides/og-aws/commits?author=sprutner)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Asprutner)
 * [Adam Nelson (spudstuff)](https://github.com/spudstuff) — [4+](https://github.com/open-guides/og-aws/commits?author=spudstuff)/[2+](https://github.com/open-guides/og-aws/issues?q=author%3Aspudstuff)
 * [Steven Maude (StevenMaude)](https://github.com/StevenMaude) — [1+](https://github.com/open-guides/og-aws/commits?author=StevenMaude)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3AStevenMaude)
+* [Suny Kim (sunygit)](https://github.com/sunygit) — [1+](https://github.com/open-guides/og-aws/commits?author=sunygit)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Asunygit)
 * [Carlos (theist)](https://github.com/theist) — [1+](https://github.com/open-guides/og-aws/commits?author=theist)/[2+](https://github.com/open-guides/og-aws/issues?q=author%3Atheist)
 * [TheRandomSecurityGuy (therandomsecurityguy)](https://github.com/therandomsecurityguy) — [1+](https://github.com/open-guides/og-aws/commits?author=therandomsecurityguy)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Atherandomsecurityguy)
 * [Sandeep Dinesh (thesandlord)](https://github.com/thesandlord) — [1+](https://github.com/open-guides/og-aws/commits?author=thesandlord)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Athesandlord)
