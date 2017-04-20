@@ -1757,7 +1757,8 @@ OpsWorks
 ### OpsWorks Gotchas and Limitations
 
 - Although OpsWorks will let you work with common Chef recipes when creating your stacks, creating custom recipes will require familiarity with Chef syntax.
-- As of December 2016, OpsWorks is available in all regions except Canada, GovCloud (US), and China (Beijing).
+- OpsWorks Stacks is not available in the Canada, GovCloud and Beijing regions.
+- OpsWorks for Chef Automate is [only available](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/) in the North Virginia, Oregon, and Ireland regions.
 
 
 High Availability
