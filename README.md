@@ -1592,6 +1592,13 @@ Kinesis Streams
 	- [This blog post](https://brandur.org/kinesis-in-production) further discusses the performance and limitations of Kinesis in production.
 -	💸 **Kinesis Streams are not included in the free tier.** Make sure if you do any experimentation with it on a personal account, you shut down the stream or it may run up unexpected costs (~$11 per shard-month.)
 
+Kinesis Firehose
+---
+
+### Kinesis Firehose Gotchas and Limitations
+
+- 🔸 When delivering from Firehose to Elasticsearch, the JSON document cannot contain an “_id” property. Firehose will not attempt to deliver those documents and won't log any error.
+
 
 Device Farm
 -----------
