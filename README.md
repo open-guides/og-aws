@@ -1162,6 +1162,7 @@ RDS Aurora
 ### RDS Aurora Gotchas and Limitations
 
 -	🔸[Aurora is based on MySQL 5.6.10](https://news.ycombinator.com/item?id=12415693) with some cherry-picking of later MySQL features. It is missing most 5.7 features as well as some online DDL features introduced in 5.6.17.
+- Be careful if you're importing large existing MySQL datasets into Aurora.  In particular verify row counts at your source database and at Aurora because Aurora [can drop records during the load process and it will not warn you](http://fuzzyblog.io/blog/aws/2016/08/29/aws-tutorial-5-aurora-rds-issues.html).  My suspicion is that this is due to large tables with lots of blobs but it is still unclear.
 
 RDS SQL Server
 --------------
