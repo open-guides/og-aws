@@ -1323,7 +1323,11 @@ Lambda
 -	❗📜 Currently [as of October, 2016](https://github.com/open-guides/og-aws/pull/199/files/c99bddb4ee2437587f1e188d47be2bb1da01f81d#r83529126) Lambda functions can sometimes stop working for 2-3 minutes for failure recovery purposes according to a support ticket answer from Lambda development team. They are working to prevent this in the future.
 - 🔸 While adding/removing S3 buckets as triggers for Lambda function, this error may occur: "There was an error creating the trigger: Configuration is ambiguously defined. Cannot have overlapping suffixes in two rules if the prefixes are overlapping for the same event type." In this case, you can manually remove the Lambda event in the "Events" tab in the "Properties" section of the S3 bucket.
 -	🔸 At the time of writing (12 December 2016) Dead Letter Queues are only available in the Ohio (us-east-2) region.
--	🔸 Lambda [resource limits](http://docs.aws.amazon.com/lambda/latest/dg/limits.html) include a max 6MB request or response payload size.
+-	🔸 Lambda has several [**resource limits**](http://docs.aws.amazon.com/lambda/latest/dg/limits.html) as of 2017-06:
+	-	A **6MB** request or response payload size.
+	-	A **50 MB** limit on the compressed .zip/.jar file deployment package size.
+	-	A **250 MB** limit on the code/dependencies in the package before compression.
+
 
 ### Lambda Code Samples
 
