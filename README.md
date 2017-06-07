@@ -847,6 +847,7 @@ CloudWatch
 * 🔸Notifications you receive from alarms will not have any contextual detail; they have only the specifics of the threshold, alarm state, and timing.
 * 🔸Minimum granularity in CloudWatch is 1 minute. That means that multiple values of a metric that are pushed to CloudWatch within the same minute are aggregated into minimum, maximum, average and total (sum) per minute.
 * 🔸Data about metrics is kept in CloudWatch [for 15 months](https://aws.amazon.com/blogs/aws/amazon-cloudwatch-update-extended-metrics-retention-user-interface-update/), starting November 2016 (used to be 14 days). Minimum granularity increases after 15 days.
+* 🔸CloudWatch does not have a [VPC Endpoint](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html). If you have a security requirement to lockdown outbound traffic from your VPC then you may want to look at alternative logging solutions or use [DNS filtering](https://aws.amazon.com/blogs/security/how-to-add-dns-filtering-to-your-nat-instance-with-squid/) to control outbound traffic.
 
 AMIs
 ----
