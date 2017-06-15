@@ -1263,6 +1263,8 @@ DynamoDB
 -	🔸 Dealing with **time series data** in DynamoDB can be challenging. A global secondary index together with down sampling timestamps can be a possible solution as explained [here](https://blogs.aws.amazon.com/bigdata/post/Tx3KPZDXIBJEQ4B/Scaling-Writes-on-Amazon-DynamoDB-Tables-with-Global-Secondary-Indexes).
 -	🔸 DynamoDB does [not allow](https://forums.aws.amazon.com/thread.jspa?threadID=90137) an empty string as a valid attribute value. The most common work-around is to use a substitute value instead of leaving the field empty.
 -	🔸 DynamoDB does not support moment-in-time/snapshot backups. It is not possible to create a moment-in-time view of a table without preventing all writes to a table and then consistently reading it. You can't work around this using [Cross-Region Replication](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.CrossRegionRepl.html) because under the covers, it uses [DynamoDB Streams](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html). In a Stream, the order in which Items appear can be different than the order in wihch they were written. Only updates to the same Item are guaranteed to be ordered.
+-	🔸 When setting up [fine grained policies](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/specifying-conditions.html) for access to DynamoDB tables, be sure to include their secondary indices in the policy document as well.
+
 
 ECS
 ---
