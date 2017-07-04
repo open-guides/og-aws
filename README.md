@@ -1711,6 +1711,17 @@ IoT
 
 ![How AWS IoT Works](https://d0.awsstatic.com/IoT/diagrams/awsiot-how-it-works_HowITWorks_1-26.png "How AWS IoT Works")
 
+### IoT Greengrass
+
+*	**Greengrass** is a software platform that extends AWS IoT capabilities allowing AWS Lambda functions to be run directly on local devices.  It also enables IoT devices to be able to securely communicate on a local network without having to connect to the cloud. Greengrass includes a local pub/sub message manager that can buffer messages if connectivity is lost so that inbound and outbound messages to the cloud are preserved. Locally deployed Lambda functions can be triggered by local events, messages from the cloud, or other sources. Greengrass includes secure authentication and authorization of devices within the local netwrok and also between the local network and the AWS cloud. It also provides secure, over-the-air software updates of Lambda functions.
+    *  AWS Greengrass core software - includes a message manager object, lambda runtime, local copy service for IoT Thing shadows, and a deployment agent to manage Greengrass group configuration. Greengrass uses Greengrass Groups as containers for selected IoT devices settings, subscriptions and associated Lambda functions.  In a Greengrass group a device is either a Greengrass core or an IoT device which will be connected that particular Greengrass core.
+    *  AWS Greengrass core SDK - enables Lambda functions to interact with the AWS Greengrass core on which they run in order to publish messages, interact with the local Thing Shadows service, or invoke other deployed Lambda functions. NOTE: The AWS Greengrass Core SDK only supports sending MQTT messages with QoS = 0. 
+
+* 	Shown below is a [diagram](http://docs.aws.amazon.com/greengrass/latest/developerguide/what-is-gg.html) which shows the architecture of AWS IoT Greengrass services: 
+
+![IoT Greengrass](http://docs.aws.amazon.com/greengrass/latest/developerguide/images/greengrass.png)
+
+
 ### IoT Alternatives and Lock-in
 
 - 	AWS, Microsoft and Google have all introduced IoT-specific sets of cloud services since late 2015. AWS was first, moving their IoT services to [general availability](https://aws.amazon.com/blogs/aws/aws-iot-now-generally-available/) in Dec 2015. Microsoft released their set of IoT services for Azure in [Feb 2016](https://azure.microsoft.com/en-us/updates/generally-available-microsoft-azure-iot-hub/).  Google has only previewed, but not released their IoT services [Android Things](https://developer.android.com/things/index.html) and [Weave](https://developers.google.com/weave/).
