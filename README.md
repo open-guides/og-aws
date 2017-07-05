@@ -1053,6 +1053,7 @@ ALB
 -	Instances in the ALB’s target groups have to either have a single, fixed healthcheck port (“EC2 instance”-level healthcheck) or the healthcheck port for a target has to be the same as its application port (“Application instance”-level healthcheck) - you can't configure a per-target healthcheck port that is different than the application port.
 -	ALBs are VPC-only (they are not available in EC2 Classic)
 -	In a target group, if there is no healthy target, all requests are routed to all targets. For example, if you point a listener at a target group containing a single service that has a long initialization phase (during which the health checks would fail), requests will reach the service while it is still starting up.
+-   📜ALBs only support one HTTPS certificate per Load Balancer as described [here](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html). This is because ALB doesn't support SNI (Server Name Indication). If you're looking to use HTTPS listeners along with Host Based routing to route requests to multiple backend instances (each on separate domains) you could deploy a single certificate on the Load Balancer and use SAN (Subject Alternative Name) for each domain.
 
 Elastic IPs
 -----------
