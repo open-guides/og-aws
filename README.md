@@ -902,7 +902,7 @@ AMIs
         - `05_logging.conf`
         - `90_dpkg.conf`
         
-    By the names of some of the files, the services they touch are obvious: dpkg, yum, etc.  But some settings are more subtle, such as security settings and templatings for `/etc/hosts`.
+    By the names of some of the files, the services they touch are obvious: dpkg, yum, etc.  But some settings are more subtle, such as security settings and templatings for `/etc/hosts`.  You will want to review these files carefully for your chosen distro before rolling your own AMIs.
 
 Auto Scaling
 ------------
