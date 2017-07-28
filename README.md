@@ -1318,6 +1318,7 @@ Lambda
 
 -	**What does “serverless” mean?** This idea of using Lambda for application logic has grown to be called **serverless** since you don't explicitly manage any server instances, as you would with EC2. This term is a bit confusing since the functions themselves do of course run on servers managed by AWS. [Serverless, Inc.](http://serverless.com/) also uses this word for the name of their company and [their own open source framework](https://github.com/serverless/serverless), but the term is usually meant more generally.
 -	The release of Lambda and [API Gateway](#api-gateway) in 2015 triggered a startlingly rapid adoption in 2016, with many people writing about [serverless architectures](http://martinfowler.com/articles/serverless.html) in which many applications traditionally solved by managing EC2 servers can be built without explicitly managing servers at all.
+-	The [Serverless Application Model (SAM)](https://github.com/awslabs/serverless-application-model) can help to define, manage, and deploy serverless applications on Lambda.
 -	**Frameworks:** [Several frameworks](https://github.com/anaibol/awesome-serverless#frameworks) for building and managing serverless deployment are emerging.
 -	The [Awesome Serverless](https://github.com/anaibol/awesome-serverless) list gives a good set of examples of the relatively new set of tools and frameworks around Lambda.
 -	The [**Serverless framework**](https://github.com/serverless/serverless) is a leading new approach designed to help group and manage Lambda functions. It’s approaching version 1 as of August 2016) and is popular among a small number of users.
@@ -1328,12 +1329,9 @@ Lambda
 
 ### Lambda Gotchas and Limitations
 
--	🔸Lambda is a new technology. As of mid 2016, only a few companies are using it for large-scale production applications.
 -	🔸Managing lots of Lambda functions is a workflow challenge, and tooling to manage Lambda deployments is still immature.
 -	🔸AWS’ official workflow around managing function [versioning and aliases](https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html) is painful.
--	❗📜 Currently [as of October, 2016](https://github.com/open-guides/og-aws/pull/199/files/c99bddb4ee2437587f1e188d47be2bb1da01f81d#r83529126) Lambda functions can sometimes stop working for 2-3 minutes for failure recovery purposes according to a support ticket answer from Lambda development team. They are working to prevent this in the future.
 - 🔸 While adding/removing S3 buckets as triggers for Lambda function, this error may occur: "There was an error creating the trigger: Configuration is ambiguously defined. Cannot have overlapping suffixes in two rules if the prefixes are overlapping for the same event type." In this case, you can manually remove the Lambda event in the "Events" tab in the "Properties" section of the S3 bucket.
--	🔸 At the time of writing (12 December 2016) Dead Letter Queues are only available in the Ohio (us-east-2) region.
 -	🔸 Lambda has several [**resource limits**](http://docs.aws.amazon.com/lambda/latest/dg/limits.html) as of 2017-06:
 	-	A **6MB** request or response payload size.
 	-	A **50 MB** limit on the compressed .zip/.jar file deployment package size.
