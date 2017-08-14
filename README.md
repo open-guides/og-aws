@@ -1199,7 +1199,7 @@ ElastiCache
 - 📒 [Homepage](https://aws.amazon.com/elasticache/) ∙ [User
   guide](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide) ∙
   [FAQ](https://aws.amazon.com/elasticache/faqs/) ∙
-  [Pricing](https://aws.amazon.com/elasticathe/pricing/)
+  [Pricing](https://aws.amazon.com/elasticache/pricing/)
 - **ElastiCache** is a managed in-memory cache service, that can be used to
   store temporary data in a fast in-memory cache, typically in order to avoid
   repeating the same computation multiple times when it could be reused.
