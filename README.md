@@ -951,6 +951,7 @@ EBS
 -	❗EBS durability is reasonably good for a regular hardware drive (annual failure rate of [between 0.1% - 0.2%](http://aws.amazon.com/ebs/details/#availabilityanddurability)). On the other hand, that is very poor if you don’t have backups! By contrast, S3 durability is extremely high. *If you care about your data, back it up to S3 with snapshots.*
 -	🔸EBS has an [**SLA**](http://aws.amazon.com/ec2/sla/) with **99.95%** uptime. See notes on high availability below.
 -	❗EBS volumes have a [**volume type**](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html) indicating the physical storage type. The types called “standard” (**st1** or **sc1**) are actually old spinning-platter disks, which deliver only hundreds of IOPS — not what you want unless you’re really trying to cut costs. Modern SSD-based **gp2** or **io1** are typically the options you want.
+-	❗When restoring a snapshot to create an EBS volume, blocks are lazily read from S3 the first time they're referenced. To avoid an initial period of high latency, you may wish to use `dd` or `fio` as per the [official documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-restoring-volume.html).
 
 EFS
 ---
@@ -959,10 +960,9 @@ EFS
 ### EFS Basics
 
 -	📒 [Homepage](https://aws.amazon.com/efs/) ∙ [User guide](http://docs.aws.amazon.com/efs/latest/ug) ∙ [FAQ](https://aws.amazon.com/efs/faq/) ∙ [Pricing](https://aws.amazon.com/efs/pricing/)
--	🐥**EFS** is Amazon’s new (general release 2016) network filesystem.
+-	🐥**EFS** is Amazon’s network filesystem. It’s presented as an [NFSv4.1](https://en.wikipedia.org/wiki/Network_File_System#NFSv4) server. Any compatible NFSv4 client can mount it.
 -	It is designed to be highly available and durable and each EFS file system object is redundantly stored across multiple availability zones.
 -	EFS is designed to be used as a shared network drive and it can automatically scale up to petabytes of stored data and thousands of instances attached to it.
--	It’s presented as an [NFSv4.1](https://en.wikipedia.org/wiki/Network_File_System#NFSv4) server, so any compatible NFS client can mount it.
 -	EFS can offer [higher throughput](http://docs.aws.amazon.com/efs/latest/ug/performance.html) (multiple gigabytes per second) and better durability and availability than EBS (see [the comparison table](#storage-durability-availability-and-price)), but with higher latency.
 -	EFS is priced based on the volume of data stored, and costs [much more than EBS](#storage-durability-availability-and-price); it's in the ballpark of three times as much compared to general purpose gp2 EBS volumes.
 -	⏱ [Performance](http://docs.aws.amazon.com/efs/latest/ug/performance.html) is dependent on the volume of data stored, as is the price:
@@ -987,7 +987,7 @@ EFS
 ### EFS Gotchas and Limitations
 
 -	🔸 A number of NFSv4.1 features are [not supported](http://docs.aws.amazon.com/efs/latest/ug/nfs4-unsupported-features.html) and there are some [limits](http://docs.aws.amazon.com/efs/latest/ug/limits.html) to the service.
--	🔸 As of 2017-02, EFS does not offer disk level encryption, though it is on the roadmap.
+-	🔸 As of 2017-08, EFS offers disk level encryption for new drives. For file systems created before that date, encryption can only be achieved by moving the data to a new EFS volume.
 -	🔸 An EFS file system [can be mounted on premises](https://aws.amazon.com/efs/faq/#on-premises) over Direct Connect.
 -	🔸 An EFS file system can NOT be mounted over VPC peering or VPN, even if the VPN is running on top of Direct Connect.
 -	🔸 Using an EFS volume on Windows is not supported.
@@ -1064,14 +1064,13 @@ ALB
 ### ALB Tips
 
 -	Use ALBs to route to services that are hosted on shared clusters with dynamic port assignment (like ECS or Mesos).
--	ALBs support HTTP path-based routing (send HTTP requests for “/api/*” -> {target-group-1}, “/blog/*” -> {target group 2}).
+-	ALBs support [HTTP host-based routing](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#host-conditions) (send HTTP requests for “api.mydomain.com” -> {target-group-1}, “blog.mydomain.com” -> {target group 2}) as well as [HTTP path-based routing](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-listeners.html#path-conditions) (send HTTP requests for “/api/&ast;” ->  {target-group-1}, “/blog/&ast;” -> {target group 2}).
 
 ### ALB Gotchas and Limitations
 
 -	🔸ALBs only support HTTP/2 over HTTPS (no plain-text HTTP/2).
 -	🔸ALBs only support HTTP/2 to external clients and not to internal resources (instances/containers).
 -	ALBs support HTTP routing but not port-based TCP routing.
--	ALBs support routing based on HTTP “Host” header or HTTP verb
 -	Instances in the ALB’s target groups have to either have a single, fixed healthcheck port (“EC2 instance”-level healthcheck) or the healthcheck port for a target has to be the same as its application port (“Application instance”-level healthcheck) - you can't configure a per-target healthcheck port that is different than the application port.
 -	ALBs are VPC-only (they are not available in EC2 Classic)
 -	In a target group, if there is no healthy target, all requests are routed to all targets. For example, if you point a listener at a target group containing a single service that has a long initialization phase (during which the health checks would fail), requests will reach the service while it is still starting up.
