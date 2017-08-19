@@ -354,7 +354,7 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 | [ECS](https://aws.amazon.com/ecs/release-notes/)                                                           | 2014-11          | General                                                                       | ✓           | ✓         		|	✓   			|
 | [KMS](https://aws.amazon.com/releasenotes/AWS-KMS?browse=1)                                                | 2014-11          | General                                                                       | ✓           |                 |   ✓             |
 | [CodeDeploy](https://aws.amazon.com/releasenotes/AWS-CodeDeploy?browse=1)                                  | 2014-11          | General                                                                       | ✓           |                 |                  |
-| [Kinesis](https://aws.amazon.com/releasenotes/Amazon-Kinesis?browse=1)                                     | 2013-12          | General                                                                       | ✓           |                 |   ✓             |
+| [Kinesis](https://aws.amazon.com/releasenotes/Amazon-Kinesis?browse=1)                                     | 2013-12          | General                                                                       | ✓           |                 |   ✓<sup>[11](#user-content-pci-kinesis)</sup>    |
 | [CloudTrail](https://aws.amazon.com/releasenotes/AWS-CloudTrail?browse=1)                                  | 2013-11          | General                                                                       | ✓           |                 |   ✓             |
 | [AppStream](https://aws.amazon.com/releasenotes/Amazon-AppStream?browse=1)                                 | 2013-11          | Preview                                                                       |             |                 |                  |
 | [CloudHSM](https://aws.amazon.com/releasenotes/AWS-CloudHSM?browse=1)                                      | 2013-03          | General                                                                       | ✓           |                 |   ✓            |
@@ -403,6 +403,7 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 <a name="user-content-hipaa-s3">**8**</a>: Includes S3 Transfer Acceleration<br />
 <a name="user-content-pci-rds">**9**</a>: Includes RDS MySQL, Oracle, PostgreSQL, SQL Server, and MariaDB</br>
 <a name="user-content-pci-asg">**10**</a>: Includes Auto-Scaling</br>
+<a name="user-content-pci-kinesis">**11**</a>: Streams only</br>
 
 
 ### Compliance
