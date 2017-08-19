@@ -399,7 +399,7 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 <a name="user-content-hipaa-ec2sysmgr">**5**</a>: Includes EC2 Systems Manager<br />
 <a name="user-content-hipaa-ec2ebs">**6**</a>: Includes Elastic Block Storage (EBS)<br />
 <a name="user-content-hipaa-ec2elb">**7**</a>: Includes Elastic Load Balancing<br />
-<a name="user-content-hipaa-s3">**8**</a>: Includes S3 Transfer Acceleration
+<a name="user-content-hipaa-s3">**8**</a>: Includes S3 Transfer Acceleration<br />
 <a name="user-content-pci-rds">**9**</a>: Includes RDS MySQL, Oracle, PostgreSQL, SQL Server, and MariaDB</br>
 <a name="user-content-pci-asg">**10**</a>: Includes Auto-Scaling</br>
 
