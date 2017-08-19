@@ -392,6 +392,8 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 | [Alexa Top Sites](https://aws.amazon.com/alexa-top-sites/)                                                 | 2006-01          | General ❗HTTP-only                                                            |             |                 |                  |
 | [Alexa Web Information Service](https://aws.amazon.com/awis/)                                              | 2005-10          | General ❗HTTP-only                                                            |             |                 |                  |
 
+### Footnotes
+<small>
 <a name="user-content-hipaa-apigateway">**1**</a>: Excludes use of Amazon API Gateway caching<br />
 <a name="user-content-hipaa-rds">**2**</a>: RDS MySQL, Oracle, and PostgreSQL engines only<br />
 <a name="user-content-hipaa-aurora">**3**</a>: MySQL-compatible Aurora edition only<br />
@@ -402,6 +404,7 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 <a name="user-content-hipaa-s3">**8**</a>: Includes S3 Transfer Acceleration<br />
 <a name="user-content-pci-rds">**9**</a>: Includes RDS MySQL, Oracle, PostgreSQL, SQL Server, and MariaDB</br>
 <a name="user-content-pci-asg">**10**</a>: Includes Auto-Scaling</br>
+</small>
 
 
 ### Compliance
