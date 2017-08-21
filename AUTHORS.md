@@ -57,6 +57,7 @@ Please help if you can. See the [contribution guidelines](CONTRIBUTING.md) for n
 * [Patrick McDavid (ehippy)](https://github.com/ehippy) — [1+](https://github.com/open-guides/og-aws/commits?author=ehippy)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Aehippy)
 * [Elliott Spira (em0ney)](https://github.com/em0ney) — [5+](https://github.com/open-guides/og-aws/commits?author=em0ney)/[3+](https://github.com/open-guides/og-aws/issues?q=author%3Aem0ney)
 * [esell (esell)](https://github.com/esell) — [5+](https://github.com/open-guides/og-aws/commits?author=esell)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Aesell)
+* [Gabe Abinante (gabinante)](https://github.com/gabinante) — [1+](https://github.com/open-guides/og-aws/commits?author=gabinante)
 * [Greg Leeds (gleeds)](https://github.com/gleeds) — [2+](https://github.com/open-guides/og-aws/commits?author=gleeds)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Agleeds)
 * [Glynn Forrest (glynnforrest)](https://github.com/glynnforrest) — [1+](https://github.com/open-guides/og-aws/commits?author=glynnforrest)/[1+](https://github.com/open-guides/og-aws/issues?q=author%3Aglynnforrest)
 * [Dmitry Golyshev (golyshev)](https://github.com/golyshev)
