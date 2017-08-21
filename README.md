@@ -1188,7 +1188,6 @@ RDS Aurora
 ### RDS Aurora Gotchas and Limitations
 
 -	🔸[Aurora is based on MySQL 5.6.10](https://news.ycombinator.com/item?id=12415693) with some cherry-picking of later MySQL features. It is missing most 5.7 features as well as some online DDL features introduced in 5.6.17.
-- Aurora uses a proprietary caching system behind the scenes. This means query analysis in Aurora can be quite difficult, because there is no way to circumvent the cache. SELECT mysql_no_cache does not work in Aurora. 
 
 RDS SQL Server
 --------------
