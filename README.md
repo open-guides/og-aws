@@ -2007,7 +2007,7 @@ This section covers a few unusually useful or “must know about” resources or
 	-	[Serverless Single Page Apps](https://pragprog.com/book/brapps/serverless-single-page-apps)
 	-	[The Terraform Book](https://terraformbook.com/)
 	-	[AWS Scripted 2 book series](https://www.amazon.com/gp/product/B016QBB0GO?ref=series_rw_dp_labf)
-	-	[Amazon Web Services For Dummies](http://www.dummies.com/store/product/Amazon-Web-Services-For-Dummies.productCd-1118571835.html)
+	-	[Amazon Web Services For Dummies](https://www.amazon.com/dp/1118571835)
 	-	[AWS System Administration](http://shop.oreilly.com/product/0636920027638.do)
 	-	[Python and AWS Cookbook](http://shop.oreilly.com/product/0636920020202.do)
 	-	[Resilience and Reliability on AWS](http://shop.oreilly.com/product/0636920026839.do)
