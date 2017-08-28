@@ -1354,7 +1354,7 @@ Lambda
 	-	A **6MB** request or response payload size.
 	-	A **50 MB** limit on the compressed .zip/.jar file deployment package size.
 	-	A **250 MB** limit on the code/dependencies in the package before compression.
-	- A **512 MB** limit on local storage in /tmp
+	- A **512 MB** limit on local storage in /tmp.
 
 ### Lambda Code Samples
 
