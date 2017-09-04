@@ -63,6 +63,7 @@ Table of Contents
 | [Certificate Manager](#certificate-manager) | [📗](#certificate-manager-basics) | [📘](#certificate-manager-tips) | [📙](#certificate-manager-gotchas-and-limitations) |
 | [WAF](#waf) | [📗](#waf-basics) | [📘](#waf-tips) | [📙](#waf-gotchas-and-limitations) |
 | [OpsWorks](#opsworks) | [📗](#opsworks-basics) | [📘](#opsworks-tips) | [📙](#opsworks-gotchas-and-limitations) |
+| [Batch](#batch) | [📗](#batch-basics) | [📘](#batch-tips) |
 
 **Special Topics**
 
@@ -1880,6 +1881,29 @@ OpsWorks
 - OpsWorks Stacks is not available in the Canada, GovCloud and Beijing regions.
 - OpsWorks for Chef Automate is [only available](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/) in the North Virginia, Oregon, and Ireland regions.
 
+
+Batch
+-------------------
+
+### Batch Basics
+
+-	📒 [Homepage](https://aws.amazon.com/batch/) ∙ [Documentation](https://aws.amazon.com/documentation/batch/) ∙ [FAQ](https://aws.amazon.com/batch/faqs/) ∙ [Pricing](https://aws.amazon.com/batch/pricing/)
+- AWS Batch is a service that offers an environment to run batch computing jobs. The service dynamically provisions the optimal compute resources needed by the jobs based on their resource requirements, and can scale up to hundreds of thousands of jobs.
+- These batch workloads have access to all other AWS services and features.
+- AWS Batch, coupled with spot instances can help run the jobs when appropriate capacity is available, providing higher utilization of compute resources.
+- The batch workloads, or jobs, are defined as a docker image. These images are pushed to the EC2 Container Registry. Along with the image, AWS Batch needs their memory requirement and vCPUs.
+- These workloads are executed on a Compute Environment, which is a collection of compute resources that the jobs run on.
+- AWS Batch provides managed, as well as unmanaged compute environments. The Managed Environments are provisioned and managed by AWS, while the Unmanaged Environments are managed by the customers.
+- AWS Batch uses ECS to execute the containerized jobs.
+
+### Batch Tips
+
+- AWS Batch supports prioritization of jobs. Higher the number - higher the priority.
+- AWS Batch supports VPC.
+- A Compute Environment is essentially an ECS Cluster.
+- There is no additional cost for AWS Batch. You only pay the cost associated with the AWS Services being used - like EC2 Instances and any resources consumed by the batch jobs.
+- Associate IAM Roles and policies with the Compute Environment to enable the containers access to other AWS resources.
+- 🔹 Use Unmanaged Compute Environments if you need specialized resources like Dedicated Hosts, or EFS.
 
 High Availability
 -----------------
