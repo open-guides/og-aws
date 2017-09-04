@@ -1010,7 +1010,7 @@ Load Balancers
 -	CLBs don't support complex / rule-based routing, while ALBs support a (currently small) set of rule-based routing features.
 -	CLBs can only forward traffic to a single globally configured port on destination instances, while ALBs can forward to ports that are configured on a per-instance basis, better supporting routing to services on shared clusters with dynamic port assignment (like ECS or Mesos).
 -	CLBs are supported in EC2 Classic as well as in VPCs while ALBs are supported in VPCs only.
--   ALBs can target groups of instances and IP based targets allowing you to use on premise destinations.
+-   ALBs can target groups of instances and IP based targets in the RFC1918 ranges allowing you to use on premise destinations via VPN or Direct Connect.
 
 ### Load Balancer Tips
 
