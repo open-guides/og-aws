@@ -181,7 +181,7 @@ General Information
 
 ### Which Services to Use
 
--	AWS offers a *lot* of different services — [about fifty](https://aws.amazon.com/products/) at last count.
+-	AWS offers a *lot* of different services — [about a hundred](https://aws.amazon.com/products/) at last count.
 -	Most customers use a few services heavily, a few services lightly, and the rest not at all. What services you’ll use depends on your use cases. Choices differ substantially from company to company.
 -	**Immature and unpopular services:** Just because AWS has a service that sounds promising, it doesn’t mean you should use it. Some services are very narrow in use case, not mature, are overly opinionated, or have limitations, so building your own solution may be better. We try to give a sense for this by breaking products into categories.
 -	**Must-know infrastructure:** Most typical small to medium-size users will focus on the following services first. If you manage use of AWS systems, you likely need to know at least a little about all of these. (Even if you don’t use them, you should learn enough to make that choice intelligently.)
@@ -211,6 +211,7 @@ General Information
 	-	⛓🕍[ECS](#ecs): Docker container/cluster management (note Docker can also be used directly, without ECS)
 	-	⛓[ECR](https://aws.amazon.com/ecr/): Hosted private Docker registry
 	-	🐥[Config](https://aws.amazon.com/config/): AWS configuration inventory, history, change notifications
+	-	🐥[X-Ray](https://aws.amazon.com/xray/): Trace analysis and debugging for distributed applications such as microservices.
 -	**Special-purpose infrastructure:** These services are focused on specific use cases and should be evaluated if they apply to your situation. Many also are proprietary architectures, so tend to tie you to AWS.
 	-	⛓[DynamoDB](#dynamodb): Low-latency NoSQL key-value store
 	-	⛓[Glacier](#glacier): Slow and cheap alternative to S3
@@ -330,6 +331,7 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 
 | Service                                                                                                    | Original release | Availability                                                                  | CLI Support | HIPAA Compliant | PCI-DSS Compliant |
 |------------------------------------------------------------------------------------------------------------|------------------|-------------------------------------------------------------------------------|:-----------:|:---------------:|:-----------------:|
+| 🐥[X-Ray](https://aws.amazon.com/releasenotes/AWS-X-Ray?browse=1)										  | 2016-12          | General																	  |✓            |                 |                   |
 | 🐥[Lex](https://aws.amazon.com/releasenotes/Amazon-Lex?browse=1)                                           | 2016-11          | Preview                                                                       |             |                 |                   |
 | 🐥[Polly](https://aws.amazon.com/releasenotes/Amazon-Polly?browse=1)                                       | 2016-11          | General                                                                       |✓            |                 |                   |
 | 🐥[Rekognition](https://aws.amazon.com/releasenotes/Amazon-Rekognition?browse=1) 							 | 2016-11          | General                                                                       |✓            |					 |  				|
