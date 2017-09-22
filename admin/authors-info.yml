@@ -28,6 +28,7 @@ roles:
   bgdnlp: editor (EFS)
   JCBarry: editor (CloudWatch)
   nzoschke: editor (KMS)
+  lobster1234: editor (Batch, SQS, SNS)
   donnemartin: expert (tools)
   merrells: expert (cloud infrastructure, when to use AWS)
   benkehoe: expert (IoT)
