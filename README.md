@@ -1351,16 +1351,24 @@ Lambda
 ### Lambda Basics
 
 -	📒 [Homepage](https://aws.amazon.com/lambda/) ∙ [Developer guide](http://docs.aws.amazon.com/lambda/latest/dg/) ∙ [FAQ](https://aws.amazon.com/lambda/faqs/) ∙ [Pricing](https://aws.amazon.com/lambda/pricing/)
--	**Lambda** is a relatively new service (launched at end of 2014) that offers a different type of compute abstraction: A user-defined function that can perform a small operation, where AWS manages provisioning and scheduling how it is run.
+-	**Lambda** is AWS' serverless compute offering, allowing users to define Lambda functions in a selection of runtimes that can be invoked via a variety of triggers, including SNS notifications and API Gateway invocations. Lambda is the key service that enables ['serverless' architecture on AWS](https://aws.amazon.com/lambda/serverless-architectures-learn-more/), alongside AWS API Gateway, AWS Batch, and AWS DynamoDB.
 
 ### Lambda Tips
 
--	**What does “serverless” mean?** This idea of using Lambda for application logic has grown to be called **serverless** since you don't explicitly manage any server instances, as you would with EC2. This term is a bit confusing since the functions themselves do of course run on servers managed by AWS. [Serverless, Inc.](http://serverless.com/) also uses this word for the name of their company and [their own open source framework](https://github.com/serverless/serverless), but the term is usually meant more generally.
--	The release of Lambda and [API Gateway](#api-gateway) in 2015 triggered a startlingly rapid adoption in 2016, with many people writing about [serverless architectures](http://martinfowler.com/articles/serverless.html) in which many applications traditionally solved by managing EC2 servers can be built without explicitly managing servers at all.
--	The [Serverless Application Model (SAM)](https://github.com/awslabs/serverless-application-model) can help to define, manage, and deploy serverless applications on Lambda.
--	**Frameworks:** [Several frameworks](https://github.com/anaibol/awesome-serverless#frameworks) for building and managing serverless deployment are emerging.
--	The [Awesome Serverless](https://github.com/anaibol/awesome-serverless) list gives a good set of examples of the relatively new set of tools and frameworks around Lambda.
--	The [**Serverless framework**](https://github.com/serverless/serverless) is a leading new approach designed to help group and manage Lambda functions. It’s approaching version 1 as of August 2016) and is popular among a small number of users.
+-	The idea behind 'serverless' is that users don't manage provisioning, scaling, or maintenance of the physical machines that host their application code. With Lambda, the machine that actually executes the user-defined function is abstracted as a ['container'](http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html). When defining a Lambda function, users are able to declare the amount of memory available to the function, which directly affects the physical hardware specification of the Lambda container.
+-	Changing the amount of memory available to your Lambda functions also affects the amount of [CPU power](https://aws.amazon.com/lambda/faqs/) available to it.
+-	While AWS does not offer hard guarantees around container reuse, in general it can be expected that an unaltered Lambda function will reuse a warm (previously used) container if called shortly after another invocation. Users can use this as a way to optimize their funtions by smartly caching application data on initialization.
+-	A Lambda that hasn't been invoked in some time may not have any warm containers left. In this case, the Lambda system will have to load and initialize the Lambda code in a 'cold start' scenario, which can add significant latency to Lambda invocations. 
+-	There are a few strategies to avoiding or mitigating cold starts, including keeping containers warm by periodic triggering and favoring lightweight runtimes such as Node as opposed to Java.
+-	Lambda is integrated with AWS CloudWatch and provides a logger at runtime that publishes CloudWatch events. 
+-	Lambda offers out-of-the-box opt-in support for AWS X-Ray. X-Ray can help users diagnose Lambda issues by offering in-depth analysis of their Lambda's execution flow. This is especially useful when investigating issues calling other AWS services as X-Ray gives you a detailed and easy-to-parse [visualization of the call graph](http://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html#lambda-service-map).
+-	Using [timed CloudWatch events](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions), users can use Lambda to run periodic jobs in a cron-like manner.
+-	Events sent to Lambda that fail processing can be managed using a [Dead Letter Queue (DLQ) in SQS.](http://docs.aws.amazon.com/lambda/latest/dg/dlq.html)
+-	More on serverless:
+	-	[Martin Fowler's thoughts.](http://martinfowler.com/articles/serverless.html)
+	-	[AWS Serverless Application Model (SAM)](https://github.com/awslabs/serverless-application-model), a simplification built on top of CloudFormation that can help to define, maange, and deploy serverless applications using Lambda.
+	-	[Serverless](https://github.com/serverless/serverless), one of the most popular frameworks for building serverless applications using AWS Lambda and other serverless compute options.
+	-	[Other helpful frameworks.](https://github.com/anaibol/awesome-serverless#frameworks)
 
 ### Lambda Alternatives and Lock-in
 
@@ -1368,15 +1376,18 @@ Lambda
 
 ### Lambda Gotchas and Limitations
 
--	🔸Managing lots of Lambda functions is a workflow challenge, and tooling to manage Lambda deployments is still immature.
--	🔸AWS’ official workflow around managing function [versioning and aliases](https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html) is painful.
-- 🔸 While adding/removing S3 buckets as triggers for Lambda function, this error may occur: "There was an error creating the trigger: Configuration is ambiguously defined. Cannot have overlapping suffixes in two rules if the prefixes are overlapping for the same event type." In this case, you can manually remove the Lambda event in the "Events" tab in the "Properties" section of the S3 bucket.
+- 🔸Testing Lambdas, locally and remotely, can be a challenge. Several tools are available to make this easier, including the officially supported [SAM Local](https://github.com/awslabs/aws-sam-local).
+- 🔸Managing lots of Lambda functions is a workflow challenge, and tooling to manage Lambda deployments is still immature. 
+- 🔸AWS’ official workflow around managing function [versioning and aliases](https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html) is painful. One option is to avoid Lambda versioning by abstracting your deployment workflow outside of Lambda. One way this can be accomplished is by deploying your application in successive stages, with a distinct AWS account per stage, where each account only needs to be aware of the latest version, and rollbacks and updates are handled by external tooling.
+- 🔸As of Oct 2017, the minimum charge for a Lambda invocation is 100ms, so there is no cost-benefit to reducing your run time below that.
+- 🔸While adding/removing S3 buckets as triggers for Lambda function, this error may occur: "There was an error creating the trigger: Configuration is ambiguously defined. Cannot have overlapping suffixes in two rules if the prefixes are overlapping for the same event type." In this case, you can manually remove the Lambda event in the "Events" tab in the "Properties" section of the S3 bucket.
+- 🔸Managing the size of your deployment artifact can be a challenge, especially if using Java. Options to mitigate this include [proguard](https://www.guardsquare.com/en/proguard) and loading dependencies at runtime into /tmp.
 - When using DynamoDB as a trigger for your Lambda functions, this error may occur: "PROBLEM: internal Lambda error. Please contact Lambda customer support." This usually just means that Lambda can't detect anything in the DynamoDB stream within the last 48 hours. If the issue persists, deleting and recreating your trigger may help.
 -	🔸 Lambda has several [**resource limits**](http://docs.aws.amazon.com/lambda/latest/dg/limits.html) as of 2017-06:
 	-	A **6MB** request or response payload size.
 	-	A **50 MB** limit on the compressed .zip/.jar file deployment package size.
 	-	A **250 MB** limit on the code/dependencies in the package before compression.
-	- A **512 MB** limit on local storage in /tmp.
+	- A **500 MB** limit on local storage in /tmp.
 
 ### Lambda Code Samples
 
