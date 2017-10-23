@@ -259,7 +259,7 @@ General Information
 	-	[CodeCommit](https://aws.amazon.com/codecommit/): Git service. You’re probably already using GitHub or your own solution ([Stackshare](http://stackshare.io/stackups/github-vs-bitbucket-vs-aws-codecommit) has informal stats).
 	-	🕍[CodePipeline](https://aws.amazon.com/codepipeline/): Continuous integration. You likely have another solution already.
 	-	🕍[CodeDeploy](https://aws.amazon.com/codedeploy/): Deployment of code to EC2 servers. Again, you likely have another solution.
-	-	🕍[OpsWorks](https://aws.amazon.com/opsworks/): Management of your deployments using Chef. While Chef is popular, it seems few people use OpsWorks, since it involves going in on a whole different code deployment framework.
+	-	🕍[OpsWorks](https://aws.amazon.com/opsworks/): Management of your deployments using Chef or (as of October 2017) Puppet Enterprise. While Chef is popular, it seems few people use OpsWorks, since it involves going in on a whole different code deployment framework.
 -	[AWS in Plain English](https://www.expeditedssl.com/aws-in-plain-english) offers more friendly explanation of what all the other different services are.
 
 ### Tools and Services Market Landscape
@@ -1879,7 +1879,7 @@ OpsWorks
 ### OpsWorks Basics
 
 -	📒 [Homepage](https://aws.amazon.com/opsworks/) ∙ [Documentation](https://aws.amazon.com/documentation/opsworks/) ∙ [FAQ](https://aws.amazon.com/opsworks/faqs/) ∙ [Pricing - Stacks](https://aws.amazon.com/opsworks/stacks/pricing/) ∙ [Pricing - ChefAutomate](https://aws.amazon.com/opsworks/chefautomate/pricing/)
-- OpsWorks is a configuration management service that relies heavy on [Chef](https://www.chef.io/chef/) for configuration-as-code deployment automation. The service lets you configure and launch stacks specific to your application's needs.
+- OpsWorks is a configuration management service that relies heavy on [Chef](https://www.chef.io/chef/) or [Puppet](https://www.puppet.com) for configuration-as-code deployment automation. The service lets you configure and launch stacks specific to your application's needs.
 - There are numerous options, in and out of AWS, that let you automate application deployments. The separating factor between OpsWorks and other configuration management services (Elastic Beanstalk for example) is that OpsWorks specializes in letting you control the details of the systems your application runs on, where a service like Elastic Beanstalk simplifies this to focus on application configuration.
 - [OpsWorks Stacks](https://aws.amazon.com/opsworks/stacks/) allows you to run your deployment stacks both in the AWS cloud as well as on your own hardware on-premises.
 - [OpsWorks for ChefAutomate](https://aws.amazon.com/opsworks/chefautomate/) provides a managed Chef configuration management server for your deployment pipeline. This server stores configuration tasks and provides them to your deployment nodes without manual intervention, in addition to providing other management and monitoring features.
@@ -1887,7 +1887,7 @@ OpsWorks
 - As of December 2016, OpsWorks for ChefAutomate uses [Chef Server version 12.11.1](http://docs.aws.amazon.com/opsworks/latest/userguide/welcome_opscm.html) This is the current stable version of Chef.
 - [Berkshelf can be used](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-chef11-10.html#workingcookbook-chef11-10-berkshelf) with Chef stacks of version 11.10 and later for managing cookbooks and their respective dependencies.
 - Running your own Chef environment may be an alternative to consider - some considerations are listed [in this Bitlancer article.](http://www.bitlancer.com/blog/2015/10/05/opsworks-vs-chef.html)
-- A key difference between running OpsWorks and rolling your own Chef environment is that the latter allows the scheduling of Chef runs, while the former has Chef runs occur according to lifecycle hooks.
+- A key difference between running OpsWorks's Chef variant and rolling your own Chef environment is that the latter allows the scheduling of Chef runs, while the former has Chef runs occur according to lifecycle hooks.
 
 ### OpsWorks Alternatives and Lock-in
 
@@ -1899,7 +1899,7 @@ OpsWorks
 
 ### OpsWorks Gotchas and Limitations
 
-- Although OpsWorks will let you work with common Chef recipes when creating your stacks, creating custom recipes will require familiarity with Chef syntax.
+- Although OpsWorks will let you work with common Chef recipes or Puppet modules when creating your stacks, creating custom recipes will require familiarity with Chef or Puppet syntax.
 - OpsWorks Stacks is not available in the Canada, GovCloud and Beijing regions.
 - OpsWorks for Chef Automate is [only available](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/) in the North Virginia, Oregon, and Ireland regions.
 
