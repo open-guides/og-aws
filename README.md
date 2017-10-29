@@ -71,6 +71,7 @@ Table of Contents
 
 -	[High Availability](#high-availability)
 -	[Billing and Cost Management](#billing-and-cost-management)
+-   [Encryption](#encryption)
 -	[Further Reading](#further-reading)
 
 **Legal**
@@ -2148,6 +2149,55 @@ Billing and Cost Management
 -	If you have multiple AWS accounts that are linked with Consolidated Billing, plan on using reservations, and want unused reservation capacity to be able to apply to compute hours from other accounts, you’ll need to create your instances in the availability zone with the same *name* across accounts. Keep in mind that when you have done this, your instances may not end up in the same *physical* data center across accounts - Amazon shuffles availability zones names across accounts in order to equalize resource utilization.
 -	Make use of dynamic [Auto Scaling](#auto-scaling), where possible, in order to better match your cluster size (and cost) to the current resource requirements of your service.
 -	If you use RHEL instances and happen to have existing RHEL on-premise Red Hat subscriptions, then you can leverage Red Hat's [Cloud Access program](https://www.redhat.com/en/technologies/cloud-computing/cloud-access) to migrate a portion of your on-premise subscriptions to AWS, and thereby saving on AWS charges for RHEL subscriptions. You can either use your own self-created RHEL AMI's or Red Hat provided [Gold Images](https://access.redhat.com/articles/2962171) that will be added to your private AMI's once you sign up for Red Hat Cloud Access.
+
+Encryption
+----------
+
+### Client-Side Encryption
+Encryption is done by the client prior to sending the object to AWS. The [AWS documentation](http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html) has details, but there are basically two cases.
+- The encryption key is stored in KMS and provided to the client on request. Provides key management and audit through CloudTrail, but the fact that the key is stored on AWS can be regarded as a risk from a security standpoint.
+- Customer provided key. The key (client-side key) is managed by the customer and never sent to Amazon. Data is encrypted on the client side, so unencrypted data is never sent to Amazon.
+
+The AWS SDKs, or at least the Java one, provide functions for easy access to envelope encryption when using the client-side options.
+
+### Server-Side Encryption
+Encryption is done by AWS. The client sends the text or object to be encrypted, the key is provided either by the client or an AWS service. In cases where the object is stored on AWS, decryption is done automatically provided the client has access. Compute cycles needed for encryption/decryption are spent by Amazon instead of the client.
+
+**Server-Side Encryption with Client-Provided Key (SSE-C)**
+- The key is managed by the client
+- The client provides the key in the encryption request. It doesn't involve envelope encryption, the provided encryption key is used directly. Similarily, the key will have to be provided in order to decrypt.
+- Encryption key is not stored by AWS. A randomly salted HMAC value of the key is saved together with the encrypted object, in order to validate future requests.
+- [Cloud HSM](https://aws.amazon.com/cloudhsm) can be used to manage encryption keys.
+
+**Server-Side Encryption with KMS-Managed Key**
+- Goes through the [envelope encryption](#envelope-encryption) process.
+- Encryption key is managed in [KMS](#kms).
+- Multiple master keys can be used and stored in KMS.
+- Access to a KMS key is subject to IAM policies and can be used as an additional layer of control. For example, in order to read the data contained in an object stored in an S3 bucket using KMS encryption, the user would have to (1) have access to the object and (2) have access to the KMS key in order to decrypt the object contents.
+- Master keys (as opposed to data keys) never leave KMS, they are never seen. So, for example, there is no need to rotate keys when an employee leaves the business, since there is no way for the employee to get the key.
+- All access to keys is logged in CloudTrail, so an audit log can be provided.
+
+**Server-Side Encryption with Amazon S3-Managed Keys (SSE-S3)**
+- Goes through the [envelope encryption](#envelope-encryption) process.
+- Master key is managed by Amazon's S3 service, with no involvement from the client.
+- Data is encrypted and decrypted transparently for users that are procvided access to that data via IAM policies.
+
+### Envelope encryption
+Envelope encryption basically means using a separate key for each object, but each of those keys is also encrypted using a single master key. In order to decrypt the object, the key used on it must be decrypted first, which in turn means that access to the master key is needed.
+
+Let's say we want to encrypt then decrypt some files. An encryption key is created to be used as **master_key**. Amazon also refer to this as a "customer master key", or CMK. Access to this key is needed in order to decrypt the files. Once we have the key, encryption follows some steps:
+1. Create another encryption key, called a **data_key**.
+2. Encrypt file with the **data_key**, resulting in **encrypted_file**.
+3. Encrypt the **data_key** with the **master_key**, resulting in an **encrypted_data_key**
+4. Discard the **data_key**. This is important. After this step we're left with the **master_key**, the **encrypted_file** and the **encrypted_data_key**. The only unencrypted bit is the master key, so in order to decrypt, access to the master key is required.
+5. Store **encrypted_file** together with **encrypted_data_key**.
+Repeat steps 1 to 5 for each file.
+
+When the files are decrypted, the process is basically reversed:
+1. Retrieve **encrypted_file** and **encrypted_data_key.
+2. Decrypt **encrypted_data_key** with **master_key**, resulting in **data_key**.
+3. Decrypt **encrypted_file** with **data_key**, resulting in **file**.
+4. Discard **data_key**.
 
 Further Reading
 ---------------
