@@ -1426,6 +1426,7 @@ API Gateway
 - 🔸Integration timeout: All of the various integration types (eg: Lambda, HTTP) for API Gateway have timeouts, as described [here](http://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html#api-gateway-limits). Unlike some limits, these timeouts can't be increased.
 - 🔸API Gateway returns a 504 status code for any network or low level transport related issue. When this happens, you may see a message in the CloudWatch logs for the request that includes the message: `Execution failed due to an internal error`. One possible reason for this error is that even though your backend server is up and running, it may be doing something outside of the HTTP specification (like not sending well-formed chunked messages). You can test by hitting your backend directly with the `curl --raw -S -i <backend-endpoint-url>` and seeing if it complains.
 - 🔸API Gateway does not support gzip compression of responses. See [AWS forum](https://forums.aws.amazon.com/thread.jspa?threadID=192948).
+- 🔸API Gateway can't be used as an origin of CloudFront in proxy mode in case your implementation relies on mobile device detection or geo IP. Headers set by CloudFront will be replaced by values set by the CloudFront used under the hood by API Gateway.
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
