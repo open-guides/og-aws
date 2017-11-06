@@ -508,9 +508,7 @@ So if you’re not going to manage your AWS configurations manually, what should
 -	Boto3 contains a variety of APIs that operate at either a high level or a low level, here some explanation of both:
 	-	The low level APIs (Client APIs) are mapped to AWS Cloud service-specific APIs, and all service operations are supported by clients. Clients are generated from a JSON service definition file.
 	-	The high level option, Resource APIs, allows you to avoid calling the network at the low level and instead provide an object-oriented way to interact with AWS Cloud services.
-
-
-	Also, Boto3 has a lot of helpful [**features**](https://boto3.readthedocs.io/en/latest/guide/index.html#general-feature-guides) like *waiters*, which provide a structure that allows for code to wait for changes to occur in the cloud, for example, when you are creating an EC2 instance and need wait until the instance is running in order to perform another task.
+-	Boto3 has a lot of helpful [**features**](https://boto3.readthedocs.io/en/latest/guide/index.html#general-feature-guides) like *waiters*, which provide a structure that allows for code to wait for changes to occur in the cloud, for example, when you are creating an EC2 instance and need wait until the instance is running in order to perform another task.
 -	If you find yourself writing a Bash script with more than one or two CLI commands, you’re probably doing it wrong. Stop, and consider writing a Boto script instead. This has the advantages that you can:
 	-	Check return codes easily so success of each step depends on success of past steps.
 	-	Grab interesting bits of data from responses, like instance ids or DNS names.
