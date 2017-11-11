@@ -47,3 +47,31 @@ roles:
   rjpower:
   alexanderatallah:
   Jurgen Philippaerts:
+
+groups:
+  - name: Leads
+    members:
+    - jlevy
+    - ThanosBaskous
+    - QuinnyPig
+  - name: Editors and Experts
+    members:
+    - max-zanko
+    - nitingithub
+    - forwidur
+    - lynnlangit
+    - richadams
+    - artemnikitin
+    - bgdnlp
+    - JCBarry
+    - nzoschke
+    - lobster1234
+    - donnemartin
+    - merrells
+    - benkehoe
+    - ehammond
+    - danhermann
+    - kimschmidtsbrain
+    - wumintendy
+    - lukedeo
+  - name: Contributors
