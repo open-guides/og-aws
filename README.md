@@ -1101,8 +1101,7 @@ ALB
 -	Instances in the ALB’s target groups have to either have a single, fixed healthcheck port (“EC2 instance”-level healthcheck) or the healthcheck port for a target has to be the same as its application port (“Application instance”-level healthcheck) - you can't configure a per-target healthcheck port that is different than the application port.
 -	ALBs are VPC-only (they are not available in EC2 Classic)
 -	In a target group, if there is no healthy target, all requests are routed to all targets. For example, if you point a listener at a target group containing a single service that has a long initialization phase (during which the health checks would fail), requests will reach the service while it is still starting up.
-- Although ALBs now support SNI, they only support one 25 HTTPS certificates per Load Balancer. This limitation is not described [here](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html),
-so it might be subject to change.
+- Although ALBs now support SNI, they only support one 25 HTTPS certificates per Load Balancer. This limitation is not described [here](http://docs.aws.amazon.com/elasticloadbalancing/latest/application/load-balancer-limits.html), so it might be subject to change.
 
 Elastic IPs
 -----------
@@ -1364,9 +1363,9 @@ Lambda
 -	The idea behind 'serverless' is that users don't manage provisioning, scaling, or maintenance of the physical machines that host their application code. With Lambda, the machine that actually executes the user-defined function is abstracted as a ['container'](http://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html). When defining a Lambda function, users are able to declare the amount of memory available to the function, which directly affects the physical hardware specification of the Lambda container.
 -	Changing the amount of memory available to your Lambda functions also affects the amount of [CPU power](https://aws.amazon.com/lambda/faqs/) available to it.
 -	While AWS does not offer hard guarantees around container reuse, in general it can be expected that an unaltered Lambda function will reuse a warm (previously used) container if called shortly after another invocation. Users can use this as a way to optimize their funtions by smartly caching application data on initialization.
--	A Lambda that hasn't been invoked in some time may not have any warm containers left. In this case, the Lambda system will have to load and initialize the Lambda code in a 'cold start' scenario, which can add significant latency to Lambda invocations. 
+-	A Lambda that hasn't been invoked in some time may not have any warm containers left. In this case, the Lambda system will have to load and initialize the Lambda code in a 'cold start' scenario, which can add significant latency to Lambda invocations.
 -	There are a few strategies to avoiding or mitigating cold starts, including keeping containers warm by periodic triggering and favoring lightweight runtimes such as Node as opposed to Java.
--	Lambda is integrated with AWS CloudWatch and provides a logger at runtime that publishes CloudWatch events. 
+-	Lambda is integrated with AWS CloudWatch and provides a logger at runtime that publishes CloudWatch events.
 -	Lambda offers out-of-the-box opt-in support for AWS X-Ray. X-Ray can help users diagnose Lambda issues by offering in-depth analysis of their Lambda's execution flow. This is especially useful when investigating issues calling other AWS services as X-Ray gives you a detailed and easy-to-parse [visualization of the call graph](http://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html#lambda-service-map).
 -	Using [timed CloudWatch events](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html#CronExpressions), users can use Lambda to run periodic jobs in a cron-like manner.
 -	Events sent to Lambda that fail processing can be managed using a [Dead Letter Queue (DLQ) in SQS.](http://docs.aws.amazon.com/lambda/latest/dg/dlq.html)
@@ -1383,7 +1382,7 @@ Lambda
 ### Lambda Gotchas and Limitations
 
 - 🔸Testing Lambdas, locally and remotely, can be a challenge. Several tools are available to make this easier, including the officially supported [SAM Local](https://github.com/awslabs/aws-sam-local).
-- 🔸Managing lots of Lambda functions is a workflow challenge, and tooling to manage Lambda deployments is still immature. 
+- 🔸Managing lots of Lambda functions is a workflow challenge, and tooling to manage Lambda deployments is still immature.
 - 🔸AWS’ official workflow around managing function [versioning and aliases](https://docs.aws.amazon.com/lambda/latest/dg/versioning-aliases.html) is painful. One option is to avoid Lambda versioning by abstracting your deployment workflow outside of Lambda. One way this can be accomplished is by deploying your application in successive stages, with a distinct AWS account per stage, where each account only needs to be aware of the latest version, and rollbacks and updates are handled by external tooling.
 - 🔸As of Oct 2017, the minimum charge for a Lambda invocation is 100ms, so there is no cost-benefit to reducing your run time below that.
 - 🔸While adding/removing S3 buckets as triggers for Lambda function, this error may occur: "There was an error creating the trigger: Configuration is ambiguously defined. Cannot have overlapping suffixes in two rules if the prefixes are overlapping for the same event type." In this case, you can manually remove the Lambda event in the "Events" tab in the "Properties" section of the S3 bucket.
@@ -1424,7 +1423,7 @@ API Gateway
 -	🔹Prior to 2016-11, you could only send and receive plain text data (so people would base64-encode binary data), but binary data is [now](https://aws.amazon.com/about-aws/whats-new/2016/11/binary-data-now-supported-by-api-gateway/) supported.
 -	API Gateway supports the OpenApi specification (aka [Swagger](https://swagger.io/)). This allows you to describe your API in a language-agnostic way and use various tools to generate code supporting your API.
 -	Generating clients is extremely easy, either through the AWS console or using the get-sdk API.
--	API Gateway integrates with CloudWatch out-of-the-box, allowing for easy logging of requests and responses. 
+-	API Gateway integrates with CloudWatch out-of-the-box, allowing for easy logging of requests and responses.
 	-	Note that if your request or response are too large, CloudWatch will truncate the log. For full request/reply logging, make sure to do so in your integration (e.g. Lambda).
 	-	A good practice when calling API Gateway APIs is to log the request ID on the client. You can later refer to these request IDs in CloudWatch for easier tracing and debugging.
 -	There are multiple ways to secure your API, including built-in support for [AWS Cognito](http://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html). For most use-cases, Cognito is the easiest and simplest way to authenticate users.
@@ -1497,12 +1496,12 @@ CloudFormation
 -	Avoid potentially time-consuming syntax errors from eating into your deployment time by running `validate-template`.
 -	CloudFormation is sometimes slow to update what resources (and new features on old services) a user is able to define in the template. If you need to deploy a resource or feature that isn't supported by the template, CloudFormation allows running arbitrary code (using [Lambda](#lambda)) on a stack create or update via [custom resources](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-custom-resources.html).
 -	Custom resources make CloudFormation into a truly powerful tool, as you can do all sorts of neat things quite easily such as sanity tests, initial configuration of Dynamo tables or S3 buckets, cleaning up old CloudWatch logs, etc.
-	- For writing Custom Resources in Java, [cfnresponse](https://github.com/SunRun/cfn-response-java) comes in very handy. 
+	- For writing Custom Resources in Java, [cfnresponse](https://github.com/SunRun/cfn-response-java) comes in very handy.
 	- For writing Custom Resources in Javascript, AWS provides a good reference in the [documentation.](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/walkthrough-custom-resources-lambda-lookup-amiids.html)
 -	CloudFormation offers a visual [template designer](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/working-with-templates-cfn-designer-walkthrough-createbasicwebserver.html) that can be useful when getting up to speed with the template syntax.
 -	By using [StackSets](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacksets-concepts.html), users can define and deploy an entire production application consisting of multiple stacks (one service per stack) in a single CloudFormation template.
 -	If you're developing a serverless application (i.e., using Lambda, API Gateway) CloudFormation offers a simplified template format called [SAM](https://github.com/awslabs/serverless-application-model).
--	❗Use a restrictive [stack policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html)! Without one, you can inadvertantly delete live production resources, probably causing a severe outage. 
+-	❗Use a restrictive [stack policy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/protect-stack-resources.html)! Without one, you can inadvertantly delete live production resources, probably causing a severe outage.
 -	❗Turn on [termination protection](https://aws.amazon.com/about-aws/whats-new/2017/09/aws-cloudformation-provides-stack-termination-protection/) on all of your stacks to avoid costly accidents!
 -	The CloudFormation [template reference](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/template-reference.html) is indispensible when discovering what is and isn't possible in a CloudFormation template.
 -	[Troposphere](https://github.com/cloudtools/troposphere) is a Python library that makes it much easier to create CloudFormation templates.
@@ -1966,8 +1965,8 @@ Batch
 - These batch workloads have access to all other AWS services and features.
 - AWS Batch, coupled with [spot instances](https://aws.amazon.com/blogs/compute/cost-effective-batch-processing-with-amazon-ec2-spot/) can help run the jobs when appropriate capacity is available, providing for optimal utilization of compute resources.
 - The batch workloads are built as a [Docker](https://www.docker.com/) Image. These images can then pushed to the [EC2 Container Registry](https://aws.amazon.com/ecr/) (ECR), or any private repository that can be accessed from AWS.
-- A [Job Definition](http://docs.aws.amazon.com/batch/latest/userguide/job_definitions.html) has the workload's Docker Image URI, and also lets the users specify the environment details like vCPUs, memory, volume mappings, environment variables, parameters, retry strategy, container properties, and the job's IAM role. 
-- The [Compute Environments](http://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html) are EC2 clusters that provide the runtime for the batch workloads to execute in. 
+- A [Job Definition](http://docs.aws.amazon.com/batch/latest/userguide/job_definitions.html) has the workload's Docker Image URI, and also lets the users specify the environment details like vCPUs, memory, volume mappings, environment variables, parameters, retry strategy, container properties, and the job's IAM role.
+- The [Compute Environments](http://docs.aws.amazon.com/batch/latest/userguide/compute_environments.html) are EC2 clusters that provide the runtime for the batch workloads to execute in.
 - AWS Batch provides managed, as well as unmanaged compute environments. The Managed Environments are provisioned and managed by AWS, while the Unmanaged Environments are managed by the customers.
 - The Job Definitions are submitted to [Job Queue(s)](http://docs.aws.amazon.com/batch/latest/userguide/job_queues.html) for execution. Each queue has a priority, and has at least one Compute Environment associated with it.
 - AWS Batch uses [ECS](https://aws.amazon.com/ecs/) to execute the containerized jobs.
@@ -1994,7 +1993,7 @@ SQS
 - SQS allows producers to set up to to 15 minutes of delay before the messages are delivered to the consumers. This parameter is called DelaySeconds.
 - There are two types of queues supported by SQS -
     - Standard Queues
-        - Guarantee **at least once** delivery of the messages. 
+        - Guarantee **at least once** delivery of the messages.
         - Do not retain the order of delivery of the messages.
     - FIFO Queues
         - Guarantee **only once** delivery of the messages
