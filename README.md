@@ -1167,7 +1167,7 @@ RDS
 -	🔸Verify what database features you need, as not everything you might want is available on RDS. For example, if you are using Postgres, check the list of [supported features and extensions](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#SQLServer.Concepts.General.FeatureSupport). If the features you need aren't supported by RDS, you'll have to deploy your database yourself.
 -	🔸If you use the failover support offered by RDS, keep in mind that it is based on DNS changes, and make sure that your client reacts to these changes appropriately. This is particularly important for Java, given how its DNS resolver’s TTL is [configured by default](http://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/java-dg-jvm-ttl.html).
 -	🔸**DB migration to RDS:** While importing your database into RDS ensure you take into consideration the maintenance window settings. If a backup is running at the same time, your import can take a considerably longer time than you would have expected.
--	[Database sizes are limited](https://aws.amazon.com/about-aws/whats-new/2015/06/amazon-rds-increases-storage-limits-to-6TB-for-piops-and-gp2/) to **6TB** for all database engines except for SQL Server which has a **32TB** limit and Aurora which supports up to **64TB** databases.
+-	[Database sizes are limited](https://aws.amazon.com/about-aws/whats-new/2015/06/amazon-rds-increases-storage-limits-to-6TB-for-piops-and-gp2/) to **6TB** for all database engines except for SQL Server which has a **16TB** limit and Aurora which supports up to **64TB** databases.
 
 RDS MySQL and MariaDB
 ---------------------
@@ -1231,7 +1231,7 @@ RDS SQL Server
 
 -	🔸The user is granted only db_owner privileges for each database on the instance.
 -	🔸Storage cannot be expanded for existing databases. If you need more space, you must restore your database on a new instance with larger storage.
--	🔸There is a **32TB** database size limit for non-Express editions.
+-	🔸There is a **16TB** database size limit for non-Express editions.
 -	🔸Limited to [30 databases per instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html)
 
 
