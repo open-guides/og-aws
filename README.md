@@ -450,7 +450,7 @@ Learning and Career Development
 ### Certifications
 
 -	**Certifications:** AWS offers [**certifications**](https://aws.amazon.com/certification/) for IT professionals who want to demonstrate their knowledge.
-  - [Certified Cloud Practitioner](https://aws.amazon.com/certification/certified-cloud-practitioner/)
+  -	[Certified Cloud Practitioner](https://aws.amazon.com/certification/certified-cloud-practitioner/)
   -	[Certified Solutions Architect Associate](https://aws.amazon.com/certification/certified-solutions-architect-associate/)
   -	[Certified Developer Associate](https://aws.amazon.com/certification/certified-developer-associate/)
   -	[Certified SysOps Administrator Associate](https://aws.amazon.com/certification/certified-sysops-admin-associate/)
