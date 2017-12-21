@@ -1374,7 +1374,7 @@ Lambda
 -	Events sent to Lambda that fail processing can be managed using a [Dead Letter Queue (DLQ) in SQS.](http://docs.aws.amazon.com/lambda/latest/dg/dlq.html)
 -	More on serverless:
 	-	[Martin Fowler's thoughts.](http://martinfowler.com/articles/serverless.html)
-	-	[AWS Serverless Application Model (SAM)](https://github.com/awslabs/serverless-application-model), a simplification built on top of CloudFormation that can help to define, maange, and deploy serverless applications using Lambda.
+	-	[AWS Serverless Application Model (SAM)](https://github.com/awslabs/serverless-application-model), a simplification built on top of CloudFormation that can help to define, manage, and deploy serverless applications using Lambda.
 	-	[Serverless](https://github.com/serverless/serverless), one of the most popular frameworks for building serverless applications using AWS Lambda and other serverless compute options.
 	-	[Other helpful frameworks.](https://github.com/anaibol/awesome-serverless#frameworks)
 
