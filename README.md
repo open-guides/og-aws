@@ -1224,7 +1224,7 @@ RDS SQL Server
 
 ### RDS SQL Server Basics
 
--	[RDS offers SQL Server 2008 R2, 2012, 2014, and 2016](https://aws.amazon.com/rds/sqlserver/) including Express, Web, Standard and Enterprise (2008 R2 and 2012 only for Enterprise)
+-	[RDS offers SQL Server 2008 R2, 2012, 2014, 2016 and 2017](https://aws.amazon.com/rds/sqlserver/) including Express, Web, Standard and Enterprise.
 
 ### RDS SQL Server Tips
 
@@ -1234,7 +1234,7 @@ RDS SQL Server
 
 -	🔸The user is granted only db_owner privileges for each database on the instance.
 -	🔸Storage cannot be expanded for existing databases. If you need more space, you must restore your database on a new instance with larger storage.
--	🔸There is a **4TB** database size limit for non-Express editions.
+-	🔸There is a **16TB** database size limit for non-Express editions. There is also a minimum storage size, 20GB for Web and Express, 200GB for Standard and Enterprise.
 -	🔸Limited to [30 databases per instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html)
 
 
