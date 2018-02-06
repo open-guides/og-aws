@@ -1460,16 +1460,16 @@ Step Functions
 -   A variety of structures are supported including branching, parallel operations and waits
 -   Tasks represent the real work nodes and are frequently Lambda functions, but can be Activities which are externally driven tasks implemented any way you like.
 -   State machines have data that "flows" through the steps and can be modified and added to as the state machine executes.
--   The AWS Console is fantastic at letting you examine the execution state at various steps.
--   It's best if your tasks are itempotent, in part because you may want to re-run the state machine with the same input data during debugging
+-   The AWS Console facilitates your examining the execution state at various steps.
+-   It's best if your tasks are idempotent, in part because you may want to re-run the state machine with the same input data during debugging
     -   The console lets you do this with a few steps:
         -   select the "input" tab from the failed execution
         -   copy the input data (JSON)
         -   select the state machine name in the breadcrumbs
         -   start a new execution, pasting the input data you copied previously
 
-
 ### Step Functions Gotchas and Limitations
+-   Step Functions are free tier eligible up to an initial 4000 transitions per month. Thereafter, the charge is $0.025 per 1000 state transitions.
 -   You can have many, simulatanous, executions, but be aware of lambda throttling limits. This has been per-account, pre-region, but recently became settable per-lambda.
 
 Route 53
