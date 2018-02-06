@@ -1837,19 +1837,19 @@ Mobile Hub
 
 ### Mobile Hub Basics
 
-* 	📒 [Homepage](https://aws.amazon.com/mobile/) ∙ [User guide](https://docs.aws.amazon.com/mobile-hub/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/mobile/faqs/) ∙ [Pricing](https://aws.amazon.com/mobile/pricing/)
-- 	**Mobile Hub** orchestrates multiple services to create an AWS backend for mobile and web applications.
--		The backend consists of toggle-able _features_. Each feature uses one or two services to deliver a chunk of functionality: Analytics, Cloud Logic, Conversational Bots, Hosting and Streaming, NoSQL Database, User Data Storage and User Sign-In.
--		Services include Cognito, [S3](#S3), [API Gateway](#api-gateway), [Lambda](#lambda), [DynamoDB](#dynamodb), [Lex](#lex), [CloudFront](#cloudfront), [Device Farm](#device-farm) and Pinpoint.
--		Mobile Hub supports applications for Android (Java), iOS (Swift), Web (JS) or React Native (JS), with language-specific SDKs, as well as a CLI (for JS apps).
+* 📒 [Homepage](https://aws.amazon.com/mobile/) ∙ [User guide](https://docs.aws.amazon.com/mobile-hub/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/mobile/faqs/) ∙ [Pricing](https://aws.amazon.com/mobile/pricing/)
+- **Mobile Hub** orchestrates multiple services to create an AWS backend for mobile and web applications.
+- The backend consists of configurable _features_: Analytics, Cloud Logic, Conversational Bots, Hosting and Streaming, NoSQL Database, User Data Storage and User Sign-In. Each feature uses one or two services to deliver a chunk of functionality.
+- Services used include Cognito, [S3](#S3), [API Gateway](#api-gateway), [Lambda](#lambda), [DynamoDB](#dynamodb), [Lex](#lex), [CloudFront](#cloudfront), [Device Farm](#device-farm) and Pinpoint.
+- Mobile Hub supports applications for Android (Java), iOS (Swift), Web (JS) or React Native (JS), with language-specific SDKs, as well as a CLI (for JS apps).
 
 ### Mobile Hub Tips
--		Mobile Hub itself is free, but each of the services has its own pricing model.
--		The CLI allows local development of Lambda code (JS by default) with `awsmobile pull [push]` commands to sync
+- Mobile Hub itself is free, but each of the services has its own pricing model.
+- The CLI allows local development of Lambda code (JS by default) with `awsmobile {pull|push}` commands to sync from cloud to folder and back again.
 
 ### Mobile Hub Gotchas and Limitations
--		The Cloud API feature allows importing an existing Lambda function instead of defining a new one, but there are some rough edges with the CLI. Check the GitHub [issues](https://github.com/aws/awsmobile-cli/issues).
--		Mobile Hub uses CloudFormation under the covers, and gets confused when a service is changed outside of the Mobile Hub console.
+- 🔸The Cloud API feature allows importing an existing Lambda function instead of defining a new one, but there are some rough edges with the CLI. Check the GitHub [issues](https://github.com/aws/awsmobile-cli/issues).
+- ❗Mobile Hub uses CloudFormation under the covers, and gets confused when a service is changed outside of the Mobile Hub console.
 
 IoT
 ---
