@@ -1392,7 +1392,7 @@ Fargate
 -   🚪[Azure Container Instances](https://azure.microsoft.com/en-us/services/container-instances/): Available on Microsoft Azure in preview version, allows to run applications in containers without having to manage virtual machines
 
 ### Fargate Gotchas and Limitations
--   As of January 2018, Fargate is only available in us-east-1
+-   As of April 2018, Fargate is available in [multiple regions](https://aws.amazon.com/about-aws/whats-new/2018/04/aws-fargate-now-available-in-ohio--oregon--and-ireland-regions/): us-east-1, us-east-2, us-west-2, and eu-west-1
 -   As of January 2018, Fargate can only be used with ECS, however there are plans to support EKS later in 2018
 -   The smallest resource values that can be configured for an ECS Task that uses Fargate is 0.25 vCPU and 0.5 GB of memory
 
