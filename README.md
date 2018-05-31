@@ -2278,6 +2278,7 @@ Further Reading
 This section covers a few unusually useful or “must know about” resources or lists.
 
 -	AWS
+	-	[Oversimplified AWS Guide](http://www.configapp.com/post/2018/05/29/the-oversimplified-aws-amazon-web-services-guide/): An oversimplified, in-own-words, guide to all AWS products.
 	-	[AWS In Plain English](https://www.expeditedssl.com/aws-in-plain-english): A readable overview of all the AWS services.
 	-	[Awesome AWS](https://github.com/donnemartin/awesome-aws): A curated list of AWS tools and software.
 	-	[AWS Tips I Wish I'd Known Before I Started](https://wblinks.com/notes/aws-tips-i-wish-id-known-before-i-started/): A list of tips from [Rich Adams](https://richadams.me/)
