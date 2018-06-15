@@ -1857,7 +1857,7 @@ Device Farm
 - [AWS Mobile blog](https://aws.amazon.com/blogs/mobile/) contains several examples of Device Farm usage for testing.
 - Device Farm offers a free trial for users who want to evaluate their service.
 - Device Farm offers two pricing models: Paying **per device minute** is useful for small usage levels or for situations where it‘s hard to predict usage amount. **Unmetered plans** are useful in situations where active usage is expected from the beginning.
-- To minimize waiting time for devices availability next approach can be used: create several device pools with different devices, choose randomly one of the unused device pools on every run. 
+- To minimize waiting time for device availability, one approach is to create several device pools with different devices, then randomly choose one of the unused device pools on every run. 
 
 ### Device Farm Gotchas and Limitations
 
@@ -1866,7 +1866,7 @@ Device Farm
 - 🔸The API and CLI for Device Farm is quite a low level and may require developing additional tools or scripts on top of it.
 - 🔸AWS provide several tools and plugins for Device Farm, however, it doesn‘t cover all cases or platforms. It may require developing specific tools or plugins to support specific requirements.
 - ❗In general, Device Farm doesn‘t have Android devices from Chinese companies like Huawei, Meizu, Lenovo, etc. An actual list of supported devices located [here](https://aws.amazon.com/device-farm/device-list/).
-- 🔸Availability of devices is uneven. It depends on several factors such as devices popularity, etc. Usually, more modern devices are in demand and waiting time for them will be higher compared to relatively old devices.   
+- 🔸Device availibility is uneven. It depends on several factors including device popularity. Usually, more modern devices see higher demand, thus the waiting time for them will be higher compared to relatively old devices.   
 
 Mobile Hub
 ----------
