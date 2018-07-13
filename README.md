@@ -2124,7 +2124,6 @@ SQS
 - 🔸 FIFO Queues cannot subscribe to an SNS topic.
 - 🔸 Standard Queues can deliver duplicate messages regardless of the visibility window. If only-once delivery is your only choice, then use FIFO queues, or build an additional layer to de-dupe the messages.
 - 🔸 You can send/receive messages in batch, however, there can only be maximum of 10 messages in a batch.
-- 🔸 SQS cannot be directly used as a trigger for Lambda functions.
 
 
 SNS
