@@ -2147,7 +2147,6 @@ SNS
     - After processing, the SQS message is deleted from the queue by the subscriber to avoid being re-processed.
     - An SNS message is *pushed* to all subscribers of the topic at the same time, and is not available for deletion at the topic.
     - SNS supports multiple transport protocols of delivery of the messages to the subscribers, while SQS subscribers have to pull the messages off the queue over HTTPS.
-    - SNS can be used to trigger lambda functions, while SQS cannot.
 
 ### SNS Tips
 
