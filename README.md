@@ -49,7 +49,7 @@ Table of Contents
 | [Lambda](#lambda) | [📗](#lambda-basics) | [📘](#lambda-tips) | [📙](#lambda-gotchas-and-limitations) |
 | [API Gateway](#api-gateway) | [📗](#api-gateway-basics) | [📘](#api-gateway-tips) | [📙](#api-gateway-gotchas-and-limitations) |
 | [Step Functions](#step-functions) | [📗](#step-function-basics) | [📘](#step-function-tips) | [📙](#step-function-gotchas-and-limitations) |
-| [Route 53](#route-53) | [📗](#route-53-basics) | [📘](#route-53-tips) |  |
+| [Route 53](#route-53) | [📗](#route-53-basics) | [📘](#route-53-tips) | [📙](#route-53-gotchas-and-limitations) |
 | [CloudFormation](#cloudformation) | [📗](#cloudformation-basics) | [📘](#cloudformation-tips) | [📙](#cloudformation-gotchas-and-limitations) |
 | [VPCs, Network Security, and Security Groups](#vpcs-network-security-and-security-groups) | [📗](#vpc-basics) | [📘](#vpc-and-network-security-tips) | [📙](#vpc-and-network-security-gotchas-and-limitations) |
 | [KMS](#kms) | [📗](#kms-basics) | [📘](#kms-tips) | [📙](#kms-gotchas-and-limitations) |
@@ -1548,6 +1548,10 @@ Route 53
 -	Understand that domain registration and DNS management (hosted zones) are two separate Route 53 services. When you buy/transfer a domain, Route 53 automatically assigns four name servers to it (e.g. ns-2.awsdns-00.com). Route 53 also offers to automatically create a hosted zone for DNS management, but you are not required do your DNS management in the same account or even in Route 53; you just need to create an NS record pointing to the servers assigned to your domain in Route 53.
   - One use case would be to put your domain registration (very mission critical) in a [bastion account](https://cloudonaut.io/your-single-aws-account-is-a-serious-risk/) while managing the hosted zones within another account which is accessible by your applications.
 
+### Route 53 Gotchas and Limitations
+-   🔸Private Hosted Zone will only respond to DNS queries that originate from within a VPC. As a result Route53 will not respond to request made via a VPN or Direct connect. To get around this you will need to implement [Hybrid Cloud DNS Solutions](https://d1.awsstatic.com/whitepapers/hybrid-cloud-dns-options-for-vpc.pdf) or use the Simple AD provided IP addresses to query the hosted zone.
+
+
 CloudFormation
 --------------
 
@@ -1558,7 +1562,7 @@ CloudFormation
 -	💸CloudFormation itself has [no additional charge](https://aws.amazon.com/cloudformation/pricing/) itself; you pay for the underlying resources.
 
 ### CloudFormation Alternatives and Lock-In
-
+ 
 -	Hashicorp’s [Terraform](https://www.terraform.io/intro/vs/cloudformation.html) is a third-party alternative that can support other cloud platforms/providers including [Azure](https://www.terraform.io/docs/providers/azure/) and [OpenStack](https://www.terraform.io/docs/providers/openstack/).
 - 🔸Some AWS features may not be available in Terraform (e.g. multi-AZ ElastiCache using Redis), and you may have to resort to embedded CloudFormation templates.
 
