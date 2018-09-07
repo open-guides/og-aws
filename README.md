@@ -1216,7 +1216,7 @@ RDS MySQL and MariaDB
 -	🔸Most global options are exposed only via [DB parameter groups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html). Some variables that were introduced in later MySQL dot releases such as [avoid_temporal_upgrade](https://dev.mysql.com/doc/refman/5.6/en/server-system-variables.html#sysvar_avoid_temporal_upgrade) in MySQL 5.6.24 are not made available in RDS's 5.6.x parameter group and making use of them requires an upgrade to MySQL 5.7.x.
 -	🔸RDS features such as Point-In-Time restore and snapshot restore are not supported on MyISAM tables. Ensure you lock and flush each MyISAM table before executing a snapshot or backup operation to ensure consistency.
 
-RDS postgresql
+RDS PostgreSQL
 --------------
 
 ### RDS PostgreSQL Basics
@@ -1266,6 +1266,31 @@ RDS Aurora
 - 🔸[Aurora 1.x is based on MySQL 5.6.x](https://news.ycombinator.com/item?id=12415693) with some cherry-picking of later MySQL features. It is missing most 5.7 features as well as some online DDL features introduced in 5.6.17.
 - Aurora does not support GTID transactions even in the 5.6/Aurora 1.x release line.
 - Aurora maximum cluster size is 64 TB
+
+RDS Aurora PostgreSQL
+---------------------
+
+### RDS Aurora PostgreSQL Basics
+
+- Amazon’s proprietary fork of PostgreSQL, intended to scale up for high concurrency workloads while maintaining ease of use. Currently based on PostgreSQL 9.6.
+- Higher throughput (up to 3x with similar hardware).
+- Automatic storage scale in 10GB increments up to 64TB
+- Low latency read replicas that share the storage layer with the master which significantly reduces replica lag.
+- Point in time recovery
+- Fast database snapshots
+
+### RDS Aurora PostgreSQL Tips
+- Aurora Postgres by default is supposed to utilize high connection rates and for this reason connection pooling must be configured accordingly.
+- Because Aurora is based on PostgreSQL 9.6, it lacks features like declarative partitioning or logical replication.
+
+### RDS Aurora PostgreSQL Gotchas and Limitations
+- Aurora PostgreSQL falls behind normal RDS when it comes to available versions, so if you need features from the latest PostgreSQL version you might be better off with plain RDS.
+- Patching and bug fixing is separate from open source PostgreSQL.
+
+
+
+
+
 
 RDS SQL Server
 --------------
