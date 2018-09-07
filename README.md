@@ -39,8 +39,7 @@ Table of Contents
 | [Elastic IPs](#elastic-ips) | [📗](#elastic-ip-basics) | [📘](#elastic-ip-tips) | [📙](#elastic-ip-gotchas-and-limitations) |
 | [Glacier](#glacier) | [📗](#glacier-basics) | [📘](#glacier-tips) | [📙](#glacier-gotchas-and-limitations) |
 | [RDS](#rds) | [📗](#rds-basics) | [📘](#rds-tips) | [📙](#rds-gotchas-and-limitations) |
-| [RDS MySQL and MariaDB](#rds-mysql-and-mariadb) | [📗](#rds-mysql-and-mariadb-basics) | [📘](#rds-mysql-and-mariadb-tips) |
-[📙](#rds-mysql-and-mariadb-gotchas-and-limitations) |
+| [RDS MySQL and MariaDB](#rds-mysql-and-mariadb) | [📗](#rds-mysql-and-mariadb-basics) | [📘](#rds-mysql-and-mariadb-tips) | [📙](#rds-mysql-and-mariadb-gotchas-and-limitations) |
 | [RDS PostgreSQL](#rds-postgresql) | [📗](#rds-postgresql-basics) | [📘](#rds-postgresql-tips) | [📙](#rds-postgresql-gotchas-and-limitations) |
 | [RDS SQL Server](#rds-sql-server) | [📗](#rds-sql-server-basics) | [📘](#rds-sql-server-tips) | [📙](#rds-sql-server-gotchas-and-limitations) |
 | [RDS Aurora](#rds-aurora) | [📗](#rds-aurora-basics) | [📘](#rds-aurora-tips) | [📙](#rds-aurora-gotchas-and-limitations) |
