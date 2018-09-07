@@ -1225,7 +1225,7 @@ RDS PostgreSQL
 
 ### RDS PostgreSQL Tips
 - Recently Logical Replication is being supported, [both as subscriber and publisher](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.version104).
-- Supports a relatively large range of native. [extensions](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.FeatureSupport.Extensions)
+- Supports a relatively large range of native. [extensions](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.FeatureSupport.Extensions).
 - RDS PostgreSQL 10 Supports native partitioning and most of the major features and tunables.
 - Supports connections over SSL.
 - Supports multi A-Z and Point-in-time recovery.
