@@ -40,8 +40,11 @@ Table of Contents
 | [Glacier](#glacier) | [📗](#glacier-basics) | [📘](#glacier-tips) | [📙](#glacier-gotchas-and-limitations) |
 | [RDS](#rds) | [📗](#rds-basics) | [📘](#rds-tips) | [📙](#rds-gotchas-and-limitations) |
 | [RDS MySQL and MariaDB](#rds-mysql-and-mariadb) | [📗](#rds-mysql-and-mariadb-basics) | [📘](#rds-mysql-and-mariadb-tips) | [📙](#rds-mysql-and-mariadb-gotchas-and-limitations) |
-| [RDS Aurora](#rds-aurora) | [📗](#rds-aurora-basics) | [📘](#rds-aurora-tips) | [📙](#rds-aurora-gotchas-and-limitations) |
+| [RDS PostgreSQL](#rds-postgresql) | [📗](#rds-postgresql-basics) | [📘](#rds-postgresql-tips) | [📙](#rds-postgresql-gotchas-and-limitations) |
 | [RDS SQL Server](#rds-sql-server) | [📗](#rds-sql-server-basics) | [📘](#rds-sql-server-tips) | [📙](#rds-sql-server-gotchas-and-limitations) |
+| [RDS Aurora](#rds-aurora) | [📗](#rds-aurora-basics) |
+| [RDS Aurora MySQL](#rds-aurora-mysql) | [📗](#rds-aurora-mysql-basics) | [📘](#rds-aurora-mysql-tips) | [📙](#rds-aurora-mysql-gotchas-and-limitations) |
+| [RDS Aurora PostgreSQL](#rds-aurora-postgresql) | [📗](#rds-aurora-postgresql-basics) | [📘](#rds-aurora-postgresql-tips) | [📙](#rds-aurora-postgresql-gotchas-and-limitations) |
 | [DynamoDB](#dynamodb) | [📗](#dynamodb-basics) | [📘](#dynamodb-tips) | [📙](#dynamodb-gotchas-and-limitations) |
 | [ElastiCache](#elasticache) | [📗](#elasticache-basics) | [📘](#elasticache-tips) | [📙](#elasticache-gotchas-and-limitations) |
 | [ECS](#ecs) | [📗](#ecs-basics) | [📘](#ecs-tips) |  |
@@ -981,7 +984,7 @@ EBS
 -	⏱A worthy read is AWS’ [post on EBS IO characteristics](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html) as well as their [performance tips](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSPerformance.html#d0e86148).
 -	⏱One can [provision IOPS](http://aws.amazon.com/ebs/details/) (that is, pay for a specific level of I/O operations per second) to ensure a particular level of performance for a disk.
 -	⏱A single EBS volume allows 10k IOPS max. To get the maximum performance out of an EBS volume, it has to be of a maximum size and attached to an EBS-optimized EC2 instance.
-- 	💸Standard EBS volumes improve IOPS with size. It may make sense for you to simply enlarge a volume instead of paying for better performance explicitly. This can in many cases reduce costs by 2/3. 
+- 	💸Standard EBS volumes improve IOPS with size. It may make sense for you to simply enlarge a volume instead of paying for better performance explicitly. This can in many cases reduce costs by 2/3.
 -	A standard block size for an EBS volume is 16kb.
 
 ### EBS Gotchas and Limitations
@@ -1213,32 +1216,30 @@ RDS MySQL and MariaDB
 -	🔸Most global options are exposed only via [DB parameter groups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html). Some variables that were introduced in later MySQL dot releases such as [avoid_temporal_upgrade](https://dev.mysql.com/doc/refman/5.6/en/server-system-variables.html#sysvar_avoid_temporal_upgrade) in MySQL 5.6.24 are not made available in RDS's 5.6.x parameter group and making use of them requires an upgrade to MySQL 5.7.x.
 -	🔸RDS features such as Point-In-Time restore and snapshot restore are not supported on MyISAM tables. Ensure you lock and flush each MyISAM table before executing a snapshot or backup operation to ensure consistency.
 
-RDS Aurora
------------
+RDS PostgreSQL
+--------------
 
-### RDS Aurora Basics
+### RDS PostgreSQL Basics
 
--	Amazon’s proprietary fork of MySQL intended to scale up for high concurrency workloads. Generally speaking, individual query performance under Aurora is not expected to improve significantly relative to MySQL or MariaDB, but Aurora is intended to maintain performance while executing many more queries concurrently than an equivalent MySQL or MariaDB server could handle.
--	[Notable new features](http://www.slideshare.net/AmazonWebServices/amazon-aurora-amazons-new-relational-database-engine) include:
-	-	Log-structured storage instead of B-trees to improve write performance
-	-	Out-of-process buffer pool so that databases instances can be restarted without clearing the buffer pool
-	-	The underlying physical storage is a specialized SSD array that automatically maintains 6 copies of your data across 3 AZs.
-	-	Aurora read replicas share the storage layer with the write master which significantly reduces replica lag, eliminates the need for the master to write and distribute the binary log for replication, and allows for zero-data-loss failovers from the master to a replica. The master and all the read replicas that share storage are known collectively as an **Aurora cluster**.
+- RDS offers PostgreSQL 9.3, 9.4, 9.5, 9.6, and 10.
 
-### RDS Aurora Tips
+### RDS PostgreSQL Tips
+- Recently Logical Replication is being supported, [both as subscriber and publisher](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.version104).
+- Supports a relatively large range of native [extensions](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.FeatureSupport.Extensions).
+- RDS PostgreSQL 10 Supports native partitioning and most of the major features and tunables.
+- Supports connections over SSL.
+- Supports multi A-Z and Point-in-time recovery.
 
--	In order to take advantage of Aurora’s higher concurrency, applications should be configured with large database connection pools and should execute as many queries concurrently as possible. For example, Aurora servers have been tested to produce increasing performance on some OLTP workloads with [up to 5,000 connections](http://www.slideshare.net/AmazonWebServices/amazon-aurora-amazons-new-relational-database-engine/31).
--	[Aurora scales well with multiple CPUs](https://www.percona.com/blog/2016/05/26/aws-aurora-benchmarking-part-2/) and may require a large instance class for optimal performance.
--	Because Aurora is based on MySQL 5.6.10, avoiding any MySQL features from 5.7 or later will ease the transition from a MySQL-compatible database into Aurora.
--	The easiest migration path to Aurora is restoring a database snapshot from MySQL 5.6. The next easiest method is restoring a dump from a MySQL-compatible database such as MariaDB. For [low-downtime migrations](https://aws.amazon.com/blogs/aws/amazon-aurora-update-spatial-indexing-and-zero-downtime-patching/) from other MySQL-compatible databases, you can set up an Aurora instance as a replica of your existing database. If none of those methods are options, Amazon offers a fee-based data migration service.
--	You can replicate [from an Aurora cluster to MySQL or to another Aurora cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Overview.Replication.MySQLReplication.html). This requires binary logging to be enabled and is not as performant as native Aurora replication.
--	Because Aurora read replicas are the [equivalent of a multi-AZ backup](http://stackoverflow.com/a/32428651/129052) and they can be configured as zero-data-loss failover targets, there are fewer scenarios in which the creation of a multi-AZ Aurora instance is required.
 
-### RDS Aurora Gotchas and Limitations
-
-- 🔸[Aurora 1.x is based on MySQL 5.6.x](https://news.ycombinator.com/item?id=12415693) with some cherry-picking of later MySQL features. It is missing most 5.7 features as well as some online DDL features introduced in 5.6.17.
-- Aurora does not support GTID transactions even in the 5.6/Aurora 1.x release line.
-- Aurora maximum cluster size is 64 TB
+### RDS PostgreSQL Gotchas and Limitations
+- No superuser privileges. RDS provides a role `rds_superuser` that can do most of the needed operations but there are some limitations.
+- Some major features are delayed compared to open source PostgreSQL.
+- By default RDS is spec’d with general purpose SSD , if you need better performance you have to spec provisioned IOPS SSD.
+- You can't use RDS as a replica outside RDS without using logical replication.
+- There are settings that cannot be changed and most of the settings that can change can only be changed using database parameter groups.
+- It’s harder to troubleshoot performance problems since you have no access to the host.
+- Be sure to verify that all the [extensions](https://www.postgresql.org/docs/current/static/view-pg-available-extensions.html) you need are available. If you are using an extension not listed there, you will need to come up with a work around, or deploy your own database in EC2.
+- Many Postgres utilities and maintenance items expect command line access, that can usually be satisfied by using an external ec2 server.
 
 RDS SQL Server
 --------------
@@ -1258,6 +1259,57 @@ RDS SQL Server
 -	🔸There is a **16TB** database size limit for non-Express editions. There is also a minimum storage size, 20GB for Web and Express, 200GB for Standard and Enterprise.
 -	🔸Limited to [30 databases per instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html)
 
+RDS Aurora
+----------
+### RDS Aurora Basics
+Aurora is a cloud only database service designed to provide a distributed, fault-tolerant relational database with self-healing storage and auto-scaling up to 64TB per instance.  It currently comes in two versions, a MySQL compatible system, and a PostgreSQL compatible system.
+
+RDS Aurora MySQL
+----------------
+
+### RDS Aurora MySQL Basics
+
+-	Amazon’s proprietary fork of MySQL intended to scale up for high concurrency workloads. Generally speaking, individual query performance under Aurora is not expected to improve significantly relative to MySQL or MariaDB, but Aurora is intended to maintain performance while executing many more queries concurrently than an equivalent MySQL or MariaDB server could handle.
+-	[Notable new features](http://www.slideshare.net/AmazonWebServices/amazon-aurora-amazons-new-relational-database-engine) include:
+	-	Log-structured storage instead of B-trees to improve write performance.
+	-	Out-of-process buffer pool so that databases instances can be restarted without clearing the buffer pool.
+	-	The underlying physical storage is a specialized SSD array that automatically maintains 6 copies of your data across 3 AZs.
+	-	Aurora read replicas share the storage layer with the write master which significantly reduces replica lag, eliminates the need for the master to write and distribute the binary log for replication, and allows for zero-data-loss failovers from the master to a replica. The master and all the read replicas that share storage are known collectively as an **Aurora cluster**.
+
+### RDS Aurora MySQL Tips
+
+-	In order to take advantage of Aurora’s higher concurrency, applications should be configured with large database connection pools and should execute as many queries concurrently as possible. For example, Aurora servers have been tested to produce increasing performance on some OLTP workloads with [up to 5,000 connections](http://www.slideshare.net/AmazonWebServices/amazon-aurora-amazons-new-relational-database-engine/31).
+-	[Aurora scales well with multiple CPUs](https://www.percona.com/blog/2016/05/26/aws-aurora-benchmarking-part-2/) and may require a large instance class for optimal performance.
+-	Because Aurora is based on MySQL 5.6.10, avoiding any MySQL features from 5.7 or later will ease the transition from a MySQL-compatible database into Aurora.
+-	The easiest migration path to Aurora is restoring a database snapshot from MySQL 5.6. The next easiest method is restoring a dump from a MySQL-compatible database such as MariaDB. For [low-downtime migrations](https://aws.amazon.com/blogs/aws/amazon-aurora-update-spatial-indexing-and-zero-downtime-patching/) from other MySQL-compatible databases, you can set up an Aurora instance as a replica of your existing database. If none of those methods are options, Amazon offers a fee-based data migration service.
+-	You can replicate [from an Aurora cluster to MySQL or to another Aurora cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Overview.Replication.MySQLReplication.html). This requires binary logging to be enabled and is not as performant as native Aurora replication.
+-	Because Aurora read replicas are the [equivalent of a multi-AZ backup](http://stackoverflow.com/a/32428651/129052) and they can be configured as zero-data-loss failover targets, there are fewer scenarios in which the creation of a multi-AZ Aurora instance is required.
+
+### RDS Aurora MySQL Gotchas and Limitations
+
+- 🔸[Aurora 1.x is based on MySQL 5.6.x](https://news.ycombinator.com/item?id=12415693) with some cherry-picking of later MySQL features. It is missing most 5.7 features as well as some online DDL features introduced in 5.6.17.
+- Aurora does not support GTID transactions even in the 5.6/Aurora 1.x release line.
+- Aurora maximum cluster size is 64 TB
+
+RDS Aurora PostgreSQL
+---------------------
+
+### RDS Aurora PostgreSQL Basics
+
+- Amazon’s proprietary fork of PostgreSQL, intended to scale up for high concurrency workloads while maintaining ease of use. Currently based on PostgreSQL 9.6.
+- Higher throughput (up to 3x with similar hardware).
+- Automatic storage scale in 10GB increments up to 64TB.
+- Low latency read replicas that share the storage layer with the master which significantly reduces replica lag.
+- Point in time recovery.
+- Fast database snapshots.
+
+### RDS Aurora PostgreSQL Tips
+- Aurora Postgres by default is supposed to utilize high connection rates and for this reason connection pooling must be configured accordingly.
+- Because Aurora is based on PostgreSQL 9.6, it lacks features like declarative partitioning or logical replication.
+
+### RDS Aurora PostgreSQL Gotchas and Limitations
+- Aurora PostgreSQL falls behind normal RDS when it comes to available versions, so if you need features from the latest PostgreSQL version you might be better off with plain RDS.
+- Patching and bug fixing is separate from open source PostgreSQL.
 
 ElastiCache
 -----------
@@ -1565,7 +1617,7 @@ CloudFormation
 -	💸CloudFormation itself has [no additional charge](https://aws.amazon.com/cloudformation/pricing/) itself; you pay for the underlying resources.
 
 ### CloudFormation Alternatives and Lock-In
- 
+
 -	Hashicorp’s [Terraform](https://www.terraform.io/intro/vs/cloudformation.html) is a third-party alternative that can support other cloud platforms/providers including [Azure](https://www.terraform.io/docs/providers/azure/) and [OpenStack](https://www.terraform.io/docs/providers/openstack/).
 - 🔸Some AWS features may not be available in Terraform (e.g. multi-AZ ElastiCache using Redis), and you may have to resort to embedded CloudFormation templates.
 
@@ -1657,7 +1709,7 @@ VPCs, Network Security, and Security Groups
 -	❗If you delete the default VPC, you can [recreate it via the CLI or the console](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/default-vpc.html#create-default-vpc).
 -	❗Be careful with VPC VPN credentials! If lost or compromised, the VPN endpoint must be deleted and recreated. See the instructions for [Replacing Compromised Credentials](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html#CompromisedCredentials).
 -	❗Security Groups and Route Tables apply entries separately for IPv4 and IPv6, so one must ensure they add entries for both protocols accordingly.
-- 	💸Managed NAT gateways are a convenient alternative to 
+- 	💸Managed NAT gateways are a convenient alternative to
 manually managing [NAT instances](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPCNATInstance.html), but they do come at a cost per gigabyte. Consider [alternatives](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-comparison.html) if you're transferring many terabytes from private subnets to the internet.
 
 KMS
@@ -1863,7 +1915,7 @@ Device Farm
 - [AWS Mobile blog](https://aws.amazon.com/blogs/mobile/) contains several examples of Device Farm usage for testing.
 - Device Farm offers a free trial for users who want to evaluate their service.
 - Device Farm offers two pricing models: Paying **per device minute** is useful for small usage levels or for situations where it‘s hard to predict usage amount. **Unmetered plans** are useful in situations where active usage is expected from the beginning.
-- To minimize waiting time for device availability, one approach is to create several device pools with different devices, then randomly choose one of the unused device pools on every run. 
+- To minimize waiting time for device availability, one approach is to create several device pools with different devices, then randomly choose one of the unused device pools on every run.
 
 ### Device Farm Gotchas and Limitations
 
