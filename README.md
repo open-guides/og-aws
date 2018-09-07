@@ -42,7 +42,7 @@ Table of Contents
 | [RDS MySQL and MariaDB](#rds-mysql-and-mariadb) | [📗](#rds-mysql-and-mariadb-basics) | [📘](#rds-mysql-and-mariadb-tips) | [📙](#rds-mysql-and-mariadb-gotchas-and-limitations) |
 | [RDS PostgreSQL](#rds-postgresql) | [📗](#rds-postgresql-basics) | [📘](#rds-postgresql-tips) | [📙](#rds-postgresql-gotchas-and-limitations) |
 | [RDS SQL Server](#rds-sql-server) | [📗](#rds-sql-server-basics) | [📘](#rds-sql-server-tips) | [📙](#rds-sql-server-gotchas-and-limitations) |
-| [RDS Aurora](#rds-aurora) | [📗](#rds-aurora-basics) | [📘](#rds-aurora-tips) | [📙](#rds-aurora-gotchas-and-limitations) |
+| [RDS Aurora](#rds-aurora) | [📗](#rds-aurora-basics) |
 | [RDS Aurora MySQL](#rds-aurora-mysql) | [📗](#rds-aurora-mysql-basics) | [📘](#rds-aurora-mysql-tips) | [📙](#rds-aurora-mysql-gotchas-and-limitations) |
 | [RDS Aurora PostgreSQL](#rds-aurora-postgresql) | [📗](#rds-aurora-postgresql-basics) | [📘](#rds-aurora-postgresql-tips) | [📙](#rds-aurora-postgresql-gotchas-and-limitations) |
 | [DynamoDB](#dynamodb) | [📗](#dynamodb-basics) | [📘](#dynamodb-tips) | [📙](#dynamodb-gotchas-and-limitations) |
@@ -1258,6 +1258,10 @@ RDS SQL Server
 -	🔸There is a **16TB** database size limit for non-Express editions. There is also a minimum storage size, 20GB for Web and Express, 200GB for Standard and Enterprise.
 -	🔸Limited to [30 databases per instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html)
 
+RDS Aurora
+----------
+### RDS Aurora Basics
+Aurora is a MySQL and PostgreSQL compatible relational database that features a distributed, fault-tolerant, self-healing storage auto-scaling up to 64TB per instance. Aurora delivers high performance and availability with up to 15 low-latency read replicas, point-in-time recovery, continuous backup to Amazon S3, and replication across three Availability Zones.
 
 RDS Aurora MySQL
 ----------------
