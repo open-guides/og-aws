@@ -1261,7 +1261,7 @@ RDS SQL Server
 RDS Aurora
 ----------
 ### RDS Aurora Basics
-Aurora is a MySQL and PostgreSQL compatible relational database that features a distributed, fault-tolerant, self-healing storage auto-scaling up to 64TB per instance. Aurora delivers high performance and availability with up to 15 low-latency read replicas, point-in-time recovery, continuous backup to Amazon S3, and replication across three Availability Zones.
+Aurora is a cloud only database service designed to provide a distributed, fault-tolerant relational database with self-healing storage and auto-scaling up to 64TB per instance.  It currently comes in two versions, a MySQL compatible system, and a PostgreSQL compatible system.
 
 RDS Aurora MySQL
 ----------------
