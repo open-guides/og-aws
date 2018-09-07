@@ -1221,21 +1221,21 @@ RDS PostgreSQL
 
 ### RDS PostgreSQL Basics
 
-- RDS offers PostgreSQL 9.3, 9.4, 9.5, 9.6, and 10
+- RDS offers PostgreSQL 9.3, 9.4, 9.5, 9.6, and 10.
 
 ### RDS PostgreSQL Tips
-- Recently Logical Replication is being supported, [both as subscriber and publisher](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.version104)
-- Supports a relatively large range of native [extensions](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.FeatureSupport.Extensions)
+- Recently Logical Replication is being supported, [both as subscriber and publisher](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.version104).
+- Supports a relatively large range of native. [extensions](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.FeatureSupport.Extensions)
 - RDS PostgreSQL 10 Supports native partitioning and most of the major features and tunables.
-- Supports connections over SSL
-- Supports multi A-Z and Point-in-time recovery
+- Supports connections over SSL.
+- Supports multi A-Z and Point-in-time recovery.
 
 
 ### RDS PostgreSQL Gotchas and Limitations
 - No superuser privileges. RDS provides a role `rds_superuser` that can do most of the needed operations but there are some limitations.
 - Some major features are delayed compared to open source PostgreSQL.
 - By default RDS is spec’d with general purpose SSD , if you need better performance you have to spec provisioned IOPS SSD.
-- You can't use RDS as a replica outside RDS without using logical replication
+- You can't use RDS as a replica outside RDS without using logical replication.
 - There are settings that cannot be changed and most of the settings that can change can only be changed using database parameter groups.
 - It’s harder to troubleshoot performance problems since you have no access to the host.
 - Be sure to verify that all the [extensions](https://www.postgresql.org/docs/current/static/view-pg-available-extensions.html) you need are available. If you are using an extension not listed there, you will need to come up with a work around, or deploy your own database in EC2.
@@ -1271,8 +1271,8 @@ RDS Aurora MySQL
 
 -	Amazon’s proprietary fork of MySQL intended to scale up for high concurrency workloads. Generally speaking, individual query performance under Aurora is not expected to improve significantly relative to MySQL or MariaDB, but Aurora is intended to maintain performance while executing many more queries concurrently than an equivalent MySQL or MariaDB server could handle.
 -	[Notable new features](http://www.slideshare.net/AmazonWebServices/amazon-aurora-amazons-new-relational-database-engine) include:
-	-	Log-structured storage instead of B-trees to improve write performance
-	-	Out-of-process buffer pool so that databases instances can be restarted without clearing the buffer pool
+	-	Log-structured storage instead of B-trees to improve write performance.
+	-	Out-of-process buffer pool so that databases instances can be restarted without clearing the buffer pool.
 	-	The underlying physical storage is a specialized SSD array that automatically maintains 6 copies of your data across 3 AZs.
 	-	Aurora read replicas share the storage layer with the write master which significantly reduces replica lag, eliminates the need for the master to write and distribute the binary log for replication, and allows for zero-data-loss failovers from the master to a replica. The master and all the read replicas that share storage are known collectively as an **Aurora cluster**.
 
@@ -1298,10 +1298,10 @@ RDS Aurora PostgreSQL
 
 - Amazon’s proprietary fork of PostgreSQL, intended to scale up for high concurrency workloads while maintaining ease of use. Currently based on PostgreSQL 9.6.
 - Higher throughput (up to 3x with similar hardware).
-- Automatic storage scale in 10GB increments up to 64TB
+- Automatic storage scale in 10GB increments up to 64TB.
 - Low latency read replicas that share the storage layer with the master which significantly reduces replica lag.
-- Point in time recovery
-- Fast database snapshots
+- Point in time recovery.
+- Fast database snapshots.
 
 ### RDS Aurora PostgreSQL Tips
 - Aurora Postgres by default is supposed to utilize high connection rates and for this reason connection pooling must be configured accordingly.
