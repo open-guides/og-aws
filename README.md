@@ -57,7 +57,10 @@ Table of Contents
 | [OpsWorks](#opsworks) | [📗](#opsworks-basics) | [📘](#opsworks-tips) | [📙](#opsworks-gotchas-and-limitations) |
 | [RDS](#rds) | [📗](#rds-basics) | [📘](#rds-tips) | [📙](#rds-gotchas-and-limitations) |
 | [RDS Aurora](#rds-aurora) | [📗](#rds-aurora-basics) | [📘](#rds-aurora-tips) | [📙](#rds-aurora-gotchas-and-limitations) |
+| [RDS Aurora MySQL](#rds-aurora-mysql) | [📗](#rds-aurora-mysql-basics) | [📘](#rds-aurora-mysql-tips) | [📙](#rds-aurora-mysql-gotchas-and-limitations) |
+| [RDS Aurora PostgreSQL](#rds-aurora-postgresql) | [📗](#rds-aurora-postgresql-basics) | [📘](#rds-aurora-postgresql-tips) | [📙](#rds-aurora-postgresql-gotchas-and-limitations) |
 | [RDS MySQL and MariaDB](#rds-mysql-and-mariadb) | [📗](#rds-mysql-and-mariadb-basics) | [📘](#rds-mysql-and-mariadb-tips) | [📙](#rds-mysql-and-mariadb-gotchas-and-limitations) |
+| [RDS PostgreSQL](#rds-postgresql) | [📗](#rds-postgresql-basics) | [📘](#rds-postgresql-tips) | [📙](#rds-postgresql-gotchas-and-limitations) |
 | [RDS SQL Server](#rds-sql-server) | [📗](#rds-sql-server-basics) | [📘](#rds-sql-server-tips) | [📙](#rds-sql-server-gotchas-and-limitations) |
 | [Redshift](#redshift) | [📗](#redshift-basics) | [📘](#redshift-tips) | [📙](#redshift-gotchas-and-limitations) |
 | [Route 53](#route-53) | [📗](#route-53-basics) | [📘](#route-53-tips) |  |
@@ -263,7 +266,7 @@ General Information
 	-	[CodeCommit](https://aws.amazon.com/codecommit/): Git service. You’re probably already using GitHub or your own solution ([Stackshare](http://stackshare.io/stackups/github-vs-bitbucket-vs-aws-codecommit) has informal stats).
 	-	🕍[CodePipeline](https://aws.amazon.com/codepipeline/): Continuous integration. You likely have another solution already.
 	-	🕍[CodeDeploy](https://aws.amazon.com/codedeploy/): Deployment of code to EC2 servers. Again, you likely have another solution.
-	-	🕍[OpsWorks](https://aws.amazon.com/opsworks/): Management of your deployments using Chef or (as of November 2017) Puppet Enterprise. While Chef is popular, it seems few people use OpsWorks, since it involves going in on a whole different code deployment framework.
+	-	🕍[OpsWorks](https://aws.amazon.com/opsworks/): Management of your deployments using Chef or (as of November 2017) Puppet Enterprise.
 -	[AWS in Plain English](https://www.expeditedssl.com/aws-in-plain-english) offers more friendly explanation of what all the other different services are.
 
 ### Tools and Services Market Landscape
@@ -531,6 +534,7 @@ So if you’re not going to manage your AWS configurations manually, what should
 	-	To (once enabled) [allocate cost](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html). Note that cost allocation tags only apply on a forward-looking basis; you can't retroactively apply them to items already billed.
 	-	For many years, there was a notorious 10 tag limit per resource, which could not be raised and caused many companies significant pain. As of 2016, this was [raised](https://aws.amazon.com/blogs/security/now-organize-your-aws-resources-by-using-up-to-50-tags-per-resource/) to 50 tags per resource.
 	-	🔹In 2017, AWS introduced the ability to [enforce tagging](https://aws.amazon.com/blogs/aws/new-tag-ec2-instances-ebs-volumes-on-creation/) on instance and volume creation, deprecating portions of third party tools such as [Cloud Custodian](https://github.com/capitalone/cloud-custodian).
+	-	🔸 There is a bug in the ASG console where spaces after tag names are preserved. So if you type "Name " with a space at the end you will not get the expected behavior. This is probably true in other locations and SDKs also. Be sure you do not add trailing spaces to tag keys unless you really mean it. (As of Jul 2018)
 
 Managing Servers and Applications
 ---------------------------------
@@ -832,11 +836,14 @@ EC2
 	-	Avoid sharing keys and [add individual ssh keys](http://security.stackexchange.com/questions/87480/managing-multiple-ssh-private-keys-for-a-team) for individual users.
 -	**GPU support:** You can rent GPU-enabled instances on EC2 for use in machine learning or graphics rendering workloads.
 
-	-	There are [three generations](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html) of GPU-enabled instances available:
-		- Third generation P2 series offers NVIDIA K80 GPUs in 1, 8 and 16 GPU configurations targeting machine learning and scientific workloads.
-		- Second generation G2 series offers NVIDIA K520 GPUs in 1 or 4 GPU configurations targeting graphics and video encoding.
-		- First generation CG1 instances are still available in some regions in a single configuration with a NVIDIA M2050 GPU.
-	-	⛓ AWS offers an [AMI](https://aws.amazon.com/marketplace/pp/B01M0AXXQB?qid=1475211685369&sr=0-1&ref_=srh_res_product_title) (based on Amazon Linux) with most NVIDIA drivers and ancillary software (CUDA, CUBLAS, CuDNN, TensorFlow) installed to lower the barrier to usage. Note, however, that this leads to lock-in due to Amazon Linux and the fact that you have no direct access to software configuration or versioning.
+	-	There are [three types](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cluster_computing.html) of GPU-enabled instances currently available:
+		- The P3 series offers NVIDIA Tesla V100 GPUs in 1, 4 and 8 GPU configurations targeting machine learning, scientific workloads, and other high performance computign applications.
+		- The P2 series offers NVIDIA Tesla K80 GPUs in 1, 8 and 16 GPU configurations targeting machine learning, scientific workloads, and other high performance computign applications.
+		- The G3 series offers NVIDIA Tesla M60 GPUs in 1, 2, or 4 GPU configurations targeting graphics and video encoding.
+	-	AWS offers two different AMIs that are targeted to GPU applications. In particular, they target deep learning workloads, but also provide access to more stripped-down driver-only base images.
+		-	AWS offers both an Amazon Linux [Deep Learning AMI](https://aws.amazon.com/marketplace/pp/B077GF11NF?qid=1536363169916&sr=0-3&ref_=srh_res_product_title) (based on Amazon Linux) as well as an Ubuntu [Deep Learning AMI](https://aws.amazon.com/marketplace/pp/B077GCH38C). Both come with most NVIDIA drivers and ancillary software (CUDA, CUBLAS, CuDNN, TensorFlow, PyTorch, etc.) installed to lower the barrier to usage. 
+		-	⛓ Note that using these AMIs can lead to lock in due to the fact that you have no direct access to software configuration or versioning.
+		-	🔸 The compendium of frameworks included can lead to long instance startup times and difficult-to-reason-about environments.
 	-	🔹As with any expensive EC2 instance types, [Spot instances can offer significant savings](#ec2-cost-management) with GPU workloads when interruptions are tolerable.
 - All current EC2 instance types can take advantage of IPv6 addressing, so long as they are launched in a subnet with an allocated CIDR range in an IPv6-enabled VPC.
 
@@ -980,7 +987,7 @@ EBS
 -	⏱A worthy read is AWS’ [post on EBS IO characteristics](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-io-characteristics.html) as well as their [performance tips](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSPerformance.html#d0e86148).
 -	⏱One can [provision IOPS](http://aws.amazon.com/ebs/details/) (that is, pay for a specific level of I/O operations per second) to ensure a particular level of performance for a disk.
 -	⏱A single EBS volume allows 10k IOPS max. To get the maximum performance out of an EBS volume, it has to be of a maximum size and attached to an EBS-optimized EC2 instance.
-- 	💸Standard EBS volumes improve IOPS with size. It may make sense for you to simply enlarge a volume instead of paying for better performance explicitly. This can in many cases reduce costs by 2/3. 
+- 	💸Standard EBS volumes improve IOPS with size. It may make sense for you to simply enlarge a volume instead of paying for better performance explicitly. This can in many cases reduce costs by 2/3.
 -	A standard block size for an EBS volume is 16kb.
 
 ### EBS Gotchas and Limitations
@@ -1212,30 +1219,30 @@ RDS MySQL and MariaDB
 -	🔸Most global options are exposed only via [DB parameter groups](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html). Some variables that were introduced in later MySQL dot releases such as [avoid_temporal_upgrade](https://dev.mysql.com/doc/refman/5.6/en/server-system-variables.html#sysvar_avoid_temporal_upgrade) in MySQL 5.6.24 are not made available in RDS's 5.6.x parameter group and making use of them requires an upgrade to MySQL 5.7.x.
 -	🔸RDS features such as Point-In-Time restore and snapshot restore are not supported on MyISAM tables. Ensure you lock and flush each MyISAM table before executing a snapshot or backup operation to ensure consistency.
 
-RDS Aurora
------------
+RDS PostgreSQL
+--------------
 
-### RDS Aurora Basics
+### RDS PostgreSQL Basics
 
--	Amazon’s proprietary fork of MySQL intended to scale up for high concurrency workloads. Generally speaking, individual query performance under Aurora is not expected to improve significantly relative to MySQL or MariaDB, but Aurora is intended to maintain performance while executing many more queries concurrently than an equivalent MySQL or MariaDB server could handle.
--	[Notable new features](http://www.slideshare.net/AmazonWebServices/amazon-aurora-amazons-new-relational-database-engine) include:
-	-	Log-structured storage instead of B-trees to improve write performance
-	-	Out-of-process buffer pool so that databases instances can be restarted without clearing the buffer pool
-	-	The underlying physical storage is a specialized SSD array that automatically maintains 6 copies of your data across 3 AZs.
-	-	Aurora read replicas share the storage layer with the write master which significantly reduces replica lag, eliminates the need for the master to write and distribute the binary log for replication, and allows for zero-data-loss failovers from the master to a replica. The master and all the read replicas that share storage are known collectively as an **Aurora cluster**.
+- RDS offers PostgreSQL 9.3, 9.4, 9.5, 9.6, and 10.
 
-### RDS Aurora Tips
+### RDS PostgreSQL Tips
+- Recently Logical Replication is being supported, [both as subscriber and publisher](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.version104).
+- Supports a relatively large range of native [extensions](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_PostgreSQL.html#PostgreSQL.Concepts.General.FeatureSupport.Extensions).
+- RDS PostgreSQL 10 Supports native partitioning and most of the major features and tunables.
+- Supports connections over SSL.
+- Supports multi A-Z and Point-in-time recovery.
 
--	In order to take advantage of Aurora’s higher concurrency, applications should be configured with large database connection pools and should execute as many queries concurrently as possible. For example, Aurora servers have been tested to produce increasing performance on some OLTP workloads with [up to 5,000 connections](http://www.slideshare.net/AmazonWebServices/amazon-aurora-amazons-new-relational-database-engine/31).
--	[Aurora scales well with multiple CPUs](https://www.percona.com/blog/2016/05/26/aws-aurora-benchmarking-part-2/) and may require a large instance class for optimal performance.
--	Because Aurora is based on MySQL 5.6.10, avoiding any MySQL features from 5.7 or later will ease the transition from a MySQL-compatible database into Aurora.
--	The easiest migration path to Aurora is restoring a database snapshot from MySQL 5.6. The next easiest method is restoring a dump from a MySQL-compatible database such as MariaDB. For [low-downtime migrations](https://aws.amazon.com/blogs/aws/amazon-aurora-update-spatial-indexing-and-zero-downtime-patching/) from other MySQL-compatible databases, you can set up an Aurora instance as a replica of your existing database. If none of those methods are options, Amazon offers a fee-based data migration service.
--	You can replicate [from an Aurora cluster to MySQL or to another Aurora cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Overview.Replication.MySQLReplication.html). This requires binary logging to be enabled and is not as performant as native Aurora replication.
--	Because Aurora read replicas are the [equivalent of a multi-AZ backup](http://stackoverflow.com/a/32428651/129052) and they can be configured as zero-data-loss failover targets, there are fewer scenarios in which the creation of a multi-AZ Aurora instance is required.
 
-### RDS Aurora Gotchas and Limitations
-
--	🔸[Aurora is based on MySQL 5.6.10](https://news.ycombinator.com/item?id=12415693) with some cherry-picking of later MySQL features. It is missing most 5.7 features as well as some online DDL features introduced in 5.6.17.
+### RDS PostgreSQL Gotchas and Limitations
+- No superuser privileges. RDS provides a role `rds_superuser` that can do most of the needed operations but there are some limitations.
+- Some major features are delayed compared to open source PostgreSQL.
+- By default RDS is spec’d with general purpose SSD , if you need better performance you have to spec provisioned IOPS SSD.
+- You can't use RDS as a replica outside RDS without using logical replication.
+- There are settings that cannot be changed and most of the settings that can change can only be changed using database parameter groups.
+- It’s harder to troubleshoot performance problems since you have no access to the host.
+- Be sure to verify that all the [extensions](https://www.postgresql.org/docs/current/static/view-pg-available-extensions.html) you need are available. If you are using an extension not listed there, you will need to come up with a work around, or deploy your own database in EC2.
+- Many Postgres utilities and maintenance items expect command line access, that can usually be satisfied by using an external ec2 server.
 
 RDS SQL Server
 --------------
@@ -1255,6 +1262,57 @@ RDS SQL Server
 -	🔸There is a **16TB** database size limit for non-Express editions. There is also a minimum storage size, 20GB for Web and Express, 200GB for Standard and Enterprise.
 -	🔸Limited to [30 databases per instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html)
 
+RDS Aurora
+----------
+### RDS Aurora Basics
+Aurora is a cloud only database service designed to provide a distributed, fault-tolerant relational database with self-healing storage and auto-scaling up to 64TB per instance.  It currently comes in two versions, a MySQL compatible system, and a PostgreSQL compatible system.
+
+RDS Aurora MySQL
+----------------
+
+### RDS Aurora MySQL Basics
+
+-	Amazon’s proprietary fork of MySQL intended to scale up for high concurrency workloads. Generally speaking, individual query performance under Aurora is not expected to improve significantly relative to MySQL or MariaDB, but Aurora is intended to maintain performance while executing many more queries concurrently than an equivalent MySQL or MariaDB server could handle.
+-	[Notable new features](http://www.slideshare.net/AmazonWebServices/amazon-aurora-amazons-new-relational-database-engine) include:
+	-	Log-structured storage instead of B-trees to improve write performance.
+	-	Out-of-process buffer pool so that databases instances can be restarted without clearing the buffer pool.
+	-	The underlying physical storage is a specialized SSD array that automatically maintains 6 copies of your data across 3 AZs.
+	-	Aurora read replicas share the storage layer with the write master which significantly reduces replica lag, eliminates the need for the master to write and distribute the binary log for replication, and allows for zero-data-loss failovers from the master to a replica. The master and all the read replicas that share storage are known collectively as an **Aurora cluster**.
+
+### RDS Aurora MySQL Tips
+
+-	In order to take advantage of Aurora’s higher concurrency, applications should be configured with large database connection pools and should execute as many queries concurrently as possible. For example, Aurora servers have been tested to produce increasing performance on some OLTP workloads with [up to 5,000 connections](http://www.slideshare.net/AmazonWebServices/amazon-aurora-amazons-new-relational-database-engine/31).
+-	[Aurora scales well with multiple CPUs](https://www.percona.com/blog/2016/05/26/aws-aurora-benchmarking-part-2/) and may require a large instance class for optimal performance.
+-	Because Aurora is based on MySQL 5.6.10, avoiding any MySQL features from 5.7 or later will ease the transition from a MySQL-compatible database into Aurora.
+-	The easiest migration path to Aurora is restoring a database snapshot from MySQL 5.6. The next easiest method is restoring a dump from a MySQL-compatible database such as MariaDB. For [low-downtime migrations](https://aws.amazon.com/blogs/aws/amazon-aurora-update-spatial-indexing-and-zero-downtime-patching/) from other MySQL-compatible databases, you can set up an Aurora instance as a replica of your existing database. If none of those methods are options, Amazon offers a fee-based data migration service.
+-	You can replicate [from an Aurora cluster to MySQL or to another Aurora cluster](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Aurora.Overview.Replication.MySQLReplication.html). This requires binary logging to be enabled and is not as performant as native Aurora replication.
+-	Because Aurora read replicas are the [equivalent of a multi-AZ backup](http://stackoverflow.com/a/32428651/129052) and they can be configured as zero-data-loss failover targets, there are fewer scenarios in which the creation of a multi-AZ Aurora instance is required.
+
+### RDS Aurora MySQL Gotchas and Limitations
+
+- 🔸[Aurora 1.x is based on MySQL 5.6.x](https://news.ycombinator.com/item?id=12415693) with some cherry-picking of later MySQL features. It is missing most 5.7 features as well as some online DDL features introduced in 5.6.17.
+- Aurora does not support GTID transactions even in the 5.6/Aurora 1.x release line.
+- Aurora maximum cluster size is 64 TB
+
+RDS Aurora PostgreSQL
+---------------------
+
+### RDS Aurora PostgreSQL Basics
+
+- Amazon’s proprietary fork of PostgreSQL, intended to scale up for high concurrency workloads while maintaining ease of use. Currently based on PostgreSQL 9.6.
+- Higher throughput (up to 3x with similar hardware).
+- Automatic storage scale in 10GB increments up to 64TB.
+- Low latency read replicas that share the storage layer with the master which significantly reduces replica lag.
+- Point in time recovery.
+- Fast database snapshots.
+
+### RDS Aurora PostgreSQL Tips
+- Aurora Postgres by default is supposed to utilize high connection rates and for this reason connection pooling must be configured accordingly.
+- Because Aurora is based on PostgreSQL 9.6, it lacks features like declarative partitioning or logical replication.
+
+### RDS Aurora PostgreSQL Gotchas and Limitations
+- Aurora PostgreSQL falls behind normal RDS when it comes to available versions, so if you need features from the latest PostgreSQL version you might be better off with plain RDS.
+- Patching and bug fixing is separate from open source PostgreSQL.
 
 ElastiCache
 -----------
@@ -1548,6 +1606,10 @@ Route 53
 -	Understand that domain registration and DNS management (hosted zones) are two separate Route 53 services. When you buy/transfer a domain, Route 53 automatically assigns four name servers to it (e.g. ns-2.awsdns-00.com). Route 53 also offers to automatically create a hosted zone for DNS management, but you are not required do your DNS management in the same account or even in Route 53; you just need to create an NS record pointing to the servers assigned to your domain in Route 53.
   - One use case would be to put your domain registration (very mission critical) in a [bastion account](https://cloudonaut.io/your-single-aws-account-is-a-serious-risk/) while managing the hosted zones within another account which is accessible by your applications.
 
+### Route 53 Gotchas and Limitations
+-   🔸Private Hosted Zone will only respond to DNS queries that originate from within a VPC. As a result Route53 will not respond to request made via a VPN or Direct connect. To get around this you will need to implement [Hybrid Cloud DNS Solutions](https://d1.awsstatic.com/whitepapers/hybrid-cloud-dns-options-for-vpc.pdf) or use the Simple AD provided IP addresses to query the hosted zone.
+
+
 CloudFormation
 --------------
 
@@ -1650,7 +1712,7 @@ VPCs, Network Security, and Security Groups
 -	❗If you delete the default VPC, you can [recreate it via the CLI or the console](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/default-vpc.html#create-default-vpc).
 -	❗Be careful with VPC VPN credentials! If lost or compromised, the VPN endpoint must be deleted and recreated. See the instructions for [Replacing Compromised Credentials](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html#CompromisedCredentials).
 -	❗Security Groups and Route Tables apply entries separately for IPv4 and IPv6, so one must ensure they add entries for both protocols accordingly.
-- 	💸Managed NAT gateways are a convenient alternative to 
+- 	💸Managed NAT gateways are a convenient alternative to
 manually managing [NAT instances](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPCNATInstance.html), but they do come at a cost per gigabyte. Consider [alternatives](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-nat-comparison.html) if you're transferring many terabytes from private subnets to the internet.
 
 KMS
@@ -1799,7 +1861,7 @@ EMR
 
 ### EMR Gotchas and Limitations
 
--	💸❗**EMR costs** can pile up quickly since it involves lots of instances, efficiency can be poor depending on cluster configuration and choice of workload, and accidents like hung jobs are costly. See the [section on EC2 cost management](#ec2-cost-management), especially the tips there about Spot instances. [This blog post](http://engineering.bloomreach.com/strategies-for-reducing-your-amazon-emr-costs/) has additional tips, but was written prior to the shift to per-second billing.
+-	💸❗**EMR costs** can pile up quickly since it involves lots of instances, efficiency can be poor depending on cluster configuration and choice of workload, and accidents like hung jobs are costly. See the [section on EC2 cost management](#ec2-cost-management), especially the tips there about Spot instances. [This blog post](https://aws.amazon.com/blogs/big-data/strategies-for-reducing-your-amazon-emr-costs/) has additional tips, but was written prior to the shift to per-second billing.
 -	💸 Beware of “double-dipping”. With EMR, you pay for the EC2 capacity and the service fees. In addition, EMR syncs task logs to S3, which means you pay for the storage and **PUT requests** at [S3 standard rates](https://aws.amazon.com/s3/pricing/#Request_Pricing). While the log files tend to be relatively small, every Hadoop job, depending on the size, generates thousands of log files that can quickly add up to thousands of dollars on the AWS bill. YARN’s [log aggregation](http://hortonworks.com/blog/simplifying-user-logs-management-and-access-in-yarn/) is not available on EMR.
 
 Kinesis Streams
@@ -1856,7 +1918,7 @@ Device Farm
 - [AWS Mobile blog](https://aws.amazon.com/blogs/mobile/) contains several examples of Device Farm usage for testing.
 - Device Farm offers a free trial for users who want to evaluate their service.
 - Device Farm offers two pricing models: Paying **per device minute** is useful for small usage levels or for situations where it‘s hard to predict usage amount. **Unmetered plans** are useful in situations where active usage is expected from the beginning.
-- To minimize waiting time for device availability, one approach is to create several device pools with different devices, then randomly choose one of the unused device pools on every run. 
+- To minimize waiting time for device availability, one approach is to create several device pools with different devices, then randomly choose one of the unused device pools on every run.
 
 ### Device Farm Gotchas and Limitations
 
@@ -2032,31 +2094,47 @@ OpsWorks
 ### OpsWorks Basics
 
 -	📒 [Homepage](https://aws.amazon.com/opsworks/) ∙ [Documentation](https://aws.amazon.com/documentation/opsworks/) ∙ [FAQ](https://aws.amazon.com/opsworks/faqs/) ∙ Pricing: [Stacks](https://aws.amazon.com/opsworks/stacks/pricing/), [Chef Automate](https://aws.amazon.com/opsworks/chefautomate/pricing/), [Puppet Enterprise](https://aws.amazon.com/opsworks/puppetenterprise/pricing/)
-- OpsWorks is a configuration management service that relies heavy on [Chef](https://www.chef.io/chef/) or [Puppet](https://www.puppet.com) for configuration-as-code deployment automation. The service lets you configure and launch stacks specific to your application's needs.
-- There are numerous options, in and out of AWS, that let you automate application deployments. The separating factor between OpsWorks and other configuration management services (Elastic Beanstalk for example) is that OpsWorks specializes in letting you control the details of the systems your application runs on, where a service like Elastic Beanstalk simplifies this to focus on application configuration.
-- [OpsWorks Stacks](https://aws.amazon.com/opsworks/stacks/) allows you to run your deployment stacks both in the AWS cloud as well as on your own hardware on-premises.
-- [OpsWorks for ChefAutomate](https://aws.amazon.com/opsworks/chefautomate/) provides a managed Chef configuration management server for your deployment pipeline. This server stores configuration tasks and provides them to your deployment nodes without manual intervention, in addition to providing other management and monitoring features.
+- OpsWorks is a configuration management service that uses [Chef](https://www.chef.io/chef/) or [Puppet](https://www.puppet.com) configuration management. It is broken out into three different services:
+  - [OpsWorks Stacks](https://aws.amazon.com/opsworks/stacks/): The service lets you configure and launch stacks specific to your application's needs, and allows you to automate application deployments. Chef runs can be performed manually via the Execute Cookbooks command, otherwise they are only run as part of lifecycle events.
+    - OpsWorks Stacks differs from standard configuration management services in that it also allows you to perform some infrastructure and application automation (such as creating Amazon EC2 instances and deploying applications via Chef cookbooks).
+  - [OpsWorks for Chef Automate](https://aws.amazon.com/opsworks/chefautomate/): This service launches a dedicated Chef Automate server in your account, which can be used to associate nodes, upload coobook code, and configure systems. Automated patching, backups, OS updates, and minor Chef version upgrades are provided as part of the service. An AWS API is provided for associating/disassociating nodes. Chef runs can be scheduled on nodes using the [chef-client cookbook](https://supermarket.chef.io/cookbooks/chef-client).
+  - [OpsWorks for Puppet Enterprise](https://aws.amazon.com/opsworks/puppetenterprise/): This service launches a dedicated Puppet Master in your account, which can be used to assocaite nodes, upload modules, and configure systems. Automated patching, backups, OS updates, and minor Puppet version upgrades are provided as part of the service. An AWS API is provided for associating/disassociating nodes. By default, the Puppet agent will run automatically every 30 minutes on associated nodes.
+- OpsWorks for Chef Automate and OpsWorks for Puppet Enterprise are strictly designed for configuration management, and do not provision infrastructure outside the Chef Server/Puppet Master that is created in our account.
+- All three OpsWorks services support managing both Amazon EC2 and on-premises infrastructure, however the implementation details differ slightly.
+  - OpsWorks Stacks allows you to register instances and install the OpsWorks Agent to connect to your stack.
+  - OpsWorks for Chef Automate and OpsWorks for Puppet Enterprise allow you to associate new or existing infrastructure using either the opsworks-cm:AssociateNode API action or the vendor-supported method for associating nodes to Chef Server or Puppet Enterprise.
+- Although OpsWorks will let you work with common Chef recipes or Puppet modules when creating your stacks, creating custom recipes will require familiarity with Chef or Puppet syntax. Chef/Puppet code is not supported as part of AWS Support.
 - As of December 2016, OpsWorks Stacks supports Chef versions [12, 11.10.4, 11.4.4 and 0.9.15.5](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
-- As of December 2016, OpsWorks for ChefAutomate uses [Chef Server version 12.11.1](http://docs.aws.amazon.com/opsworks/latest/userguide/welcome_opscm.html) This is the current stable version of Chef.
-- [Berkshelf can be used](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-chef11-10.html#workingcookbook-chef11-10-berkshelf) with Chef stacks of version 11.10 and later for managing cookbooks and their respective dependencies.
+- As of December 2016, OpsWorks for Chef Automate uses [Chef Server version 12.11.1](http://docs.aws.amazon.com/opsworks/latest/userguide/welcome_opscm.html) This is the current stable version of Chef.
+- [Berkshelf](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook-chef11-10.html#workingcookbook-chef11-10-berkshelf)can be used  with Chef stacks of version 11.10 and later for managing cookbooks and their respective dependencies. However, on Chef 12.x stacks, Berkshelf must be installed by the stack administrator.
 - Running your own Chef environment may be an alternative to consider - some considerations are listed [in this Bitlancer article.](http://www.bitlancer.com/blog/2015/10/05/opsworks-vs-chef.html)
-- A key difference between running OpsWorks's Chef variant and rolling your own Chef environment is that the latter allows the scheduling of Chef runs, while the former has Chef runs occur according to lifecycle hooks.
 
 ### OpsWorks Alternatives and Lock-in
 
-- Major competitors to Chef include [Puppet](https://puppet.com/product/how-puppet-works) and [Ansible](https://www.ansible.com/how-ansible-works).
+- Major competitors in Configuration Management include:
+  - [Chef](https://chef.io)
+  - [Puppet](https://puppet.com)
+  - [Ansible](https://www.ansible.com).
 
 ### OpsWorks Tips
 
-- [OpsWorks relies heavily on Chef cookbooks and recipes](http://docs.aws.amazon.com/opsworks/latest/userguide/gettingstarted-cookbooks.html) for customization, so familiarity with reading their syntax will help greatly with getting up and running.
+- OpsWorks Stacks and OpsWorks for Chef Automate use Chef cookbooks for configuration. Chef provides free training to learn syntax, best practices, etc. at [https://learn.chef.io](https://learn.chef.io).
+- OpsWorks for Puppet Enterprise uses Puppet manifests for configuration. Puppet provides a very useful learning VM for download at [https://learn.puppet.com/](https://learn.puppet.com/).
 
 ### OpsWorks Gotchas and Limitations
 
-- Although OpsWorks will let you work with common Chef recipes or Puppet modules when creating your stacks, creating custom recipes will require familiarity with Chef or Puppet syntax.
-- OpsWorks Stacks is not available in the Canada, GovCloud and Beijing regions.
-- OpsWorks for Chef Automate / Puppet Enterprise is [only available](https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/) in the North Virginia, Ohio, Oregon, Northern California, Frankfurt, Singapore, Tokyo, Sydney, and Ireland regions.
-
-
+- OpsWorks Stacks is not available in the following regions:
+  - Montreal
+  - GovCloud
+  - Beijing
+- OpsWorks for Chef Automate and OpsWorks for Puppet Enterprise are not available in the following regions:
+  - Montreal
+  - Sao Paulo
+  - GovCloud
+  - London
+  - Paris
+  - Seoul
+  - Mumbai
 Batch
 -------------------
 
@@ -2147,7 +2225,6 @@ SNS
     - After processing, the SQS message is deleted from the queue by the subscriber to avoid being re-processed.
     - An SNS message is *pushed* to all subscribers of the topic at the same time, and is not available for deletion at the topic.
     - SNS supports multiple transport protocols of delivery of the messages to the subscribers, while SQS subscribers have to pull the messages off the queue over HTTPS.
-    - SNS can be used to trigger lambda functions, while SQS cannot.
 
 ### SNS Tips
 
