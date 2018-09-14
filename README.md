@@ -417,7 +417,7 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 <a name="user-content-pci-rds">**9**</a>: Includes RDS MySQL, Oracle, PostgreSQL, SQL Server, and MariaDB</br>
 <a name="user-content-pci-asg">**10**</a>: Includes Auto-Scaling</br>
 <a name="user-content-pci-kinesis">**11**</a>: Streams only</br>
-<a name="user-content-eks-cli">**12**</a>: Kubernets uses a custom CLI for Pod/Service management called kubectl. AWS CLI only handles Kubernetes Master concerns</br>
+<a name="user-content-eks-cli">**12**</a>: Kubernetes uses a custom CLI for Pod/Service management called kubectl. AWS CLI only handles Kubernetes Master concerns</br>
 
 
 ### Compliance
@@ -563,7 +563,7 @@ This guide is about AWS, not DevOps or server configuration management in genera
 -	A consequence of this is that you need fewer AMIs and boot scripts; for most deployments, the only boot script you need is a template that fetches an exported docker image and runs it.
 -	Companies that are embracing [microservice architectures](http://martinfowler.com/articles/microservices.html) will often turn to container-based deployments.
 -	AWS launched [ECS](https://aws.amazon.com/ecs/) as a service to manage clusters via Docker in late 2014, though many people still deploy Docker directly themselves. See the [ECS section](#ecs) for more details.
--	AWS launced [EKS](https://aws.amazon.com/eks/) as a service to manage Kubernetes Clusters mid 2018, though many people still deploy ECS or use Docker directly themselves. see the [EKS section](#eks) for more details. 
+-	AWS launched [EKS](https://aws.amazon.com/eks/) as a service to manage Kubernetes Clusters mid 2018, though many people still deploy ECS or use Docker directly themselves. See the [EKS section](#eks) for more details. 
 
 ### Visibility
 
@@ -1383,9 +1383,9 @@ EKS
 -	📒 [Homepage](https://aws.amazon.com/eks/) ∙ [User guide](http://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html) ∙ [FAQ](https://aws.amazon.com/eks/faq/) ∙ [Pricing](https://aws.amazon.com/eks/pricing/)
 - EKS (Elastic Kubernetes Service) is a new service (launched June 2018) that provides managed Kubernetes Masters in a Highly Available pair to deploy K8 Services and Pods on top of EC2 based Kubernetes nodes.  
 - See the [Containers and AWS](#containers-and-aws) section for more context on containers.
-- EKS is AWS solution to hosting Kubernetes natively on AWS. It is not a replacement for ECS directly but is in response to the large market dominance of Kubernetes in the market.
-- EKS does not launch EC2 nodes and would have to be configured and setup either manually or via cloudformation (or other automation solution)
-- EKS management is done through a utility called KubeCTL, and with Kube configuration files.  These files will need to be configured to speak with the K8 Master with a certificate and URL
+- EKS is AWS's solution to hosting Kubernetes natively on AWS. It is not a replacement for ECS directly but is in response to the large market dominance of Kubernetes.
+- EKS does not launch EC2 nodes and would have to be configured and setup either manually or via Cloudformation (or other automation solution)
+- EKS management is done through a utility called kubectl, and with Kube configuration files.  These files will need to be configured to speak with the K8s Master with a certificate and URL
 - EKS authentication is integrated with IAM roles/permissions via a custom plugin for kubectl called aws-iam-authenticator (formerly heptio-authenticator-aws) https://github.com/kubernetes-sigs/aws-iam-authenticator 
 
 ### EKS Tips
@@ -1394,13 +1394,14 @@ EKS
 
 ### EKS Alternatives and Lock-in
 - 	[ECS](#ecs) Amazon's native Container Scheduled platform released in 2014.  If you don't utilize containers today and are looking to get started, ECS is an excellent product. 
--	[Kubernetes](https://kubernetes.io): Extensive container platform. Available as a hosted solution on Google Cloud (https://cloud.google.com/container-engine/) and AWS (https://tectonic.com/). AWS have a Kubernetes Quickstart (https://aws.amazon.com/quickstart/architecture/heptio-kubernetes/) developed in collaboration with Heptio.
+-	[Kubernetes](https://kubernetes.io): Extensive container platform. Available as a hosted solution on Google Cloud (https://cloud.google.com/container-engine/), AWS (https://tectonic.com/), Digital Ocean (https://www.digitalocean.com/products/kubernetes/) and Azure (https://azure.microsoft.com/en-us/services/kubernetes-service/). AWS have a Kubernetes Quickstart (https://aws.amazon.com/quickstart/architecture/heptio-kubernetes/) developed in collaboration with Heptio.
 -	[Nomad](https://www.nomadproject.io/): Orchestrator/Scheduler, tightly integrated in the Hashicorp stack (Consul, Vault, etc).
 
 ### EKS Gotchas and Limitations
 - Pods and Service configurations can rapidly consume IP addresses inside a VPC.  Proper care and maintenance should be applied to ensure IP exhaustion does not occur
 - There is currently no integrated monitoring in Cloudwatch for EKS pods or services, you will need to deploy a monitoring system that supports kubernetes such as Prometheus. 
 - Autoscaling based off CPU/Memory of a node is limited as you will not be aware of pending services/pods that cannot start.  As this is not queryable via EKS API's, you would need to write this in Lambda with kubectl, this may be a security concern for some organizations. 
+- Prometheus (https://prometheus.io/) is a very popular monitoring solution for K8, metrics and alerts can be used to send events to Lambda, SQS or other solutions to take autoscaling actions. 
 
 Fargate
 -------
