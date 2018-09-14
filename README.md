@@ -1390,7 +1390,7 @@ EKS
 
 ### EKS Tips
 - If you do not already have kubectl configured, it is now included in the AWSCLI packages.  This is the simplest way to install kubectl and the assocated iam authenticator plugin
-- multiple clusters can be supported by using different kubeconfig files
+- Multiple clusters can be supported by using different kubeconfig files
 
 ### EKS Alternatives and Lock-in
 - 	[ECS](#ecs) Amazon's native Container Scheduled platform released in 2014.  If you don't utilize containers today and are looking to get started, ECS is an excellent product. 
