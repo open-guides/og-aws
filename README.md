@@ -1439,7 +1439,7 @@ EKS
 
 ### EKS Basics
 -	📒 [Homepage](https://aws.amazon.com/eks/) ∙ [User guide](http://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html) ∙ [FAQ](https://aws.amazon.com/eks/faq/) ∙ [Pricing](https://aws.amazon.com/eks/pricing/)
-- EKS (Elastic Kubernetes Service) is a new service (launched June 2018) that provides managed Kubernetes Masters in a Highly Available pair to deploy K8 Services and Pods on top of EC2 based Kubernetes nodes.  
+- EKS (Elastic Kubernetes Service) is a new service (launched June 2018) that provides managed Kubernetes Masters in a Highly Available pair to deploy K8s Services and Pods on top of EC2 based Kubernetes nodes.  
 - See the [Containers and AWS](#containers-and-aws) section for more context on containers.
 - EKS is AWS's solution to hosting Kubernetes natively on AWS. It is not a replacement for ECS directly but is in response to the large market dominance of Kubernetes.
 - EKS does not launch EC2 nodes and would have to be configured and setup either manually or via Cloudformation (or other automation solution)
@@ -1459,7 +1459,7 @@ EKS
 - Pods and Service configurations can rapidly consume IP addresses inside a VPC.  Proper care and maintenance should be applied to ensure IP exhaustion does not occur
 - There is currently no integrated monitoring in Cloudwatch for EKS pods or services, you will need to deploy a monitoring system that supports kubernetes such as Prometheus. 
 - Autoscaling based off CPU/Memory of a node is limited as you will not be aware of pending services/pods that cannot start.  As this is not queryable via EKS API's, you would need to write this in Lambda with kubectl, this may be a security concern for some organizations. 
-- Prometheus (https://prometheus.io/) is a very popular monitoring solution for K8, metrics and alerts can be used to send events to Lambda, SQS or other solutions to take autoscaling actions. 
+- Prometheus (https://prometheus.io/) is a very popular monitoring solution for K8s, metrics and alerts can be used to send events to Lambda, SQS or other solutions to take autoscaling actions. 
 
 Fargate
 -------
