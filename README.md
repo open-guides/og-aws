@@ -841,7 +841,7 @@ EC2
 		- The P2 series offers NVIDIA Tesla K80 GPUs in 1, 8 and 16 GPU configurations targeting machine learning, scientific workloads, and other high performance computign applications.
 		- The G3 series offers NVIDIA Tesla M60 GPUs in 1, 2, or 4 GPU configurations targeting graphics and video encoding.
 	-	AWS offers two different AMIs that are targeted to GPU applications. In particular, they target deep learning workloads, but also provide access to more stripped-down driver-only base images.
-		-	AWS offers both an Amazon Linux [Deep Learning AMI](https://aws.amazon.com/marketplace/pp/B077GF11NF?qid=1536363169916&sr=0-3&ref_=srh_res_product_title) (based on Amazon Linux) as well as an Ubuntu [Deep Learning AMI](https://aws.amazon.com/marketplace/pp/B077GCH38C). Both come with most NVIDIA drivers and ancillary software (CUDA, CUBLAS, CuDNN, TensorFlow, PyTorch, etc.) installed to lower the barrier to usage. 
+		-	AWS offers both an Amazon Linux [Deep Learning AMI](https://aws.amazon.com/marketplace/pp/B077GF11NF?qid=1536363169916&sr=0-3&ref_=srh_res_product_title) (based on Amazon Linux) as well as an Ubuntu [Deep Learning AMI](https://aws.amazon.com/marketplace/pp/B077GCH38C). Both come with most NVIDIA drivers and ancillary software (CUDA, CUBLAS, CuDNN, TensorFlow, PyTorch, etc.) installed to lower the barrier to usage.
 		-	⛓ Note that using these AMIs can lead to lock in due to the fact that you have no direct access to software configuration or versioning.
 		-	🔸 The compendium of frameworks included can lead to long instance startup times and difficult-to-reason-about environments.
 	-	🔹As with any expensive EC2 instance types, [Spot instances can offer significant savings](#ec2-cost-management) with GPU workloads when interruptions are tolerable.
@@ -1700,7 +1700,12 @@ VPCs, Network Security, and Security Groups
 - **IPv6** [is available in VPC](https://aws.amazon.com/blogs/aws/new-ipv6-support-for-ec2-instances-in-virtual-private-clouds/). Along with this announcement came the introduction of the [Egress-Only Internet Gateway](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/egress-only-internet-gateway.html). In cases where one would use NAT Gateways to enable egress-only traffic for their VPC in IPv4, one can use an Egress-Only Internet Gateway for the same purpose in IPv6.
 
 -	Amazon provides an IPv6 CIDR block for your VPC at your request - at present you cannot implement your own IPv6 block if you happen to own one already.
--	New and existing VPCs can both use IPv6. Existing VPCs will need to be configured to have an IPv6 CIDR block associated with them, just as new VPCs do.
+-	New and existing VPCs can both use IPv6. Existing VPCs will need to be configured to have an IPv6 CIDR block associated with them, just
+
+### PrivateLink
+- 📒[Homepage](https://aws.amazon.com/privatelink/) [User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html) [Pricing](https://aws.amazon.com/privatelink/pricing/)
+- One of the uses for Private link is [Interface VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html) deploys an ENI into your VPC and subnets which allows you direct access to the AWS API's as if the were accessible locally in your VPC without having to go out to the internet.
+- Another use case would be to expose a service of your own to other accounts in AWS through a [VPC Endpoint Service](https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html)
 
 ### VPC and Network Security Gotchas and Limitations
 -	🔸VPCs are tied to one Region in one Account. Subnets are tied to one VPC and limited to one Availability Zone.
