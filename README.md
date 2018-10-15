@@ -1288,7 +1288,7 @@ RDS Aurora MySQL
 	-	Log-structured storage instead of B-trees to improve write performance.
 	-	Out-of-process buffer pool so that databases instances can be restarted without clearing the buffer pool.
 	-	The underlying physical storage is a specialized SSD array that automatically maintains 6 copies of your data across 3 AZs.
-	-	Aurora read replicas share the storage layer with the write master which significantly reduces replica lag, eliminates the need for the master to write and distribute the binary log for replication, and allows for zero-data-loss failovers from the master to a replica. The master and all the read replicas that share storage are known collectively as an **Aurora cluster**.
+	-	Aurora read replicas share the storage layer with the write master which significantly reduces replica lag, eliminates the need for the master to write and distribute the binary log for replication, and allows for zero-data-loss failovers from the master to a replica. The master and all the read replicas that share storage are known collectively as an **Aurora cluster**. Read replicas can span up to [5 regions](https://aws.amazon.com/about-aws/whats-new/2018/09/amazon-aurora-databases-support-up-to-five-cross-region-read-replicas/).
 
 ### RDS Aurora MySQL Tips
 
