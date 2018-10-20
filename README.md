@@ -1696,6 +1696,8 @@ CloudFormation
 -	**Version control your CloudFormation templates!** In the Cloud, an application is the combination of the code written and the infrastructure it runs on. By version controlling **both**, it is easy to roll back to known good states.
 -	Avoid naming your resources explicitly (e.g. DynamoDB tables). When deploying multiple stacks to the same AWS account, these names can come into conflict, potentially slowing down your testing. Prefer using resource references instead.
 -	For things that shouldn't ever be deleted, you can set an explicit DeletionPolicy on the resource that will prevent the resource from being deleted even if the CloudFormation stack itself is deleted. This is useful for anything that can maintain expensive-to-rebuild state, such as DynamoDB tables, and things that are exposed to the outside world, such as API Gateway APIs.
+-	Use [CFTransform](https://cftransform.com/) to optimize AWS specific syntax to be best practice (such as !Sub instead of Fn::Join) as well as to convert your CloudFormation templates from JSON to YAML and vice versa.
+-	While using YAML, try to use comments where possible to describe the resources and to help yourself in the future because **code is read much more often than it is written!**
 
 ### CloudFormation Gotchas and Limitations
 
