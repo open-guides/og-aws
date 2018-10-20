@@ -1425,6 +1425,8 @@ ECS
 		-	If you want fast fleet-wide pulls of large images, you’ll need to push your image into a region-local registry.
 	-	Doesn’t support custom domains / certificates.
 -	A container’s health is monitored via [CLB](#clb) or [ALB](#alb). Those can also be used to address a containerized service. When using an ALB you do not need to handle port contention (i.e. services exposing the same port on the same host) since an ALB’s target groups can be associated with ECS-based services directly.
+-	[The Hitchhikers Guide to AWS ECS and Docker](http://start.jcolemorrison.com/the-hitchhikers-guide-to-aws-ecs-and-docker/) by [J. Cole Morrison](https://twitter.com/JColeMorrison) is an excellent article for Introduction to AWS ECS concepts.
+
 
 
 ### ECS Tips
