@@ -2125,6 +2125,8 @@ WAF
 ### WAF Tips
 
 - Getting a WAF API call history can be done through CloudTrail. This is enabled through the CloudTrail console.
+- It's also possible to get [full
+  logs of all the web requests inspected](https://aws.amazon.com/about-aws/whats-new/2018/08/aws-waf-launches-new-comprehensive-logging-functionality/)
 
 ### WAF Gotchas and Limitations
 
