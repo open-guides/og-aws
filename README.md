@@ -1212,7 +1212,8 @@ RDS MySQL and MariaDB
 
 ### RDS MySQL and MariaDB Basics
 
--	RDS offers MySQL versions 5.5, 5.6, and 5.7.
+-      RDS offers MySQL versions 5.5, 5.6, 5.7 and 5.8.
+-      RDS offers MariaDB versions 10.0, 10.1, 10.2 and 10.3.
 
 ### RDS MySQL and MariaDB Tips
 
