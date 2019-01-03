@@ -1514,7 +1514,7 @@ Fargate
 
 ### Fargate Gotchas and Limitations
 -   As of April 2018, Fargate is available in [multiple regions](https://aws.amazon.com/about-aws/whats-new/2018/04/aws-fargate-now-available-in-ohio--oregon--and-ireland-regions/): us-east-1, us-east-2, us-west-2, and eu-west-1
--   As of January 2018, Fargate can only be used with ECS, however there are plans to support EKS later in 2018
+-   As of January 2019, Fargate can only be used with ECS. Support for EKS [was originally planned for 2018](https://aws.amazon.com/blogs/aws/aws-fargate/), but has yet to launch.
 -   The smallest resource values that can be configured for an ECS Task that uses Fargate is 0.25 vCPU and 0.5 GB of memory
 
 
