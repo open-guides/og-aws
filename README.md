@@ -1566,9 +1566,9 @@ Lambda
 	-	A **50 MB** limit on the compressed .zip/.jar file deployment package size.
 	-	A **250 MB** limit on the code/dependencies in the package before compression.
 	- A **500 MB** limit on local storage in /tmp.
+- 🔸[Lambda layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) can be used to keep the deployment package small.
 
 ### Lambda Code Samples
-
 -	[Fan-out](https://github.com/awslabs/aws-lambda-fanout) is an example of using Lambda to “fan-out” or copy data from one service, in this case Kinesis, to multiple other AWS data services. Destinations for fan-out data in the sample include IoT, SQS and more.
 -	This [AWS limit monitor using Lambdas](https://github.com/awslabs/aws-limit-monitor) shows use of multiple Lambdas for monitoring.
 -	This [Lambda ECS Worker Pattern](https://github.com/awslabs/lambda-ecs-worker-pattern) shows use of Lambda in a workflow where data from S3 is picked up by the Lambda, pushed to a queue, then sent to ECS for more processing.
