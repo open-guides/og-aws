@@ -1481,6 +1481,7 @@ EKS
 - EKS does not launch EC2 nodes and would have to be configured and setup either manually or via Cloudformation (or other automation solution)
 - EKS management is done through a utility called kubectl, and with Kube configuration files.  These files will need to be configured to speak with the K8s Master with a certificate and URL
 - EKS authentication is integrated with IAM roles/permissions via a custom plugin for kubectl called aws-iam-authenticator (formerly heptio-authenticator-aws) https://github.com/kubernetes-sigs/aws-iam-authenticator
+- EKS provides [Calico](https://docs.aws.amazon.com/eks/latest/userguide/calico.html) from Tigera for securing workloads within a cluster using Kubernetes network policy.
 
 ### EKS Tips
 - If you do not already have kubectl configured, it is now included in the AWSCLI packages.  This is the simplest way to install kubectl and the assocated iam authenticator plugin
