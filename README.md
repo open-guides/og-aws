@@ -1498,8 +1498,8 @@ EKS
 ### EKS Gotchas and Limitations
 - Pods and Service configurations can rapidly consume IP addresses inside a VPC.  Proper care and maintenance should be applied to ensure IP exhaustion does not occur
 - There is currently no integrated monitoring in Cloudwatch for EKS pods or services, you will need to deploy a monitoring system that supports kubernetes such as Prometheus.
-- Autoscaling based off CPU/Memory of a node is limited as you will not be aware of pending services/pods that cannot start.  As this is not queryable via EKS API's, you would need to write this in Lambda with kubectl, this may be a security concern for some organizations.
-- Prometheus (https://prometheus.io/) is a very popular monitoring solution for K8s, metrics and alerts can be used to send events to Lambda, SQS or other solutions to take autoscaling actions.
+- Autoscaling based off CPU/Memory of a node is limited as you will not be aware of pending Services/Pods that cannot start. Using [cluster-autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler) can be useful for scaling based on Node resource usage and unschedulable Pods.
+- [Prometheus](https://prometheus.io/) is a very popular monitoring solution for K8s, metrics and alerts can be used to send events to Lambda, SQS or other solutions to take autoscaling actions.
 
 Fargate
 -------
