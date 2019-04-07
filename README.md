@@ -1468,7 +1468,7 @@ ECS
 
 ### ECS Alternatives and Lock-in
 
--	[Kubernetes](https://kubernetes.io): Extensive container platform. Available as a hosted solution on Google Cloud (https://cloud.google.com/container-engine/) and AWS (https://tectonic.com/). AWS have a Kubernetes Quickstart (https://aws.amazon.com/quickstart/architecture/heptio-kubernetes/) developed in collaboration with Heptio.
+-	[Kubernetes](https://kubernetes.io): Extensive container platform. Available as a hosted solution on Google Cloud (https://cloud.google.com/container-engine/) and AWS (https://tectonic.com/). AWS has a Kubernetes Quickstart (https://aws.amazon.com/quickstart/architecture/heptio-kubernetes/) developed in collaboration with Heptio.
 -	[Nomad](https://www.nomadproject.io/): Orchestrator/Scheduler, tightly integrated in the Hashicorp stack (Consul, Vault, etc).
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
@@ -1492,7 +1492,7 @@ EKS
 
 ### EKS Alternatives and Lock-in
 - 	[ECS](#ecs) Amazon's native Container Scheduled platform released in 2014.  If you don't utilize containers today and are looking to get started, ECS is an excellent product.
--	[Kubernetes](https://kubernetes.io): Extensive container platform. Available as a hosted solution on Google Cloud (https://cloud.google.com/container-engine/), AWS (https://tectonic.com/), Digital Ocean (https://www.digitalocean.com/products/kubernetes/) and Azure (https://azure.microsoft.com/en-us/services/kubernetes-service/). AWS have a Kubernetes Quickstart (https://aws.amazon.com/quickstart/architecture/heptio-kubernetes/) developed in collaboration with Heptio.
+-	[Kubernetes](https://kubernetes.io): Extensive container platform. Available as a hosted solution on Google Cloud (https://cloud.google.com/container-engine/), AWS (https://tectonic.com/), Digital Ocean (https://www.digitalocean.com/products/kubernetes/) and Azure (https://azure.microsoft.com/en-us/services/kubernetes-service/). AWS has a Kubernetes Quickstart (https://aws.amazon.com/quickstart/architecture/heptio-kubernetes/) developed in collaboration with Heptio.
 -	[Nomad](https://www.nomadproject.io/): Orchestrator/Scheduler, tightly integrated in the Hashicorp stack (Consul, Vault, etc).
 
 ### EKS Gotchas and Limitations
