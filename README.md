@@ -1153,7 +1153,7 @@ Elastic Beanstalk
 ----------------
 
 ### Elastic Beanstalk Basics
-- 📒 [Homepage](https://aws.amazon.com/elasticloadbalancing/) ∙ [Developer guide](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html) ∙ [FAQ](https://aws.amazon.com/elasticbeanstalk/faqs/) ∙ [Pricing](https://aws.amazon.com/elasticbeanstalk/pricing/)
+- 📒 [Homepage](https://aws.amazon.com/elasticbeanstalk/) ∙ [Developer guide](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html) ∙ [FAQ](https://aws.amazon.com/elasticbeanstalk/faqs/) ∙ [Pricing](https://aws.amazon.com/elasticbeanstalk/pricing/)
 - **EB** (Elastic Beanstalk) is a PaaS (Platform as a Service) that helps developers create, deploy and scale web applications
 - EB handles deployment, configuration, provisioning, load balancing, auto-scaling, monitoring, and logging
 - EB creates AWS resources on your behalf but you retain full access and control of the underlying resources
