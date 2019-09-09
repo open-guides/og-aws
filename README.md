@@ -1624,7 +1624,7 @@ API Gateway
 	-	Alternatively, by using the [Serverless Application Model](https://github.com/awslabs/serverless-application-model) definition for an API Gateway resource, you can always expect the API to be deployed on a stack update since SAM will generate a new deployment every time.
 - 🔸API Gateway does not support nested query parameters on method requests.
 - 🔸API Gateway limits number of resources to 300, as described [here](http://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html#api-gateway-limits). This is something to be considered when you start using API Gateway as a platform where your team/organization deploys to the same API Gateway.
-- 🔸API Gateway can only reach backend services through the use of AWS PrivateLink using an NLB service endpoint. This causes issues with basic public-to-private resource routing and does not scale.
+- 🔸API Gateway can only reach backend services through the use of AWS PrivateLink using an NLB service endpoint. This causes issues with basic public-to-private resource routing, for instance when hosting a REST-service behind an Application Load Balancer you are not able to route API calls to the ALB directly, it must be fronted by an NLB. The same applies to all other internal VPC resources.
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
