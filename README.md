@@ -274,7 +274,7 @@ General Information
 
 ### Tools and Services Market Landscape
 
-There are now enough cloud and “big data” enterprise companies and products that few can keep up with the market landscape. (See the [Big Data Evolving Landscape – 2016](https://practicalanalytics.co/2016/02/09/big-data-evolving-landscape-2016/) for one attempt at this.)
+There are now enough cloud and “big data” enterprise companies and products that few can keep up with the market landscape.
 
 We’ve assembled a landscape of a few of the services. This is far from complete, but tries to emphasize services that are popular with AWS practitioners — services that specifically help with AWS, or a complementary, or tools almost anyone using AWS must learn.
 
