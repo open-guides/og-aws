@@ -111,7 +111,7 @@ Before using the guide, please read the [**license**](#license) and [**disclaime
 
 [![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://join.slack.com/t/og-aws/shared_invite/enQtODM2NjY1NDQ2MTgxLWYwY2VjZDBiOGU1YTJjOWUwNTY3NjEyODA0NzY1N2MxNjhhZmYwZTU0NjNhMjNlNGVjODdlNTI4N2Y1YWIwNGE)
 
-Please help by [**joining the Slack channel**](https://og-aws-slack.lexikon.io/) (we like to talk about AWS in general, even if you only have questions — discussion helps the community and guides improvements) and [**contributing to the guide**](CONTRIBUTING.md). This guide is *open to contributions*, so unlike a blog, it can keep improving. Like any open source effort, we combine efforts but also review to ensure high quality.
+Please help by [**joining the Slack channel**](https://join.slack.com/t/og-aws/shared_invite/enQtODM2NjY1NDQ2MTgxLWYwY2VjZDBiOGU1YTJjOWUwNTY3NjEyODA0NzY1N2MxNjhhZmYwZTU0NjNhMjNlNGVjODdlNTI4N2Y1YWIwNGE) (we like to talk about AWS in general, even if you only have questions — discussion helps the community and guides improvements) and [**contributing to the guide**](CONTRIBUTING.md). This guide is *open to contributions*, so unlike a blog, it can keep improving. Like any open source effort, we combine efforts but also review to ensure high quality.
 
 Scope
 -----
