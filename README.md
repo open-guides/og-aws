@@ -292,7 +292,7 @@ We’ve assembled a landscape of a few of the services. This is far from complet
 
 ### Service Matrix
 
-Many services within AWS can at least be compared with Google Cloud offerings or with internal Google services. And often times you could assemble the same thing yourself with open source software. This table is an effort at listing these rough correspondences. (Remember that this table is imperfect as in almost every case there are subtle differences of features!)
+This tables compares AWS services with ones from Google Cloud, Azure and other providers including open source packages. Note this table does not adddress subtle differences between offerings!
 
 | Service                       | AWS                                                                          | Google Cloud                 | Google Internal | Microsoft Azure                    | Other providers                   | Open source “build your own”                               | Openstack     |
 |-------------------------------|------------------------------------------------------------------------------|------------------------------|-----------------|------------------------------------|-----------------------------------|------------------------------------------------------------|------------------------------------------------------------|
