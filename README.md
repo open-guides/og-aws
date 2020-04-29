@@ -3,7 +3,7 @@
 The Open Guide to Amazon Web Services
 =====================================
 
-[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://join.slack.com/t/og-aws/shared_invite/enQtODM2NjY1NDQ2MTgxLWYwY2VjZDBiOGU1YTJjOWUwNTY3NjEyODA0NzY1N2MxNjhhZmYwZTU0NjNhMjNlNGVjODdlNTI4N2Y1YWIwNGE) ⇦ Join us!
+[![Slack Chat](https://img.shields.io/badge/Chat-Slack-ff69b4.svg "Join us. Anyone is welcome!")](https://slackhatesthe.cloud) ⇦ Join us!
 
 [Credits](AUTHORS.md) ∙ [Contributing guidelines](CONTRIBUTING.md)
 
