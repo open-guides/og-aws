@@ -479,6 +479,8 @@ Learning and Career Development
   - [Certified Advanced Networking – Specialty](https://aws.amazon.com/certification/certified-advanced-networking-specialty/)
   - [Certified Machine Learning – Specialty](https://aws.amazon.com/certification/certified-machine-learning-specialty/)
   - [Certified Alexa Skill Builder – Specialty](https://aws.amazon.com/certification/certified-alexa-skill-builder-specialty/)
+  - [Certified Data Analytics – Specialty](https://aws.amazon.com/certification/certified-data-analytics-specialty/)
+  - [Certified Database – Specialty](https://aws.amazon.com/certification/certified-database-specialty/)
 
 Associate level certifications were once required as pre-requisites to taking the Professional examinations - this is no longer the case.
 
