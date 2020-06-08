@@ -146,7 +146,6 @@ Legend
 General Information
 -------------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### When to Use AWS
 
 -	[AWS](https://en.wikipedia.org/wiki/Amazon_Web_Services) is the dominant public cloud computing provider.
@@ -625,7 +624,6 @@ Security and IAM
 
 We cover security basics first, since configuring user accounts is something you usually have to do early on when setting up your system.
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Security and IAM Basics
 
 -	📒 IAM [Homepage](https://aws.amazon.com/iam/) ∙ [User guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) ∙ [FAQ](https://aws.amazon.com/iam/faqs/)
@@ -705,7 +703,6 @@ We cover security basics first, since configuring user accounts is something you
 S3
 --
 
-[Back to top :arrow_up:](#table-of-contents)
 ### S3 Basics
 
 -	📒 [Homepage](https://aws.amazon.com/s3/) ∙ [Developer guide](https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html) ∙ [FAQ](https://aws.amazon.com/s3/faqs/) ∙ [Pricing](https://aws.amazon.com/s3/pricing/)
@@ -848,7 +845,6 @@ Especially notable items are in **boldface**. Sources: [S3 pricing](https://aws.
 EC2
 ---
 
-[Back to top :arrow_up:](#table-of-contents)
 ### EC2 Basics
 
 -	📒 [Homepage](https://aws.amazon.com/ec2/) ∙ [Documentation](https://aws.amazon.com/documentation/ec2/) ∙ [FAQ](https://aws.amazon.com/ec2/faqs/) ∙ [Pricing](https://aws.amazon.com/ec2/pricing/) (see also [ec2instances.info](http://www.ec2instances.info/)\)
@@ -923,7 +919,6 @@ EC2
 CloudWatch
 -------------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### CloudWatch Basics
 
 * 📒  [Homepage](https://aws.amazon.com/cloudwatch/) ∙ [Documentation](https://aws.amazon.com/documentation/cloudwatch/) ∙ [FAQ](https://aws.amazon.com/cloudwatch/faqs/) ∙ [Pricing](https://aws.amazon.com/cloudwatch/pricing/)
@@ -975,7 +970,6 @@ CloudWatch
 AMIs
 ----
 
-[Back to top :arrow_up:](#table-of-contents)
 ### AMI Basics
 
 -	📒 [User guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html)
@@ -1016,7 +1010,6 @@ AMIs
 Auto Scaling
 ------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Auto Scaling Basics
 
 -	📒 [Homepage](https://aws.amazon.com/autoscaling/) ∙ [User guide](http://docs.aws.amazon.com/autoscaling/latest/userguide/) ∙ [FAQ](https://aws.amazon.com/ec2/faqs/#Auto_Scaling) ∙ [Pricing](https://aws.amazon.com/autoscaling/pricing/) at no additional charge
@@ -1042,7 +1035,6 @@ Auto Scaling
 EBS
 ---
 
-[Back to top :arrow_up:](#table-of-contents)
 ### EBS Basics
 
 -	📒 [Homepage](https://aws.amazon.com/ebs/) ∙ [User guide](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html) ∙ [FAQ](https://aws.amazon.com/ebs/faqs/) ∙ [Pricing](https://aws.amazon.com/ebs/pricing/)
@@ -1071,7 +1063,6 @@ EFS
 ---
 
 
-[Back to top :arrow_up:](#table-of-contents)
 ### EFS Basics
 
 -	📒 [Homepage](https://aws.amazon.com/efs/) ∙ [User guide](http://docs.aws.amazon.com/efs/latest/ug) ∙ [FAQ](https://aws.amazon.com/efs/faq/) ∙ [Pricing](https://aws.amazon.com/efs/pricing/)
@@ -1115,7 +1106,6 @@ EFS
 Load Balancers
 --------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Load Balancer Basics
 
 -	AWS has 3 load balancing products - “Classic Load Balancers” (CLBs), “Application Load Balancers” (ALBs), and "Network Load Balancers" (NLB).
@@ -1162,7 +1152,6 @@ Load Balancers
 CLB
 ---
 
-[Back to top :arrow_up:](#table-of-contents)
 ### CLB Basics
 
 -	📒 [Homepage](https://aws.amazon.com/elasticloadbalancing/classicloadbalancer/) ∙ [User guide](https://aws.amazon.com/elasticloadbalancing/classicloadbalancer/developer-resources/) ∙ [FAQ](https://aws.amazon.com/elasticloadbalancing/classicloadbalancer/faqs/) ∙ [Pricing](https://aws.amazon.com/elasticloadbalancing/classicloadbalancer/pricing/)
@@ -1187,7 +1176,6 @@ CLB
 ALB
 ---
 
-[Back to top :arrow_up:](#table-of-contents)
 ### ALB Basics
 
 -	📒 [Homepage](https://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/) ∙ [User guide](https://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/developer-resources/) ∙ [FAQ](https://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/faqs/) ∙ [Pricing](https://aws.amazon.com/elasticloadbalancing/applicationloadbalancer/pricing/)
@@ -1216,7 +1204,6 @@ ALB
 Elastic Beanstalk
 ----------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Elastic Beanstalk Basics
 - 📒 [Homepage](https://aws.amazon.com/elasticbeanstalk/) ∙ [Developer guide](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/Welcome.html) ∙ [FAQ](https://aws.amazon.com/elasticbeanstalk/faqs/) ∙ [Pricing](https://aws.amazon.com/elasticbeanstalk/pricing/)
 - **EB** (Elastic Beanstalk) is a PaaS (Platform as a Service) that helps developers create, deploy and scale web applications
@@ -1242,7 +1229,6 @@ Elastic Beanstalk
 Elastic IPs
 -----------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Elastic IP Basics
 
 -	📒 [Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html) ∙ [FAQ](https://aws.amazon.com/ec2/faqs/#Elastic_IP) ∙ [Pricing](https://aws.amazon.com/ec2/pricing/on-demand/#Elastic_IP_Addresses)
@@ -1267,7 +1253,6 @@ Elastic IPs
 Glacier
 -------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Glacier Basics
 
 -	📒 [Homepage](https://aws.amazon.com/glacier/) ∙ [Developer guide](http://docs.aws.amazon.com/amazonglacier/latest/dev/) ∙ [FAQ](https://aws.amazon.com/glacier/faqs/) ∙ [Pricing](https://aws.amazon.com/glacier/pricing/)
@@ -1291,7 +1276,6 @@ Glacier
 RDS
 ---
 
-[Back to top :arrow_up:](#table-of-contents)
 ### RDS Basics
 
 -	📒 [Homepage](https://aws.amazon.com/rds/) ∙ [User guide](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/) ∙ [FAQ](https://aws.amazon.com/rds/faqs/) ∙ [Pricing](https://aws.amazon.com/rds/pricing/) (see also [ec2instances.info/rds/](http://www.ec2instances.info/rds/)\)
@@ -1317,7 +1301,6 @@ RDS
 RDS MySQL and MariaDB
 ---------------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### RDS MySQL and MariaDB Basics
 
 -      RDS offers MySQL versions 5.5, 5.6, 5.7 and 5.8.
@@ -1343,7 +1326,6 @@ RDS MySQL and MariaDB
 RDS PostgreSQL
 --------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### RDS PostgreSQL Basics
 
 - RDS offers PostgreSQL 9.3, 9.4, 9.5, 9.6, and 10.
@@ -1371,7 +1353,6 @@ RDS PostgreSQL
 RDS SQL Server
 --------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### RDS SQL Server Basics
 
 -	[RDS offers SQL Server 2008 R2, 2012, 2014, 2016 and 2017](https://aws.amazon.com/rds/sqlserver/) including Express, Web, Standard and Enterprise.
@@ -1391,14 +1372,12 @@ RDS SQL Server
 
 RDS Aurora
 ---
-[Back to top :arrow_up:](#table-of-contents)-------
 ### RDS Aurora Basics
 Aurora is a cloud only database service designed to provide a distributed, fault-tolerant relational database with self-healing storage and auto-scaling up to 64TB per instance.  It currently comes in two versions, a MySQL compatible system, and a PostgreSQL compatible system.
 
 RDS Aurora MySQL
 ----------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### RDS Aurora MySQL Basics
 
 -	Amazon’s proprietary fork of MySQL intended to scale up for high concurrency workloads. Generally speaking, individual query performance under Aurora is not expected to improve significantly relative to MySQL or MariaDB, but Aurora is intended to maintain performance while executing many more queries concurrently than an equivalent MySQL or MariaDB server could handle.
@@ -1428,7 +1407,6 @@ RDS Aurora MySQL
 RDS Aurora PostgreSQL
 ---------------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### RDS Aurora PostgreSQL Basics
 
 - Amazon’s proprietary fork of PostgreSQL, intended to scale up for high concurrency workloads while maintaining ease of use. Currently based on PostgreSQL 9.6.
@@ -1451,7 +1429,6 @@ RDS Aurora PostgreSQL
 ElastiCache
 -----------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### ElastiCache Basics
 
 - 📒 [Homepage](https://aws.amazon.com/elasticache/) ∙ [User
@@ -1506,7 +1483,6 @@ ElastiCache
 DynamoDB
 --------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### DynamoDB Basics
 
 -	📒 [Homepage](https://aws.amazon.com/dynamodb/) ∙ [Developer guide](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/dynamodb/faqs/) ∙ [Pricing](https://aws.amazon.com/dynamodb/pricing/)
@@ -1542,7 +1518,6 @@ DynamoDB
 ECS
 ---
 
-[Back to top :arrow_up:](#table-of-contents)
 ### ECS Basics
 
 -	📒 [Homepage](https://aws.amazon.com/ecs/) ∙ [Developer guide](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/ecs/faqs/) ∙ [Pricing](https://aws.amazon.com/ecs/pricing/)
@@ -1579,7 +1554,6 @@ ECS
 EKS
 ---
 
-[Back to top :arrow_up:](#table-of-contents)
 ### EKS Basics
 -	📒 [Homepage](https://aws.amazon.com/eks/) ∙ [User guide](http://docs.aws.amazon.com/eks/latest/userguide/what-is-eks.html) ∙ [FAQ](https://aws.amazon.com/eks/faq/) ∙ [Pricing](https://aws.amazon.com/eks/pricing/)
 - EKS (Elastic Kubernetes Service) is a new service (launched June 2018) that provides managed Kubernetes Masters in a Highly Available pair to deploy K8s Services and Pods on top of EC2 based Kubernetes nodes.
@@ -1616,7 +1590,6 @@ EKS
 Fargate
 -------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Fargate Basics
 -	📒 [Homepage](https://aws.amazon.com/fargate/) ∙ [FAQ](https://aws.amazon.com/fargate/faqs/) ∙ [Pricing](https://aws.amazon.com/fargate/pricing/)
 -   **Fargate** allows you to manage and deploy containers without having to worry about running the underlying compute infrastructure
@@ -1646,7 +1619,6 @@ Fargate
 Lambda
 ------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Lambda Basics
 
 -	📒 [Homepage](https://aws.amazon.com/lambda/) ∙ [Developer guide](http://docs.aws.amazon.com/lambda/latest/dg/) ∙ [FAQ](https://aws.amazon.com/lambda/faqs/) ∙ [Pricing](https://aws.amazon.com/lambda/pricing/)
@@ -1706,7 +1678,6 @@ Lambda
 API Gateway
 -----------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### API Gateway Basics
 
 -	📒 [Homepage](https://aws.amazon.com/api-gateway/) ∙ [Developer guide](http://docs.aws.amazon.com/apigateway/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/api-gateway/faqs/) ∙ [Pricing](https://aws.amazon.com/api-gateway/pricing/)
@@ -1755,7 +1726,6 @@ API Gateway
 Step Functions
 ------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Step Functions Basics
 -	📒 [Homepage](https://aws.amazon.com/step-functions/) ∙ [Developer guide](http://docs.aws.amazon.com/step-functions/latest/dg/welcome.html) ∙ [FAQ](https://aws.amazon.com/step-functions/faqs/) ∙ [Pricing](https://aws.amazon.com/step-functions/pricing/)
 -	**Step Functions** is AWS’ way to create state machines that manage a serverless workflow.
@@ -1782,7 +1752,6 @@ Step Functions
 Route 53
 --------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Route 53 Basics
 
 -	📒 [Homepage](https://aws.amazon.com/route53/) ∙ [Developer guide](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/) ∙ [FAQ](https://aws.amazon.com/route53/faqs/) ∙ [Pricing](https://aws.amazon.com/route53/pricing/)
@@ -1818,7 +1787,6 @@ Route 53
 CloudFormation
 --------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### CloudFormation Basics
 
 -	📒 [Homepage](https://aws.amazon.com/cloudformation/) ∙ [Developer guide](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/) ∙ [FAQ](https://aws.amazon.com/cloudformation/faqs/) ∙ [Pricing](https://aws.amazon.com/cloudformation/pricing/) at no additional charge
@@ -1882,7 +1850,6 @@ CloudFormation
 VPCs, Network Security, and Security Groups
 -------------------------------------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### VPC Basics
 
 -	📒 [Homepage](https://aws.amazon.com/vpc/) ∙ [User guide](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide) ∙ [FAQ](https://aws.amazon.com/vpc/faqs/) ∙ [Security groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html) ∙ [Pricing](https://aws.amazon.com/vpc/pricing/)
@@ -1936,7 +1903,6 @@ manually managing [NAT instances](https://docs.aws.amazon.com/AmazonVPC/latest/U
 KMS
 ---
 
-[Back to top :arrow_up:](#table-of-contents)
 ### KMS Basics
 
 -	📒 [Homepage](https://aws.amazon.com/kms/) ∙ [Developer guide](http://docs.aws.amazon.com/kms/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/kms/faqs/) ∙ [Pricing](https://aws.amazon.com/kms/pricing/)
@@ -1969,7 +1935,6 @@ KMS
 CloudFront
 ----------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### CloudFront Basics
 
 -	📒 [Homepage](https://aws.amazon.com/cloudfront/) ∙ [Developer guide](http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/) ∙ [FAQ](https://aws.amazon.com/cloudfront/faqs/) ∙ [Pricing](https://aws.amazon.com/cloudfront/pricing/)
@@ -2006,7 +1971,6 @@ CloudFront
 DirectConnect
 -------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### DirectConnect Basics
 
 -	📒 [Homepage](https://aws.amazon.com/directconnect/) ∙ [User guide](http://docs.aws.amazon.com/directconnect/latest/UserGuide/) ∙ [FAQ](https://aws.amazon.com/directconnect/faqs/) ∙ [Pricing](https://aws.amazon.com/directconnect/pricing/)
@@ -2024,7 +1988,6 @@ DirectConnect
 Redshift
 --------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Redshift Basics
 
 -	📒 [Homepage](https://aws.amazon.com/redshift/) ∙ [Developer guide](http://docs.aws.amazon.com/redshift/latest/dg/) ∙ [FAQ](https://aws.amazon.com/redshift/faqs/) ∙ [Pricing](https://aws.amazon.com/redshift/pricing/)
@@ -2074,7 +2037,6 @@ Redshift
 EMR
 ---
 
-[Back to top :arrow_up:](#table-of-contents)
 ### EMR Basics
 
 -	📒 [Homepage](https://aws.amazon.com/emr/) ∙ [Release guide](http://docs.aws.amazon.com/ElasticMapReduce/latest/ReleaseGuide/) ∙ [FAQ](https://aws.amazon.com/emr/faqs/) ∙ [Pricing](https://aws.amazon.com/emr/pricing/)
@@ -2102,7 +2064,6 @@ EMR
 Kinesis Streams
 ---
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Kinesis Streams Basics
 
 -	📒 [Homepage](https://aws.amazon.com/kinesis/streams/) ∙ [Developer guide](https://docs.aws.amazon.com/streams/latest/dev/introduction.html) ∙ [FAQ](https://aws.amazon.com/kinesis/streams/faqs/) ∙ [Pricing](https://aws.amazon.com/kinesis/streams/pricing/)
@@ -2146,7 +2107,6 @@ Kinesis Firehose
 Device Farm
 -----------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Device Farm Basics
 
 -	📒 [Homepage](https://aws.amazon.com/device-farm/) ∙ [Developer guide](http://docs.aws.amazon.com/devicefarm/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/device-farm/faq/) ∙ [Pricing](https://aws.amazon.com/device-farm/pricing/)
@@ -2175,7 +2135,6 @@ Device Farm
 Mobile Hub
 ----------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Mobile Hub Basics
 
 * 📒 [Homepage](https://aws.amazon.com/mobile/) ∙ [User guide](https://docs.aws.amazon.com/mobile-hub/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/mobile/faqs/) ∙ [Pricing](https://aws.amazon.com/mobile/pricing/)
@@ -2199,7 +2158,6 @@ Mobile Hub
 IoT
 ---
 
-[Back to top :arrow_up:](#table-of-contents)
 ### IoT Basics
 
 * 	📒 [Homepage](https://aws.amazon.com/iot/) ∙ [User guide](https://docs.aws.amazon.com/iot/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/iot/faqs/) ∙ [Pricing](https://aws.amazon.com/iot/pricing/)
@@ -2273,7 +2231,6 @@ IoT
 SES
 ---
 
-[Back to top :arrow_up:](#table-of-contents)
 ### SES Basics
 
 -	📒 [Homepage](https://aws.amazon.com/ses/) ∙ [Documentation](https://aws.amazon.com/documentation/ses/) ∙ [FAQ](https://aws.amazon.com/ses/faqs/) ∙ [Pricing](https://aws.amazon.com/ses/pricing/)
@@ -2293,7 +2250,6 @@ SES
 Certificate Manager
 -------------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Certificate Manager Basics
 
 - 📒 [Homepage](https://aws.amazon.com/certificate-manager/) ∙ [User guide](http://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html) ∙ [FAQ](https://aws.amazon.com/certificate-manager/faqs/) ∙ [Pricing](https://aws.amazon.com/certificate-manager/pricing/)
@@ -2329,7 +2285,6 @@ Certificate Manager
 WAF
 -------------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### WAF Basics
 
 -	📒 [Homepage](https://aws.amazon.com/waf/) ∙ [Documentation](https://aws.amazon.com/documentation/waf/) ∙ [FAQ](https://aws.amazon.com/waf/faq/) ∙ [Pricing](https://aws.amazon.com/waf/pricing)
@@ -2354,7 +2309,6 @@ WAF
 OpsWorks
 -------------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### OpsWorks Basics
 
 -	📒 [Homepage](https://aws.amazon.com/opsworks/) ∙ [Documentation](https://aws.amazon.com/documentation/opsworks/) ∙ [FAQ](https://aws.amazon.com/opsworks/faqs/) ∙ Pricing: [Stacks](https://aws.amazon.com/opsworks/stacks/pricing/), [Chef Automate](https://aws.amazon.com/opsworks/chefautomate/pricing/), [Puppet Enterprise](https://aws.amazon.com/opsworks/puppetenterprise/pricing/)
@@ -2406,7 +2360,6 @@ OpsWorks
 Batch
 -------------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Batch Basics
 
 -	📒 [Homepage](https://aws.amazon.com/batch/) ∙ [Documentation](https://aws.amazon.com/documentation/batch/) ∙ [FAQ](https://aws.amazon.com/batch/faqs/) ∙ [Pricing](https://aws.amazon.com/batch/pricing/)
@@ -2433,7 +2386,6 @@ Batch
 SQS
 -------------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### SQS Basics
 
 - 📒  [_Homepage_](https://aws.amazon.com/sqs/) ∙ [_Documentation_](https://aws.amazon.com/documentation/sqs/) ∙ [_FAQ_](https://aws.amazon.com/sqs/faqs/) ∙ [_Pricing_ ](https://aws.amazon.com/sqs/pricing/)
@@ -2479,7 +2431,6 @@ SQS
 SNS
 ---------------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### SNS Basics
 
 - 📒  [_Homepage_](https://aws.amazon.com/sns/) ∙ [_Documentation_](https://aws.amazon.com/documentation/sns/) ∙ [_FAQ_](https://aws.amazon.com/sns/faqs/) ∙ [_Pricing_](https://aws.amazon.com/sns/pricing/)
@@ -2524,7 +2475,6 @@ This section covers tips and information on achieving [high availability](https:
 
 
 
-[Back to top :arrow_up:](#table-of-contents)
 ### High Availability Tips
 
 -	AWS offers two levels of redundancy, [regions and availability zones (AZs)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-regions-availability-zones).
@@ -2552,7 +2502,6 @@ This section covers tips and information on achieving [high availability](https:
 Billing and Cost Management
 ---------------------------
 
-[Back to top :arrow_up:](#table-of-contents)
 ### Billing and Cost Visibility
 
 -	AWS offers a [**free tier**](https://aws.amazon.com/free/) of service, that allows very limited usage of resources at no cost. For example, a micro instance and small amount of storage is available for no charge. Many services are only eligible for the free tier for the first twelve months that an account exists, but other services offer a free usage tier indefinitely. (If you have an old account but starting fresh, sign up for a new one to qualify for the free tier.) [AWS Activate](https://aws.amazon.com/activate/) extends this to tens of thousands of dollars of free credits to startups in [certain funds or accelerators](https://aws.amazon.com/activate/portfolio-detail/).
