@@ -1407,7 +1407,7 @@ ElastiCache
   you may use in your application.
 - For Memcached AWS provides enhanced SDKs for certain programming languages
   which implement
-  [auto-discovery](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/AutoDiscovery.html),
+  [auto-discovery](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/AutoDiscovery.html),
   a feature not available in the normal memcached client libraries.
 
 ### ElastiCache Gotchas and Limitations
