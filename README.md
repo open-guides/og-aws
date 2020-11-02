@@ -1395,7 +1395,7 @@ ElastiCache
 ### ElastiCache Tips
 
 - Choose the
-  [engine](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/SelectEngine.html),
+  [engine](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/SelectEngine.html),
   clustering configuration and [instance
   type](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheNodes.SelectSize.html)
   carefully based on your application needs. The documentation explains in
