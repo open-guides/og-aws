@@ -1,0 +1,18 @@
+name: link-checker
+
+on: pull_request
+
+jobs:
+    check:
+        runs-on: ubuntu-latest
+
+        steps:
+        - uses: actions/checkout@v2
+        - name: Set up Ruby 2.7
+        uses: actions/setup-ruby@v1
+        with:
+            ruby-version: 2.7
+        - name: Check project links
+        run: |
+            gem install awesome_bot
+            awesome_bot README.md --allow-redirect --allow-dupe --allow 429 -w .amazonaws.com,news.ycombinator.com,swagger.io
