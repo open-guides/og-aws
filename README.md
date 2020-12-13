@@ -634,7 +634,7 @@ We cover security basics first, since configuring user accounts is something you
 	1. Explicit deny: The most restrictive policy wins.
 	2. Explicit allow: Access permissions to any resource has to be explicitly given.
 	3. Implicit deny: All permissions are implicitly denied by default.
--	You can test policy permissions via the AWS IAM [policy simulator tool tool](https://policysim.aws.amazon.com/home/index.jsp). This is particularly useful if you write custom policies.
+-	You can test policy permissions via the AWS IAM [policy simulator tool](https://policysim.aws.amazon.com/home/index.jsp). This is particularly useful if you write custom policies.
 
 
 ### Security and IAM Tips
