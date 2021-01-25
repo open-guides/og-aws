@@ -1724,6 +1724,7 @@ API Gateway
 	-	Alternatively, by using the [Serverless Application Model](https://github.com/awslabs/serverless-application-model) definition for an API Gateway resource, you can always expect the API to be deployed on a stack update since SAM will generate a new deployment every time.
 - 🔸API Gateway does not support nested query parameters on method requests.
 - 🔸API Gateway limits number of resources to 300, as described [here](http://docs.aws.amazon.com/apigateway/latest/developerguide/limits.html#api-gateway-limits). This is something to be considered when you start using API Gateway as a platform where your team/organization deploys to the same API Gateway.
+- 🔸API Gateway WebSocket Apis support Api Key Authorization via the `X-Api-Key` header (see the [docs](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-websocket-api-selection-expressions.html#apigateway-websocket-api-apikey-selection-expressions)), but the browser WebSocket clients do not support setting custom headers (there is no method to do so in the [HTML Standard](https://html.spec.whatwg.org/multipage/web-sockets.html#network)).
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
