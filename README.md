@@ -1096,7 +1096,7 @@ EFS
 [Back to top :arrow_up:](#table-of-contents)
 ### EFS Gotchas and Limitations
 
--	🔸 A number of NFSv4.1 features are [not supported](http://docs.aws.amazon.com/efs/latest/ug/nfs4-unsupported-features.html) and there are some [limits](http://docs.aws.amazon.com/efs/latest/ug/limits.html) to the service.
+-	🔸 A number of NFSv4.1 features are [not supported](https://docs.aws.amazon.com/efs/latest/ug/limits.html#nfs4-unsupported-features) and there are some [limits](http://docs.aws.amazon.com/efs/latest/ug/limits.html) to the service.
 -	🔸 As of 2017-08, EFS offers disk level encryption for new drives. For file systems created before that date, encryption can only be achieved by moving the data to a new EFS volume.
 -	🔸 An EFS file system [can be mounted on premises](https://aws.amazon.com/efs/faq/#on-premises) over Direct Connect.
 -	🔸 An EFS file system can NOT be mounted over VPC peering or VPN, even if the VPN is running on top of Direct Connect.
