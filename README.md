@@ -1562,7 +1562,7 @@ EKS
 - See the [Containers and AWS](#containers-and-aws) section for more context on containers.
 - EKS is AWS's solution to hosting Kubernetes natively on AWS. It is not a replacement for ECS directly but is in response to the large market dominance of Kubernetes.
 - EKS does not launch EC2 nodes and would have to be configured and setup either manually or via Cloudformation (or other automation solution)
-- EKS management is done through a utility called kubectl, and with Kube configuration files. These files will need to be configured to speak with the K8s Master with a certificate and URL. The AWS CLI can autogenerate the configuration file that kubect requires for communicating with the cluster.<sup>[1](#user-content-eks-aws-cli-create-kubeconfig)</sup>
+- EKS management is done through a utility called kubectl, and with Kube configuration files. These files will need to be configured to speak with the K8s Master with a certificate and URL. The AWS CLI can autogenerate the configuration file that kubectl requires for communicating with the cluster.<sup>[1](#user-content-eks-aws-cli-create-kubeconfig)</sup>
 - EKS authentication is integrated with IAM roles/permissions. The AWS CLI has an integrated sub-command for generating authentication tokens.<sup>[2](#user-content-eks-aws-cli-get-token)</sup> This was formerly done via a custom plugin for kubectl called [aws-iam-authenticator](https://github.com/kubernetes-sigs/aws-iam-authenticator) (formerly heptio-authenticator-aws).
 - EKS provides [Calico](https://docs.aws.amazon.com/eks/latest/userguide/calico.html) from Tigera for securing workloads within a cluster using Kubernetes network policy.
 
