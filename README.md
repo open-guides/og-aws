@@ -485,7 +485,6 @@ Learning and Career Development
   - [Certified Big Data – Specialty](https://aws.amazon.com/certification/certified-big-data-specialty/)
   - [Certified Advanced Networking – Specialty](https://aws.amazon.com/certification/certified-advanced-networking-specialty/)
   - [Certified Machine Learning – Specialty](https://aws.amazon.com/certification/certified-machine-learning-specialty/)
-  - [Certified Alexa Skill Builder – Specialty](https://aws.amazon.com/certification/certified-alexa-skill-builder-specialty/)
   - [Certified Data Analytics – Specialty](https://aws.amazon.com/certification/certified-data-analytics-specialty/)
   - [Certified Database – Specialty](https://aws.amazon.com/certification/certified-database-specialty/)
 
