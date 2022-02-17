@@ -1250,6 +1250,7 @@ Elastic IPs
 ### Elastic IP Gotchas and Limitations
 
 -	🔸There is [officially no way](https://forums.aws.amazon.com/thread.jspa?threadID=171550) to allocate a contiguous block of IP addresses, something you may desire when giving IPs to external users. Though when allocating at once, you may get lucky and have some be part of the same CIDR block. If this is important to you, you may want to [bring your own IP](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html), which is more involved than this guide will go into.
+-	Unofficially, if you have Enterprise support, you can ask your account rep to try to allocate a block of Elastic IPs with a business justification. For example, some of [Duo's fixed ranges](https://help.duo.com/s/article/1337?language=en_US) are [blocks of AWS IP space reassigned to `AWS-DUOSECURITYINC`](https://search.arin.net/rdap/?query=54.241.191.128). This is a best effort request, expect a denial. 
 
 Glacier
 -------
