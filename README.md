@@ -1674,6 +1674,7 @@ Lambda
 -	This [Lambda ECS Worker Pattern](https://github.com/awslabs/lambda-ecs-worker-pattern) shows use of Lambda in a workflow where data from S3 is picked up by the Lambda, pushed to a queue, then sent to ECS for more processing.
 -	The [Secure Pet Store](https://github.com/awslabs/api-gateway-secure-pet-store) is a sample Java application which uses Lambda and API Gateway with Cognito (for user identity).
 -	[aws-lambda-list](https://github.com/unixorn/aws-lambda-list) is a list of "hopefully useful AWS lambdas and lambda-related resources". Quite a few code samples here; as usual, not guaranteed tested. Caveat Emptor.
+-	[How to Manage AWS Lambda Functions with Terraform](https://spacelift.io/blog/terraform-aws-lambda)
 
 🚧 [*Please help expand this incomplete section.*](CONTRIBUTING.md)
 
