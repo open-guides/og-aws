@@ -566,6 +566,7 @@ So if you’re not going to manage your AWS configurations manually, what should
 	-	🔹In 2017, AWS introduced the ability to [enforce tagging](https://aws.amazon.com/blogs/aws/new-tag-ec2-instances-ebs-volumes-on-creation/) on instance and volume creation, deprecating portions of third party tools such as [Cloud Custodian](https://github.com/capitalone/cloud-custodian).
 	-	🔸 Tags are case sensitive; 'environment' and 'Environment' are two different tags. Automation in setting tags is likely the only sensible option at significant scale.
 	-	🔸 There is a bug in the ASG console where spaces after tag names are preserved. So if you type "Name " with a space at the end you will not get the expected behavior. This is probably true in other locations and SDKs also. Be sure you do not add trailing spaces to tag keys unless you really mean it. (As of Jul 2018)
+	-	🔸 When resources are shared across the org, tags are not shared with it. For example, sharing Transit Gateway or AMIs will show the correct tags in the account that created these resources but not in the accounts where these resources were shared.
 
 Managing Servers and Applications
 ---------------------------------
