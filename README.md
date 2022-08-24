@@ -1589,6 +1589,7 @@ EKS
 ### EKS Alternatives and Lock-in
 - [ECS](#ecs): Amazon's native Container Scheduled platform released in 2014.  If you don't utilise containers today and are looking to get started, ECS is an excellent product.
 -	[Kubernetes](https://kubernetes.io): Extensive container platform. Available as a hosted solution on [Google Cloud](https://cloud.google.com/container-engine/), [AWS](https://aws.amazon.com/eks/), [Digital Ocean](https://www.digitalocean.com/products/kubernetes/) and [Azure](https://azure.microsoft.com/en-us/services/kubernetes-service/).
+-	[OpenShift](https://www.openshift.com/) / [OpenShift Kubernetes Distribution](https://www.okd.io/): Extension of Kubernetes. Available as a on-prem and hosted solution on [Google Cloud](https://cloud.google.com/solutions/partners/openshift-on-gcp), [AWS](https://www.openshift.com/products/amazon-openshift/faq), and [Azure](https://azure.microsoft.com/en-us/services/openshift/).
 -	[Nomad](https://www.nomadproject.io/): Orchestrator/Scheduler, tightly integrated in the HashiCorp stack (Consul, Vault, etc).
 
 [Back to top :arrow_up:](#table-of-contents)
