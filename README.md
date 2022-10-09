@@ -153,7 +153,7 @@ General Information
 	-	In general, “[cloud computing](https://en.wikipedia.org/wiki/Cloud_computing)” can refer to one of three types of cloud: “public,” “private,” and “hybrid.” AWS is a public cloud provider, since anyone can use it. Private clouds are within a single (usually large) organization. Many companies use a hybrid of private and public clouds.
 	-	The core features of AWS are [infrastructure-as-a-service](https://en.wikipedia.org/wiki/Cloud_computing#Infrastructure_as_a_service_.28IaaS.29) (IaaS) — that is, virtual machines and supporting infrastructure. Other cloud service models include [platform-as-a-service](https://en.wikipedia.org/wiki/Cloud_computing#Platform_as_a_service_.28PaaS.29) (PaaS), which typically are more fully managed services that deploy customers’ applications, or [software-as-a-service](https://en.wikipedia.org/wiki/Cloud_computing#Software_as_a_service_.28SaaS.29) (SaaS), which are cloud-based applications. AWS does offer a few products that fit into these other models, too.
 	-	In business terms, with infrastructure-as-a-service you have a variable cost model — it is [OpEx, not CapEx](http://www.investopedia.com/ask/answers/020915/what-difference-between-capex-and-opex.asp) (though some [pre-purchased contracts](https://aws.amazon.com/ec2/purchasing-options/reserved-instances/) are still CapEx).
-  - AWS’s TTM revenue was [**$37.549 billion**](https://ir.aboutamazon.com/news-release/news-release-details/2020/Amazoncom-Announces-First-Quarter/default.aspx) as of Q1 2020 according to their earnings results (slide 14 in the linked deck), or roughly **14%** of Amazon.com’s total revenue (slide 11 in the same deck) for the same TTM period.
+- AWS’s TTM revenue was [**$37.549 billion**](https://ir.aboutamazon.com/news-release/news-release-details/2020/Amazoncom-Announces-First-Quarter/default.aspx) as of Q1 2020 according to their earnings results (slide 14 in the linked deck), or roughly **14%** of Amazon.com’s total revenue (slide 11 in the same deck) for the same TTM period.
 -	**Main reasons to use AWS:**
 	-	If your company is building systems or products that may need to scale
 	-	and you have technical know-how
@@ -476,17 +476,17 @@ Learning and Career Development
 ### Certifications
 
 -	**Certifications:** AWS offers [**certifications**](https://aws.amazon.com/certification/) for IT professionals who want to demonstrate their knowledge.
-  -	[Certified Cloud Practitioner](https://aws.amazon.com/certification/certified-cloud-practitioner/)
-  -	[Certified Solutions Architect Associate](https://aws.amazon.com/certification/certified-solutions-architect-associate/)
-  -	[Certified Developer Associate](https://aws.amazon.com/certification/certified-developer-associate/)
-  -	[Certified SysOps Administrator Associate](https://aws.amazon.com/certification/certified-sysops-admin-associate/)
-  -	[Certified Solutions Architect Professional](https://aws.amazon.com/certification/certified-solutions-architect-professional/)
-  -	[Certified DevOps Engineer Professional](https://aws.amazon.com/certification/certified-devops-engineer-professional/)
-  - [Certified Security – Specialty](https://aws.amazon.com/certification/certified-security-specialty/)
-  - [Certified Advanced Networking – Specialty](https://aws.amazon.com/certification/certified-advanced-networking-specialty/)
-  - [Certified Machine Learning – Specialty](https://aws.amazon.com/certification/certified-machine-learning-specialty/)
-  - [Certified Data Analytics – Specialty](https://aws.amazon.com/certification/certified-data-analytics-specialty/)
-  - [Certified Database – Specialty](https://aws.amazon.com/certification/certified-database-specialty/)
+-	[Certified Cloud Practitioner](https://aws.amazon.com/certification/certified-cloud-practitioner/)
+-	[Certified Solutions Architect Associate](https://aws.amazon.com/certification/certified-solutions-architect-associate/)
+-	[Certified Developer Associate](https://aws.amazon.com/certification/certified-developer-associate/)
+-	[Certified SysOps Administrator Associate](https://aws.amazon.com/certification/certified-sysops-admin-associate/)
+-	[Certified Solutions Architect Professional](https://aws.amazon.com/certification/certified-solutions-architect-professional/)
+-	[Certified DevOps Engineer Professional](https://aws.amazon.com/certification/certified-devops-engineer-professional/)
+- [Certified Security – Specialty](https://aws.amazon.com/certification/certified-security-specialty/)
+- [Certified Advanced Networking – Specialty](https://aws.amazon.com/certification/certified-advanced-networking-specialty/)
+- [Certified Machine Learning – Specialty](https://aws.amazon.com/certification/certified-machine-learning-specialty/)
+- [Certified Data Analytics – Specialty](https://aws.amazon.com/certification/certified-data-analytics-specialty/)
+- [Certified Database – Specialty](https://aws.amazon.com/certification/certified-database-specialty/)
 
 Associate level certifications were once required as pre-requisites to taking the Professional examinations - this is no longer the case.
 
@@ -663,7 +663,7 @@ We cover security basics first, since configuring user accounts is something you
 	-	Unfortunately it can’t be enforced in software, so an administrative policy has to be established.
 	-	Most users can use the Google Authenticator app (on [iOS](https://itunes.apple.com/us/app/google-authenticator/id388497605) or [Android](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)) to support two-factor authentication. For the root account, consider a hardware fob.
 - ❗Restrict use of significant IAM credentials as much as possible. Remember that in the cloud, loss of a highly capable IAM credential could essentially mean “game over,” for your deployment, your users, or your whole company.
-  -	**Do NOT use the [Root User account](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html)** other than when you initially create your account.  Create custom IAM users and/or roles and use those for your applications instead.
+-	**Do NOT use the [Root User account](http://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html)** other than when you initially create your account.  Create custom IAM users and/or roles and use those for your applications instead.
 	- Lock up access and use of the root credentials as much as possible. Ideally they should be effectively “offline.” For critical deployments, this means attached to an actual MFA device, physically secured and rarely used.
 -	❗**Turn on CloudTrail:** One of the first things you should do is [enable CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-create-a-trail-using-the-console-first-time.html). Even if you are not a security hawk, there is little reason not to do this from the beginning, so you have data on what has been happening in your AWS account should you need that information. You’ll likely also want to set up a [log management service](#visibility) to search and access these logs.
 -	🔹**Use IAM roles for EC2:** Rather than assign IAM users to applications like services and then sharing the sensitive credentials, [define and assign roles to EC2 instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html) and have applications retrieve credentials from the [instance metadata](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html).
@@ -720,24 +720,24 @@ S3
 
 -	For most practical purposes, you can consider S3 capacity unlimited, both in total size of files and number of objects. The number of objects in a bucket is essentially also unlimited. Customers routinely have millions of objects.
 -   ❗**Permissions:**
-    -   🔸If you're storing business data on Amazon S3, it’s important to manage permissions sensibly. In 2017 companies like [Dow Jones and Verizon](http://www.techrepublic.com/article/massive-amazon-s3-breaches-highlight-blind-spots-in-enterprise-race-to-the-cloud/) saw data breaches due to poorly-chosen S3 configuration for sensitive data. Fixing this later can be a difficult task if you have a lot of assets and internal users.
-    -   🔸There are 3 different ways to grant permissions to access Amazon S3 content in your buckets.
-        + **IAM policies** use the familiar [Identity and Access Management](#security-and-iam) permission scheme to control access to specific operations.
-        + **Bucket policies** grant or deny permissions to an entire bucket. You might use this when hosting a website in S3, to make the bucket publicly readable, or to restrict access to a bucket by IP address. Amazon's [sample bucket policies](http://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html) show a number of use cases where these policies come in handy.
-        + **[Access Control Lists](http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html)** (ACLs) can also be applied to every bucket and object stored in S3. ACLs grant additional permissions beyond those specified in IAM or bucket policies. ACLs can be used to grant access to another AWS user, or to predefined groups like the general public. This is powerful but can be dangerous, because you need to inspect every object to see who has access.
-    -   🔸AWS' [predefined access control groups](http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#specifying-grantee-predefined-groups) allow access that may not be what you'd expect from their names:
-        +   **"All Users", or "Everyone", grants permission to the general public**, not only to users defined in your own AWS account. If an object is available to All Users, then it can be retrieved with a simple HTTP request of the form `http://s3.amazonaws.com/bucket-name/filename`. No authorization or signature is required to access data in this category.
-        +   **"Authenticated Users" grants permissions to anyone with an AWS account**, again not limited to your own users. Because anyone can sign up for AWS, for all intents and purposes **this is also open to the general public**.
-        +   **"Log Delivery" group is used by AWS to write logs to buckets** and should be safe to enable on the buckets that need it.
-        +   A typical use case of this ACL is used in conjunction with the [requester pays](http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html) functionality of S3.
-    -   ❗ Bucket permissions and object permissions are two different things and independent of each other. A private object in a public bucket can be seen when listing the bucket, but not downloaded. At the same time, a public object in a private bucket won't be seen because the bucket contents can't be listed, but can still be downloaded by anyone who knows its exact key. Users that don't have access to set bucket permissions can still make objects public if they have `s3:PutObjectAcl` or `s3:PutObjectVersionAcl` [permissions](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html).
-    -   🐥In August 2017, AWS added [AWS Config rules to ensure your S3 buckets are secure](https://aws.amazon.com/blogs/aws/aws-config-update-new-managed-rules-to-secure-s3-buckets/).
-        +    ❗These AWS Config rules only check the security of your bucket policy and bucket-level ACLs. You can still create object ACLs that grant additional permissions, including opening files to the whole world.
-    -   🔹Do create new buckets if you have different types of data with different sensitivity levels. This is much less error prone than complex permissions rules. For example, if data is for administrators only, like log data, put it in a new bucket that only administrators can access.
-    -   For more guidance, see:
-        +   [How to Secure an Amazon S3 Bucket](https://read.acloud.guru/how-to-secure-an-s3-bucket-7e2dbd34e81b)
-        +   [Deep dive into S3 access controls](https://labs.detectify.com/2017/07/13/a-deep-dive-into-aws-s3-access-controls-taking-full-control-over-your-assets/).
-        +   [How do S3 permissions work?](https://brandonwamboldt.ca/understanding-s3-permissions-1662/).
+  -   🔸If you're storing business data on Amazon S3, it’s important to manage permissions sensibly. In 2017 companies like [Dow Jones and Verizon](http://www.techrepublic.com/article/massive-amazon-s3-breaches-highlight-blind-spots-in-enterprise-race-to-the-cloud/) saw data breaches due to poorly-chosen S3 configuration for sensitive data. Fixing this later can be a difficult task if you have a lot of assets and internal users.
+  -   🔸There are 3 different ways to grant permissions to access Amazon S3 content in your buckets.
+      + **IAM policies** use the familiar [Identity and Access Management](#security-and-iam) permission scheme to control access to specific operations.
+      + **Bucket policies** grant or deny permissions to an entire bucket. You might use this when hosting a website in S3, to make the bucket publicly readable, or to restrict access to a bucket by IP address. Amazon's [sample bucket policies](http://docs.aws.amazon.com/AmazonS3/latest/dev/example-bucket-policies.html) show a number of use cases where these policies come in handy.
+      + **[Access Control Lists](http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html)** (ACLs) can also be applied to every bucket and object stored in S3. ACLs grant additional permissions beyond those specified in IAM or bucket policies. ACLs can be used to grant access to another AWS user, or to predefined groups like the general public. This is powerful but can be dangerous, because you need to inspect every object to see who has access.
+  -   🔸AWS' [predefined access control groups](http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#specifying-grantee-predefined-groups) allow access that may not be what you'd expect from their names:
+      +   **"All Users", or "Everyone", grants permission to the general public**, not only to users defined in your own AWS account. If an object is available to All Users, then it can be retrieved with a simple HTTP request of the form `http://s3.amazonaws.com/bucket-name/filename`. No authorization or signature is required to access data in this category.
+      +   **"Authenticated Users" grants permissions to anyone with an AWS account**, again not limited to your own users. Because anyone can sign up for AWS, for all intents and purposes **this is also open to the general public**.
+      +   **"Log Delivery" group is used by AWS to write logs to buckets** and should be safe to enable on the buckets that need it.
+      +   A typical use case of this ACL is used in conjunction with the [requester pays](http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html) functionality of S3.
+  -   ❗ Bucket permissions and object permissions are two different things and independent of each other. A private object in a public bucket can be seen when listing the bucket, but not downloaded. At the same time, a public object in a private bucket won't be seen because the bucket contents can't be listed, but can still be downloaded by anyone who knows its exact key. Users that don't have access to set bucket permissions can still make objects public if they have `s3:PutObjectAcl` or `s3:PutObjectVersionAcl` [permissions](http://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html).
+  -   🐥In August 2017, AWS added [AWS Config rules to ensure your S3 buckets are secure](https://aws.amazon.com/blogs/aws/aws-config-update-new-managed-rules-to-secure-s3-buckets/).
+      +    ❗These AWS Config rules only check the security of your bucket policy and bucket-level ACLs. You can still create object ACLs that grant additional permissions, including opening files to the whole world.
+  -   🔹Do create new buckets if you have different types of data with different sensitivity levels. This is much less error prone than complex permissions rules. For example, if data is for administrators only, like log data, put it in a new bucket that only administrators can access.
+  -   For more guidance, see:
+      +   [How to Secure an Amazon S3 Bucket](https://read.acloud.guru/how-to-secure-an-s3-bucket-7e2dbd34e81b)
+      +   [Deep dive into S3 access controls](https://labs.detectify.com/2017/07/13/a-deep-dive-into-aws-s3-access-controls-taking-full-control-over-your-assets/).
+      +   [How do S3 permissions work?](https://brandonwamboldt.ca/understanding-s3-permissions-1662/).
 -	**Bucket naming:** Buckets are chosen from a global namespace (across all regions, even though S3 itself stores data in [whichever S3 region](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) you select), so you’ll find many bucket names are already taken. Creating a bucket means taking ownership of the name until you delete it. Bucket names have [a few restrictions](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) on them.
 	-	Bucket names can be used as part of the hostname when accessing the bucket or its contents, like `<bucket_name>.s3-us-east-1.amazonaws.com`, as long as the name is [DNS compliant](http://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html).
 	-	A common practice is to use the company name acronym or abbreviation to prefix (or suffix, if you prefer DNS-style hierarchy) all bucket names (but please, don’t use a check on this as a security measure — this is highly insecure and easily circumvented!).
@@ -871,7 +871,7 @@ EC2
 	-	Selecting instance types is complex since there are so many types. Additionally there are different generations, released [over the years](https://aws.amazon.com/blogs/aws/ec2-instance-history/).
 	-	🔹Use the list at [**ec2instances.info**](http://www.ec2instances.info/) to review costs and features. [Amazon’s own list](https://aws.amazon.com/ec2/instance-types/) of instance types is hard to use, and doesn’t list features and price together, which makes it doubly difficult.
 	-	Prices vary a lot, so use [**ec2instances.info**](http://www.ec2instances.info/) to determine the set of machines that meet your needs and [**ec2price.com**](http://ec2price.com/) to find the cheapest type in the region you’re working in. Depending on the timing and region, it might be much cheaper to rent an instance with *more* memory or CPU than the bare minimum.
-  - **Turn off** your instances when they aren’t in use. For many situations such as testing or staging resources, you may not need your instances on 24/7, and you won’t need to pay EC2 running costs when they are suspended. Given that costs are calculated based on usage, this is a simple mechanism for cost savings. This can be achieved using [Lambda and CloudWatch](https://aws.amazon.com/premiumsupport/knowledge-center/start-stop-lambda-cloudwatch/), deploying the [Instance Scheduler](https://aws.amazon.com/solutions/implementations/instance-scheduler/) solution, an open source option like [cloudcycler](https://github.com/fairfaxmedia/cloudcycler), or a SaaS provider like [GorillaStack](https://www.gorillastack.com). (Note: if you turn off instances with an ephemeral root volume, any state will be lost when the instance is turned off. Therefore, for stateful applications it is safer to turn off EBS backed instances).
+- **Turn off** your instances when they aren’t in use. For many situations such as testing or staging resources, you may not need your instances on 24/7, and you won’t need to pay EC2 running costs when they are suspended. Given that costs are calculated based on usage, this is a simple mechanism for cost savings. This can be achieved using [Lambda and CloudWatch](https://aws.amazon.com/premiumsupport/knowledge-center/start-stop-lambda-cloudwatch/), deploying the [Instance Scheduler](https://aws.amazon.com/solutions/implementations/instance-scheduler/) solution, an open source option like [cloudcycler](https://github.com/fairfaxmedia/cloudcycler), or a SaaS provider like [GorillaStack](https://www.gorillastack.com). (Note: if you turn off instances with an ephemeral root volume, any state will be lost when the instance is turned off. Therefore, for stateful applications it is safer to turn off EBS backed instances).
 -	[**Dedicated instances**](https://aws.amazon.com/ec2/purchasing-options/dedicated-instances/) and [**dedicated hosts**](https://aws.amazon.com/ec2/dedicated-hosts/) are assigned hardware, instead of usual virtual instances. They are more expensive than virtual instances but [can be preferable](https://aws.amazon.com/ec2/dedicated-hosts/) for performance, compliance, financial modeling, or licensing reasons.
 -	**32 bit vs 64 bit:** A few micro, small, and medium instances are still available to use as 32-bit architecture. You’ll be using 64-bit EC2 (“amd64”) instances nowadays, though smaller instances still support 32 bit (“i386”). Use 64 bit unless you have legacy constraints or other good reasons to use 32.
 -	**HVM vs PV:** There are two kinds of virtualization technology used by EC2, [hardware virtual machine (HVM) and paravirtual (PV)](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/virtualization_types.html). Historically, PV was the usual type, but [now HVM is becoming the standard](https://www.opswat.com/blog/aws-2015-why-you-need-switch-pv-hvm). If you want to use the newest instance types, you must use HVM. See the [instance type matrix](https://aws.amazon.com/amazon-linux-ami/instance-type-matrix/) for details.
@@ -903,8 +903,8 @@ EC2
 -	🔸For all [newer instance types](https://aws.amazon.com/amazon-linux-ami/instance-type-matrix/), when selecting the AMI to use, be sure you select the HVM AMI, or it just won’t work.
 -	❗When creating an instance and using a new ssh key pair, [make sure the ssh key permissions are correct](http://stackoverflow.com/questions/1454629/aws-ssh-access-permission-denied-publickey-issue).
 -	🔸Sometimes certain EC2 instances can get scheduled for retirement by AWS due to “detected degradation of the underlying hardware,” in which case you are given a couple of weeks to migrate to a new instance
- 	-	If your instance root device is an EBS volume, you can typically stop and then start the instance which moves it to healthy host hardware, giving you control over timing of this event. Note however that you will lose any instance store volume data ([ephemeral drives](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html)) if your instance type has instance store volumes.
- 	-	The instance public IP (if it has one) will likely change unless you're using Elastic IPs. This could be a problem if other systems depend on the IP address.
+	-	If your instance root device is an EBS volume, you can typically stop and then start the instance which moves it to healthy host hardware, giving you control over timing of this event. Note however that you will lose any instance store volume data ([ephemeral drives](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html)) if your instance type has instance store volumes.
+	-	The instance public IP (if it has one) will likely change unless you're using Elastic IPs. This could be a problem if other systems depend on the IP address.
 -	🔸Periodically you may find that your server or load balancer is receiving traffic for (presumably) a previous EC2 server that was running at the same IP address that you are handed out now (this may not matter, or it can be fixed by migrating to another new instance).
 -	❗If the EC2 API itself is a critical dependency of your infrastructure (e.g. for automated server replacement, custom scaling algorithms, etc.) and you are running at a large scale or making many EC2 API calls, make sure that you understand when they might fail (calls to it are [rate limited](http://docs.aws.amazon.com/AWSEC2/latest/APIReference/query-api-troubleshooting.html#api-request-rate) and the limits are not published and subject to change) and code and test against that possibility.
 -	❗Many newer EC2 instance types are either EBS-only, or backed by local NVMe disks assigned to the instance. Make sure to factor in EBS performance and costs when planning to use them.
@@ -926,20 +926,20 @@ CloudWatch
 * 📒  [Homepage](https://aws.amazon.com/cloudwatch/) ∙ [Documentation](https://aws.amazon.com/documentation/cloudwatch/) ∙ [FAQ](https://aws.amazon.com/cloudwatch/faqs/) ∙ [Pricing](https://aws.amazon.com/cloudwatch/pricing/)
 * **CloudWatch** monitors resources and applications, captures logs, and sends events.
 * CloudWatch monitoring is the standard mechanism for keeping tabs on AWS resources. A wide range of  [**metrics and dimensions**](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CW_Support_For_AWS.html) are available via CloudWatch, allowing you to create time based graphs, **[alarms](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html)**, and **[dashboards](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Dashboards.html)**.
-    * Alarms are the most practical use of CloudWatch, allowing you to trigger notifications from any given metric.
-    * Alarms can trigger [SNS notifications](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ConsoleAlarms.html), [Auto Scaling actions](http://docs.aws.amazon.com/autoscaling/latest/userguide/policy_creating.html), or [EC2 actions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingAlarmActions.html).
-    * Alarms also support [alerting when any M out of N datapoints cross the alarm threshold](https://aws.amazon.com/about-aws/whats-new/2017/12/amazon-cloudwatch-alarms-now-alerts-you-when-any-m-out-of-n-metric-datapoints-in-an-interval-are-above-your-threshold/).
-    * Publish and share graphs of metrics by creating [customizable dashboard views](https://aws.amazon.com/blogs/aws/cloudwatch-dashboards-create-use-customized-metrics-views/).
+  * Alarms are the most practical use of CloudWatch, allowing you to trigger notifications from any given metric.
+  * Alarms can trigger [SNS notifications](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ConsoleAlarms.html), [Auto Scaling actions](http://docs.aws.amazon.com/autoscaling/latest/userguide/policy_creating.html), or [EC2 actions](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/UsingAlarmActions.html).
+  * Alarms also support [alerting when any M out of N datapoints cross the alarm threshold](https://aws.amazon.com/about-aws/whats-new/2017/12/amazon-cloudwatch-alarms-now-alerts-you-when-any-m-out-of-n-metric-datapoints-in-an-interval-are-above-your-threshold/).
+  * Publish and share graphs of metrics by creating [customizable dashboard views](https://aws.amazon.com/blogs/aws/cloudwatch-dashboards-create-use-customized-metrics-views/).
 		* Monitor and report on EC2 [instance system check failure alarms](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html#creating_status_check_alarms).
 * **Using CloudWatch Events:**
-    * Events create a mechanism to automate actions in various services on AWS. You can create [event rules](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/EventTypes.html) from instance states, AWS APIs, Auto Scaling, Run commands, deployments or time-based schedules (think Cron).
-    * [Triggered events](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CWE_GettingStarted.html) can invoke Lambda functions, send SNS/SQS/Kinesis messages, or perform instance actions (terminate, restart, stop, or snapshot volumes).
-    * Custom payloads can be sent to targets in JSON format, this is especially useful when triggering Lambdas.
+  * Events create a mechanism to automate actions in various services on AWS. You can create [event rules](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/EventTypes.html) from instance states, AWS APIs, Auto Scaling, Run commands, deployments or time-based schedules (think Cron).
+  * [Triggered events](http://docs.aws.amazon.com/AmazonCloudWatch/latest/events/CWE_GettingStarted.html) can invoke Lambda functions, send SNS/SQS/Kinesis messages, or perform instance actions (terminate, restart, stop, or snapshot volumes).
+  * Custom payloads can be sent to targets in JSON format, this is especially useful when triggering Lambdas.
 * **Using CloudWatch Logs:**
-    * [CloudWatch Logs](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) is a streaming log storage system. By storing logs within AWS you have access to unlimited paid storage, but you also have the option of streaming logs directly to ElasticSearch or custom Lambdas.
-    * A [log agent installed](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_GettingStarted.html) on your servers will process logs over time and send them to CloudWatch Logs.
-    * You can [export logged data to S3](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/S3Export.html) or stream results to other AWS services.
-    * CloudWatch Logs can be [encrypted using keys managed through KMS](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html).
+  * [CloudWatch Logs](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/WhatIsCloudWatchLogs.html) is a streaming log storage system. By storing logs within AWS you have access to unlimited paid storage, but you also have the option of streaming logs directly to ElasticSearch or custom Lambdas.
+  * A [log agent installed](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_GettingStarted.html) on your servers will process logs over time and send them to CloudWatch Logs.
+  * You can [export logged data to S3](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/S3Export.html) or stream results to other AWS services.
+  * CloudWatch Logs can be [encrypted using keys managed through KMS](http://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/encrypt-log-data-kms.html).
 * **Detailed monitoring:** [Detailed monitoring](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-cloudwatch-new.html) for EC2 instances must be enabled to get granular metrics, and is [billed under CloudWatch](https://aws.amazon.com/cloudwatch/pricing/).
 
 [Back to top :arrow_up:](#table-of-contents)
@@ -966,7 +966,7 @@ CloudWatch
 * 🔸Notifications you receive from alarms will not have any contextual detail; they have only the specifics of the threshold, alarm state, and timing.
 * 🔸By default, CloudWatch metric resolution is 1 minute. If you send multiple values of a metric within the same minute, they will be aggregated into minimum, maximum, average and total (sum) per minute.
 * 🐥In July 2017, a new [high-resolution option](http://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html#high-resolution-metrics) was added for CloudWatch metrics and alarms. This feature allows you to record metrics with 1-second resolution, and to evaluate CloudWatch alarms every 10 seconds.
-    - The [blog post introducing this feature](https://aws.amazon.com/blogs/aws/new-high-resolution-custom-metrics-and-alarms-for-amazon-cloudwatch/) describes how to publish a high-resolution metric to CloudWatch. Note that when calling the `PutMetricData` API, `StorageResolution` is an attribute of each item you send in the `MetricData` array, not a direct parameter of the `PutMetricData` API call.
+  - The [blog post introducing this feature](https://aws.amazon.com/blogs/aws/new-high-resolution-custom-metrics-and-alarms-for-amazon-cloudwatch/) describes how to publish a high-resolution metric to CloudWatch. Note that when calling the `PutMetricData` API, `StorageResolution` is an attribute of each item you send in the `MetricData` array, not a direct parameter of the `PutMetricData` API call.
 * 🔸Data about metrics is kept in CloudWatch [for 15 months](https://aws.amazon.com/blogs/aws/amazon-cloudwatch-update-extended-metrics-retention-user-interface-update/), starting November 2016 (used to be 14 days). Minimum granularity increases after 15 days.
 
 AMIs
@@ -1007,7 +1007,7 @@ AMIs
 -	🔸**Amazon Linux package versions:** [By default](https://aws.amazon.com/amazon-linux-ami/faqs/#lock), instances based on Amazon Linux AMIs are configured point to the latest versions of packages in Amazon’s package repository. This means that the package versions that get installed are not locked and it is possible for changes, including breaking ones, to appear when applying updates in the future. If you bake your AMIs with updates already applied, this is unlikely to cause problems in running services whose instances are based on those AMIs – breaks will appear at the earlier AMI-baking stage of your build process, and will need to be fixed or worked around before new AMIs can be generated. There is a “lock on launch” feature that allows you to configure Amazon Linux instances to target the repository of a particular major version of the Amazon Linux AMI, reducing the likelihood that breaks caused by Amazon-initiated package version changes will occur at package install time but at the cost of not having updated packages get automatically installed by future update runs. Pairing use of the “lock on launch” feature with a process to advance the Amazon Linux AMI at your discretion can give you tighter control over update behaviors and timings.
 -   **Cloud-Init Defaults:** Oftentimes users create AMIs after performing customizations (albeit manually or via some tool such as Packer or Ansible).  If you're not careful to alter cloud-init settings that correspond to the system service (e.g. sshd, etc.) you've customized, you may find that your changes are no longer in effect after booting your new AMI for the first time, as cloud-init has overwritten them.
 
-    Some distros have different files than others, but all are generally located in `/etc/cloud/`, regardless of distro.  You will want to review these files carefully for your chosen distro before rolling your own AMIs.  A [complete reference to cloud-init](https://cloudinit.readthedocs.io/en/latest/) is available on the cloud-init site.  This is an advanced configuration mechanism, so test any changes made to these files in a sandbox prior to any serious usage.
+  Some distros have different files than others, but all are generally located in `/etc/cloud/`, regardless of distro.  You will want to review these files carefully for your chosen distro before rolling your own AMIs.  A [complete reference to cloud-init](https://cloudinit.readthedocs.io/en/latest/) is available on the cloud-init site.  This is an advanced configuration mechanism, so test any changes made to these files in a sandbox prior to any serious usage.
 
 Auto Scaling
 ------------
@@ -1131,11 +1131,11 @@ Load Balancers
 -	**Client IPs:** In general, if servers want to know true client IP addresses, load balancers must forward this information somehow. CLBs add the standard [X-Forwarded-For](https://en.wikipedia.org/wiki/X-Forwarded-For) header. When using a CLB as an HTTP load balancer, it’s possible to get the client’s IP address from this.
 -	**Using load balancers when deploying:** One common pattern is to swap instances in the load balancer after spinning up a new stack with your latest version, keep old stack running for one or two hours, and either flip back to old stack in case of problems or tear it down.
 -   **Rotating Certificates while retaining ARN:** Rotating IAM Server Certificates can be difficult as the standard practice is to upload a new one then update all resources with the new ARN. You can however retain the same ARN using the `update-certificate` call with the following process:
-  1. Upload a new IAM Server Certificate with a unique name (e.g fuzzy.com.new)
-  2. Rename the existing IAM Server Certificate (e.g fuzzy.com to fuzzy.com.expired)
-  3. Rename the new IAM Server Certificate to the name of the previously existing certificate (e.g fuzzy.com.new to fuzzy.com)
-  4. Jiggle the CLB/ALB Listener to pick up the change:
-      * ALB: Invoke modify-listener with the existing details for the ALB Listener
+1. Upload a new IAM Server Certificate with a unique name (e.g fuzzy.com.new)
+2. Rename the existing IAM Server Certificate (e.g fuzzy.com to fuzzy.com.expired)
+3. Rename the new IAM Server Certificate to the name of the previously existing certificate (e.g fuzzy.com.new to fuzzy.com)
+4. Jiggle the CLB/ALB Listener to pick up the change:
+    * ALB: Invoke modify-listener with the existing details for the ALB Listener
 	  * CLB: Invoke create-load-balancer-listeners with the existing details for the CLB listener
 
 [Back to top :arrow_up:](#table-of-contents)
@@ -1262,7 +1262,7 @@ Glacier
 -	**Glacier** is a lower-cost alternative to S3 when data is infrequently accessed, such as for archival purposes.
 -	It’s only useful for data that is rarely accessed. It generally takes [3-5 hours](https://aws.amazon.com/glacier/faqs/#dataretrievals) to fulfill a retrieval request.
 -	AWS [has not officially revealed](https://en.wikipedia.org/wiki/Amazon_Glacier#Storage) the storage media used by Glacier; it may be low-spin hard drives or even tapes.
--	AWS has released an even more cost effective storate tier called [Glacier Deep Archive](https://aws.amazon.com/blogs/aws/new-amazon-s3-storage-class-glacier-deep-archive/) that offers ~12 hour retrieval latencies, but costs roughly a thousand dollars per month per petabyte.
+-	AWS has released an even more cost effective storage tier called [Glacier Deep Archive](https://aws.amazon.com/blogs/aws/new-amazon-s3-storage-class-glacier-deep-archive/) that offers ~12 hour retrieval latencies, but costs roughly a thousand dollars per month per petabyte.
 
 [Back to top :arrow_up:](#table-of-contents)
 ### Glacier Tips
@@ -1304,7 +1304,7 @@ RDS
 -	If you're looking for the managed convenience of RDS for other data stores such as MongoDB or Cassandra, you may wish to consider third-party services from providers such as [[Compose](https://www.compose.com/), or [InstaClustr](https://www.instaclustr.com/).
 -	🔹Make sure to create a new [parameter group](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html) and option group for your database since the default parameter group does not allow dynamic configuration changes.
 -	RDS instances start with a default timezone of UTC. If necessary, this can be [changed to a different timezone](https://aws.amazon.com/premiumsupport/knowledge-center/rds-change-time-zone/).
--	Save costs by stopping the RDS instance(s) when not in use, you can achieve this by configuring a stop and start schedule using the the [Instance Scheduler](https://aws.amazon.com/solutions/implementations/instance-scheduler/) solution.
+-	Save costs by stopping the RDS instance(s) when not in use, you can achieve this by configuring a stop and start schedule using the [Instance Scheduler](https://aws.amazon.com/solutions/implementations/instance-scheduler/) solution.
 
 [Back to top :arrow_up:](#table-of-contents)
 ### RDS Gotchas and Limitations
@@ -1449,52 +1449,52 @@ ElastiCache
 ### ElastiCache Basics
 
 - 📒 [Homepage](https://aws.amazon.com/elasticache/) ∙ [User
-  guide for Redis](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/index.html) ∙ [User
-  guide for Memcached](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/index.html) ∙
-  [FAQ](https://aws.amazon.com/elasticache/faqs/) ∙
-  [Pricing](https://aws.amazon.com/elasticache/pricing/)
+guide for Redis](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/index.html) ∙ [User
+guide for Memcached](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/index.html) ∙
+[FAQ](https://aws.amazon.com/elasticache/faqs/) ∙
+[Pricing](https://aws.amazon.com/elasticache/pricing/)
 - **ElastiCache** is a managed in-memory cache service, that can be used to
-  store temporary data in a fast in-memory cache, typically in order to avoid
-  repeating the same computation multiple times when it could be reused.
+store temporary data in a fast in-memory cache, typically in order to avoid
+repeating the same computation multiple times when it could be reused.
 - It supports both the [Memcached](https://memcached.org) and
-  [Redis](https://redis.io) open source in-memory cache software and exposes
-  them both using their native access APIs.
+[Redis](https://redis.io) open source in-memory cache software and exposes
+them both using their native access APIs.
 - The main benefit is that AWS takes care of running, patching and optimizing
-  the cache nodes for you, so you just need to launch a cluster and configure
-  its endpoint in your application, while AWS will take of most of the operational
-  work of running the cache nodes.
+the cache nodes for you, so you just need to launch a cluster and configure
+its endpoint in your application, while AWS will take of most of the operational
+work of running the cache nodes.
 
 [Back to top :arrow_up:](#table-of-contents)
 ### ElastiCache Tips
 
 - Choose the
-  [engine](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/SelectEngine.html),
-  clustering configuration and [instance
-  type](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheNodes.SelectSize.html)
-  carefully based on your application needs. The documentation explains in
-  detail the pros, cons and limitations of each engine in order to help you
-  choose the best fit for your application. In a nutshell, Redis is
-  preferable for storing more complex data structures, while Memcached is just a
-  plain key/value store. The simplicity of Memcached allows it to be slightly
-  faster and allows it to scale out if needed, but Redis has more features which
-  you may use in your application.
+[engine](https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/SelectEngine.html),
+clustering configuration and [instance
+type](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/CacheNodes.SelectSize.html)
+carefully based on your application needs. The documentation explains in
+detail the pros, cons and limitations of each engine in order to help you
+choose the best fit for your application. In a nutshell, Redis is
+preferable for storing more complex data structures, while Memcached is just a
+plain key/value store. The simplicity of Memcached allows it to be slightly
+faster and allows it to scale out if needed, but Redis has more features which
+you may use in your application.
 - For Memcached AWS provides enhanced SDKs for certain programming languages
-  which implement
-  [auto-discovery](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/AutoDiscovery.html),
-  a feature not available in the normal memcached client libraries.
+which implement
+[auto-discovery](https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/AutoDiscovery.html),
+a feature not available in the normal memcached client libraries.
 
 [Back to top :arrow_up:](#table-of-contents)
 ### ElastiCache Gotchas and Limitations
 
 - Since in some cases changing the cache clusters may have some restrictions,
-  like for
-  [scaling](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Scaling.html)
-  purposes, it may become a problem if they were launched using CloudFormation
-  in a stack that also contains other resources and you really need to change
-  the cache. In order to avoid getting your CloudFormation stacks in a
-  non-updateable state, it is recommended to launch ElastiCache clusters (just
-  like any other resource with similar constraints) in dedicated stacks which
-  can be replaced entirely with new stacks having the desired configuration.
+like for
+[scaling](http://docs.aws.amazon.com/AmazonElastiCache/latest/UserGuide/Scaling.html)
+purposes, it may become a problem if they were launched using CloudFormation
+in a stack that also contains other resources and you really need to change
+the cache. In order to avoid getting your CloudFormation stacks in a
+non-updateable state, it is recommended to launch ElastiCache clusters (just
+like any other resource with similar constraints) in dedicated stacks which
+can be replaced entirely with new stacks having the desired configuration.
 
 
 DynamoDB
@@ -1752,11 +1752,11 @@ Step Functions
 -   State machines have [data](https://docs.aws.amazon.com/step-functions/latest/dg/concepts-state-machine-data.html) that "flows" through the steps and can be modified and added to as the state machine executes.
 -   It's best if your tasks are idempotent, in part because you may want to re-run the state machine with the same input data during debugging
 -   The AWS Console facilitates your examining the execution state at various steps.
-    -   The console lets you do this with a few steps:
-        -   select the "input" tab from the failed execution
-        -   copy the input data (JSON)
-        -   select the state machine name in the breadcrumbs
-        -   start a new execution, pasting the input data you copied previously
+  -   The console lets you do this with a few steps:
+      -   select the "input" tab from the failed execution
+      -   copy the input data (JSON)
+      -   select the state machine name in the breadcrumbs
+      -   start a new execution, pasting the input data you copied previously
 
 [Back to top :arrow_up:](#table-of-contents)
 ### Step Functions Gotchas and Limitations
@@ -1792,7 +1792,7 @@ Route 53
 	-	Because aliases are extensions to regular DNS records, if exported, the output [zone file](https://en.wikipedia.org/wiki/Zone_file) will have additional non-standard “ALIAS” lines in it.
 -	[**Latency-based routing**](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-policy.html#routing-policy-latency) allows users around the globe to be automatically directed to the nearest AWS region where you are running, so that latency is reduced.
 -	Understand that domain registration and DNS management (hosted zones) are two separate Route 53 services. When you buy/transfer a domain, Route 53 automatically assigns four name servers to it (e.g. ns-2.awsdns-00.com). Route 53 also offers to automatically create a hosted zone for DNS management, but you are not required do your DNS management in the same account or even in Route 53; you just need to create an NS record pointing to the servers assigned to your domain in Route 53.
-  - One use case would be to put your domain registration (very mission critical) in a [bastion account](https://cloudonaut.io/your-single-aws-account-is-a-serious-risk/) while managing the hosted zones within another account which is accessible by your applications.
+- One use case would be to put your domain registration (very mission critical) in a [bastion account](https://cloudonaut.io/your-single-aws-account-is-a-serious-risk/) while managing the hosted zones within another account which is accessible by your applications.
 
 [Back to top :arrow_up:](#table-of-contents)
 ### Route 53 Gotchas and Limitations
@@ -1886,7 +1886,7 @@ VPCs, Network Security, and Security Groups
 	-	You expose a smaller surface area for attack compared to exposing separate (potentially authenticated) services over the public internet.
 		-	e.g. A bug in the YAML parser used by the Ruby on Rails admin site is much less serious when the admin site is only visible to the private network and accessed through VPN.
 	-	Another common pattern (especially as deployments get larger, security or regulatory requirements get more stringent, or team sizes increase) is to provide a [bastion host](https://www.pandastrike.com/posts/20141113-bastion-hosts) behind a VPN through which all SSH connections need to transit.
-	-	For a cheap VPN to access private AWS resources, consider using a point-to-site software VPN such as [OpenVPN](https://openvpn.net/). It can either be installed using the [official AMI](https://docs.openvpn.net/how-to-tutorialsguides/virtual-platforms/amazon-ec2-appliance-ami-quick-start-guide/), though you are limited to 2 concurrent users on the free license, or it can be installed using the openvpn package on linux. The linux package allows for unlimited concurrent users but the installation is less straightforward. This [OpenVPN installer script](https://github.com/Nyr/openvpn-install) can help you install it and add client keys easily.
+	-	For a cheap VPN to access private AWS resources, consider using a point-to-site software VPN such as [OpenVPN](https://openvpn.net/). It can either be installed using the [official AMI](https://docs.openvpn.net/how-to-tutorialsguides/virtual-platforms/amazon-ec2-appliance-ami-quick-start-guide/), though you are limited to 2 concurrent users on the free license, or it can be installed using the openvpn package on Linux. The Linux package allows for unlimited concurrent users but the installation is less straightforward. This [OpenVPN installer script](https://github.com/Nyr/openvpn-install) can help you install it and add client keys easily.
 -	🔹Consider using other security groups as sources for security group rules instead of using CIDRs — that way, all hosts in the source security group and only hosts in that security group are allowed access. This is a much more dynamic and secure way of managing security group rules.
 -	**VPC Flow Logs** allow you to monitor the network traffic to, from, and within your VPC. Logs are stored in CloudWatch Logs groups, and can be used for security monitoring (with third party tools), performance evaluation, and forensic investigation.
 	-	See the [VPC Flow Logs User Guide](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/flow-logs.html) for basic information.
@@ -2107,7 +2107,7 @@ Kinesis Streams
 ### Kinesis Streams Gotchas and Limitations
 
 - 🔸⏱  Kinesis Streams’ shards each only permit [5 reads per second](http://docs.aws.amazon.com/streams/latest/dev/service-sizes-and-limits.html). If you are evenly distributing data across many shards, your read limit for the Stream will remain at 5 reads per second on aggregate, as each consuming application will need to check every single shard for new records. This puts a hard limit on the number of different consuming applications possible per Stream for a given maximum read latency.
-   - For example, if you have 5 consuming applications reading data from one Stream with any number of shards, they cannot read with a latency of less than one second, as each of the 5 consumers will need to poll *each shard* every second, reaching the cap of 5 reads per second per shard.
+ - For example, if you have 5 consuming applications reading data from one Stream with any number of shards, they cannot read with a latency of less than one second, as each of the 5 consumers will need to poll *each shard* every second, reaching the cap of 5 reads per second per shard.
 	- [This blog post](https://brandur.org/kinesis-in-production) further discusses the performance and limitations of Kinesis in production.
 -	💸 **Kinesis Streams are not included in the free tier.** Make sure if you do any experimentation with it on a personal account, you shut down the stream or it may run up unexpected costs (~$11 per shard-month.)
 
@@ -2156,9 +2156,9 @@ Mobile Hub
 * 📒 [Homepage](https://aws.amazon.com/mobile/) ∙ [User guide](https://docs.aws.amazon.com/aws-mobile/latest/developerguide/what-is-aws-mobile.html) ∙ [FAQ](https://aws.amazon.com/mobile/faqs/) ∙ [Pricing](https://aws.amazon.com/mobile/pricing/)
 - **Mobile Hub** orchestrates multiple services to create an AWS backend for mobile and web applications.
 - Each _project_ in Mobile Hub has one _backend_ made up of configurable features, plus one or more _applications_.
- - Features include Analytics, Cloud Logic, Conversational Bots, Hosting and Streaming, NoSQL Database, User Data Storage and User Sign-In. Each feature uses one or two services to deliver a chunk of functionality.
- - Services used include [API Gateway](#api-gateway), [CloudFront](#cloudfront), Cognito, [Device Farm](#device-farm), [DynamoDB](#dynamodb), [Lambda](#lambda), Lex, Pinpoint and [S3](#S3).
- - Application SDKs exist for Android (Java), iOS (Swift), Web (JS) and React Native (JS). There is also a CLI for JavaScript applications.
+- Features include Analytics, Cloud Logic, Conversational Bots, Hosting and Streaming, NoSQL Database, User Data Storage and User Sign-In. Each feature uses one or two services to deliver a chunk of functionality.
+- Services used include [API Gateway](#api-gateway), [CloudFront](#cloudfront), Cognito, [Device Farm](#device-farm), [DynamoDB](#dynamodb), [Lambda](#lambda), Lex, Pinpoint and [S3](#S3).
+- Application SDKs exist for Android (Java), iOS (Swift), Web (JS) and React Native (JS). There is also a CLI for JavaScript applications.
 
 [Back to top :arrow_up:](#table-of-contents)
 ### Mobile Hub Tips
@@ -2179,15 +2179,15 @@ IoT
 * 	📒 [Homepage](https://aws.amazon.com/iot/) ∙ [User guide](https://docs.aws.amazon.com/iot/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/iot/faqs/) ∙ [Pricing](https://aws.amazon.com/iot/pricing/)
 - 	**IoT** is a platform for allowing clients such as IoT devices or software applications ([examples](http://internetofthingswiki.com/iot-applications-examples/541/)) to communicate with the AWS cloud.
 - 	Clients are also called **devices** (or **things**) and include a wide variety of device types.  Roughly there are three categories of device types that interact with IoT services by sending message over an IoT protocol to the IoT Pub/Sub-style message broker, which is called the IoT **Device Gateway**:
-    * 	Send messages only: For example, the [AWS IoT Button](https://aws.amazon.com/iot/button/) on an [eddystone beacon](http://developer.estimote.com/eddystone/).
-    * 	Send, receive, and process messages: For example, a simple processing board, such as a **Raspberry Pi** ([quick start guide](http://docs.aws.amazon.com/iot/latest/developerguide/iot-device-sdk-c.html)), or an Alexa device, such as the [Echo or Echo Dot](https://amazon.com/echo). These are designed to work with the [Alexa skills kit](https://developer.amazon.com/alexa-skills-kit), a programmable voice-enabled service.
+  * 	Send messages only: For example, the [AWS IoT Button](https://aws.amazon.com/iot/button/) on an [eddystone beacon](http://developer.estimote.com/eddystone/).
+  * 	Send, receive, and process messages: For example, a simple processing board, such as a **Raspberry Pi** ([quick start guide](http://docs.aws.amazon.com/iot/latest/developerguide/iot-device-sdk-c.html)), or an Alexa device, such as the [Echo or Echo Dot](https://amazon.com/echo). These are designed to work with the [Alexa skills kit](https://developer.amazon.com/alexa-skills-kit), a programmable voice-enabled service.
 - 	AWS has a useful [quick-start](http://docs.aws.amazon.com/iot/latest/developerguide/iot-gs.html) (using the Console) and a [slide presentation](http://www.slideshare.net/AmazonWebServices/connecting-to-aws-iot) on core topics.
 * **IoT terms:**
-    * 	AWS [**IoT Things**](http://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-management.html) (metadata for devices in a [registry](http://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-management.html)) and can store device state in a JSON document, which is called a [**device shadow**](http://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-shadows.html).  Device metadata can also be stored in [**IoT Thing Types**](http://docs.aws.amazon.com/iot/latest/developerguide/thing-types.html). This aids in device metadata management by allowing for reuse of device description and configuration for more than one device.  Note that IoT Thing Types can be deprecated, but not changed — they are immutable.
-    * 	AWS [**IoT Certificates**](http://docs.aws.amazon.com/iot/latest/developerguide/attach-cert-thing.html) (device authentication) are the logical association of a unique certificate to the logical representation of a device. This association can be done in the Console.  In addition, the public key of the certificate must be copied to the physical device. This covers the authentication of devices to a particular AWS Device Gateway (or message broker). You can associate an AWS IoT certificate with an IoT device or you can [register your own CA (Certificate Authority) with AWS](http://docs.aws.amazon.com/iot/latest/developerguide/device-certs-your-own.html), generate your own certificate(s) and associate those certificates with your devices via the AWS Console or cli.
-    * 	AWS [**IoT Policies**](http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html) (device/topic authorization) are JSON files that are associated to one or more AWS IoT certificates. This authorizes associated devices to publish and/or subscribe to messages from one or more MQTT topics.
-    * 	AWS [**IoT Rules**](http://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html) are SQL-like queries which allows for reuse of some or all device message data, as described in [this presentation, which summarizes design patterns with for IoT Rules](http://www.slideshare.net/AmazonWebServices/programming-the-physical-world-with-device-shadows-and-rules-engine-66486454).
-    * 	Shown below is a [diagram](https://aws.amazon.com/iot/how-it-works/) which summarizes the flow of messages between the AWS IoT services:
+  * 	AWS [**IoT Things**](http://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-management.html) (metadata for devices in a [registry](http://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-management.html)) and can store device state in a JSON document, which is called a [**device shadow**](http://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-shadows.html).  Device metadata can also be stored in [**IoT Thing Types**](http://docs.aws.amazon.com/iot/latest/developerguide/thing-types.html). This aids in device metadata management by allowing for reuse of device description and configuration for more than one device.  Note that IoT Thing Types can be deprecated, but not changed — they are immutable.
+  * 	AWS [**IoT Certificates**](http://docs.aws.amazon.com/iot/latest/developerguide/attach-cert-thing.html) (device authentication) are the logical association of a unique certificate to the logical representation of a device. This association can be done in the Console.  In addition, the public key of the certificate must be copied to the physical device. This covers the authentication of devices to a particular AWS Device Gateway (or message broker). You can associate an AWS IoT certificate with an IoT device or you can [register your own CA (Certificate Authority) with AWS](http://docs.aws.amazon.com/iot/latest/developerguide/device-certs-your-own.html), generate your own certificate(s) and associate those certificates with your devices via the AWS Console or cli.
+  * 	AWS [**IoT Policies**](http://docs.aws.amazon.com/iot/latest/developerguide/authorization.html) (device/topic authorization) are JSON files that are associated to one or more AWS IoT certificates. This authorizes associated devices to publish and/or subscribe to messages from one or more MQTT topics.
+  * 	AWS [**IoT Rules**](http://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html) are SQL-like queries which allows for reuse of some or all device message data, as described in [this presentation, which summarizes design patterns with for IoT Rules](http://www.slideshare.net/AmazonWebServices/programming-the-physical-world-with-device-shadows-and-rules-engine-66486454).
+  * 	Shown below is a [diagram](https://aws.amazon.com/iot/how-it-works/) which summarizes the flow of messages between the AWS IoT services:
 
 ![How AWS IoT Works](https://d0.awsstatic.com/IoT/diagrams/awsiot-how-it-works_HowITWorks_1-26.png "How AWS IoT Works")
 
@@ -2196,8 +2196,8 @@ IoT
 
 * 📒 [Homepage](https://aws.amazon.com/greengrass/)
 * 🐥**Greengrass** is a software platform that extends AWS IoT capabilities allowing Lambda functions to be run directly on local devices.  It also enables IoT devices to be able to securely communicate on a local network without having to connect to the cloud.
-    * Greengrass includes a local pub/sub message manager that can buffer messages if connectivity is lost so that inbound and outbound messages to the cloud are preserved. Locally deployed Lambda functions can be triggered by local events, messages from the cloud, or other sources.
-    * Greengrass includes secure authentication and authorization of devices within the local network and also between the local network and the AWS cloud. It also provides secure, over-the-air software updates of Lambda functions.
+  * Greengrass includes a local pub/sub message manager that can buffer messages if connectivity is lost so that inbound and outbound messages to the cloud are preserved. Locally deployed Lambda functions can be triggered by local events, messages from the cloud, or other sources.
+  * Greengrass includes secure authentication and authorization of devices within the local network and also between the local network and the AWS cloud. It also provides secure, over-the-air software updates of Lambda functions.
 *  Greengrass core software includes a message manager object, Lambda runtime, local copy service for IoT Thing (or device) shadows, and a deployment agent to manage Greengrass group configuration.
 * **Greengrass groups** are containers for selected IoT devices settings, subscriptions and associated Lambda functions.  In a Greengrass group a device is either a Greengrass core or an IoT device which will be connected that particular Greengrass core.
 * The Greengrass core SDK enables Lambda functions to interact with the AWS Greengrass core on which they run in order to publish messages, interact with the local Thing Shadows service, or invoke other deployed Lambda functions.
@@ -2221,9 +2221,9 @@ IoT
 - 	Support for **device security** via certificate processing is a key differentiator in this space.  In August 2016, AWS added [just-in-time registrations](https://aws.amazon.com/blogs/iot/just-in-time-registration-of-device-certificates-on-aws-iot/) for IoT devices to their services.
 - 	**Combining with other services:** It’s common to use other AWS services, such as AWS Lambda, Kinesis and DynamoDB, although this is by no means required.  Sample IoT application reference architectures are in this [screencast](https://www.youtube.com/watch?v=0Izh6ySpwb8/).
 - 	**Testing tools:**
-    *	To get started, AWS includes a lightweight MQTT client in the AWS IoT console. Here you can create and test sending and receiving messages to and from various MQTT topics.
-    * 	When testing locally, if using MQTT, it may be helpful to download and use the open source [Mosquitto broker](https://mosquitto.org/download/) tool for local testing with devices and/or device simulators
-    * 	Use this [MQTT load simulator](https://github.com/awslabs/aws-iot-mqtt-load-generator) to test device message load throughout your IoT solution.
+  *	To get started, AWS includes a lightweight MQTT client in the AWS IoT console. Here you can create and test sending and receiving messages to and from various MQTT topics.
+  * 	When testing locally, if using MQTT, it may be helpful to download and use the open source [Mosquitto broker](https://mosquitto.org/download/) tool for local testing with devices and/or device simulators
+  * 	Use this [MQTT load simulator](https://github.com/awslabs/aws-iot-mqtt-load-generator) to test device message load throughout your IoT solution.
 
 [Back to top :arrow_up:](#table-of-contents)
 ### IoT Gotchas and Limitations
@@ -2314,7 +2314,7 @@ WAF
 
 - Getting a WAF API call history can be done through CloudTrail. This is enabled through the CloudTrail console.
 - It's also possible to get [full
-  logs of all the web requests inspected](https://aws.amazon.com/about-aws/whats-new/2018/08/aws-waf-launches-new-comprehensive-logging-functionality/)
+logs of all the web requests inspected](https://aws.amazon.com/about-aws/whats-new/2018/08/aws-waf-launches-new-comprehensive-logging-functionality/)
 
 [Back to top :arrow_up:](#table-of-contents)
 ### WAF Gotchas and Limitations
@@ -2329,14 +2329,14 @@ OpsWorks
 
 -	📒 [Homepage](https://aws.amazon.com/opsworks/) ∙ [Documentation](https://aws.amazon.com/documentation/opsworks/) ∙ [FAQ](https://aws.amazon.com/opsworks/faqs/) ∙ Pricing: [Stacks](https://aws.amazon.com/opsworks/stacks/pricing/), [Chef Automate](https://aws.amazon.com/opsworks/chefautomate/pricing/), [Puppet Enterprise](https://aws.amazon.com/opsworks/puppetenterprise/pricing/)
 - OpsWorks is a configuration management service that uses [Chef](https://www.chef.io/chef/) or [Puppet](https://www.puppet.com) configuration management. It is broken out into three different services:
-  - [OpsWorks Stacks](https://aws.amazon.com/opsworks/stacks/): The service lets you configure and launch stacks specific to your application's needs, and allows you to automate application deployments. Chef runs can be performed manually via the Execute Cookbooks command, otherwise they are only run as part of lifecycle events.
-    - OpsWorks Stacks differs from standard configuration management services in that it also allows you to perform some infrastructure and application automation (such as creating Amazon EC2 instances and deploying applications via Chef cookbooks).
-  - [OpsWorks for Chef Automate](https://aws.amazon.com/opsworks/chefautomate/): This service launches a dedicated Chef Automate server in your account, which can be used to associate nodes, upload cookbook code, and configure systems. Automated patching, backups, OS updates, and minor Chef version upgrades are provided as part of the service. An AWS API is provided for associating/disassociating nodes. Chef runs can be scheduled on nodes using the [chef-client cookbook](https://supermarket.chef.io/cookbooks/chef-client).
-  - [OpsWorks for Puppet Enterprise](https://aws.amazon.com/opsworks/puppetenterprise/): This service launches a dedicated Puppet Master in your account, which can be used to associate nodes, upload modules, and configure systems. Automated patching, backups, OS updates, and minor Puppet version upgrades are provided as part of the service. An AWS API is provided for associating/disassociating nodes. By default, the Puppet agent will run automatically every 30 minutes on associated nodes.
+- [OpsWorks Stacks](https://aws.amazon.com/opsworks/stacks/): The service lets you configure and launch stacks specific to your application's needs, and allows you to automate application deployments. Chef runs can be performed manually via the Execute Cookbooks command, otherwise they are only run as part of lifecycle events.
+  - OpsWorks Stacks differs from standard configuration management services in that it also allows you to perform some infrastructure and application automation (such as creating Amazon EC2 instances and deploying applications via Chef cookbooks).
+- [OpsWorks for Chef Automate](https://aws.amazon.com/opsworks/chefautomate/): This service launches a dedicated Chef Automate server in your account, which can be used to associate nodes, upload cookbook code, and configure systems. Automated patching, backups, OS updates, and minor Chef version upgrades are provided as part of the service. An AWS API is provided for associating/disassociating nodes. Chef runs can be scheduled on nodes using the [chef-client cookbook](https://supermarket.chef.io/cookbooks/chef-client).
+- [OpsWorks for Puppet Enterprise](https://aws.amazon.com/opsworks/puppetenterprise/): This service launches a dedicated Puppet Master in your account, which can be used to associate nodes, upload modules, and configure systems. Automated patching, backups, OS updates, and minor Puppet version upgrades are provided as part of the service. An AWS API is provided for associating/disassociating nodes. By default, the Puppet agent will run automatically every 30 minutes on associated nodes.
 - OpsWorks for Chef Automate and OpsWorks for Puppet Enterprise are strictly designed for configuration management, and do not provision infrastructure outside the Chef Server/Puppet Master that is created in our account.
 - All three OpsWorks services support managing both Amazon EC2 and on-premises infrastructure, however the implementation details differ slightly.
-  - OpsWorks Stacks allows you to register instances and install the OpsWorks Agent to connect to your stack.
-  - OpsWorks for Chef Automate and OpsWorks for Puppet Enterprise allow you to associate new or existing infrastructure using either the opsworks-cm:AssociateNode API action or the vendor-supported method for associating nodes to Chef Server or Puppet Enterprise.
+- OpsWorks Stacks allows you to register instances and install the OpsWorks Agent to connect to your stack.
+- OpsWorks for Chef Automate and OpsWorks for Puppet Enterprise allow you to associate new or existing infrastructure using either the opsworks-cm:AssociateNode API action or the vendor-supported method for associating nodes to Chef Server or Puppet Enterprise.
 - Although OpsWorks will let you work with common Chef recipes or Puppet modules when creating your stacks, creating custom recipes will require familiarity with Chef or Puppet syntax. Chef/Puppet code is not supported as part of AWS Support.
 - As of December 2016, OpsWorks Stacks supports Chef versions [12, 11.10.4, 11.4.4 and 0.9.15.5](http://docs.aws.amazon.com/opsworks/latest/userguide/workingcookbook.html).
 - As of December 2016, OpsWorks for Chef Automate uses [Chef Server version 12.11.1](http://docs.aws.amazon.com/opsworks/latest/userguide/welcome_opscm.html) This is the current stable version of Chef.
@@ -2347,9 +2347,9 @@ OpsWorks
 ### OpsWorks Alternatives and Lock-in
 
 - Major competitors in Configuration Management include:
-  - [Chef](https://chef.io)
-  - [Puppet](https://puppet.com)
-  - [Ansible](https://www.ansible.com).
+- [Chef](https://chef.io)
+- [Puppet](https://puppet.com)
+- [Ansible](https://www.ansible.com).
 
 [Back to top :arrow_up:](#table-of-contents)
 ### OpsWorks Tips
@@ -2361,17 +2361,17 @@ OpsWorks
 ### OpsWorks Gotchas and Limitations
 
 - OpsWorks Stacks is not available in the following regions:
-  - Montreal
-  - GovCloud
-  - Beijing
+- Montreal
+- GovCloud
+- Beijing
 - OpsWorks for Chef Automate and OpsWorks for Puppet Enterprise are not available in the following regions:
-  - Montreal
-  - Sao Paulo
-  - GovCloud
-  - London
-  - Paris
-  - Seoul
-  - Mumbai
+- Montreal
+- Sao Paulo
+- GovCloud
+- London
+- Paris
+- Seoul
+- Mumbai
 
 Batch
 -------------------
@@ -2411,12 +2411,12 @@ SQS
 - Each message can have up to 10 custom fields, or attributes.
 - SQS allows producers to set up to 15 minutes of delay before the messages are delivered to the consumers. This parameter is called DelaySeconds.
 - There are two types of queues supported by SQS -
-    - Standard Queues
-        - Guarantee **at least once** delivery of the messages.
-        - Do not retain the order of delivery of the messages.
-    - FIFO Queues
-        - Guarantee **only once** delivery of the messages
-        - Guarantee the order of the delivery of the messages
+  - Standard Queues
+      - Guarantee **at least once** delivery of the messages.
+      - Do not retain the order of delivery of the messages.
+  - FIFO Queues
+      - Guarantee **only once** delivery of the messages
+      - Guarantee the order of the delivery of the messages
 - SQS supports fine grained access to various API calls and Queues via IAM policies.
 - The messages that fail to process can be put in a dead letter queue.
 
@@ -2462,12 +2462,12 @@ SNS
 
 - Popular alternatives to SNS are [Kafka](https://kafka.apache.org/), [Notification Hubs](https://azure.microsoft.com/en-us/services/notification-hubs/) on Azure, and [Pub/Sub](https://cloud.google.com/pubsub/docs/overview) on Google Cloud.
 - **SNS vs SQS:**
-    - Both SNS and SQS are highly scalable, fully managed messaging services provided by AWS.
-    - SQS supports a *pull* model, while SNS supports a *push* model. Consumers have to pull messages from an SQS Queue, while they're pushed the message from an SNS Topic.
-    - An SQS message is intended to be processed by only one subscriber, while SNS topics can have many subscribers.
-    - After processing, the SQS message is deleted from the queue by the subscriber to avoid being re-processed.
-    - An SNS message is *pushed* to all subscribers of the topic at the same time, and is not available for deletion at the topic.
-    - SNS supports multiple transport protocols of delivery of the messages to the subscribers, while SQS subscribers have to pull the messages off the queue over HTTPS.
+  - Both SNS and SQS are highly scalable, fully managed messaging services provided by AWS.
+  - SQS supports a *pull* model, while SNS supports a *push* model. Consumers have to pull messages from an SQS Queue, while they're pushed the message from an SNS Topic.
+  - An SQS message is intended to be processed by only one subscriber, while SNS topics can have many subscribers.
+  - After processing, the SQS message is deleted from the queue by the subscriber to avoid being re-processed.
+  - An SNS message is *pushed* to all subscribers of the topic at the same time, and is not available for deletion at the topic.
+  - SNS supports multiple transport protocols of delivery of the messages to the subscribers, while SQS subscribers have to pull the messages off the queue over HTTPS.
 
 [Back to top :arrow_up:](#table-of-contents)
 ### SNS Tips
@@ -2587,7 +2587,7 @@ Billing and Cost Management
 		-	An excellent example of Pooling implementation described by Netflix ([part1](http://techblog.netflix.com/2015/09/creating-your-own-ec2-spot-market.html), [part2](http://techblog.netflix.com/2015/11/creating-your-own-ec2-spot-market-part-2.html)\)
 -	**Spot management gotchas**
 	-	🔸**Lifetime:** There is [no guarantee](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html) for the lifetime of a Spot instance. It is purely based on bidding. If anyone outbids your price, the instance is taken away. Spot is not suitable for time sensitive jobs that have strong SLA. Instances will fail based on demand for Spot at that time. AWS provides a [two-minute warning](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/spot-interruptions.html#spot-instance-termination-notices) before Amazon EC2 must terminate your Spot instance.
-	-	🔹**API return data:** - The Spot price API returns Spot prices of varying granularity depending on the time range specified in the api call.E.g If the last 10 min worth of history is requested, the data is more fine grained. If the last 2 day worth of history is requested, the data is more coarser. Do not assume you will get all the data points. There **will** be skipped intervals.
+	-	🔹**API return data:** - The Spot price API returns Spot prices of varying granularity depending on the time range specified in the API call. E.g If the last 10 min worth of history is requested, the data is more fine grained. If the last 2 day worth of history is requested, the data is more coarser. Do not assume you will get all the data points. There **will** be skipped intervals.
 	-	❗**Lifecycle management:** Do not attempt any fancy Spot management unless absolutely necessary. If your entire usage is only a few machines and your cost is acceptable and your failure rate is lower, do not attempt to optimize. The pain for building/maintaining it is not worth just a few hundred dollar savings.
 -	**Reserved Instances:** allow you to get significant discounts on EC2 compute hours in return for a commitment to pay for instance hours of a specific instance type in a specific AWS region and availability zone for a pre-established time frame (1 or 3 years). Further discounts can be realized through “partial” or “all upfront” payment options.
 	-	Consider using Reserved Instances when you can predict your longer-term compute needs and need a stronger guarantee of compute availability and continuity than the (typically cheaper) Spot market can provide. However be aware that if your architecture changes your computing needs may change as well so long term contracts can seem attractive but may turn out to be cumbersome.
