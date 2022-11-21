@@ -214,7 +214,7 @@ General Information
 -	**Managed services:** Existing software solutions you could run on your own, but with managed deployment:
 	-	[RDS](#rds): Managed relational databases (managed MySQL, Postgres, and Amazon’s own Aurora database)
 	-	[EMR](#emr): Managed Hadoop
-	-	[Elasticsearch](https://aws.amazon.com/elasticsearch-service/): Managed Elasticsearch
+	-	[OpenSearch](https://aws.amazon.com/opensearch-service/): Managed OpenSearch (previously Elasticsearch)
 	-	[ElastiCache](https://aws.amazon.com/elasticache/): Managed Redis and Memcached
 -	**Optional but important infrastructure:** These are key and useful infrastructure components that are less widely known and used. You may have legitimate reasons to prefer alternatives, so evaluate with care to be sure they fit your needs:
 	-	⛓[Lambda](#lambda): Running small, fully managed tasks “serverless”
@@ -313,7 +313,7 @@ Many services within AWS can at least be compared with Google Cloud offerings or
 | Bigtable                      |                                                                              | Cloud Bigtable               | Bigtable        |                                    |                                   | HBase                                                      |
 | Key-value store, column store | DynamoDB                                                                     | Cloud Datastore              | Megastore       | Tables, DocumentDB                 |                                   | Cassandra, CouchDB, RethinkDB, Redis                       |
 | Memory cache                  | ElastiCache                                                                  | App Engine Memcache          |                 | Redis Cache                        |                                   | Memcached, Redis                                           |
-| Search                        | CloudSearch, Elasticsearch (managed)                                         |                              |                 | Search                             | Algolia, QBox, Elastic Cloud                     | Elasticsearch, Solr                                        |
+| Search                        | CloudSearch, Opensearch (managed)                                         |                              |                 | Search                             | Algolia, QBox, Elastic Cloud                     | Elasticsearch, OpenSearch, Solr                                        |
 | Data warehouse                | Redshift                                                                     | BigQuery                     | Dremel          | SQL Data Warehouse                 | Oracle, IBM, SAP, HP, many others | Greenplum                                                  |
 | Business intelligence         | QuickSight                                                                   | Data Studio 360               |                 | Power BI                           | Tableau                           |                                                            |
 | Lock manager                  | [DynamoDB (weak)](https://gist.github.com/ryandotsmith/c95fd21fab91b0823328) |                              | Chubby          | Lease blobs in Storage Account     |                                   | ZooKeeper, Etcd, Consul                                    |
@@ -365,7 +365,7 @@ It’s important to know the maturity of each AWS product. Here is a mostly comp
 | 🐥[IoT](https://aws.amazon.com/blogs/aws/aws-iot-now-generally-available/)                                  | 2015-08          | General                                                                       | ✓           |✓			|✓<sup>[13](#user-content-pci-iot)</sup>					|
 | 🐥[WAF](https://aws.amazon.com/releasenotes/AWS-WAF?browse=1)                                               | 2015-10          | General                                                                       | ✓           | ✓         		|	✓    			|
 | 🐥[Data Pipeline](https://aws.amazon.com/releasenotes/AWS-Data-Pipeline?browse=1)                           | 2015-10          | General                                                                       | ✓           |				|					|
-| 🐥[Elasticsearch](https://aws.amazon.com/releasenotes/Amazon-Elasticsearch-Service?browse=1)                | 2015-10          | General                                                                       | ✓           |✓			|✓					|
+| 🐥[OpenSearch](https://aws.amazon.com/releasenotes/Amazon-Elasticsearch-Service?browse=1)                | 2015-10          | General                                                                       | ✓           |✓			|✓					|
 | 🐥[Aurora](https://aws.amazon.com/releasenotes/2775579329314699)                                            | 2015-07          | General                                                                       | ✓           | ✓<sup>[3](#user-content-hipaa-aurora)</sup> |	✓<sup>[3](#user-content-hipaa-aurora)</sup>			|
 | 🐥[Service Catalog](https://aws.amazon.com/releasenotes/AWS-Service-Catalog?browse=1)                       | 2015-07          | General                                                                       | ✓           |✓			|✓					|
 | 🐥[Device Farm](https://aws.amazon.com/releasenotes/AWS-Device-Farm?browse=1)                         	  | 2015-07          | General                                                                       | ✓           |				|					|
@@ -2117,7 +2117,7 @@ Kinesis Firehose
 [Back to top :arrow_up:](#table-of-contents)
 ### Kinesis Firehose Gotchas and Limitations
 
-- 🔸 📜 When delivering from Firehose to Elasticsearch, the JSON document cannot contain an “_id” property. Firehose will not attempt to deliver those documents and won't log any error.
+- 🔸 📜 When delivering from Firehose to OpenSearch, the JSON document cannot contain an “_id” property. Firehose will not attempt to deliver those documents and won't log any error.
 
 
 Device Farm
