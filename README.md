@@ -1900,7 +1900,7 @@ VPCs, Network Security, and Security Groups
 ### PrivateLink
 - 📒[Homepage](https://aws.amazon.com/privatelink/) ∙ [User Guide](https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html) ∙  [Pricing](https://aws.amazon.com/privatelink/pricing/)
 - There are three types of PrivateLink [Interface VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html)
-	- **Interface** which deploys an ENI into your VPC subnet(s) which allows you direct access to someone else's service within AWS. This might be to an AWS service (e.g. the AWS API's as if the were accessible locally in your VPC without having to go out to the internet) or to a 3rd Party who've created their own VPC Endpoint Service.
+	- **Interface** which deploys an ENI into your VPC subnet(s) which allows you direct access to someone else's service within AWS as if the were accessible locally in your VPC without having to go out to the internet. This might be to an AWS service (supported serices listed [here](https://docs.aws.amazon.com/vpc/latest/privatelink/aws-services-privatelink-support.html)) or to a 3rd Party who've created their own VPC Endpoint Service.
 	- **Gateway** which creates a route for your VPC route table directly to an AWS service (only S3 and DynamoDB are supported). Unlike the other endpoints, these are free.
 	- **Gateway Load Balancer** which allows you to route traffic from your VPC towards other virtual appliances.
 - You can expose a service of your own to other accounts in AWS through a [VPC Endpoint Service](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html)
