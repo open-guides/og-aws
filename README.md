@@ -1898,15 +1898,19 @@ VPCs, Network Security, and Security Groups
 
 [Back to top :arrow_up:](#table-of-contents)
 ### PrivateLink
-- 📒[Homepage](https://aws.amazon.com/privatelink/) ∙ [User Guide](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html) ∙  [Pricing](https://aws.amazon.com/privatelink/pricing/)
-- One of the uses for Private link is [Interface VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/userguide/vpce-interface.html) deploys an ENI into your VPC and subnets which allows you direct access to the AWS API's as if the were accessible locally in your VPC without having to go out to the internet.
-- Another use case would be to expose a service of your own to other accounts in AWS through a [VPC Endpoint Service](https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html)
+- 📒[Homepage](https://aws.amazon.com/privatelink/) ∙ [User Guide](https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html) ∙  [Pricing](https://aws.amazon.com/privatelink/pricing/)
+- There are three types of PrivateLink [Interface VPC Endpoints](https://docs.aws.amazon.com/vpc/latest/privatelink/concepts.html)
+	- **Interface** which deploys an ENI into your VPC subnet(s) which allows you direct access to someone else's service within AWS as if the were accessible locally in your VPC without having to go out to the internet. This might be to an AWS service (supported serices listed [here](https://docs.aws.amazon.com/vpc/latest/privatelink/aws-services-privatelink-support.html)) or to a 3rd Party who've created their own VPC Endpoint Service.
+	- **Gateway** which creates a route for your VPC route table directly to an AWS service (only S3 and DynamoDB are supported). Unlike the other endpoints, these are free.
+	- **Gateway Load Balancer** which allows you to route traffic from your VPC towards other virtual appliances.
+- You can expose a service of your own to other accounts in AWS through a [VPC Endpoint Service](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-share-your-services.html)
+
 
 [Back to top :arrow_up:](#table-of-contents)
 ### VPC and Network Security Gotchas and Limitations
 -	🔸VPCs are tied to one Region in one Account. Subnets are tied to one VPC and limited to one Availability Zone.
 -	🔸Security groups are tied to one VPC. If you are utilizing infrastructure in multiple VPCs you should make sure your configuration/deployment tools take that into account.
--	🔸[VPC Endpoints](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/vpc-endpoints.html) are currently only available for S3 and DynamoDB. If you have a security requirement to lockdown outbound traffic from your VPC you may want to use [DNS filtering](https://aws.amazon.com/blogs/security/how-to-add-dns-filtering-to-your-nat-instance-with-squid/) to control outbound traffic to other services.
+-	🔸[VPC Endpoint gateways](https://docs.aws.amazon.com/vpc/latest/privatelink/gateway-endpoints.html) are currently only available for S3 and DynamoDB. If you have a security requirement to lockdown outbound traffic from your VPC you may want to use [DNS filtering](https://aws.amazon.com/blogs/security/how-to-add-dns-filtering-to-your-nat-instance-with-squid/) to control outbound traffic to other services.
 -	❗Be careful when choosing your VPC IP CIDR block: If you are going to need to make use of [ClassicLink](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html), make sure that your private IP range [doesn’t overlap](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html#classiclink-limitations) with that of EC2 Classic.
 -	❗If you are going to peer VPCs, carefully consider the cost of [data transfer between VPCs](https://aws.amazon.com/vpc/faqs/#Peering_Connections), since for some workloads and integrations, this can be prohibitively expensive.
 - ❗New RDS instances require a [subnet group](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Subnets) within your VPC. If you’re using the [default VPC](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/default-vpc.html) this isn’t a concern, it will contain a subnet for each availability zone in your region. However, if you’re creating your own VPC and plan on using RDS, make sure you have at least two subnets within the VPC to act as the subnet group.
