@@ -1372,7 +1372,7 @@ RDS SQL Server
 
 ### RDS SQL Server Basics
 
--	[RDS offers SQL Server 2008 R2, 2012, 2014, 2016 and 2017](https://aws.amazon.com/rds/sqlserver/) including Express, Web, Standard and Enterprise.
+-	[RDS offers SQL Server 2014, 2016, 2017, 2019](https://aws.amazon.com/rds/sqlserver/) including Express, Web, Standard and Enterprise.
 
 [Back to top :arrow_up:](#table-of-contents)
 ### RDS SQL Server Tips
