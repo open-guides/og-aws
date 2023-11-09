@@ -1383,7 +1383,6 @@ RDS SQL Server
 ### RDS SQL Server Gotchas and Limitations
 
 -	🔸The user is granted only db_owner privileges for each database on the instance.
--	🔸Storage cannot be expanded for existing databases. If you need more space, you must restore your database on a new instance with larger storage.
 -	🔸There is a **16TB** database size limit for non-Express editions. There is also a minimum storage size, 20GB for Web and Express, 200GB for Standard and Enterprise.
 -	🔸Limited to [30 databases per instance](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html)
 
