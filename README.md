@@ -2623,6 +2623,7 @@ This section covers a few unusually useful or “must know about” resources or
 	-	[Python and AWS Cookbook](http://shop.oreilly.com/product/0636920020202.do)
 	-	[Resilience and Reliability on AWS](http://shop.oreilly.com/product/0636920026839.do)
 	-	[AWS documentation as Kindle ebooks](https://www.amazon.com/Amazon-Web-Services/e/B007R6MVQ6)
+    -	[Fundamentals of DevOps and Software Delivery](https://www.fundamentals-of-devops.com/)
 -	General references
 	-	[AWS Well Architected Framework Guide](https://d0.awsstatic.com/whitepapers/architecture/AWS_Well-Architected_Framework.pdf): Amazon’s own 56 page guide to operational excellence - guidelines and checklists to validate baseline security, reliability, performance (including high availability) and cost optimization practices.
 	-	[Awesome Microservices](https://github.com/mfornos/awesome-microservices): A curated list of tools and technologies for microservice architectures. Worth browsing to learn about popular open source projects.
