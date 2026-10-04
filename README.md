@@ -1195,8 +1195,7 @@ ALB
 [Back to top :arrow_up:](#table-of-contents)
 ### ALB Gotchas and Limitations
 
--	🔸ALBs only support HTTP/2 over HTTPS (no plain-text HTTP/2).
--	🔸ALBs only support HTTP/2 to external clients and not to internal resources (instances/containers).
+-	🐥ALBs support [end-to-end HTTP/2 and gRPC](https://aws.amazon.com/blogs/aws/new-application-load-balancer-support-for-end-to-end-http-2-and-grpc/) (since October 2020). HTTP/2 is supported on both client-facing and target-facing connections, and gRPC traffic can be routed and load balanced natively.
 -	ALBs support HTTP routing but not port-based TCP routing.
 -	Instances in the ALB’s target groups have to either have a single, fixed healthcheck port (“EC2 instance”-level healthcheck) or the healthcheck port for a target has to be the same as its application port (“Application instance”-level healthcheck) - you can't configure a per-target healthcheck port that is different than the application port.
 -	ALBs are VPC-only (they are not available in EC2 Classic)
