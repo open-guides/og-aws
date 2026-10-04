@@ -2437,7 +2437,7 @@ SQS
 [Back to top :arrow_up:](#table-of-contents)
 ### SQS Gotchas and Limitations
 
-- 🔸 SQS does not have a VPC endpoint (unlike S3 and DynamoDB), so SQS will need to be accessed using public SQS API endpoints.
+- SQS supports [VPC endpoints via AWS PrivateLink](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-internetwork-traffic-privacy.html#sqs-vpc-endpoints) (since 2018), allowing private access without traversing the public internet.
 - 🔸 FIFO Queues are limited to 300 API calls per second.
 - 🔸 FIFO Queues cannot subscribe to an SNS topic.
 - 🔸 Standard Queues can deliver duplicate messages regardless of the visibility window. If only-once delivery is your only choice, then use FIFO queues, or build an additional layer to de-dupe the messages.
