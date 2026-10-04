@@ -2546,6 +2546,7 @@ Billing and Cost Management
 	-	🔸*Using public IPs when not necessary:* If you use an Elastic IP or public IP address of an EC2 instance, you will incur network costs, even if it is accessed locally within the AZ.
 	-	🔸*Managed NAT Gateway data processing:* Managed NAT Gateways are used to let traffic egress from private subnets--at a cost of 4.5¢ as a data processing fee layered on top of data transfer pricing. Past a certain point, running your own NAT instances becomes far more cost effective.
 	-	🔸*Some services do cross-AZ traffic for free:* Many AWS services you'd not consider on their own merits offer a hidden value of free cross-AZ data transfer. EFS, RDS, MSK, and others are examples of this.
+	-	🔸*RDS Proxy cross-AZ costs:* [RDS Proxy](https://aws.amazon.com/rds/proxy/) introduces an additional network hop between your application and the database. If the proxy endpoint is in a different AZ from your application, you will incur cross-AZ data transfer charges on every database query. To minimize this, deploy your application in the same AZs as the proxy's subnets.
 -	This figure gives an overview:
 
 ![AWS Data Transfer Costs](figures/aws-data-transfer-costs.png)
