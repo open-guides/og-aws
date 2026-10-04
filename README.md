@@ -1028,6 +1028,7 @@ Auto Scaling
 -	Dynamic Auto Scaling is easiest to use with stateless, horizontally scalable services.
 -	Even if you are not using ASGs to dynamically increase or decrease instance counts, you should seriously consider maintaining all instances inside of ASGs – given a target instance count, the ASG will work to ensure that number of instances running is equal to that target, replacing instances for you if they die or are marked as being unhealthy. This results in consistent capacity and better stability for your service.
 -	Autoscalers can be [configured to terminate](http://docs.aws.amazon.com/autoscaling/latest/userguide/healthcheck.html) instances that a CLB or ALB has marked as being unhealthy.
+-	🐥[Predictive scaling](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-predictive-scaling.html) uses machine learning to forecast traffic patterns and proactively scales your ASG ahead of anticipated demand. This is useful for workloads with recurring patterns (daily traffic spikes, weekly batch jobs) where reactive scaling would be too slow.
 
 [Back to top :arrow_up:](#table-of-contents)
 ### Auto Scaling Gotchas and Limitations
