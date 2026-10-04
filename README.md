@@ -1797,6 +1797,7 @@ Route 53
 [Back to top :arrow_up:](#table-of-contents)
 ### Route 53 Gotchas and Limitations
 -   🔸Private Hosted Zone will only respond to DNS queries that originate from within a VPC. As a result Route53 will not respond to request made via a VPN or Direct connect. To get around this you will need to implement [Hybrid Cloud DNS Solutions](https://d1.awsstatic.com/whitepapers/hybrid-cloud-dns-options-for-vpc.pdf) or use the Simple AD provided IP addresses to query the hosted zone.
+-   🐥[Route 53 Resolver](https://aws.amazon.com/blogs/aws/new-amazon-route-53-resolver-for-hybrid-clouds/) (launched November 2018) simplifies hybrid cloud DNS by providing inbound and outbound DNS forwarding endpoints within your VPC. Inbound endpoints let on-premises resources resolve AWS-hosted domains, while outbound endpoints let VPC resources resolve on-premises domains. This replaces the need for custom DNS forwarders or Simple AD workarounds for hybrid DNS.
 
 
 CloudFormation
