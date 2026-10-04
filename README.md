@@ -2546,6 +2546,7 @@ Billing and Cost Management
 	-	🔸*Using public IPs when not necessary:* If you use an Elastic IP or public IP address of an EC2 instance, you will incur network costs, even if it is accessed locally within the AZ.
 	-	🔸*Managed NAT Gateway data processing:* Managed NAT Gateways are used to let traffic egress from private subnets--at a cost of 4.5¢ as a data processing fee layered on top of data transfer pricing. Past a certain point, running your own NAT instances becomes far more cost effective.
 	-	🔸*Some services do cross-AZ traffic for free:* Many AWS services you'd not consider on their own merits offer a hidden value of free cross-AZ data transfer. EFS, RDS, MSK, and others are examples of this.
+	-	🔸*Transit Gateway data processing:* [Transit Gateway](https://aws.amazon.com/transit-gateway/pricing/) charges a per-GB data processing fee (currently $0.02/GB) on top of standard data transfer costs. When routing traffic between VPCs through a Transit Gateway, you pay both the TGW processing fee and any applicable cross-AZ or cross-region data transfer charges. For high-throughput VPC-to-VPC traffic within the same region, VPC Peering is cheaper since it has no data processing fee.
 -	This figure gives an overview:
 
 ![AWS Data Transfer Costs](figures/aws-data-transfer-costs.png)
