@@ -1590,6 +1590,7 @@ EKS
 - [ECS](#ecs): Amazon's native Container Scheduled platform released in 2014.  If you don't utilise containers today and are looking to get started, ECS is an excellent product.
 -	[Kubernetes](https://kubernetes.io): Extensive container platform. Available as a hosted solution on [Google Cloud](https://cloud.google.com/container-engine/), [AWS](https://aws.amazon.com/eks/), [Digital Ocean](https://www.digitalocean.com/products/kubernetes/) and [Azure](https://azure.microsoft.com/en-us/services/kubernetes-service/).
 -	[Nomad](https://www.nomadproject.io/): Orchestrator/Scheduler, tightly integrated in the HashiCorp stack (Consul, Vault, etc).
+-	Self-managed Kubernetes distributions: [k3s](https://k3s.io/) (lightweight, single-binary), [RKE2](https://docs.rke2.io/) (Rancher's security-focused distribution), and [kOps](https://kops.sigs.k8s.io/) (production-grade cluster management on AWS) are popular alternatives for teams that want more control over their Kubernetes infrastructure or need to run on EC2 directly.
 
 [Back to top :arrow_up:](#table-of-contents)
 ### EKS Gotchas and Limitations
