@@ -2285,6 +2285,8 @@ Certificate Manager
 - 🔹**Supported services:** Managed [Load Balancers](#load-balancers), [CloudFront](#cloudfront), [API Gateway](#api-gateway) and [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/).
 - 🔸During the domain validation process, if DNS validation is unsuccessful Certificate Manager will send an email to every contact address specified in the domain’s WHOIS record and up to five common administrative addresses. Some anti-spam filters can mark emails as spam because of this. You should check the spam folder of your email if you don’t receive a confirmation email.
 - 🔹 Setting up a certificate for a test domain you don't have email set up on? You can now use DNS validation instead.
+- 🔹Prefer [DNS validation](https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-dns.html) over email validation. DNS validation is simpler to set up, avoids email deliverability issues, and enables automatic certificate renewal without manual re-approval.
+- 🔹ACM certificates cannot be exported or installed on EC2 instances or non-AWS servers. If you need certificates outside of integrated AWS services, use a different CA or [ACM Private CA](https://aws.amazon.com/private-ca/).
 - 🔹Remember when requesting a wildcard domain that the request will not be valid for the level just below the wildcard, or any subdomains preceding the wildcard. Take for example an approved, issued certificate for `*.bar.example.com`. This would be valid for `foo.bar.example.com` but not `bar.example.com`. Likewise it would also not be valid for `www.bar.foo.example.com`. You would need to add each of these domains to the certificate request.
 
 [Back to top :arrow_up:](#table-of-contents)
@@ -2297,6 +2299,9 @@ Certificate Manager
 	- 🔹If you request a limit increase to AWS support for this, they will respond to you asking to confirm this. Bypass this by saying in the body of your initial request:
 ```"I acknowledge at the moment, there is no method to add or remove a name from a certificate. Instead, you must request a new certificate with the revised namelist and you must then re-approve all of the names in the certificate, even if they'd been previously approved."```
 - 🔸There is no way at the moment to add or remove a domain to/from an existing certificate. You must request a new certificate and re-approve it from each of the domains requested.
+- 🔸DNS validation requires adding a CNAME record for each domain on the certificate. However, wildcard certificates (e.g. `*.example.com`) require only one validation record for the wildcard domain.
+- 🔸Certificate renewal is automatic for DNS-validated certificates as long as the CNAME record remains in place, but email-validated certificates require manual re-approval before they can be renewed.
+- 🔸ACM does not support issuing certificates for bare IP addresses — only fully qualified domain names are supported.
 
 WAF
 -------------------
