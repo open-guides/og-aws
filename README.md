@@ -1304,6 +1304,7 @@ RDS
 -	If you're looking for the managed convenience of RDS for other data stores such as MongoDB or Cassandra, you may wish to consider third-party services from providers such as [[Compose](https://www.compose.com/), or [InstaClustr](https://www.instaclustr.com/).
 -	🔹Make sure to create a new [parameter group](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithParamGroups.html) and option group for your database since the default parameter group does not allow dynamic configuration changes.
 -	RDS instances start with a default timezone of UTC. If necessary, this can be [changed to a different timezone](https://aws.amazon.com/premiumsupport/knowledge-center/rds-change-time-zone/).
+-	🔸Avoid setting non-UTC timezones on RDS instances. UTC avoids DST-related issues, simplifies log correlation across services, and prevents edge cases with time-based queries during timezone transitions.
 -	Save costs by stopping the RDS instance(s) when not in use, you can achieve this by configuring a stop and start schedule using the the [Instance Scheduler](https://aws.amazon.com/solutions/implementations/instance-scheduler/) solution.
 
 [Back to top :arrow_up:](#table-of-contents)
