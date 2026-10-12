@@ -32,6 +32,7 @@ Table of Contents
 | [Batch](#batch) | [📗](#batch-basics) | [📘](#batch-tips) |
 | [Certificate Manager](#certificate-manager) | [📗](#certificate-manager-basics) | [📘](#certificate-manager-tips) | [📙](#certificate-manager-gotchas-and-limitations) |
 | [CLB (ELB)](#clb) | [📗](#clb-basics) | [📘](#clb-tips) | [📙](#clb-gotchas-and-limitations) |
+| [Cognito](#cognito) | [📗](#cognito-basics) | [📘](#cognito-tips) | [📙](#cognito-gotchas-and-limitations) |
 | [CloudFront](#cloudfront) | [📗](#cloudfront-basics) | [📘](#cloudfront-tips) | [📙](#cloudfront-gotchas-and-limitations) |
 | [CloudFormation](#cloudformation) | [📗](#cloudformation-basics) | [📘](#cloudformation-tips) | [📙](#cloudformation-gotchas-and-limitations) |
 | [CloudWatch](#cloudwatch) | [📗](#cloudwatch-basics) | [📘](#cloudwatch-tips) | [📙](#cloudwatch-gotchas-and-limitations) |
@@ -2483,6 +2484,35 @@ SNS
 
 - 🔸 HTTP/S subscribers of SNS topics need to have public endpoints, as SNS does not support calling private endpoints (like those in a private subnet within a VPC).
 - 📜 In a fan-out scenario, [SSE-enabled SQS](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html) subscribers of an SNS topic [will not receive](https://lobster1234.github.io/2017/10/14/fan-out-with-sns-and-sqs-gotcha/) the messages sent to the topic.
+
+Cognito
+-------
+
+### Cognito Basics
+
+-	📒 [Homepage](https://aws.amazon.com/cognito/) ∙ [Developer guide](https://docs.aws.amazon.com/cognito/latest/developerguide/) ∙ [FAQ](https://aws.amazon.com/cognito/faqs/) ∙ [Pricing](https://aws.amazon.com/cognito/pricing/)
+-	**Amazon Cognito** provides authentication, authorization, and user management for web and mobile apps. It has two main components:
+	-	**[User Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools.html)** are managed user directories that provide sign-up and sign-in functionality, including social and SAML-based federation.
+	-	**[Identity Pools](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-identity.html)** (Federated Identities) provide temporary AWS credentials so users can access AWS services like S3 or DynamoDB directly.
+-	Cognito integrates natively with [ALB](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/listener-authenticate-users.html), [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-integrate-with-cognito.html), and [AppSync](https://docs.aws.amazon.com/appsync/latest/devguide/security-authz.html) for authentication.
+-	User Pools issue [JWT tokens](https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-tokens-with-identity-providers.html) (ID token, access token, refresh token) upon successful authentication.
+
+[Back to top :arrow_up:](#table-of-contents)
+### Cognito Tips
+
+-	🔹Use [User Pool groups](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-user-groups.html) for role-based access control. Groups can be mapped to IAM roles when used with Identity Pools, giving you fine-grained permissions per group of users.
+-	🔹Prefer the [hosted UI](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-app-integration.html) for quick authentication flows. It handles sign-up, sign-in, MFA, and federation out of the box without building custom UI.
+-	🔹Use custom attributes sparingly — they [cannot be removed or renamed](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html) once created. Plan your schema carefully before going to production.
+-	🔹For machine-to-machine authentication (e.g. microservices), use the [client credentials grant](https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html) with a resource server rather than user-based flows.
+
+[Back to top :arrow_up:](#table-of-contents)
+### Cognito Gotchas and Limitations
+
+-	🔸The User Pool [attribute schema is immutable](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html) after pool creation — you cannot add required attributes, change attribute constraints, or remove custom attributes. If you need schema changes, you must create a new User Pool and migrate users.
+-	🔸A [custom domain](https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html) for the hosted UI requires an ACM certificate in **us-east-1**, regardless of the region your User Pool is in.
+-	🔸Access token expiration has a minimum of **1 hour** and cannot be set lower. For shorter-lived sessions, you'll need to implement additional token validation logic in your application.
+-	🔸The [User Migration Lambda trigger](https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-migrate-user.html) has a **5-second timeout** that cannot be increased, which can be problematic when migrating users from external systems with slow APIs.
+-	🔸There is a default [quota](https://docs.aws.amazon.com/cognito/latest/developerguide/limits.html) of **40 requests per second** for most User Pool API operations (such as sign-up and sign-in), which may require a limit increase for high-traffic applications.
 
 High Availability
 -----------------
