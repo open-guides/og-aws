@@ -73,6 +73,7 @@ Table of Contents
 | [SNS](#sns) | [📗](#sns-basics) | [📘](#sns-tips) | [📙](#sns-gotchas-and-limitations) |
 | [SQS](#sqs) | [📗](#sqs-basics) | [📘](#sqs-tips) | [📙](#sqs-gotchas-and-limitations) |
 | [Step Functions](#step-functions) | [📗](#step-functions-basics) | [📘](#step-functions-tips) | [📙](#step-functions-gotchas-and-limitations) |
+| [Systems Manager](#systems-manager) | [📗](#systems-manager-basics) | [📘](#systems-manager-tips) | [📙](#systems-manager-gotchas-and-limitations) |
 | [WAF](#waf) | [📗](#waf-basics) | [📘](#waf-tips) | [📙](#waf-gotchas-and-limitations) |
 | [VPCs, Network Security, and Security Groups](#vpcs-network-security-and-security-groups) | [📗](#vpc-basics) | [📘](#vpc-and-network-security-tips) | [📙](#vpc-and-network-security-gotchas-and-limitations) |
 
@@ -2483,6 +2484,38 @@ SNS
 
 - 🔸 HTTP/S subscribers of SNS topics need to have public endpoints, as SNS does not support calling private endpoints (like those in a private subnet within a VPC).
 - 📜 In a fan-out scenario, [SSE-enabled SQS](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-server-side-encryption.html) subscribers of an SNS topic [will not receive](https://lobster1234.github.io/2017/10/14/fan-out-with-sns-and-sqs-gotcha/) the messages sent to the topic.
+
+Systems Manager
+---------------
+
+### Systems Manager Basics
+
+-	📒 [Homepage](https://aws.amazon.com/systems-manager/) ∙ [User guide](https://docs.aws.amazon.com/systems-manager/latest/userguide/) ∙ [FAQ](https://aws.amazon.com/systems-manager/faq/) ∙ [Pricing](https://aws.amazon.com/systems-manager/pricing/)
+-	**AWS Systems Manager** (formerly Simple Systems Manager, or SSM) is a unified operational management service for managing infrastructure on AWS and on-premises. Key capabilities include:
+	-	**[Run Command](https://docs.aws.amazon.com/systems-manager/latest/userguide/execute-remote-commands.html):** Execute commands across fleets of instances without SSH or RDP access.
+	-	**[Parameter Store](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html):** Centralized, hierarchical storage for configuration data and secrets.
+	-	**[Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html):** Secure, auditable shell access to instances without opening inbound ports or managing bastion hosts.
+	-	**[Patch Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-patch.html):** Automate OS and application patching across instances.
+	-	**[State Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-state.html):** Define and maintain consistent instance configurations.
+-	Most Systems Manager features are available [at no additional charge](https://aws.amazon.com/systems-manager/pricing/). You pay only for the AWS resources you use (e.g., advanced parameters, on-premises instances).
+-	The [SSM Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html) is required on managed instances. It is pre-installed on Amazon Linux 2, Amazon Linux 2023, and recent Windows Server AMIs.
+
+[Back to top :arrow_up:](#table-of-contents)
+### Systems Manager Tips
+
+-	🔹Use **Parameter Store** for configuration and secrets management. It supports [SecureString parameters](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-securestring.html) encrypted with KMS, making it a simple and free alternative to Secrets Manager for many use cases.
+-	🔹**Session Manager** can replace SSH bastion hosts entirely. Sessions are logged and auditable, require no inbound security group rules, and work through IAM policies — a major security improvement over traditional SSH access patterns.
+-	🔹When using **Run Command** for fleet-wide operations, use [rate control](https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-rate) (max concurrency and max errors) to limit blast radius and safely roll out changes across large fleets.
+-	🔹Use [resource groups](https://docs.aws.amazon.com/ARG/latest/userguide/welcome.html) with Systems Manager to target operations at logical groups of instances (e.g., by application, environment, or team) rather than managing instance IDs directly.
+
+[Back to top :arrow_up:](#table-of-contents)
+### Systems Manager Gotchas and Limitations
+
+-	🔸The SSM Agent requires internet access (either via NAT Gateway, internet gateway, or a [VPC endpoint](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-create-vpc.html)) to communicate with Systems Manager endpoints. Instances in private subnets without connectivity will not appear as managed instances.
+-	🔸**Parameter Store** standard tier has a limit of [10,000 parameters](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-su-organize.html) per account per region. The advanced tier raises this limit but costs [$0.05 per parameter per month](https://aws.amazon.com/systems-manager/pricing/).
+-	🔸Session Manager logs (command input/output) are not stored by default — you must explicitly configure [logging to CloudWatch Logs or S3](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-logging.html) to capture session activity.
+-	🔸Run Command has a [default timeout of 2 hours](https://docs.aws.amazon.com/systems-manager/latest/userguide/monitor-commands.html) per invocation. Long-running operations may need to be broken into smaller steps or use State Manager associations instead.
+-	🔸Systems Manager [Inventory](https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-about.html) collection can generate a large volume of data. Without proper lifecycle policies, inventory data stored in S3 can accumulate significant storage costs over time.
 
 High Availability
 -----------------
